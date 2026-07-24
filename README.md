@@ -5,9 +5,11 @@ Ein kombinierter Sport-Kalender (Fußball + Radsport) als `.ics`-Abo und als kle
 ## Was drin ist
 
 **Fußball** (Quelle: [OpenLigaDB](https://api.openligadb.de)):
-- Mainz 05 (Herren) – Bundesliga
-- Stuttgarter Kickers – Regionalliga Südwest
+- Mainz 05 (Herren) – Bundesliga + DFB-Pokal
+- Stuttgarter Kickers – Regionalliga Südwest + DFB-Pokal
 - Mainz 05 (Frauen) – 2. Bundesliga Frauen
+
+**Regionalliga Südwest – Fallback-Quelle:** OpenLigaDB hat für diese Liga aktuell (Stand 2026) keine gepflegten Daten – der letzte vorhandene Datensatz stammt aus der Saison 2016/17 (echte Lücke in der freien Datenquelle, keine fehlerhafte Fuzzy-Match; veraltete Season-Treffer werden aktiv ignoriert statt Jahre alte Spielpläne anzuzeigen). `fetch_football.py` versucht deshalb zuerst OpenLigaDB und weicht bei dieser Liga automatisch auf die offizielle Spielplan-Seite der Stuttgarter Kickers aus (`stuttgarter-kickers.de/team/spielplan`, robots.txt erlaubt Crawling, server-rendertes HTML). Sobald OpenLigaDB die Liga wieder pflegt, greift wieder die generische API-Quelle. Einschränkungen der Fallback-Quelle: sie kennt keine offizielle Spieltag-Nummer (wird chronologisch approximiert) und ist an das aktuelle Markup der Vereins-Website gebunden – ändert sich das Seiten-Layout grundlegend, greift wieder nur die Warnung statt eines Absturzes.
 
 **Radsport** (Quelle: Wikipedia, siehe Begründung unten):
 - Tour de France, Giro d'Italia, Vuelta a España – alle Einzeletappen
@@ -99,3 +101,4 @@ Ein neuer Verein/Liga/Rennen kommt allein durch einen neuen Eintrag in `config.j
 3. Fertig – die Seite liegt danach unter `https://<user>.github.io/<repo>/`, das Kalender-Abo unter derselben URL + `/kalender.ics` (bzw. `webcal://...`).
 
 Der Workflow `.github/workflows/update.yml` läuft automatisch jeden Montag 06:00 UTC und lässt sich zusätzlich manuell über den Tab „Actions" → „Update sportocal calendar" → „Run workflow" anstoßen.
+

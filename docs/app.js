@@ -33,6 +33,21 @@ function isAllDay(start) {
   return start.length === 10;
 }
 
+// Single source of truth for "is this event in the past", used for both
+// sorting and graying out cards. Comparison is by calendar day in
+// Europe/Berlin (not exact instant), so a match that already kicked off
+// earlier today still counts as "today", not "past" -- and cycling's
+// date-only events compare on equal footing with football's exact times.
+const berlinDayFormatter = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin" });
+
+function dayKey(event) {
+  return isAllDay(event.start) ? event.start : berlinDayFormatter.format(parseStart(event.start));
+}
+
+function isPastEvent(event) {
+  return dayKey(event) < berlinDayFormatter.format(new Date());
+}
+
 function groupBy(items, keyFn) {
   const map = new Map();
   for (const item of items) {
@@ -46,8 +61,7 @@ function groupBy(items, keyFn) {
 function renderEventCard(event) {
   const card = document.createElement("div");
   const startDate = parseStart(event.start);
-  const now = new Date();
-  card.className = "event-card" + (startDate < now ? " is-past" : "");
+  card.className = "event-card" + (isPastEvent(event) ? " is-past" : "");
 
   const dateBox = document.createElement("div");
   dateBox.className = "event-date";
@@ -104,10 +118,8 @@ function renderEventCard(event) {
 }
 
 function renderCompetitionGroup(competitionName, events) {
-  const now = new Date();
-  const upcoming = events.filter((e) => parseStart(e.start) >= now).sort((a, b) => a.start.localeCompare(b.start));
-  const past = events.filter((e) => parseStart(e.start) < now).sort((a, b) => b.start.localeCompare(a.start));
-  const ordered = [...upcoming, ...past];
+  const upcoming = events.filter((e) => !isPastEvent(e)).sort((a, b) => a.start.localeCompare(b.start));
+  const past = events.filter((e) => isPastEvent(e)).sort((a, b) => b.start.localeCompare(a.start));
 
   const section = document.createElement("div");
   section.className = "competition-group";
@@ -115,16 +127,35 @@ function renderCompetitionGroup(competitionName, events) {
   heading.textContent = competitionName;
   section.appendChild(heading);
 
-  if (ordered.length === 0) {
+  if (upcoming.length === 0 && past.length === 0) {
     const empty = document.createElement("p");
     empty.className = "empty-state";
     empty.textContent = "Keine Termine bekannt.";
     section.appendChild(empty);
-  } else {
-    for (const event of ordered) {
+    return section;
+  }
+
+  for (const event of upcoming) {
+    section.appendChild(renderEventCard(event));
+  }
+
+  // Every group applies the exact same rule: upcoming first (bright), then a
+  // labelled divider, then past events (grayed) -- so it's always visible
+  // *why* a card is grayed, whether a group has one past match or a whole
+  // finished season.
+  if (past.length > 0) {
+    const divider = document.createElement("p");
+    divider.className = "past-divider";
+    divider.textContent =
+      upcoming.length > 0
+        ? "Vergangene Termine"
+        : "Vergangene Termine (noch keine kommenden Termine bekannt)";
+    section.appendChild(divider);
+    for (const event of past) {
       section.appendChild(renderEventCard(event));
     }
   }
+
   return section;
 }
 
@@ -156,8 +187,7 @@ function render(events) {
     // fixtures aren't published yet) sink to the bottom instead of jumping
     // to the front just because their old dates happen to be numerically small.
     const sortKey = (evts) => {
-      const now = new Date();
-      const future = evts.filter((e) => parseStart(e.start) >= now);
+      const future = evts.filter((e) => !isPastEvent(e));
       if (future.length) {
         return [0, Math.min(...future.map((e) => parseStart(e.start).getTime()))];
       }

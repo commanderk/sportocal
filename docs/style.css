@@ -127,6 +127,16 @@ main#app {
   opacity: 0.55;
 }
 
+.past-divider {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0.9rem 0 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border);
+}
+
 .event-date {
   min-width: 4.5rem;
   text-align: center;

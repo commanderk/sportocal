@@ -9,7 +9,8 @@
         "competition": "Bundesliga",
         "emoji": "🟥",
         "clubShortName": "MZ05",
-        "clubNameMatch": "Mainz",
+        "clubNameMatch": "1. FSV Mainz 05",
+        "roundFormat": "spieltag",
         "leagueNameKeywords": ["bundesliga"],
         "leagueNameExcludeKeywords": ["2", "frauen", "regionalliga", "3"],
         "sportNameKeywords": ["fussball"],
@@ -23,25 +24,61 @@
         "emoji": "🟦",
         "clubShortName": "SVK",
         "clubNameMatch": "Stuttgarter Kickers",
+        "roundFormat": "spieltag",
         "leagueNameKeywords": ["regionalliga", "sudwest"],
         "leagueNameExcludeKeywords": [],
         "sportNameKeywords": ["fussball"],
         "sportNameExcludeKeywords": ["frauenfussball"],
         "shortcutHint": null,
-        "shortcutStable": false
+        "shortcutStable": false,
+        "fallback": {
+          "source": "kickers-site",
+          "note": "OpenLigaDB pflegt Regionalliga Suedwest aktuell nicht (letzter Datensatz: 2016/17). Fallback: die offizielle Spielplan-Seite des Vereins selbst (server-rendertes HTML, robots.txt erlaubt Crawling).",
+          "url": "https://www.stuttgarter-kickers.de/team/spielplan",
+          "onlyCompetition": "Regionalliga Südwest"
+        }
       },
       {
         "id": "mainz05-frauen",
         "competition": "2. Bundesliga Frauen",
         "emoji": "🔴",
         "clubShortName": "MZ05",
-        "clubNameMatch": "Mainz",
+        "clubNameMatch": "1. FSV Mainz 05",
+        "roundFormat": "spieltag",
         "leagueNameKeywords": ["bundesliga", "frauen", "2"],
         "leagueNameExcludeKeywords": ["regionalliga"],
         "sportNameKeywords": [],
         "sportNameExcludeKeywords": [],
         "shortcutHint": null,
         "shortcutStable": false
+      },
+      {
+        "id": "mainz05-dfbpokal",
+        "competition": "DFB-Pokal",
+        "emoji": "🟥",
+        "clubShortName": "MZ05",
+        "clubNameMatch": "1. FSV Mainz 05",
+        "roundFormat": "raw",
+        "leagueNameKeywords": ["dfb", "pokal"],
+        "leagueNameExcludeKeywords": ["frauen"],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": "dfb",
+        "shortcutStable": true
+      },
+      {
+        "id": "kickers-dfbpokal",
+        "competition": "DFB-Pokal",
+        "emoji": "🟦",
+        "clubShortName": "SVK",
+        "clubNameMatch": "Stuttgarter Kickers",
+        "roundFormat": "raw",
+        "leagueNameKeywords": ["dfb", "pokal"],
+        "leagueNameExcludeKeywords": ["frauen"],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": "dfb",
+        "shortcutStable": true
       }
     ]
   },

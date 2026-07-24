@@ -10,8 +10,11 @@ clear warning and move on -- a missing league must never abort the whole run.
 """
 from __future__ import annotations
 
+import html
 import re
 from datetime import datetime, timezone
+from urllib.parse import unquote
+from zoneinfo import ZoneInfo
 
 from common import (
     contains_keyword,
@@ -21,12 +24,23 @@ from common import (
     log,
     normalize_text,
     http_get_json,
+    http_get_text,
     save_snapshot,
     warn,
 )
 
+BERLIN = ZoneInfo("Europe/Berlin")
+
 
 MIN_RELEVANT_SEASON_AGE_YEARS = 1  # a league whose newest season is older than this is treated as "not maintained"
+
+
+def is_our_club(entry: dict, team_name: str) -> bool:
+    """Prefix match, not substring: cup competitions pull in many more clubs
+    than a single league, and a plain substring check on e.g. 'Mainz' or
+    'Kickers' would also match unrelated teams like 'TSV Schott Mainz' or
+    'Wuerzburger Kickers'."""
+    return team_name.lower().startswith(entry["clubNameMatch"].lower())
 
 
 def find_league_candidates(leagues: list[dict], entry: dict, current_year: int) -> list[dict]:
@@ -60,12 +74,16 @@ def find_league_candidates(leagues: list[dict], entry: dict, current_year: int) 
 
 def build_event(entry: dict, match: dict) -> dict:
     home, away = match["team1"], match["team2"]  # team1/team2 are always actual home/away
-    club_is_home = entry["clubNameMatch"].lower() in home["teamName"].lower()
-    opponent_name = away["teamName"] if club_is_home else home["teamName"]
+    club_is_home = is_our_club(entry, home["teamName"])
+    opponent_name = (away["teamName"] if club_is_home else home["teamName"]).strip()
 
     group_name = match.get("group", {}).get("groupName") or ""
-    round_match = re.search(r"\d+", group_name)
-    round_label = f"Spieltag {round_match.group()}" if round_match else group_name or None
+    if entry.get("roundFormat", "spieltag") == "raw":
+        # cup rounds ("1. Runde", "Achtelfinale", ...) are shown as-is
+        round_label = group_name or None
+    else:
+        round_match = re.search(r"\d+", group_name)
+        round_label = f"Spieltag {round_match.group()}" if round_match else group_name or None
 
     title = f"{entry['emoji']} {entry['clubShortName']} - {opponent_name} – {entry['competition']} – {round_label or ''}".strip()
 
@@ -90,13 +108,13 @@ def build_event(entry: dict, match: dict) -> dict:
         "location": location,
         "participants": {
             "home": {
-                "name": home["teamName"],
-                "shortName": home.get("shortName") or home["teamName"],
+                "name": home["teamName"].strip(),
+                "shortName": (home.get("shortName") or home["teamName"]).strip(),
                 "logo": home.get("teamIconUrl"),
             },
             "away": {
-                "name": away["teamName"],
-                "shortName": away.get("shortName") or away["teamName"],
+                "name": away["teamName"].strip(),
+                "shortName": (away.get("shortName") or away["teamName"]).strip(),
                 "logo": away.get("teamIconUrl"),
             },
         },
@@ -104,9 +122,118 @@ def build_event(entry: dict, match: dict) -> dict:
     }
 
 
+def parse_kickers_fixture_page(html_text: str, entry: dict) -> list[dict]:
+    """Parse the official club fixtures page (stuttgarter-kickers.de/team/spielplan).
+
+    Server-rendered HTML (no JS execution needed): every match is one
+    <article> block containing a competition label, a date/time string, a
+    venue, and the two team names in home-then-away order (verified against
+    known home games at the club's own stadium). There's no OpenLigaDB-style
+    league API for Regionalliga Suedwest right now, so this is a best-effort
+    fallback tied to this one page's current markup -- if the club relaunches
+    their site this will need re-checking, hence the narrow try/except in the
+    caller rather than letting a markup change break the whole run.
+    """
+    only_competition = entry["fallback"]["onlyCompetition"]
+    events = []
+    for block in re.findall(r"<article.*?</article>", html_text, re.DOTALL):
+        comp_match = re.search(
+            r'<span class="pb-1 text-base font-bold text-blueLight-500[^"]*">([^<]*)</span>', block
+        )
+        if not comp_match or html.unescape(comp_match.group(1)).strip() != only_competition:
+            continue
+
+        teams = re.findall(r'<span class="text-h[^"]*">([^<]*)</span>', block)
+        if len(teams) != 2:
+            continue
+        home_name, away_name = (html.unescape(t).strip() for t in teams)
+
+        date_match = re.search(r'640:text-base 640:font-bold">(.*?)</span>', block, re.DOTALL)
+        location_match = re.search(r'<span class="w-8/12[^"]*">([^<]*)</span>', block)
+        location = html.unescape(location_match.group(1)).strip() if location_match else None
+
+        if not date_match:
+            continue
+        date_text = html.unescape(re.sub(r"<!--.*?-->", "", date_match.group(1)))
+        day_match = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", date_text)
+        if not day_match:
+            continue
+        day, month, year = (int(x) for x in day_match.groups())
+
+        time_match = re.search(r"Anstoß um (\d{2})[.:](\d{2}) Uhr", date_text)
+        if time_match:
+            hour, minute = (int(x) for x in time_match.groups())
+            local_dt = datetime(year, month, day, hour, minute, tzinfo=BERLIN)
+            start = local_dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            time_confirmed = True
+        else:
+            start = f"{year:04d}-{month:02d}-{day:02d}"
+            time_confirmed = False
+
+        club_is_home = is_our_club(entry, home_name)
+        opponent_name = away_name if club_is_home else home_name
+
+        # Each logo appears many times (once per responsive srcSet width), so
+        # dedupe by file identity before picking "first team, second team".
+        raw_logo_refs = re.findall(r"images\.prismic\.io%2F[^&\"]*?\.(?:png|jpg|jpeg|svg)", block)
+        logo_urls = list(dict.fromkeys(unquote(u) for u in raw_logo_refs))
+        home_logo = f"https://{logo_urls[0]}" if len(logo_urls) > 0 else None
+        away_logo = f"https://{logo_urls[1]}" if len(logo_urls) > 1 else None
+
+        title = (
+            f"{entry['emoji']} {entry['clubShortName']} - {opponent_name} – "
+            f"{entry['competition']} – {{ROUND}}"
+        )
+
+        events.append(
+            {
+                "id": f"football-{entry['id']}-{start[:10]}-{re.sub(r'[^a-z0-9]+', '', opponent_name.lower())}",
+                "sport": "football",
+                "competition": entry["competition"],
+                "round": None,  # this source doesn't expose a matchday number; filled in below
+                "title": title,
+                "start": start,
+                "timeConfirmed": time_confirmed,
+                "location": location,
+                "participants": {
+                    "home": {"name": home_name, "shortName": home_name, "logo": home_logo},
+                    "away": {"name": away_name, "shortName": away_name, "logo": away_logo},
+                },
+                "homeAway": "home" if club_is_home else "away",
+            }
+        )
+
+    # No matchday number is published on this page, so we approximate one by
+    # chronological order -- clearly a best-effort label, not an official one.
+    events.sort(key=lambda e: e["start"])
+    for i, event in enumerate(events, start=1):
+        event["round"] = f"Spieltag {i}"
+        event["title"] = event["title"].replace("{ROUND}", event["round"])
+
+    return events
+
+
 def fetch_entry(config: dict, leagues: list[dict], entry: dict, current_year: int) -> list[dict] | None:
     candidates = find_league_candidates(leagues, entry, current_year)
     if not candidates:
+        fallback = entry.get("fallback")
+        if fallback and fallback["source"] == "kickers-site":
+            warn(
+                f"Keine aktuelle Liga bei OpenLigaDB gefunden, die zu '{entry['competition']}' passt. "
+                f"Nutze Fallback-Quelle fuer {entry['id']}: {fallback['url']}"
+            )
+            try:
+                page = http_get_text(fallback["url"])
+                events = parse_kickers_fixture_page(page, entry)
+            except Exception as exc:
+                warn(f"[{entry['id']}] Fallback-Quelle fehlgeschlagen: {exc}")
+                return None
+            if not events:
+                warn(f"[{entry['id']}] Fallback-Quelle lieferte keine '{fallback['onlyCompetition']}'-Spiele.")
+                return None
+            log(f"[{entry['id']}] Fallback-Quelle verwendet, {len(events)} Spiele gefunden.")
+            return events
+
         warn(
             f"Keine aktuelle Liga gefunden, die zu '{entry['competition']}' passt "
             f"(Keywords: {entry['leagueNameKeywords']}). Ueberspringe {entry['id']}."
@@ -125,8 +252,7 @@ def fetch_entry(config: dict, leagues: list[dict], entry: dict, current_year: in
         club_matches = [
             m
             for m in matches
-            if entry["clubNameMatch"].lower() in m["team1"]["teamName"].lower()
-            or entry["clubNameMatch"].lower() in m["team2"]["teamName"].lower()
+            if is_our_club(entry, m["team1"]["teamName"]) or is_our_club(entry, m["team2"]["teamName"])
         ]
         if club_matches:
             log(

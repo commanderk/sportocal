@@ -27,6 +27,21 @@ def load_config() -> dict:
         return json.load(f)
 
 
+def http_get_text(url: str, retries: int = 3, timeout: int = 20) -> str:
+    """GET a URL and return the raw response body as text, with basic retry."""
+    last_error: Exception | None = None
+    for attempt in range(1, retries + 1):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read().decode("utf-8", errors="replace")
+        except (urllib.error.URLError, TimeoutError) as exc:
+            last_error = exc
+            if attempt < retries:
+                time.sleep(1.5 * attempt)
+    raise RuntimeError(f"GET {url} failed after {retries} attempts: {last_error}")
+
+
 def http_get_json(url: str, retries: int = 3, timeout: int = 20) -> Any:
     """GET a URL and parse it as JSON, with basic retry on transient failures."""
     last_error: Exception | None = None
