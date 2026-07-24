@@ -58,7 +58,7 @@ function groupBy(items, keyFn) {
   return map;
 }
 
-function renderEventCard(event) {
+function renderEventCard(event, { showCompetitionTag = false } = {}) {
   const card = document.createElement("div");
   const startDate = parseStart(event.start);
   card.className = "event-card" + (isPastEvent(event) ? " is-past" : "");
@@ -91,6 +91,13 @@ function renderEventCard(event) {
 
   const body = document.createElement("div");
   body.className = "event-body";
+
+  if (showCompetitionTag) {
+    const tag = document.createElement("div");
+    tag.className = "event-competition-tag";
+    tag.textContent = `${SPORT_LABELS[event.sport] || event.sport} · ${event.competition}`;
+    body.appendChild(tag);
+  }
 
   const title = document.createElement("div");
   title.className = "event-title";
@@ -159,15 +166,30 @@ function renderCompetitionGroup(competitionName, events) {
   return section;
 }
 
-function render(events) {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
+function renderByDate(events, app) {
+  // One continuous chronological list across every sport/competition, using
+  // the exact same upcoming-then-past-with-divider rule as the grouped view.
+  const upcoming = events.filter((e) => !isPastEvent(e)).sort((a, b) => a.start.localeCompare(b.start));
+  const past = events.filter((e) => isPastEvent(e)).sort((a, b) => b.start.localeCompare(a.start));
 
-  if (events.length === 0) {
-    app.innerHTML = '<p class="empty-state">Noch keine Termine geladen.</p>';
-    return;
+  const section = document.createElement("section");
+  section.className = "sport-section";
+  for (const event of upcoming) {
+    section.appendChild(renderEventCard(event, { showCompetitionTag: true }));
   }
+  if (past.length > 0) {
+    const divider = document.createElement("p");
+    divider.className = "past-divider";
+    divider.textContent = "Vergangene Termine";
+    section.appendChild(divider);
+    for (const event of past) {
+      section.appendChild(renderEventCard(event, { showCompetitionTag: true }));
+    }
+  }
+  app.appendChild(section);
+}
 
+function renderByCompetition(events, app) {
   const bySport = groupBy(events, (e) => e.sport);
   const sportKeys = [...bySport.keys()].sort(
     (a, b) => SPORT_ORDER.indexOf(a) - SPORT_ORDER.indexOf(b)
@@ -206,13 +228,57 @@ function render(events) {
   }
 }
 
+function render(events, viewMode) {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+
+  if (events.length === 0) {
+    app.innerHTML = '<p class="empty-state">Noch keine Termine geladen.</p>';
+    return;
+  }
+
+  if (viewMode === "date") {
+    renderByDate(events, app);
+  } else {
+    renderByCompetition(events, app);
+  }
+}
+
+const VIEW_STORAGE_KEY = "sportocal-view-mode";
+
+function setupViewToggle(events) {
+  const toggle = document.getElementById("view-toggle");
+  const buttons = [...toggle.querySelectorAll(".view-toggle-btn")];
+  let viewMode = localStorage.getItem(VIEW_STORAGE_KEY) || "competition";
+  if (!buttons.some((b) => b.dataset.view === viewMode)) viewMode = "competition";
+
+  const applyViewMode = () => {
+    for (const btn of buttons) {
+      const isActive = btn.dataset.view === viewMode;
+      btn.classList.toggle("is-active", isActive);
+      btn.setAttribute("aria-selected", String(isActive));
+    }
+    render(events, viewMode);
+  };
+
+  for (const btn of buttons) {
+    btn.addEventListener("click", () => {
+      viewMode = btn.dataset.view;
+      localStorage.setItem(VIEW_STORAGE_KEY, viewMode);
+      applyViewMode();
+    });
+  }
+
+  applyViewMode();
+}
+
 async function main() {
   setupSubscribeLinks();
   try {
     const res = await fetch("data/events.json", { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    render(data.events || []);
+    setupViewToggle(data.events || []);
     const lastUpdated = document.getElementById("last-updated");
     if (data.generatedAt) {
       const dt = new Date(data.generatedAt);
