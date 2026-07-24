@@ -27,6 +27,7 @@ const timeFormatter = new Intl.DateTimeFormat("de-DE", {
 });
 const dayFormatter = new Intl.DateTimeFormat("de-DE", { day: "2-digit", timeZone: "Europe/Berlin" });
 const monthFormatter = new Intl.DateTimeFormat("de-DE", { month: "short", timeZone: "Europe/Berlin" });
+const weekdayFormatter = new Intl.DateTimeFormat("de-DE", { weekday: "short", timeZone: "Europe/Berlin" });
 
 function setupSubscribeLinks() {
   const icsUrl = new URL("kalender.ics", window.location.href);
@@ -125,7 +126,7 @@ function renderEventCard(event, { showCompetitionTag = false } = {}) {
   meta.className = "event-meta";
   const metaParts = [];
   if (!isAllDay(event.start) && event.timeConfirmed) {
-    metaParts.push(timeFormatter.format(startDate) + " Uhr");
+    metaParts.push(`${weekdayFormatter.format(startDate)} ${timeFormatter.format(startDate)} Uhr`);
   }
   if (event.location) metaParts.push(event.location);
   meta.textContent = metaParts.join(" · ");
