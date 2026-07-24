@@ -140,10 +140,32 @@ main#app {
 }
 
 .competition-group > h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   font-size: 1.05rem;
   color: var(--text-dim);
   margin: 0 0 0.75rem;
   font-weight: 600;
+}
+
+/* League logos come from third parties with arbitrary (often dark/black)
+   fill colors, so they sit on a fixed white chip -- safe to read in both
+   light and dark theme regardless of the source logo's own coloring. */
+.competition-logo-chip {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 6px;
+  padding: 3px 8px;
+  line-height: 0;
+}
+
+.competition-logo-chip img {
+  height: 18px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
 }
 
 .event-card {

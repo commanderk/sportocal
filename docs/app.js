@@ -4,6 +4,27 @@ const SPORT_LABELS = {
 };
 const SPORT_ORDER = ["football", "cycling"];
 
+// Purely presentational lookups, keyed by the exact `competition` string --
+// add an entry here when config.json gets a new league/race, no other code
+// needs to change.
+const COMPETITION_LOGOS = {
+  "Bundesliga": "https://upload.wikimedia.org/wikipedia/commons/1/15/Bundesliga_logo.svg",
+  "DFB-Pokal": "https://upload.wikimedia.org/wikipedia/commons/2/2a/DFB-Pokal_Wordmark.svg",
+  "Regionalliga Südwest": "https://upload.wikimedia.org/wikipedia/commons/4/43/Regionalliga_Suedwest_Logo.svg",
+  "1. Frauen-Bundesliga": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Pixel_Frauen-Bundesliga_Wordmark.svg",
+};
+
+// Flag of the country hosting the race -- shown on cycling event cards
+// instead of a generic bicycle icon.
+const RACE_FLAGS = {
+  "Tour de France": "🇫🇷",
+  "Giro d'Italia": "🇮🇹",
+  "Vuelta a España": "🇪🇸",
+  "Cyclassics Hamburg": "🇩🇪",
+  "Sparkassen Münsterland Giro": "🇩🇪",
+  "Deutschland Tour": "🇩🇪",
+};
+
 const dateFormatter = new Intl.DateTimeFormat("de-DE", {
   day: "2-digit",
   month: "short",
@@ -85,7 +106,7 @@ function renderEventCard(event, { showCompetitionTag = false } = {}) {
   } else {
     const emoji = document.createElement("div");
     emoji.className = "event-emoji";
-    emoji.textContent = "🚴";
+    emoji.textContent = RACE_FLAGS[event.competition] || "🚴";
     card.appendChild(emoji);
   }
 
@@ -124,15 +145,30 @@ function renderEventCard(event, { showCompetitionTag = false } = {}) {
   return card;
 }
 
+function renderCompetitionHeading(competitionName) {
+  const heading = document.createElement("h3");
+  const logoUrl = COMPETITION_LOGOS[competitionName];
+  if (logoUrl) {
+    const chip = document.createElement("span");
+    chip.className = "competition-logo-chip";
+    const img = document.createElement("img");
+    img.src = logoUrl;
+    img.alt = "";
+    img.loading = "lazy";
+    chip.appendChild(img);
+    heading.appendChild(chip);
+  }
+  heading.appendChild(document.createTextNode(competitionName));
+  return heading;
+}
+
 function renderCompetitionGroup(competitionName, events) {
   const upcoming = events.filter((e) => !isPastEvent(e)).sort((a, b) => a.start.localeCompare(b.start));
   const past = events.filter((e) => isPastEvent(e)).sort((a, b) => b.start.localeCompare(a.start));
 
   const section = document.createElement("div");
   section.className = "competition-group";
-  const heading = document.createElement("h3");
-  heading.textContent = competitionName;
-  section.appendChild(heading);
+  section.appendChild(renderCompetitionHeading(competitionName));
 
   if (upcoming.length === 0 && past.length === 0) {
     const empty = document.createElement("p");
