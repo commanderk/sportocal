@@ -72,10 +72,24 @@ def find_league_candidates(leagues: list[dict], entry: dict, current_year: int) 
     return [l for l in candidates if int(l["leagueSeason"]) >= min_season]
 
 
+def build_title(entry: dict, home_name: str, away_name: str, club_is_home: bool, round_label: str | None) -> str:
+    """Title always follows actual home - away order, with the emoji marking
+    wherever our club is -- so at a glance in the calendar you can tell
+    whether it's a home or away game just from where the emoji sits."""
+    if club_is_home:
+        home_label = f"{entry['emoji']} {entry['clubShortName']}"
+        away_label = away_name
+    else:
+        home_label = home_name
+        away_label = f"{entry['emoji']} {entry['clubShortName']}"
+    return f"{home_label} - {away_label} – {entry['competition']} – {round_label or ''}".strip()
+
+
 def build_event(entry: dict, match: dict) -> dict:
     home, away = match["team1"], match["team2"]  # team1/team2 are always actual home/away
     club_is_home = is_our_club(entry, home["teamName"])
-    opponent_name = (away["teamName"] if club_is_home else home["teamName"]).strip()
+    home_name = home["teamName"].strip()
+    away_name = away["teamName"].strip()
 
     group_name = match.get("group", {}).get("groupName") or ""
     if entry.get("roundFormat", "spieltag") == "raw":
@@ -85,7 +99,7 @@ def build_event(entry: dict, match: dict) -> dict:
         round_match = re.search(r"\d+", group_name)
         round_label = f"Spieltag {round_match.group()}" if round_match else group_name or None
 
-    title = f"{entry['emoji']} {entry['clubShortName']} - {opponent_name} – {entry['competition']} – {round_label or ''}".strip()
+    title = build_title(entry, home_name, away_name, club_is_home, round_label)
 
     dt_local = datetime.fromisoformat(match["matchDateTime"])
     # OpenLigaDB uses 00:00 as a placeholder when kickoff time isn't confirmed yet.
@@ -180,10 +194,7 @@ def parse_kickers_fixture_page(html_text: str, entry: dict) -> list[dict]:
         home_logo = f"https://{logo_urls[0]}" if len(logo_urls) > 0 else None
         away_logo = f"https://{logo_urls[1]}" if len(logo_urls) > 1 else None
 
-        title = (
-            f"{entry['emoji']} {entry['clubShortName']} - {opponent_name} – "
-            f"{entry['competition']} – {{ROUND}}"
-        )
+        title = build_title(entry, home_name, away_name, club_is_home, "{ROUND}")
 
         events.append(
             {
