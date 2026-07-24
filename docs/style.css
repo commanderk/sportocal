@@ -5,7 +5,6 @@
   --text: #eef0f3;
   --text-dim: #a3a9b5;
   --accent: #4da3ff;
-  --accent-2: #ff5d73;
   --border: #2c313c;
   --radius: 10px;
 }
@@ -224,17 +223,6 @@ main#app {
   color: var(--text-dim);
   font-size: 0.82rem;
   margin-top: 0.15rem;
-}
-
-.time-badge {
-  display: inline-block;
-  background: var(--accent-2);
-  color: #2a0007;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.1rem 0.5rem;
-  border-radius: 999px;
-  margin-left: 0.4rem;
 }
 
 .site-footer {

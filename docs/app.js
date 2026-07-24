@@ -114,19 +114,15 @@ function renderEventCard(event, { showCompetitionTag = false } = {}) {
   const title = document.createElement("div");
   title.className = "event-title";
   title.textContent = event.title;
-  if (!event.timeConfirmed) {
-    const badge = document.createElement("span");
-    badge.className = "time-badge";
-    badge.textContent = "Uhrzeit noch nicht final";
-    title.appendChild(badge);
-  }
   body.appendChild(title);
 
   const meta = document.createElement("div");
   meta.className = "event-meta";
   const metaParts = [];
-  if (!isAllDay(event.start) && event.timeConfirmed) {
+  if (event.timeConfirmed && !isAllDay(event.start)) {
     metaParts.push(`${weekdayFormatter.format(startDate)} ${timeFormatter.format(startDate)} Uhr`);
+  } else {
+    metaParts.push("tbd");
   }
   if (event.location) metaParts.push(event.location);
   meta.textContent = metaParts.join(" · ");
