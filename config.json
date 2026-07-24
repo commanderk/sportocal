@@ -1,0 +1,95 @@
+{
+  "projectName": "sportocal",
+  "timezone": "Europe/Berlin",
+  "football": {
+    "apiBase": "https://api.openligadb.de",
+    "entries": [
+      {
+        "id": "mainz05-herren",
+        "competition": "Bundesliga",
+        "emoji": "🟥",
+        "clubShortName": "MZ05",
+        "clubNameMatch": "Mainz",
+        "leagueNameKeywords": ["bundesliga"],
+        "leagueNameExcludeKeywords": ["2", "frauen", "regionalliga", "3"],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": "bl1",
+        "shortcutStable": true
+      },
+      {
+        "id": "stuttgarter-kickers",
+        "competition": "Regionalliga Südwest",
+        "emoji": "🟦",
+        "clubShortName": "SVK",
+        "clubNameMatch": "Stuttgarter Kickers",
+        "leagueNameKeywords": ["regionalliga", "sudwest"],
+        "leagueNameExcludeKeywords": [],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": null,
+        "shortcutStable": false
+      },
+      {
+        "id": "mainz05-frauen",
+        "competition": "2. Bundesliga Frauen",
+        "emoji": "🔴",
+        "clubShortName": "MZ05",
+        "clubNameMatch": "Mainz",
+        "leagueNameKeywords": ["bundesliga", "frauen", "2"],
+        "leagueNameExcludeKeywords": ["regionalliga"],
+        "sportNameKeywords": [],
+        "sportNameExcludeKeywords": [],
+        "shortcutHint": null,
+        "shortcutStable": false
+      }
+    ]
+  },
+  "cycling": {
+    "wikipediaApi": "https://en.wikipedia.org/w/api.php",
+    "races": [
+      {
+        "id": "tour-de-france",
+        "name": "Tour de France",
+        "emoji": "🚴",
+        "type": "stage-race",
+        "wikipediaTitleTemplate": "{year} Tour de France"
+      },
+      {
+        "id": "giro-d-italia",
+        "name": "Giro d'Italia",
+        "emoji": "🚴",
+        "type": "stage-race",
+        "wikipediaTitleTemplate": "{year} Giro d'Italia"
+      },
+      {
+        "id": "vuelta-a-espana",
+        "name": "Vuelta a España",
+        "emoji": "🚴",
+        "type": "stage-race",
+        "wikipediaTitleTemplate": "{year} Vuelta a España"
+      },
+      {
+        "id": "cyclassics-hamburg",
+        "name": "Cyclassics Hamburg",
+        "emoji": "🚴",
+        "type": "one-day",
+        "wikipediaTitleTemplate": "{year} Hamburg Cyclassics"
+      },
+      {
+        "id": "muensterland-giro",
+        "name": "Sparkassen Münsterland Giro",
+        "emoji": "🚴",
+        "type": "one-day",
+        "wikipediaTitleTemplate": "{year} Münsterland Giro"
+      },
+      {
+        "id": "deutschland-tour",
+        "name": "Deutschland Tour",
+        "emoji": "🚴",
+        "type": "stage-race",
+        "wikipediaTitleTemplate": "{year} Deutschland Tour"
+      }
+    ]
+  }
+}

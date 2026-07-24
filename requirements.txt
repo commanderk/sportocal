@@ -1,0 +1,4 @@
+# All fetch/build scripts use only the Python standard library (urllib, json,
+# datetime, zoneinfo, re). tzdata is pinned as a safety net in case the CI
+# image's system timezone database is missing/stale for Europe/Berlin.
+tzdata

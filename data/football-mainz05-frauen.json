@@ -1,0 +1,603 @@
+{
+  "events": [
+    {
+      "id": "football-mainz05-frauen-78894",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 1",
+      "title": "🔴 MZ05 - SC Sand – 2. Bundesliga Frauen – Spieltag 1",
+      "start": "2025-08-23T15:30:00Z",
+      "timeConfirmed": true,
+      "location": "Stadion am Bruchweg, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SC Sand",
+          "shortName": "SC Sand",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Logo_SC_Sand.svg"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78901",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 2",
+      "title": "🔴 MZ05 - SV Meppen Frauen – 2. Bundesliga Frauen – Spieltag 2",
+      "start": "2025-08-31T09:00:00Z",
+      "timeConfirmed": true,
+      "location": "Hänsch-Arena, Meppen",
+      "participants": {
+        "home": {
+          "name": "SV Meppen Frauen",
+          "shortName": "Meppen",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SV_Meppen_Logo.svg/150px-SV_Meppen_Logo.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78906",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 3",
+      "title": "🔴 MZ05 - FC Viktoria 1889 Berlin – 2. Bundesliga Frauen – Spieltag 3",
+      "start": "2025-09-07T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Stadion Lichterfelde, Berlin",
+      "participants": {
+        "home": {
+          "name": "FC Viktoria 1889 Berlin",
+          "shortName": "Viktoria 89",
+          "logo": "https://storage.fussballdaten.de/source/1/vereinhaupt/9531/originale/fc-viktoria-1889-berlin.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78915",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 4",
+      "title": "🔴 MZ05 - Eintracht Frankfurt Frauen II – 2. Bundesliga Frauen – Spieltag 4",
+      "start": "2025-09-13T09:00:00Z",
+      "timeConfirmed": true,
+      "location": "Stadion am Bruchweg, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "Eintracht Frankfurt Frauen II",
+          "shortName": "Frankfurt II",
+          "logo": "https://i.imgur.com/X8NFkOb.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78920",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 5",
+      "title": "🔴 MZ05 - SG 99 Andernach – 2. Bundesliga Frauen – Spieltag 5",
+      "start": "2025-09-21T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Rasenplatz Stadion Andernach, Andernach",
+      "participants": {
+        "home": {
+          "name": "SG 99 Andernach",
+          "shortName": "Andernach",
+          "logo": ""
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78928",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 6",
+      "title": "🔴 MZ05 - 1. FFC Turbine Potsdam – 2. Bundesliga Frauen – Spieltag 6",
+      "start": "2025-10-05T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "1. FFC Turbine Potsdam",
+          "shortName": "Potsdam",
+          "logo": "https://upload.wikimedia.org/wikipedia/de/thumb/a/a5/Logo_Turbine_Potsdam.svg/2000px-Logo_Turbine_Potsdam.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78938",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 7",
+      "title": "🔴 MZ05 - VfB Stuttgart Frauen – 2. Bundesliga Frauen – Spieltag 7",
+      "start": "2025-10-12T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "VfB Stuttgart Frauen",
+          "shortName": "Stuttgart",
+          "logo": "https://i.imgur.com/v0tkpNx.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78945",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 8",
+      "title": "🔴 MZ05 - FC Bayern München Frauen II – 2. Bundesliga Frauen – Spieltag 8",
+      "start": "2025-10-19T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Sportpark Aschheim , München",
+      "participants": {
+        "home": {
+          "name": "FC Bayern München Frauen II",
+          "shortName": "Bayern II",
+          "logo": "https://i.imgur.com/jJEsJrj.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78951",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 9",
+      "title": "🔴 MZ05 - Borussia Mönchengladbach Frauen – 2. Bundesliga Frauen – Spieltag 9",
+      "start": "2025-11-02T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "Borussia Mönchengladbach Frauen",
+          "shortName": "Gladbach",
+          "logo": "https://i.imgur.com/KSIk0Eu.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78955",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 10",
+      "title": "🔴 MZ05 - VfL Bochum Frauen – 2. Bundesliga Frauen – Spieltag 10",
+      "start": "2025-11-09T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Lohrheidestadion, Bochum-Wattenscheid",
+      "participants": {
+        "home": {
+          "name": "VfL Bochum Frauen",
+          "shortName": "Bochum",
+          "logo": "https://i.imgur.com/5jy3Gfr.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78978",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 11",
+      "title": "🔴 MZ05 - VfL Wolfsburg Frauen II – 2. Bundesliga Frauen – Spieltag 11",
+      "start": "2025-11-23T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "VfL Wolfsburg Frauen II",
+          "shortName": "Wolfsburg II",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo-VfL-Wolfsburg.svg/150px-Logo-VfL-Wolfsburg.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78986",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 12",
+      "title": "🔴 MZ05 - FC Ingolstadt 04 Frauen – 2. Bundesliga Frauen – Spieltag 12",
+      "start": "2025-12-07T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "BZA Süd-Ost, Ingolstadt",
+      "participants": {
+        "home": {
+          "name": "FC Ingolstadt 04 Frauen",
+          "shortName": "Ingolstadt",
+          "logo": "https://upload.wikimedia.org/wikipedia/de/thumb/5/55/FC-Ingolstadt_logo.svg/125px-FC-Ingolstadt_logo.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78996",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 13",
+      "title": "🔴 MZ05 - VfR SW Warbeyen 1945 e.V. – 2. Bundesliga Frauen – Spieltag 13",
+      "start": "2025-12-14T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "VfR SW Warbeyen 1945 e.V.",
+          "shortName": "VfR Warbeyen",
+          "logo": "https://derivates.kicker.de/image/fetch/f_webp/w_120%2Ch_120%2Cc_fit%2Cq_auto:best/https://mediadb.kicker.de/2021/fussball/vereine/xxl/70612_20210505652.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79004",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 14",
+      "title": "🔴 MZ05 - SC Sand – 2. Bundesliga Frauen – Spieltag 14",
+      "start": "2025-12-21T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Adams Arena, Willstätt",
+      "participants": {
+        "home": {
+          "name": "SC Sand",
+          "shortName": "SC Sand",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Logo_SC_Sand.svg"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79010",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 15",
+      "title": "🔴 MZ05 - SV Meppen Frauen – 2. Bundesliga Frauen – Spieltag 15",
+      "start": "2026-02-01T10:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SV Meppen Frauen",
+          "shortName": "Meppen",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SV_Meppen_Logo.svg/150px-SV_Meppen_Logo.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79016",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 16",
+      "title": "🔴 MZ05 - FC Viktoria 1889 Berlin – 2. Bundesliga Frauen – Spieltag 16",
+      "start": "2026-02-08T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "FC Viktoria 1889 Berlin",
+          "shortName": "Viktoria 89",
+          "logo": "https://storage.fussballdaten.de/source/1/vereinhaupt/9531/originale/fc-viktoria-1889-berlin.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79022",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 17",
+      "title": "🔴 MZ05 - Eintracht Frankfurt Frauen II – 2. Bundesliga Frauen – Spieltag 17",
+      "start": "2026-02-15T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Stadion am Brentanobad, Frankfurt",
+      "participants": {
+        "home": {
+          "name": "Eintracht Frankfurt Frauen II",
+          "shortName": "Frankfurt II",
+          "logo": "https://i.imgur.com/X8NFkOb.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79029",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 18",
+      "title": "🔴 MZ05 - SG 99 Andernach – 2. Bundesliga Frauen – Spieltag 18",
+      "start": "2026-02-22T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SG 99 Andernach",
+          "shortName": "Andernach",
+          "logo": ""
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79039",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 19",
+      "title": "🔴 MZ05 - 1. FFC Turbine Potsdam – 2. Bundesliga Frauen – Spieltag 19",
+      "start": "2026-03-15T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Karl-Liebknecht-Stadion , Potsdam",
+      "participants": {
+        "home": {
+          "name": "1. FFC Turbine Potsdam",
+          "shortName": "Potsdam",
+          "logo": "https://upload.wikimedia.org/wikipedia/de/thumb/a/a5/Logo_Turbine_Potsdam.svg/2000px-Logo_Turbine_Potsdam.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79047",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 20",
+      "title": "🔴 MZ05 - VfB Stuttgart Frauen – 2. Bundesliga Frauen – Spieltag 20",
+      "start": "2026-03-21T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "MHP-Arena, Stuttgart",
+      "participants": {
+        "home": {
+          "name": "VfB Stuttgart Frauen",
+          "shortName": "Stuttgart",
+          "logo": "https://i.imgur.com/v0tkpNx.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79052",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 21",
+      "title": "🔴 MZ05 - FC Bayern München Frauen II – 2. Bundesliga Frauen – Spieltag 21",
+      "start": "2026-03-29T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "FC Bayern München Frauen II",
+          "shortName": "Bayern II",
+          "logo": "https://i.imgur.com/jJEsJrj.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79058",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 22",
+      "title": "🔴 MZ05 - Borussia Mönchengladbach Frauen – 2. Bundesliga Frauen – Spieltag 22",
+      "start": "2026-04-05T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Grenzlandstadion, Mönchengladbach",
+      "participants": {
+        "home": {
+          "name": "Borussia Mönchengladbach Frauen",
+          "shortName": "Gladbach",
+          "logo": "https://i.imgur.com/KSIk0Eu.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79065",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 23",
+      "title": "🔴 MZ05 - VfL Bochum Frauen – 2. Bundesliga Frauen – Spieltag 23",
+      "start": "2026-04-26T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "VfL Bochum Frauen",
+          "shortName": "Bochum",
+          "logo": "https://i.imgur.com/5jy3Gfr.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79069",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 24",
+      "title": "🔴 MZ05 - VfL Wolfsburg Frauen II – 2. Bundesliga Frauen – Spieltag 24",
+      "start": "2026-05-03T12:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "VfL Wolfsburg Frauen II",
+          "shortName": "Wolfsburg II",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo-VfL-Wolfsburg.svg/150px-Logo-VfL-Wolfsburg.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79081",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 25",
+      "title": "🔴 MZ05 - FC Ingolstadt 04 Frauen – 2. Bundesliga Frauen – Spieltag 25",
+      "start": "2026-05-10T12:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "FC Ingolstadt 04 Frauen",
+          "shortName": "Ingolstadt",
+          "logo": "https://upload.wikimedia.org/wikipedia/de/thumb/5/55/FC-Ingolstadt_logo.svg/125px-FC-Ingolstadt_logo.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79089",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 26",
+      "title": "🔴 MZ05 - VfR SW Warbeyen 1945 e.V. – 2. Bundesliga Frauen – Spieltag 26",
+      "start": "2026-05-17T12:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "VfR SW Warbeyen 1945 e.V.",
+          "shortName": "VfR Warbeyen",
+          "logo": "https://derivates.kicker.de/image/fetch/f_webp/w_120%2Ch_120%2Cc_fit%2Cq_auto:best/https://mediadb.kicker.de/2021/fussball/vereine/xxl/70612_20210505652.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    }
+  ],
+  "lastChecked": "2026-07-24T08:57:39.396428+00:00"
+}

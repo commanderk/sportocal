@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>sportocal – Sport-Kalender</title>
+<meta name="description" content="Alle Spieltermine und Radsport-Etappen auf einen Blick – abonnierbar als Kalender." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>🗓️ sportocal</h1>
+    <p class="tagline">Fußball &amp; Radsport – ein Kalender für alles</p>
+    <div class="subscribe-box">
+      <a id="webcal-link" class="btn btn-primary" href="webcal://example.invalid/kalender.ics">📅 Kalender abonnieren</a>
+      <a id="https-link" class="btn btn-secondary" href="kalender.ics">.ics herunterladen</a>
+    </div>
+    <p class="last-updated" id="last-updated"></p>
+  </header>
+
+  <main id="app">
+    <p class="loading">Lade Termine…</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Daten von <a href="https://api.openligadb.de" target="_blank" rel="noopener">OpenLigaDB</a>
+      und <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>.
+      Automatisch aktualisiert via GitHub Actions.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

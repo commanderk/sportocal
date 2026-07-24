@@ -1,0 +1,320 @@
+{
+  "events": [
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe1",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 1",
+      "title": "🚴 Vuelta a España – Etappe 1: Monaco → Monaco",
+      "start": "2026-08-22",
+      "timeConfirmed": false,
+      "location": "Monaco → Monaco",
+      "route": {
+        "start": "Monaco",
+        "finish": "Monaco",
+        "type": "Individual time trial"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe2",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 2",
+      "title": "🚴 Vuelta a España – Etappe 2: Monaco → Manosque (France)",
+      "start": "2026-08-23",
+      "timeConfirmed": false,
+      "location": "Monaco → Manosque (France)",
+      "route": {
+        "start": "Monaco",
+        "finish": "Manosque (France)",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe3",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 3",
+      "title": "🚴 Vuelta a España – Etappe 3: Gruissan (France) → Font Romeu (France)",
+      "start": "2026-08-24",
+      "timeConfirmed": false,
+      "location": "Gruissan (France) → Font Romeu (France)",
+      "route": {
+        "start": "Gruissan (France)",
+        "finish": "Font Romeu (France)",
+        "type": "Medium-mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe4",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 4",
+      "title": "🚴 Vuelta a España – Etappe 4: Andorra La Vella (Andorra) → Andorra La Vella (Andorra)",
+      "start": "2026-08-25",
+      "timeConfirmed": false,
+      "location": "Andorra La Vella (Andorra) → Andorra La Vella (Andorra)",
+      "route": {
+        "start": "Andorra La Vella (Andorra)",
+        "finish": "Andorra La Vella (Andorra)",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe5",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 5",
+      "title": "🚴 Vuelta a España – Etappe 5: Falset → Roquetes",
+      "start": "2026-08-26",
+      "timeConfirmed": false,
+      "location": "Falset → Roquetes",
+      "route": {
+        "start": "Falset",
+        "finish": "Roquetes",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe6",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 6",
+      "title": "🚴 Vuelta a España – Etappe 6: Alcossebre → Castellón",
+      "start": "2026-08-27",
+      "timeConfirmed": false,
+      "location": "Alcossebre → Castellón",
+      "route": {
+        "start": "Alcossebre",
+        "finish": "Castellón",
+        "type": "Medium-mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe7",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 7",
+      "title": "🚴 Vuelta a España – Etappe 7: Vall d'Alba → Aramón Valdelinares",
+      "start": "2026-08-28",
+      "timeConfirmed": false,
+      "location": "Vall d'Alba → Aramón Valdelinares",
+      "route": {
+        "start": "Vall d'Alba",
+        "finish": "Aramón Valdelinares",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe8",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 8",
+      "title": "🚴 Vuelta a España – Etappe 8: Puçol → Xeraco",
+      "start": "2026-08-29",
+      "timeConfirmed": false,
+      "location": "Puçol → Xeraco",
+      "route": {
+        "start": "Puçol",
+        "finish": "Xeraco",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe9",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 9",
+      "title": "🚴 Vuelta a España – Etappe 9: Villajoyosa → Alto de Aitana",
+      "start": "2026-08-30",
+      "timeConfirmed": false,
+      "location": "Villajoyosa → Alto de Aitana",
+      "route": {
+        "start": "Villajoyosa",
+        "finish": "Alto de Aitana",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe10",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 10",
+      "title": "🚴 Vuelta a España – Etappe 10: Alcaraz → Elche de la Sierra",
+      "start": "2026-09-01",
+      "timeConfirmed": false,
+      "location": "Alcaraz → Elche de la Sierra",
+      "route": {
+        "start": "Alcaraz",
+        "finish": "Elche de la Sierra",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe11",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 11",
+      "title": "🚴 Vuelta a España – Etappe 11: Cartagena → Lorca",
+      "start": "2026-09-02",
+      "timeConfirmed": false,
+      "location": "Cartagena → Lorca",
+      "route": {
+        "start": "Cartagena",
+        "finish": "Lorca",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe12",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 12",
+      "title": "🚴 Vuelta a España – Etappe 12: Vera → Calar Alto",
+      "start": "2026-09-03",
+      "timeConfirmed": false,
+      "location": "Vera → Calar Alto",
+      "route": {
+        "start": "Vera",
+        "finish": "Calar Alto",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe13",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 13",
+      "title": "🚴 Vuelta a España – Etappe 13: Almuñécar → Loja",
+      "start": "2026-09-04",
+      "timeConfirmed": false,
+      "location": "Almuñécar → Loja",
+      "route": {
+        "start": "Almuñécar",
+        "finish": "Loja",
+        "type": "Medium-mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe14",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 14",
+      "title": "🚴 Vuelta a España – Etappe 14: Jaén → Sierra de la Pandera",
+      "start": "2026-09-05",
+      "timeConfirmed": false,
+      "location": "Jaén → Sierra de la Pandera",
+      "route": {
+        "start": "Jaén",
+        "finish": "Sierra de la Pandera",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe15",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 15",
+      "title": "🚴 Vuelta a España – Etappe 15: Palma del Río → Córdoba",
+      "start": "2026-09-06",
+      "timeConfirmed": false,
+      "location": "Palma del Río → Córdoba",
+      "route": {
+        "start": "Palma del Río",
+        "finish": "Córdoba",
+        "type": "Medium-mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe16",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 16",
+      "title": "🚴 Vuelta a España – Etappe 16: Cortegana → Palos de la Frontera",
+      "start": "2026-09-08",
+      "timeConfirmed": false,
+      "location": "Cortegana → Palos de la Frontera",
+      "route": {
+        "start": "Cortegana",
+        "finish": "Palos de la Frontera",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe17",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 17",
+      "title": "🚴 Vuelta a España – Etappe 17: Dos Hermanas → Seville",
+      "start": "2026-09-09",
+      "timeConfirmed": false,
+      "location": "Dos Hermanas → Seville",
+      "route": {
+        "start": "Dos Hermanas",
+        "finish": "Seville",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe18",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 18",
+      "title": "🚴 Vuelta a España – Etappe 18: El Puerto de Santa María → Jerez de la Frontera",
+      "start": "2026-09-10",
+      "timeConfirmed": false,
+      "location": "El Puerto de Santa María → Jerez de la Frontera",
+      "route": {
+        "start": "El Puerto de Santa María",
+        "finish": "Jerez de la Frontera",
+        "type": "Individual time trial"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe19",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 19",
+      "title": "🚴 Vuelta a España – Etappe 19: Vélez-Málaga → Peñas Blancas",
+      "start": "2026-09-11",
+      "timeConfirmed": false,
+      "location": "Vélez-Málaga → Peñas Blancas",
+      "route": {
+        "start": "Vélez-Málaga",
+        "finish": "Peñas Blancas",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe20",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 20",
+      "title": "🚴 Vuelta a España – Etappe 20: La Calahorra → Collado del Alguacil",
+      "start": "2026-09-12",
+      "timeConfirmed": false,
+      "location": "La Calahorra → Collado del Alguacil",
+      "route": {
+        "start": "La Calahorra",
+        "finish": "Collado del Alguacil",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe21",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 21",
+      "title": "🚴 Vuelta a España – Etappe 21: Granada → Granada",
+      "start": "2026-09-13",
+      "timeConfirmed": false,
+      "location": "Granada → Granada",
+      "route": {
+        "start": "Granada",
+        "finish": "Granada",
+        "type": "Flat stage"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-24T08:57:20.749063+00:00"
+}

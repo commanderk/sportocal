@@ -1,0 +1,2015 @@
+{
+  "generatedAt": "2026-07-24T08:57:28.826850+00:00",
+  "events": [
+    {
+      "id": "football-mainz05-frauen-78894",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 1",
+      "title": "🔴 MZ05 - SC Sand – 2. Bundesliga Frauen – Spieltag 1",
+      "start": "2025-08-23T15:30:00Z",
+      "timeConfirmed": true,
+      "location": "Stadion am Bruchweg, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SC Sand",
+          "shortName": "SC Sand",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Logo_SC_Sand.svg"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78901",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 2",
+      "title": "🔴 MZ05 - SV Meppen Frauen – 2. Bundesliga Frauen – Spieltag 2",
+      "start": "2025-08-31T09:00:00Z",
+      "timeConfirmed": true,
+      "location": "Hänsch-Arena, Meppen",
+      "participants": {
+        "home": {
+          "name": "SV Meppen Frauen",
+          "shortName": "Meppen",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SV_Meppen_Logo.svg/150px-SV_Meppen_Logo.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78906",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 3",
+      "title": "🔴 MZ05 - FC Viktoria 1889 Berlin – 2. Bundesliga Frauen – Spieltag 3",
+      "start": "2025-09-07T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Stadion Lichterfelde, Berlin",
+      "participants": {
+        "home": {
+          "name": "FC Viktoria 1889 Berlin",
+          "shortName": "Viktoria 89",
+          "logo": "https://storage.fussballdaten.de/source/1/vereinhaupt/9531/originale/fc-viktoria-1889-berlin.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78915",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 4",
+      "title": "🔴 MZ05 - Eintracht Frankfurt Frauen II – 2. Bundesliga Frauen – Spieltag 4",
+      "start": "2025-09-13T09:00:00Z",
+      "timeConfirmed": true,
+      "location": "Stadion am Bruchweg, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "Eintracht Frankfurt Frauen II",
+          "shortName": "Frankfurt II",
+          "logo": "https://i.imgur.com/X8NFkOb.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78920",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 5",
+      "title": "🔴 MZ05 - SG 99 Andernach – 2. Bundesliga Frauen – Spieltag 5",
+      "start": "2025-09-21T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Rasenplatz Stadion Andernach, Andernach",
+      "participants": {
+        "home": {
+          "name": "SG 99 Andernach",
+          "shortName": "Andernach",
+          "logo": ""
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78928",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 6",
+      "title": "🔴 MZ05 - 1. FFC Turbine Potsdam – 2. Bundesliga Frauen – Spieltag 6",
+      "start": "2025-10-05T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "1. FFC Turbine Potsdam",
+          "shortName": "Potsdam",
+          "logo": "https://upload.wikimedia.org/wikipedia/de/thumb/a/a5/Logo_Turbine_Potsdam.svg/2000px-Logo_Turbine_Potsdam.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78938",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 7",
+      "title": "🔴 MZ05 - VfB Stuttgart Frauen – 2. Bundesliga Frauen – Spieltag 7",
+      "start": "2025-10-12T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "VfB Stuttgart Frauen",
+          "shortName": "Stuttgart",
+          "logo": "https://i.imgur.com/v0tkpNx.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78945",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 8",
+      "title": "🔴 MZ05 - FC Bayern München Frauen II – 2. Bundesliga Frauen – Spieltag 8",
+      "start": "2025-10-19T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Sportpark Aschheim , München",
+      "participants": {
+        "home": {
+          "name": "FC Bayern München Frauen II",
+          "shortName": "Bayern II",
+          "logo": "https://i.imgur.com/jJEsJrj.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78951",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 9",
+      "title": "🔴 MZ05 - Borussia Mönchengladbach Frauen – 2. Bundesliga Frauen – Spieltag 9",
+      "start": "2025-11-02T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "Borussia Mönchengladbach Frauen",
+          "shortName": "Gladbach",
+          "logo": "https://i.imgur.com/KSIk0Eu.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78955",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 10",
+      "title": "🔴 MZ05 - VfL Bochum Frauen – 2. Bundesliga Frauen – Spieltag 10",
+      "start": "2025-11-09T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Lohrheidestadion, Bochum-Wattenscheid",
+      "participants": {
+        "home": {
+          "name": "VfL Bochum Frauen",
+          "shortName": "Bochum",
+          "logo": "https://i.imgur.com/5jy3Gfr.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78978",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 11",
+      "title": "🔴 MZ05 - VfL Wolfsburg Frauen II – 2. Bundesliga Frauen – Spieltag 11",
+      "start": "2025-11-23T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "VfL Wolfsburg Frauen II",
+          "shortName": "Wolfsburg II",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo-VfL-Wolfsburg.svg/150px-Logo-VfL-Wolfsburg.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-78986",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 12",
+      "title": "🔴 MZ05 - FC Ingolstadt 04 Frauen – 2. Bundesliga Frauen – Spieltag 12",
+      "start": "2025-12-07T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "BZA Süd-Ost, Ingolstadt",
+      "participants": {
+        "home": {
+          "name": "FC Ingolstadt 04 Frauen",
+          "shortName": "Ingolstadt",
+          "logo": "https://upload.wikimedia.org/wikipedia/de/thumb/5/55/FC-Ingolstadt_logo.svg/125px-FC-Ingolstadt_logo.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-78996",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 13",
+      "title": "🔴 MZ05 - VfR SW Warbeyen 1945 e.V. – 2. Bundesliga Frauen – Spieltag 13",
+      "start": "2025-12-14T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "VfR SW Warbeyen 1945 e.V.",
+          "shortName": "VfR Warbeyen",
+          "logo": "https://derivates.kicker.de/image/fetch/f_webp/w_120%2Ch_120%2Cc_fit%2Cq_auto:best/https://mediadb.kicker.de/2021/fussball/vereine/xxl/70612_20210505652.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79004",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 14",
+      "title": "🔴 MZ05 - SC Sand – 2. Bundesliga Frauen – Spieltag 14",
+      "start": "2025-12-21T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Adams Arena, Willstätt",
+      "participants": {
+        "home": {
+          "name": "SC Sand",
+          "shortName": "SC Sand",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Logo_SC_Sand.svg"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79010",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 15",
+      "title": "🔴 MZ05 - SV Meppen Frauen – 2. Bundesliga Frauen – Spieltag 15",
+      "start": "2026-02-01T10:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SV Meppen Frauen",
+          "shortName": "Meppen",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SV_Meppen_Logo.svg/150px-SV_Meppen_Logo.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79016",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 16",
+      "title": "🔴 MZ05 - FC Viktoria 1889 Berlin – 2. Bundesliga Frauen – Spieltag 16",
+      "start": "2026-02-08T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "FC Viktoria 1889 Berlin",
+          "shortName": "Viktoria 89",
+          "logo": "https://storage.fussballdaten.de/source/1/vereinhaupt/9531/originale/fc-viktoria-1889-berlin.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79022",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 17",
+      "title": "🔴 MZ05 - Eintracht Frankfurt Frauen II – 2. Bundesliga Frauen – Spieltag 17",
+      "start": "2026-02-15T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Stadion am Brentanobad, Frankfurt",
+      "participants": {
+        "home": {
+          "name": "Eintracht Frankfurt Frauen II",
+          "shortName": "Frankfurt II",
+          "logo": "https://i.imgur.com/X8NFkOb.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79029",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 18",
+      "title": "🔴 MZ05 - SG 99 Andernach – 2. Bundesliga Frauen – Spieltag 18",
+      "start": "2026-02-22T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SG 99 Andernach",
+          "shortName": "Andernach",
+          "logo": ""
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79039",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 19",
+      "title": "🔴 MZ05 - 1. FFC Turbine Potsdam – 2. Bundesliga Frauen – Spieltag 19",
+      "start": "2026-03-15T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "Karl-Liebknecht-Stadion , Potsdam",
+      "participants": {
+        "home": {
+          "name": "1. FFC Turbine Potsdam",
+          "shortName": "Potsdam",
+          "logo": "https://upload.wikimedia.org/wikipedia/de/thumb/a/a5/Logo_Turbine_Potsdam.svg/2000px-Logo_Turbine_Potsdam.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79047",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 20",
+      "title": "🔴 MZ05 - VfB Stuttgart Frauen – 2. Bundesliga Frauen – Spieltag 20",
+      "start": "2026-03-21T13:00:00Z",
+      "timeConfirmed": true,
+      "location": "MHP-Arena, Stuttgart",
+      "participants": {
+        "home": {
+          "name": "VfB Stuttgart Frauen",
+          "shortName": "Stuttgart",
+          "logo": "https://i.imgur.com/v0tkpNx.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79052",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 21",
+      "title": "🔴 MZ05 - FC Bayern München Frauen II – 2. Bundesliga Frauen – Spieltag 21",
+      "start": "2026-03-29T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "FC Bayern München Frauen II",
+          "shortName": "Bayern II",
+          "logo": "https://i.imgur.com/jJEsJrj.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79058",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 22",
+      "title": "🔴 MZ05 - Borussia Mönchengladbach Frauen – 2. Bundesliga Frauen – Spieltag 22",
+      "start": "2026-04-05T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Grenzlandstadion, Mönchengladbach",
+      "participants": {
+        "home": {
+          "name": "Borussia Mönchengladbach Frauen",
+          "shortName": "Gladbach",
+          "logo": "https://i.imgur.com/KSIk0Eu.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79065",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 23",
+      "title": "🔴 MZ05 - VfL Bochum Frauen – 2. Bundesliga Frauen – Spieltag 23",
+      "start": "2026-04-26T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Bruchwegstadion, Mainz",
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "VfL Bochum Frauen",
+          "shortName": "Bochum",
+          "logo": "https://i.imgur.com/5jy3Gfr.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79069",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 24",
+      "title": "🔴 MZ05 - VfL Wolfsburg Frauen II – 2. Bundesliga Frauen – Spieltag 24",
+      "start": "2026-05-03T12:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "VfL Wolfsburg Frauen II",
+          "shortName": "Wolfsburg II",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo-VfL-Wolfsburg.svg/150px-Logo-VfL-Wolfsburg.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-frauen-79081",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 25",
+      "title": "🔴 MZ05 - FC Ingolstadt 04 Frauen – 2. Bundesliga Frauen – Spieltag 25",
+      "start": "2026-05-10T12:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "FC Ingolstadt 04 Frauen",
+          "shortName": "Ingolstadt",
+          "logo": "https://upload.wikimedia.org/wikipedia/de/thumb/5/55/FC-Ingolstadt_logo.svg/125px-FC-Ingolstadt_logo.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-frauen-79089",
+      "sport": "football",
+      "competition": "2. Bundesliga Frauen",
+      "round": "Spieltag 26",
+      "title": "🔴 MZ05 - VfR SW Warbeyen 1945 e.V. – 2. Bundesliga Frauen – Spieltag 26",
+      "start": "2026-05-17T12:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "VfR SW Warbeyen 1945 e.V.",
+          "shortName": "VfR Warbeyen",
+          "logo": "https://derivates.kicker.de/image/fetch/f_webp/w_120%2Ch_120%2Cc_fit%2Cq_auto:best/https://mediadb.kicker.de/2021/fussball/vereine/xxl/70612_20210505652.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05 Frauen",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe1",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 1",
+      "title": "🚴 Tour de France – Etappe 1: Barcelona (Spain) → Barcelona (Spain)",
+      "start": "2026-07-04",
+      "timeConfirmed": false,
+      "location": "Barcelona (Spain) → Barcelona (Spain)",
+      "route": {
+        "start": "Barcelona (Spain)",
+        "finish": "Barcelona (Spain)",
+        "type": "Team time trial"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe2",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 2",
+      "title": "🚴 Tour de France – Etappe 2: Tarragona (Spain) → Barcelona (Spain)",
+      "start": "2026-07-05",
+      "timeConfirmed": false,
+      "location": "Tarragona (Spain) → Barcelona (Spain)",
+      "route": {
+        "start": "Tarragona (Spain)",
+        "finish": "Barcelona (Spain)",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe3",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 3",
+      "title": "🚴 Tour de France – Etappe 3: Granollers (Spain) → Les Angles",
+      "start": "2026-07-06",
+      "timeConfirmed": false,
+      "location": "Granollers (Spain) → Les Angles",
+      "route": {
+        "start": "Granollers (Spain)",
+        "finish": "Les Angles",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe4",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 4",
+      "title": "🚴 Tour de France – Etappe 4: Carcassonne → Foix",
+      "start": "2026-07-07",
+      "timeConfirmed": false,
+      "location": "Carcassonne → Foix",
+      "route": {
+        "start": "Carcassonne",
+        "finish": "Foix",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe5",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 5",
+      "title": "🚴 Tour de France – Etappe 5: Lannemezan → Pau",
+      "start": "2026-07-08",
+      "timeConfirmed": false,
+      "location": "Lannemezan → Pau",
+      "route": {
+        "start": "Lannemezan",
+        "finish": "Pau",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe6",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 6",
+      "title": "🚴 Tour de France – Etappe 6: Pau → Gavarnie-Gèdre",
+      "start": "2026-07-09",
+      "timeConfirmed": false,
+      "location": "Pau → Gavarnie-Gèdre",
+      "route": {
+        "start": "Pau",
+        "finish": "Gavarnie-Gèdre",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe7",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 7",
+      "title": "🚴 Tour de France – Etappe 7: Hagetmau → Bordeaux",
+      "start": "2026-07-10",
+      "timeConfirmed": false,
+      "location": "Hagetmau → Bordeaux",
+      "route": {
+        "start": "Hagetmau",
+        "finish": "Bordeaux",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe8",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 8",
+      "title": "🚴 Tour de France – Etappe 8: Périgueux → Bergerac",
+      "start": "2026-07-11",
+      "timeConfirmed": false,
+      "location": "Périgueux → Bergerac",
+      "route": {
+        "start": "Périgueux",
+        "finish": "Bergerac",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe9",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 9",
+      "title": "🚴 Tour de France – Etappe 9: Malemort → Ussel",
+      "start": "2026-07-12",
+      "timeConfirmed": false,
+      "location": "Malemort → Ussel",
+      "route": {
+        "start": "Malemort",
+        "finish": "Ussel",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe10",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 10",
+      "title": "🚴 Tour de France – Etappe 10: Aurillac → Le Lioran",
+      "start": "2026-07-14",
+      "timeConfirmed": false,
+      "location": "Aurillac → Le Lioran",
+      "route": {
+        "start": "Aurillac",
+        "finish": "Le Lioran",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe11",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 11",
+      "title": "🚴 Tour de France – Etappe 11: Vichy → Nevers",
+      "start": "2026-07-15",
+      "timeConfirmed": false,
+      "location": "Vichy → Nevers",
+      "route": {
+        "start": "Vichy",
+        "finish": "Nevers",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe12",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 12",
+      "title": "🚴 Tour de France – Etappe 12: Circuit de Nevers Magny-Cours → Chalon-sur-Saône",
+      "start": "2026-07-16",
+      "timeConfirmed": false,
+      "location": "Circuit de Nevers Magny-Cours → Chalon-sur-Saône",
+      "route": {
+        "start": "Circuit de Nevers Magny-Cours",
+        "finish": "Chalon-sur-Saône",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe13",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 13",
+      "title": "🚴 Tour de France – Etappe 13: Dole → Belfort",
+      "start": "2026-07-17",
+      "timeConfirmed": false,
+      "location": "Dole → Belfort",
+      "route": {
+        "start": "Dole",
+        "finish": "Belfort",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe14",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 14",
+      "title": "🚴 Tour de France – Etappe 14: Mulhouse → Le Markstein Fellering",
+      "start": "2026-07-18",
+      "timeConfirmed": false,
+      "location": "Mulhouse → Le Markstein Fellering",
+      "route": {
+        "start": "Mulhouse",
+        "finish": "Le Markstein Fellering",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe15",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 15",
+      "title": "🚴 Tour de France – Etappe 15: Champagnole → Plateau de Solaison",
+      "start": "2026-07-19",
+      "timeConfirmed": false,
+      "location": "Champagnole → Plateau de Solaison",
+      "route": {
+        "start": "Champagnole",
+        "finish": "Plateau de Solaison",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe16",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 16",
+      "title": "🚴 Tour de France – Etappe 16: Évian-les-Bains → Thonon-les-Bains",
+      "start": "2026-07-21",
+      "timeConfirmed": false,
+      "location": "Évian-les-Bains → Thonon-les-Bains",
+      "route": {
+        "start": "Évian-les-Bains",
+        "finish": "Thonon-les-Bains",
+        "type": "Individual time trial"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe17",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 17",
+      "title": "🚴 Tour de France – Etappe 17: Chambéry → Voiron",
+      "start": "2026-07-22",
+      "timeConfirmed": false,
+      "location": "Chambéry → Voiron",
+      "route": {
+        "start": "Chambéry",
+        "finish": "Voiron",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe18",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 18",
+      "title": "🚴 Tour de France – Etappe 18: Voiron → Orcières-Merlette",
+      "start": "2026-07-23",
+      "timeConfirmed": false,
+      "location": "Voiron → Orcières-Merlette",
+      "route": {
+        "start": "Voiron",
+        "finish": "Orcières-Merlette",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe19",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 19",
+      "title": "🚴 Tour de France – Etappe 19: Gap → Alpe d'Huez",
+      "start": "2026-07-24",
+      "timeConfirmed": false,
+      "location": "Gap → Alpe d'Huez",
+      "route": {
+        "start": "Gap",
+        "finish": "Alpe d'Huez",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe20",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 20",
+      "title": "🚴 Tour de France – Etappe 20: Le Bourg-d'Oisans → Alpe d'Huez",
+      "start": "2026-07-25",
+      "timeConfirmed": false,
+      "location": "Le Bourg-d'Oisans → Alpe d'Huez",
+      "route": {
+        "start": "Le Bourg-d'Oisans",
+        "finish": "Alpe d'Huez",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2026-etappe21",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "round": "Etappe 21",
+      "title": "🚴 Tour de France – Etappe 21: Thoiry → Paris (Champs-Élysées)",
+      "start": "2026-07-26",
+      "timeConfirmed": false,
+      "location": "Thoiry → Paris (Champs-Élysées)",
+      "route": {
+        "start": "Thoiry",
+        "finish": "Paris (Champs-Élysées)",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe1",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 1",
+      "title": "🚴 Vuelta a España – Etappe 1: Monaco → Monaco",
+      "start": "2026-08-22",
+      "timeConfirmed": false,
+      "location": "Monaco → Monaco",
+      "route": {
+        "start": "Monaco",
+        "finish": "Monaco",
+        "type": "Individual time trial"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe2",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 2",
+      "title": "🚴 Vuelta a España – Etappe 2: Monaco → Manosque (France)",
+      "start": "2026-08-23",
+      "timeConfirmed": false,
+      "location": "Monaco → Manosque (France)",
+      "route": {
+        "start": "Monaco",
+        "finish": "Manosque (France)",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe3",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 3",
+      "title": "🚴 Vuelta a España – Etappe 3: Gruissan (France) → Font Romeu (France)",
+      "start": "2026-08-24",
+      "timeConfirmed": false,
+      "location": "Gruissan (France) → Font Romeu (France)",
+      "route": {
+        "start": "Gruissan (France)",
+        "finish": "Font Romeu (France)",
+        "type": "Medium-mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe4",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 4",
+      "title": "🚴 Vuelta a España – Etappe 4: Andorra La Vella (Andorra) → Andorra La Vella (Andorra)",
+      "start": "2026-08-25",
+      "timeConfirmed": false,
+      "location": "Andorra La Vella (Andorra) → Andorra La Vella (Andorra)",
+      "route": {
+        "start": "Andorra La Vella (Andorra)",
+        "finish": "Andorra La Vella (Andorra)",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe5",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 5",
+      "title": "🚴 Vuelta a España – Etappe 5: Falset → Roquetes",
+      "start": "2026-08-26",
+      "timeConfirmed": false,
+      "location": "Falset → Roquetes",
+      "route": {
+        "start": "Falset",
+        "finish": "Roquetes",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe6",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 6",
+      "title": "🚴 Vuelta a España – Etappe 6: Alcossebre → Castellón",
+      "start": "2026-08-27",
+      "timeConfirmed": false,
+      "location": "Alcossebre → Castellón",
+      "route": {
+        "start": "Alcossebre",
+        "finish": "Castellón",
+        "type": "Medium-mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe7",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 7",
+      "title": "🚴 Vuelta a España – Etappe 7: Vall d'Alba → Aramón Valdelinares",
+      "start": "2026-08-28",
+      "timeConfirmed": false,
+      "location": "Vall d'Alba → Aramón Valdelinares",
+      "route": {
+        "start": "Vall d'Alba",
+        "finish": "Aramón Valdelinares",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe8",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 8",
+      "title": "🚴 Vuelta a España – Etappe 8: Puçol → Xeraco",
+      "start": "2026-08-29",
+      "timeConfirmed": false,
+      "location": "Puçol → Xeraco",
+      "route": {
+        "start": "Puçol",
+        "finish": "Xeraco",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "football-mainz05-herren-83161",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 1",
+      "title": "🟥 MZ05 - SC Paderborn 07 – Bundesliga – Spieltag 1",
+      "start": "2026-08-29T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SC Paderborn 07",
+          "shortName": "Paderborn",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/SC_Paderborn_07_Logo.svg"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe9",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 9",
+      "title": "🚴 Vuelta a España – Etappe 9: Villajoyosa → Alto de Aitana",
+      "start": "2026-08-30",
+      "timeConfirmed": false,
+      "location": "Villajoyosa → Alto de Aitana",
+      "route": {
+        "start": "Villajoyosa",
+        "finish": "Alto de Aitana",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe10",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 10",
+      "title": "🚴 Vuelta a España – Etappe 10: Alcaraz → Elche de la Sierra",
+      "start": "2026-09-01",
+      "timeConfirmed": false,
+      "location": "Alcaraz → Elche de la Sierra",
+      "route": {
+        "start": "Alcaraz",
+        "finish": "Elche de la Sierra",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe11",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 11",
+      "title": "🚴 Vuelta a España – Etappe 11: Cartagena → Lorca",
+      "start": "2026-09-02",
+      "timeConfirmed": false,
+      "location": "Cartagena → Lorca",
+      "route": {
+        "start": "Cartagena",
+        "finish": "Lorca",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe12",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 12",
+      "title": "🚴 Vuelta a España – Etappe 12: Vera → Calar Alto",
+      "start": "2026-09-03",
+      "timeConfirmed": false,
+      "location": "Vera → Calar Alto",
+      "route": {
+        "start": "Vera",
+        "finish": "Calar Alto",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe13",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 13",
+      "title": "🚴 Vuelta a España – Etappe 13: Almuñécar → Loja",
+      "start": "2026-09-04",
+      "timeConfirmed": false,
+      "location": "Almuñécar → Loja",
+      "route": {
+        "start": "Almuñécar",
+        "finish": "Loja",
+        "type": "Medium-mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe14",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 14",
+      "title": "🚴 Vuelta a España – Etappe 14: Jaén → Sierra de la Pandera",
+      "start": "2026-09-05",
+      "timeConfirmed": false,
+      "location": "Jaén → Sierra de la Pandera",
+      "route": {
+        "start": "Jaén",
+        "finish": "Sierra de la Pandera",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe15",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 15",
+      "title": "🚴 Vuelta a España – Etappe 15: Palma del Río → Córdoba",
+      "start": "2026-09-06",
+      "timeConfirmed": false,
+      "location": "Palma del Río → Córdoba",
+      "route": {
+        "start": "Palma del Río",
+        "finish": "Córdoba",
+        "type": "Medium-mountain stage"
+      }
+    },
+    {
+      "id": "football-mainz05-herren-83170",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 2",
+      "title": "🟥 MZ05 - Hamburger SV – Bundesliga – Spieltag 2",
+      "start": "2026-09-06T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "Hamburger SV",
+          "shortName": "HSV",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe16",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 16",
+      "title": "🚴 Vuelta a España – Etappe 16: Cortegana → Palos de la Frontera",
+      "start": "2026-09-08",
+      "timeConfirmed": false,
+      "location": "Cortegana → Palos de la Frontera",
+      "route": {
+        "start": "Cortegana",
+        "finish": "Palos de la Frontera",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe17",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 17",
+      "title": "🚴 Vuelta a España – Etappe 17: Dos Hermanas → Seville",
+      "start": "2026-09-09",
+      "timeConfirmed": false,
+      "location": "Dos Hermanas → Seville",
+      "route": {
+        "start": "Dos Hermanas",
+        "finish": "Seville",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe18",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 18",
+      "title": "🚴 Vuelta a España – Etappe 18: El Puerto de Santa María → Jerez de la Frontera",
+      "start": "2026-09-10",
+      "timeConfirmed": false,
+      "location": "El Puerto de Santa María → Jerez de la Frontera",
+      "route": {
+        "start": "El Puerto de Santa María",
+        "finish": "Jerez de la Frontera",
+        "type": "Individual time trial"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe19",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 19",
+      "title": "🚴 Vuelta a España – Etappe 19: Vélez-Málaga → Peñas Blancas",
+      "start": "2026-09-11",
+      "timeConfirmed": false,
+      "location": "Vélez-Málaga → Peñas Blancas",
+      "route": {
+        "start": "Vélez-Málaga",
+        "finish": "Peñas Blancas",
+        "type": "Hilly stage"
+      }
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe20",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 20",
+      "title": "🚴 Vuelta a España – Etappe 20: La Calahorra → Collado del Alguacil",
+      "start": "2026-09-12",
+      "timeConfirmed": false,
+      "location": "La Calahorra → Collado del Alguacil",
+      "route": {
+        "start": "La Calahorra",
+        "finish": "Collado del Alguacil",
+        "type": "Mountain stage"
+      }
+    },
+    {
+      "id": "football-mainz05-herren-83179",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 3",
+      "title": "🟥 MZ05 - Eintracht Frankfurt – Bundesliga – Spieltag 3",
+      "start": "2026-09-12T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "Eintracht Frankfurt",
+          "shortName": "Frankfurt",
+          "logo": "https://i.imgur.com/X8NFkOb.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "cycling-vuelta-a-espana-2026-etappe21",
+      "sport": "cycling",
+      "competition": "Vuelta a España",
+      "round": "Etappe 21",
+      "title": "🚴 Vuelta a España – Etappe 21: Granada → Granada",
+      "start": "2026-09-13",
+      "timeConfirmed": false,
+      "location": "Granada → Granada",
+      "route": {
+        "start": "Granada",
+        "finish": "Granada",
+        "type": "Flat stage"
+      }
+    },
+    {
+      "id": "football-mainz05-herren-83187",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 4",
+      "title": "🟥 MZ05 - Borussia Mönchengladbach – Bundesliga – Spieltag 4",
+      "start": "2026-09-19T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "Borussia Mönchengladbach",
+          "shortName": "Gladbach",
+          "logo": "https://i.imgur.com/KSIk0Eu.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83197",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 5",
+      "title": "🟥 MZ05 - Bayer 04 Leverkusen – Bundesliga – Spieltag 5",
+      "start": "2026-10-10T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "Bayer 04 Leverkusen",
+          "shortName": "Leverkusen",
+          "logo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83208",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 6",
+      "title": "🟥 MZ05 - FC Schalke 04 – Bundesliga – Spieltag 6",
+      "start": "2026-10-17T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "FC Schalke 04",
+          "shortName": "Schalke",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/97/FC_Schalke_04_Logo.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83216",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 7",
+      "title": "🟥 MZ05 - SV Werder Bremen – Bundesliga – Spieltag 7",
+      "start": "2026-10-24T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SV Werder Bremen",
+          "shortName": "Bremen",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83227",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 8",
+      "title": "🟥 MZ05 - SV 07 Elversberg – Bundesliga – Spieltag 8",
+      "start": "2026-10-31T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "SV 07 Elversberg",
+          "shortName": "Elversberg",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/SV_Elversberg_Logo.svg/500px-SV_Elversberg_Logo.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83233",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 9",
+      "title": "🟥 MZ05 - FC Bayern München – Bundesliga – Spieltag 9",
+      "start": "2026-11-07T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "FC Bayern München",
+          "shortName": "Bayern",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83240",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 10",
+      "title": "🟥 MZ05 - FC Augsburg – Bundesliga – Spieltag 10",
+      "start": "2026-11-21T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "FC Augsburg",
+          "shortName": "Augsburg",
+          "logo": "https://i.imgur.com/sdE62e2.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83250",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 11",
+      "title": "🟥 MZ05 - 1. FC Union Berlin – Bundesliga – Spieltag 11",
+      "start": "2026-11-28T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "1. FC Union Berlin",
+          "shortName": "Union Berlin",
+          "logo": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83256",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 12",
+      "title": "🟥 MZ05 - RB Leipzig – Bundesliga – Spieltag 12",
+      "start": "2026-12-05T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "RB Leipzig",
+          "shortName": "Leipzig",
+          "logo": "https://i.imgur.com/Rpwsjz1.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83267",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 13",
+      "title": "🟥 MZ05 - SC Freiburg – Bundesliga – Spieltag 13",
+      "start": "2026-12-12T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SC Freiburg",
+          "shortName": "Freiburg",
+          "logo": "https://i.imgur.com/r3mvi0h.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83278",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 14",
+      "title": "🟥 MZ05 - 1. FC Köln – Bundesliga – Spieltag 14",
+      "start": "2026-12-19T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "1. FC Köln",
+          "shortName": "Köln",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83282",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 15",
+      "title": "🟥 MZ05 - Borussia Dortmund – Bundesliga – Spieltag 15",
+      "start": "2027-01-09T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "Borussia Dortmund",
+          "shortName": "Dortmund",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/960px-Borussia_Dortmund_logo.svg.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83295",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 16",
+      "title": "🟥 MZ05 - TSG Hoffenheim – Bundesliga – Spieltag 16",
+      "start": "2027-01-12T19:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "TSG Hoffenheim",
+          "shortName": "Hoffenheim",
+          "logo": "https://i.imgur.com/gF0PfEl.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83301",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 17",
+      "title": "🟥 MZ05 - VfB Stuttgart – Bundesliga – Spieltag 17",
+      "start": "2027-01-16T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "VfB Stuttgart",
+          "shortName": "Stuttgart",
+          "logo": "https://i.imgur.com/v0tkpNx.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83317",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 18",
+      "title": "🟥 MZ05 - SC Paderborn 07 – Bundesliga – Spieltag 18",
+      "start": "2027-01-23T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "SC Paderborn 07",
+          "shortName": "Paderborn",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/SC_Paderborn_07_Logo.svg"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83323",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 19",
+      "title": "🟥 MZ05 - Hamburger SV – Bundesliga – Spieltag 19",
+      "start": "2027-01-30T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "Hamburger SV",
+          "shortName": "HSV",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83330",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 20",
+      "title": "🟥 MZ05 - Eintracht Frankfurt – Bundesliga – Spieltag 20",
+      "start": "2027-02-06T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "Eintracht Frankfurt",
+          "shortName": "Frankfurt",
+          "logo": "https://i.imgur.com/X8NFkOb.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83341",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 21",
+      "title": "🟥 MZ05 - Borussia Mönchengladbach – Bundesliga – Spieltag 21",
+      "start": "2027-02-13T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "Borussia Mönchengladbach",
+          "shortName": "Gladbach",
+          "logo": "https://i.imgur.com/KSIk0Eu.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83347",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 22",
+      "title": "🟥 MZ05 - Bayer 04 Leverkusen – Bundesliga – Spieltag 22",
+      "start": "2027-02-20T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "Bayer 04 Leverkusen",
+          "shortName": "Leverkusen",
+          "logo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83360",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 23",
+      "title": "🟥 MZ05 - FC Schalke 04 – Bundesliga – Spieltag 23",
+      "start": "2027-02-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "FC Schalke 04",
+          "shortName": "Schalke",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/97/FC_Schalke_04_Logo.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83369",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 24",
+      "title": "🟥 MZ05 - SV Werder Bremen – Bundesliga – Spieltag 24",
+      "start": "2027-03-02T19:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "SV Werder Bremen",
+          "shortName": "Bremen",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83377",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 25",
+      "title": "🟥 MZ05 - SV 07 Elversberg – Bundesliga – Spieltag 25",
+      "start": "2027-03-06T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "SV 07 Elversberg",
+          "shortName": "Elversberg",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/SV_Elversberg_Logo.svg/500px-SV_Elversberg_Logo.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83381",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 26",
+      "title": "🟥 MZ05 - FC Bayern München – Bundesliga – Spieltag 26",
+      "start": "2027-03-13T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "FC Bayern München",
+          "shortName": "Bayern",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83395",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 27",
+      "title": "🟥 MZ05 - FC Augsburg – Bundesliga – Spieltag 27",
+      "start": "2027-03-20T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "FC Augsburg",
+          "shortName": "Augsburg",
+          "logo": "https://i.imgur.com/sdE62e2.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83404",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 28",
+      "title": "🟥 MZ05 - 1. FC Union Berlin – Bundesliga – Spieltag 28",
+      "start": "2027-04-03T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FC Union Berlin",
+          "shortName": "Union Berlin",
+          "logo": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83411",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 29",
+      "title": "🟥 MZ05 - RB Leipzig – Bundesliga – Spieltag 29",
+      "start": "2027-04-10T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "RB Leipzig",
+          "shortName": "Leipzig",
+          "logo": "https://i.imgur.com/Rpwsjz1.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83420",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 30",
+      "title": "🟥 MZ05 - SC Freiburg – Bundesliga – Spieltag 30",
+      "start": "2027-04-17T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "SC Freiburg",
+          "shortName": "Freiburg",
+          "logo": "https://i.imgur.com/r3mvi0h.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83432",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 31",
+      "title": "🟥 MZ05 - 1. FC Köln – Bundesliga – Spieltag 31",
+      "start": "2027-04-24T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FC Köln",
+          "shortName": "Köln",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83440",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 32",
+      "title": "🟥 MZ05 - Borussia Dortmund – Bundesliga – Spieltag 32",
+      "start": "2027-05-08T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "Borussia Dortmund",
+          "shortName": "Dortmund",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/960px-Borussia_Dortmund_logo.svg.png"
+        }
+      },
+      "homeAway": "home"
+    },
+    {
+      "id": "football-mainz05-herren-83446",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 33",
+      "title": "🟥 MZ05 - TSG Hoffenheim – Bundesliga – Spieltag 33",
+      "start": "2027-05-15T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "TSG Hoffenheim",
+          "shortName": "Hoffenheim",
+          "logo": "https://i.imgur.com/gF0PfEl.png"
+        },
+        "away": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        }
+      },
+      "homeAway": "away"
+    },
+    {
+      "id": "football-mainz05-herren-83457",
+      "sport": "football",
+      "competition": "Bundesliga",
+      "round": "Spieltag 34",
+      "title": "🟥 MZ05 - VfB Stuttgart – Bundesliga – Spieltag 34",
+      "start": "2027-05-22T13:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "participants": {
+        "home": {
+          "name": "1. FSV Mainz 05",
+          "shortName": "Mainz",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+        },
+        "away": {
+          "name": "VfB Stuttgart",
+          "shortName": "Stuttgart",
+          "logo": "https://i.imgur.com/v0tkpNx.png"
+        }
+      },
+      "homeAway": "home"
+    }
+  ]
+}

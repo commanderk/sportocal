@@ -1,0 +1,1072 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//sportocal//kalender//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:sportocal
+X-WR-TIMEZONE:Europe/Berlin
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78894@sportocal
+DTSTART:20250823T153000Z
+DTEND:20250823T173000Z
+SUMMARY:🔴 MZ05 - SC Sand – 2. Bundesliga Frauen – Spieltag 1
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 1
+LOCATION:Stadion am Bruchweg\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78901@sportocal
+DTSTART:20250831T090000Z
+DTEND:20250831T110000Z
+SUMMARY:🔴 MZ05 - SV Meppen Frauen – 2. Bundesliga Frauen – Spieltag 
+ 2
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 2
+LOCATION:Hänsch-Arena\, Meppen
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78906@sportocal
+DTSTART:20250907T120000Z
+DTEND:20250907T140000Z
+SUMMARY:🔴 MZ05 - FC Viktoria 1889 Berlin – 2. Bundesliga Frauen – Sp
+ ieltag 3
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 3
+LOCATION:Stadion Lichterfelde\, Berlin
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78915@sportocal
+DTSTART:20250913T090000Z
+DTEND:20250913T110000Z
+SUMMARY:🔴 MZ05 - Eintracht Frankfurt Frauen II – 2. Bundesliga Frauen 
+ – Spieltag 4
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 4
+LOCATION:Stadion am Bruchweg\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78920@sportocal
+DTSTART:20250921T120000Z
+DTEND:20250921T140000Z
+SUMMARY:🔴 MZ05 - SG 99 Andernach – 2. Bundesliga Frauen – Spieltag 5
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 5
+LOCATION:Rasenplatz Stadion Andernach\, Andernach
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78928@sportocal
+DTSTART:20251005T120000Z
+DTEND:20251005T140000Z
+SUMMARY:🔴 MZ05 - 1. FFC Turbine Potsdam – 2. Bundesliga Frauen – Spi
+ eltag 6
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 6
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78938@sportocal
+DTSTART:20251012T120000Z
+DTEND:20251012T140000Z
+SUMMARY:🔴 MZ05 - VfB Stuttgart Frauen – 2. Bundesliga Frauen – Spiel
+ tag 7
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 7
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78945@sportocal
+DTSTART:20251019T120000Z
+DTEND:20251019T140000Z
+SUMMARY:🔴 MZ05 - FC Bayern München Frauen II – 2. Bundesliga Frauen 
+ – Spieltag 8
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 8
+LOCATION:Sportpark Aschheim \, München
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78951@sportocal
+DTSTART:20251102T130000Z
+DTEND:20251102T150000Z
+SUMMARY:🔴 MZ05 - Borussia Mönchengladbach Frauen – 2. Bundesliga Frau
+ en – Spieltag 9
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 9
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78955@sportocal
+DTSTART:20251109T130000Z
+DTEND:20251109T150000Z
+SUMMARY:🔴 MZ05 - VfL Bochum Frauen – 2. Bundesliga Frauen – Spieltag
+  10
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 10
+LOCATION:Lohrheidestadion\, Bochum-Wattenscheid
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78978@sportocal
+DTSTART:20251123T130000Z
+DTEND:20251123T150000Z
+SUMMARY:🔴 MZ05 - VfL Wolfsburg Frauen II – 2. Bundesliga Frauen – Sp
+ ieltag 11
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 11
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78986@sportocal
+DTSTART:20251207T130000Z
+DTEND:20251207T150000Z
+SUMMARY:🔴 MZ05 - FC Ingolstadt 04 Frauen – 2. Bundesliga Frauen – Sp
+ ieltag 12
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 12
+LOCATION:BZA Süd-Ost\, Ingolstadt
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-78996@sportocal
+DTSTART:20251214T130000Z
+DTEND:20251214T150000Z
+SUMMARY:🔴 MZ05 - VfR SW Warbeyen 1945 e.V. – 2. Bundesliga Frauen – 
+ Spieltag 13
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 13
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79004@sportocal
+DTSTART:20251221T120000Z
+DTEND:20251221T140000Z
+SUMMARY:🔴 MZ05 - SC Sand – 2. Bundesliga Frauen – Spieltag 14
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 14
+LOCATION:Adams Arena\, Willstätt
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79010@sportocal
+DTSTART:20260201T100000Z
+DTEND:20260201T120000Z
+SUMMARY:🔴 MZ05 - SV Meppen Frauen – 2. Bundesliga Frauen – Spieltag 
+ 15
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 15
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79016@sportocal
+DTSTART:20260208T130000Z
+DTEND:20260208T150000Z
+SUMMARY:🔴 MZ05 - FC Viktoria 1889 Berlin – 2. Bundesliga Frauen – Sp
+ ieltag 16
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 16
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79022@sportocal
+DTSTART:20260215T130000Z
+DTEND:20260215T150000Z
+SUMMARY:🔴 MZ05 - Eintracht Frankfurt Frauen II – 2. Bundesliga Frauen 
+ – Spieltag 17
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 17
+LOCATION:Stadion am Brentanobad\, Frankfurt
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79029@sportocal
+DTSTART:20260222T130000Z
+DTEND:20260222T150000Z
+SUMMARY:🔴 MZ05 - SG 99 Andernach – 2. Bundesliga Frauen – Spieltag 1
+ 8
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 18
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79039@sportocal
+DTSTART:20260315T130000Z
+DTEND:20260315T150000Z
+SUMMARY:🔴 MZ05 - 1. FFC Turbine Potsdam – 2. Bundesliga Frauen – Spi
+ eltag 19
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 19
+LOCATION:Karl-Liebknecht-Stadion \, Potsdam
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79047@sportocal
+DTSTART:20260321T130000Z
+DTEND:20260321T150000Z
+SUMMARY:🔴 MZ05 - VfB Stuttgart Frauen – 2. Bundesliga Frauen – Spiel
+ tag 20
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 20
+LOCATION:MHP-Arena\, Stuttgart
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79052@sportocal
+DTSTART:20260329T120000Z
+DTEND:20260329T140000Z
+SUMMARY:🔴 MZ05 - FC Bayern München Frauen II – 2. Bundesliga Frauen 
+ – Spieltag 21
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 21
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79058@sportocal
+DTSTART:20260405T120000Z
+DTEND:20260405T140000Z
+SUMMARY:🔴 MZ05 - Borussia Mönchengladbach Frauen – 2. Bundesliga Frau
+ en – Spieltag 22
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 22
+LOCATION:Grenzlandstadion\, Mönchengladbach
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79065@sportocal
+DTSTART:20260426T120000Z
+DTEND:20260426T140000Z
+SUMMARY:🔴 MZ05 - VfL Bochum Frauen – 2. Bundesliga Frauen – Spieltag
+  23
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 23
+LOCATION:Bruchwegstadion\, Mainz
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79069@sportocal
+DTSTART:20260503T120000Z
+DTEND:20260503T140000Z
+SUMMARY:🔴 MZ05 - VfL Wolfsburg Frauen II – 2. Bundesliga Frauen – Sp
+ ieltag 24
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 24
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79081@sportocal
+DTSTART:20260510T120000Z
+DTEND:20260510T140000Z
+SUMMARY:🔴 MZ05 - FC Ingolstadt 04 Frauen – 2. Bundesliga Frauen – Sp
+ ieltag 25
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 25
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-frauen-79089@sportocal
+DTSTART:20260517T120000Z
+DTEND:20260517T140000Z
+SUMMARY:🔴 MZ05 - VfR SW Warbeyen 1945 e.V. – 2. Bundesliga Frauen – 
+ Spieltag 26
+DESCRIPTION:Wettbewerb: 2. Bundesliga Frauen\nRunde: Spieltag 26
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe1@sportocal
+DTSTART;VALUE=DATE:20260704
+DTEND;VALUE=DATE:20260705
+SUMMARY:🚴 Tour de France – Etappe 1: Barcelona (Spain) → Barcelona (
+ Spain)
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 1\nHinweis: Uhrzeit n
+ och nicht final
+LOCATION:Barcelona (Spain) → Barcelona (Spain)
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe2@sportocal
+DTSTART;VALUE=DATE:20260705
+DTEND;VALUE=DATE:20260706
+SUMMARY:🚴 Tour de France – Etappe 2: Tarragona (Spain) → Barcelona (
+ Spain)
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 2\nHinweis: Uhrzeit n
+ och nicht final
+LOCATION:Tarragona (Spain) → Barcelona (Spain)
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe3@sportocal
+DTSTART;VALUE=DATE:20260706
+DTEND;VALUE=DATE:20260707
+SUMMARY:🚴 Tour de France – Etappe 3: Granollers (Spain) → Les Angles
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 3\nHinweis: Uhrzeit n
+ och nicht final
+LOCATION:Granollers (Spain) → Les Angles
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe4@sportocal
+DTSTART;VALUE=DATE:20260707
+DTEND;VALUE=DATE:20260708
+SUMMARY:🚴 Tour de France – Etappe 4: Carcassonne → Foix
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 4\nHinweis: Uhrzeit n
+ och nicht final
+LOCATION:Carcassonne → Foix
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe5@sportocal
+DTSTART;VALUE=DATE:20260708
+DTEND;VALUE=DATE:20260709
+SUMMARY:🚴 Tour de France – Etappe 5: Lannemezan → Pau
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 5\nHinweis: Uhrzeit n
+ och nicht final
+LOCATION:Lannemezan → Pau
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe6@sportocal
+DTSTART;VALUE=DATE:20260709
+DTEND;VALUE=DATE:20260710
+SUMMARY:🚴 Tour de France – Etappe 6: Pau → Gavarnie-Gèdre
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 6\nHinweis: Uhrzeit n
+ och nicht final
+LOCATION:Pau → Gavarnie-Gèdre
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe7@sportocal
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+SUMMARY:🚴 Tour de France – Etappe 7: Hagetmau → Bordeaux
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 7\nHinweis: Uhrzeit n
+ och nicht final
+LOCATION:Hagetmau → Bordeaux
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe8@sportocal
+DTSTART;VALUE=DATE:20260711
+DTEND;VALUE=DATE:20260712
+SUMMARY:🚴 Tour de France – Etappe 8: Périgueux → Bergerac
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 8\nHinweis: Uhrzeit n
+ och nicht final
+LOCATION:Périgueux → Bergerac
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe9@sportocal
+DTSTART;VALUE=DATE:20260712
+DTEND;VALUE=DATE:20260713
+SUMMARY:🚴 Tour de France – Etappe 9: Malemort → Ussel
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 9\nHinweis: Uhrzeit n
+ och nicht final
+LOCATION:Malemort → Ussel
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe10@sportocal
+DTSTART;VALUE=DATE:20260714
+DTEND;VALUE=DATE:20260715
+SUMMARY:🚴 Tour de France – Etappe 10: Aurillac → Le Lioran
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 10\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Aurillac → Le Lioran
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe11@sportocal
+DTSTART;VALUE=DATE:20260715
+DTEND;VALUE=DATE:20260716
+SUMMARY:🚴 Tour de France – Etappe 11: Vichy → Nevers
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 11\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Vichy → Nevers
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe12@sportocal
+DTSTART;VALUE=DATE:20260716
+DTEND;VALUE=DATE:20260717
+SUMMARY:🚴 Tour de France – Etappe 12: Circuit de Nevers Magny-Cours 
+ → Chalon-sur-Saône
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 12\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Circuit de Nevers Magny-Cours → Chalon-sur-Saône
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe13@sportocal
+DTSTART;VALUE=DATE:20260717
+DTEND;VALUE=DATE:20260718
+SUMMARY:🚴 Tour de France – Etappe 13: Dole → Belfort
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 13\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Dole → Belfort
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe14@sportocal
+DTSTART;VALUE=DATE:20260718
+DTEND;VALUE=DATE:20260719
+SUMMARY:🚴 Tour de France – Etappe 14: Mulhouse → Le Markstein Feller
+ ing
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 14\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Mulhouse → Le Markstein Fellering
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe15@sportocal
+DTSTART;VALUE=DATE:20260719
+DTEND;VALUE=DATE:20260720
+SUMMARY:🚴 Tour de France – Etappe 15: Champagnole → Plateau de Solai
+ son
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 15\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Champagnole → Plateau de Solaison
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe16@sportocal
+DTSTART;VALUE=DATE:20260721
+DTEND;VALUE=DATE:20260722
+SUMMARY:🚴 Tour de France – Etappe 16: Évian-les-Bains → Thonon-les-
+ Bains
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 16\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Évian-les-Bains → Thonon-les-Bains
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe17@sportocal
+DTSTART;VALUE=DATE:20260722
+DTEND;VALUE=DATE:20260723
+SUMMARY:🚴 Tour de France – Etappe 17: Chambéry → Voiron
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 17\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Chambéry → Voiron
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe18@sportocal
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:🚴 Tour de France – Etappe 18: Voiron → Orcières-Merlette
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 18\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Voiron → Orcières-Merlette
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe19@sportocal
+DTSTART;VALUE=DATE:20260724
+DTEND;VALUE=DATE:20260725
+SUMMARY:🚴 Tour de France – Etappe 19: Gap → Alpe d'Huez
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 19\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Gap → Alpe d'Huez
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe20@sportocal
+DTSTART;VALUE=DATE:20260725
+DTEND;VALUE=DATE:20260726
+SUMMARY:🚴 Tour de France – Etappe 20: Le Bourg-d'Oisans → Alpe d'Hue
+ z
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 20\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Le Bourg-d'Oisans → Alpe d'Huez
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-tour-de-france-2026-etappe21@sportocal
+DTSTART;VALUE=DATE:20260726
+DTEND;VALUE=DATE:20260727
+SUMMARY:🚴 Tour de France – Etappe 21: Thoiry → Paris (Champs-Élysé
+ es)
+DESCRIPTION:Wettbewerb: Tour de France\nRunde: Etappe 21\nHinweis: Uhrzeit 
+ noch nicht final
+LOCATION:Thoiry → Paris (Champs-Élysées)
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe1@sportocal
+DTSTART;VALUE=DATE:20260822
+DTEND;VALUE=DATE:20260823
+SUMMARY:🚴 Vuelta a España – Etappe 1: Monaco → Monaco
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 1\nHinweis: Uhrzeit
+  noch nicht final
+LOCATION:Monaco → Monaco
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe2@sportocal
+DTSTART;VALUE=DATE:20260823
+DTEND;VALUE=DATE:20260824
+SUMMARY:🚴 Vuelta a España – Etappe 2: Monaco → Manosque (France)
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 2\nHinweis: Uhrzeit
+  noch nicht final
+LOCATION:Monaco → Manosque (France)
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe3@sportocal
+DTSTART;VALUE=DATE:20260824
+DTEND;VALUE=DATE:20260825
+SUMMARY:🚴 Vuelta a España – Etappe 3: Gruissan (France) → Font Rome
+ u (France)
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 3\nHinweis: Uhrzeit
+  noch nicht final
+LOCATION:Gruissan (France) → Font Romeu (France)
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe4@sportocal
+DTSTART;VALUE=DATE:20260825
+DTEND;VALUE=DATE:20260826
+SUMMARY:🚴 Vuelta a España – Etappe 4: Andorra La Vella (Andorra) → 
+ Andorra La Vella (Andorra)
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 4\nHinweis: Uhrzeit
+  noch nicht final
+LOCATION:Andorra La Vella (Andorra) → Andorra La Vella (Andorra)
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe5@sportocal
+DTSTART;VALUE=DATE:20260826
+DTEND;VALUE=DATE:20260827
+SUMMARY:🚴 Vuelta a España – Etappe 5: Falset → Roquetes
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 5\nHinweis: Uhrzeit
+  noch nicht final
+LOCATION:Falset → Roquetes
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe6@sportocal
+DTSTART;VALUE=DATE:20260827
+DTEND;VALUE=DATE:20260828
+SUMMARY:🚴 Vuelta a España – Etappe 6: Alcossebre → Castellón
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 6\nHinweis: Uhrzeit
+  noch nicht final
+LOCATION:Alcossebre → Castellón
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe7@sportocal
+DTSTART;VALUE=DATE:20260828
+DTEND;VALUE=DATE:20260829
+SUMMARY:🚴 Vuelta a España – Etappe 7: Vall d'Alba → Aramón Valdeli
+ nares
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 7\nHinweis: Uhrzeit
+  noch nicht final
+LOCATION:Vall d'Alba → Aramón Valdelinares
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe8@sportocal
+DTSTART;VALUE=DATE:20260829
+DTEND;VALUE=DATE:20260830
+SUMMARY:🚴 Vuelta a España – Etappe 8: Puçol → Xeraco
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 8\nHinweis: Uhrzeit
+  noch nicht final
+LOCATION:Puçol → Xeraco
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83161@sportocal
+DTSTART:20260829T133000Z
+DTEND:20260829T153000Z
+SUMMARY:🟥 MZ05 - SC Paderborn 07 – Bundesliga – Spieltag 1
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 1
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe9@sportocal
+DTSTART;VALUE=DATE:20260830
+DTEND;VALUE=DATE:20260831
+SUMMARY:🚴 Vuelta a España – Etappe 9: Villajoyosa → Alto de Aitana
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 9\nHinweis: Uhrzeit
+  noch nicht final
+LOCATION:Villajoyosa → Alto de Aitana
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe10@sportocal
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
+SUMMARY:🚴 Vuelta a España – Etappe 10: Alcaraz → Elche de la Sierra
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 10\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Alcaraz → Elche de la Sierra
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe11@sportocal
+DTSTART;VALUE=DATE:20260902
+DTEND;VALUE=DATE:20260903
+SUMMARY:🚴 Vuelta a España – Etappe 11: Cartagena → Lorca
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 11\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Cartagena → Lorca
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe12@sportocal
+DTSTART;VALUE=DATE:20260903
+DTEND;VALUE=DATE:20260904
+SUMMARY:🚴 Vuelta a España – Etappe 12: Vera → Calar Alto
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 12\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Vera → Calar Alto
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe13@sportocal
+DTSTART;VALUE=DATE:20260904
+DTEND;VALUE=DATE:20260905
+SUMMARY:🚴 Vuelta a España – Etappe 13: Almuñécar → Loja
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 13\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Almuñécar → Loja
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe14@sportocal
+DTSTART;VALUE=DATE:20260905
+DTEND;VALUE=DATE:20260906
+SUMMARY:🚴 Vuelta a España – Etappe 14: Jaén → Sierra de la Pandera
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 14\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Jaén → Sierra de la Pandera
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe15@sportocal
+DTSTART;VALUE=DATE:20260906
+DTEND;VALUE=DATE:20260907
+SUMMARY:🚴 Vuelta a España – Etappe 15: Palma del Río → Córdoba
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 15\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Palma del Río → Córdoba
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83170@sportocal
+DTSTART:20260906T133000Z
+DTEND:20260906T153000Z
+SUMMARY:🟥 MZ05 - Hamburger SV – Bundesliga – Spieltag 2
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 2
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe16@sportocal
+DTSTART;VALUE=DATE:20260908
+DTEND;VALUE=DATE:20260909
+SUMMARY:🚴 Vuelta a España – Etappe 16: Cortegana → Palos de la Fron
+ tera
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 16\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Cortegana → Palos de la Frontera
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe17@sportocal
+DTSTART;VALUE=DATE:20260909
+DTEND;VALUE=DATE:20260910
+SUMMARY:🚴 Vuelta a España – Etappe 17: Dos Hermanas → Seville
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 17\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Dos Hermanas → Seville
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe18@sportocal
+DTSTART;VALUE=DATE:20260910
+DTEND;VALUE=DATE:20260911
+SUMMARY:🚴 Vuelta a España – Etappe 18: El Puerto de Santa María → 
+ Jerez de la Frontera
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 18\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:El Puerto de Santa María → Jerez de la Frontera
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe19@sportocal
+DTSTART;VALUE=DATE:20260911
+DTEND;VALUE=DATE:20260912
+SUMMARY:🚴 Vuelta a España – Etappe 19: Vélez-Málaga → Peñas Blan
+ cas
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 19\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Vélez-Málaga → Peñas Blancas
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe20@sportocal
+DTSTART;VALUE=DATE:20260912
+DTEND;VALUE=DATE:20260913
+SUMMARY:🚴 Vuelta a España – Etappe 20: La Calahorra → Collado del A
+ lguacil
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 20\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:La Calahorra → Collado del Alguacil
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83179@sportocal
+DTSTART:20260912T133000Z
+DTEND:20260912T153000Z
+SUMMARY:🟥 MZ05 - Eintracht Frankfurt – Bundesliga – Spieltag 3
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 3
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:cycling-vuelta-a-espana-2026-etappe21@sportocal
+DTSTART;VALUE=DATE:20260913
+DTEND;VALUE=DATE:20260914
+SUMMARY:🚴 Vuelta a España – Etappe 21: Granada → Granada
+DESCRIPTION:Wettbewerb: Vuelta a España\nRunde: Etappe 21\nHinweis: Uhrzei
+ t noch nicht final
+LOCATION:Granada → Granada
+CATEGORIES:CYCLING
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83187@sportocal
+DTSTART:20260919T133000Z
+DTEND:20260919T153000Z
+SUMMARY:🟥 MZ05 - Borussia Mönchengladbach – Bundesliga – Spieltag 4
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 4
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83197@sportocal
+DTSTART:20261010T133000Z
+DTEND:20261010T153000Z
+SUMMARY:🟥 MZ05 - Bayer 04 Leverkusen – Bundesliga – Spieltag 5
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 5
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83208@sportocal
+DTSTART:20261017T133000Z
+DTEND:20261017T153000Z
+SUMMARY:🟥 MZ05 - FC Schalke 04 – Bundesliga – Spieltag 6
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 6
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83216@sportocal
+DTSTART:20261024T133000Z
+DTEND:20261024T153000Z
+SUMMARY:🟥 MZ05 - SV Werder Bremen – Bundesliga – Spieltag 7
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 7
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83227@sportocal
+DTSTART:20261031T143000Z
+DTEND:20261031T163000Z
+SUMMARY:🟥 MZ05 - SV 07 Elversberg – Bundesliga – Spieltag 8
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 8
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83233@sportocal
+DTSTART:20261107T143000Z
+DTEND:20261107T163000Z
+SUMMARY:🟥 MZ05 - FC Bayern München – Bundesliga – Spieltag 9
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 9
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83240@sportocal
+DTSTART:20261121T143000Z
+DTEND:20261121T163000Z
+SUMMARY:🟥 MZ05 - FC Augsburg – Bundesliga – Spieltag 10
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 10
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83250@sportocal
+DTSTART:20261128T143000Z
+DTEND:20261128T163000Z
+SUMMARY:🟥 MZ05 - 1. FC Union Berlin – Bundesliga – Spieltag 11
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 11
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83256@sportocal
+DTSTART:20261205T143000Z
+DTEND:20261205T163000Z
+SUMMARY:🟥 MZ05 - RB Leipzig – Bundesliga – Spieltag 12
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 12
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83267@sportocal
+DTSTART:20261212T143000Z
+DTEND:20261212T163000Z
+SUMMARY:🟥 MZ05 - SC Freiburg – Bundesliga – Spieltag 13
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 13
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83278@sportocal
+DTSTART:20261219T143000Z
+DTEND:20261219T163000Z
+SUMMARY:🟥 MZ05 - 1. FC Köln – Bundesliga – Spieltag 14
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 14
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83282@sportocal
+DTSTART:20270109T143000Z
+DTEND:20270109T163000Z
+SUMMARY:🟥 MZ05 - Borussia Dortmund – Bundesliga – Spieltag 15
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 15
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83295@sportocal
+DTSTART:20270112T193000Z
+DTEND:20270112T213000Z
+SUMMARY:🟥 MZ05 - TSG Hoffenheim – Bundesliga – Spieltag 16
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 16
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83301@sportocal
+DTSTART:20270116T143000Z
+DTEND:20270116T163000Z
+SUMMARY:🟥 MZ05 - VfB Stuttgart – Bundesliga – Spieltag 17
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 17
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83317@sportocal
+DTSTART:20270123T143000Z
+DTEND:20270123T163000Z
+SUMMARY:🟥 MZ05 - SC Paderborn 07 – Bundesliga – Spieltag 18
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 18
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83323@sportocal
+DTSTART:20270130T143000Z
+DTEND:20270130T163000Z
+SUMMARY:🟥 MZ05 - Hamburger SV – Bundesliga – Spieltag 19
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 19
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83330@sportocal
+DTSTART:20270206T143000Z
+DTEND:20270206T163000Z
+SUMMARY:🟥 MZ05 - Eintracht Frankfurt – Bundesliga – Spieltag 20
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 20
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83341@sportocal
+DTSTART:20270213T143000Z
+DTEND:20270213T163000Z
+SUMMARY:🟥 MZ05 - Borussia Mönchengladbach – Bundesliga – Spieltag 2
+ 1
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 21
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83347@sportocal
+DTSTART:20270220T143000Z
+DTEND:20270220T163000Z
+SUMMARY:🟥 MZ05 - Bayer 04 Leverkusen – Bundesliga – Spieltag 22
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 22
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83360@sportocal
+DTSTART:20270227T143000Z
+DTEND:20270227T163000Z
+SUMMARY:🟥 MZ05 - FC Schalke 04 – Bundesliga – Spieltag 23
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 23
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83369@sportocal
+DTSTART:20270302T193000Z
+DTEND:20270302T213000Z
+SUMMARY:🟥 MZ05 - SV Werder Bremen – Bundesliga – Spieltag 24
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 24
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83377@sportocal
+DTSTART:20270306T143000Z
+DTEND:20270306T163000Z
+SUMMARY:🟥 MZ05 - SV 07 Elversberg – Bundesliga – Spieltag 25
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 25
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83381@sportocal
+DTSTART:20270313T143000Z
+DTEND:20270313T163000Z
+SUMMARY:🟥 MZ05 - FC Bayern München – Bundesliga – Spieltag 26
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 26
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83395@sportocal
+DTSTART:20270320T143000Z
+DTEND:20270320T163000Z
+SUMMARY:🟥 MZ05 - FC Augsburg – Bundesliga – Spieltag 27
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 27
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83404@sportocal
+DTSTART:20270403T133000Z
+DTEND:20270403T153000Z
+SUMMARY:🟥 MZ05 - 1. FC Union Berlin – Bundesliga – Spieltag 28
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 28
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83411@sportocal
+DTSTART:20270410T133000Z
+DTEND:20270410T153000Z
+SUMMARY:🟥 MZ05 - RB Leipzig – Bundesliga – Spieltag 29
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 29
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83420@sportocal
+DTSTART:20270417T133000Z
+DTEND:20270417T153000Z
+SUMMARY:🟥 MZ05 - SC Freiburg – Bundesliga – Spieltag 30
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 30
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83432@sportocal
+DTSTART:20270424T133000Z
+DTEND:20270424T153000Z
+SUMMARY:🟥 MZ05 - 1. FC Köln – Bundesliga – Spieltag 31
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 31
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83440@sportocal
+DTSTART:20270508T133000Z
+DTEND:20270508T153000Z
+SUMMARY:🟥 MZ05 - Borussia Dortmund – Bundesliga – Spieltag 32
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 32
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83446@sportocal
+DTSTART:20270515T133000Z
+DTEND:20270515T153000Z
+SUMMARY:🟥 MZ05 - TSG Hoffenheim – Bundesliga – Spieltag 33
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 33
+CATEGORIES:FOOTBALL
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260724T085728Z
+UID:football-mainz05-herren-83457@sportocal
+DTSTART:20270522T133000Z
+DTEND:20270522T153000Z
+SUMMARY:🟥 MZ05 - VfB Stuttgart – Bundesliga – Spieltag 34
+DESCRIPTION:Wettbewerb: Bundesliga\nRunde: Spieltag 34
+CATEGORIES:FOOTBALL
+END:VEVENT
+END:VCALENDAR

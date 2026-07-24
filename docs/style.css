@@ -1,0 +1,205 @@
+:root {
+  --bg: #0f1115;
+  --surface: #1a1d24;
+  --surface-alt: #22262f;
+  --text: #eef0f3;
+  --text-dim: #a3a9b5;
+  --accent: #4da3ff;
+  --accent-2: #ff5d73;
+  --border: #2c313c;
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --surface-alt: #eef0f3;
+    --text: #14161a;
+    --text-dim: #565c68;
+    --border: #e0e3e8;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.site-header {
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+}
+
+.site-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 2rem;
+}
+
+.tagline {
+  color: var(--text-dim);
+  margin: 0 0 1.25rem;
+}
+
+.subscribe-box {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #06121f;
+}
+
+.btn-secondary {
+  background: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.last-updated {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+main#app {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+
+.loading, .empty-state {
+  text-align: center;
+  color: var(--text-dim);
+  padding: 2rem 0;
+}
+
+.sport-section {
+  margin-bottom: 2.5rem;
+}
+
+.sport-section > h2 {
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.competition-group {
+  margin-bottom: 1.75rem;
+}
+
+.competition-group > h3 {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.event-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.event-card.is-past {
+  opacity: 0.55;
+}
+
+.event-date {
+  min-width: 4.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.event-date .day {
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: block;
+}
+
+.event-date .month {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: block;
+}
+
+.event-logos {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.event-logos img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.event-emoji {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+}
+
+.event-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-title {
+  font-weight: 600;
+  overflow-wrap: break-word;
+}
+
+.event-meta {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  margin-top: 0.15rem;
+}
+
+.time-badge {
+  display: inline-block;
+  background: var(--accent-2);
+  color: #2a0007;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  margin-left: 0.4rem;
+}
+
+.site-footer {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+.site-footer a {
+  color: var(--text-dim);
+}
