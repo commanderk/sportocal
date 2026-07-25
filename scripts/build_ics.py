@@ -11,7 +11,7 @@ import json
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
-from common import DATA_DIR, DOCS_DIR, log
+from common import DATA_DIR, DOCS_DIR, format_event_title, load_clubs, log
 
 BERLIN = ZoneInfo("Europe/Berlin")
 ICS_PATH = DOCS_DIR / "kalender.ics"
@@ -43,7 +43,7 @@ def escape_text(value: str) -> str:
     )
 
 
-def build_vevent(event: dict) -> list[str]:
+def build_vevent(event: dict, clubs_by_id: dict) -> list[str]:
     start_raw = event["start"]
     time_confirmed = event.get("timeConfirmed", True)
     description_parts = [f"Wettbewerb: {event['competition']}"]
@@ -67,7 +67,7 @@ def build_vevent(event: dict) -> list[str]:
         lines.append(f"DTSTART:{dt.strftime('%Y%m%dT%H%M%SZ')}")
         lines.append(f"DTEND:{(dt + timedelta(hours=2)).strftime('%Y%m%dT%H%M%SZ')}")
 
-    lines.append(f"SUMMARY:{escape_text(event['title'])}")
+    lines.append(f"SUMMARY:{escape_text(format_event_title(event, clubs_by_id))}")
     lines.append(f"DESCRIPTION:{escape_text(chr(10).join(description_parts))}")
     if event.get("location"):
         lines.append(f"LOCATION:{escape_text(event['location'])}")
@@ -77,6 +77,8 @@ def build_vevent(event: dict) -> list[str]:
 
 
 def main() -> None:
+    clubs_by_id = {club["id"]: club for club in load_clubs()}
+
     events = []
     for path in sorted(DATA_DIR.glob("*.json")):
         with path.open(encoding="utf-8") as f:
@@ -96,7 +98,7 @@ def main() -> None:
         "X-WR-TIMEZONE:Europe/Berlin",
     ]
     for event in events:
-        vevent_lines = build_vevent(event)
+        vevent_lines = build_vevent(event, clubs_by_id)
         vevent_lines.insert(1, f"DTSTAMP:{now_stamp}")
         lines.extend(vevent_lines)
     lines.append("END:VCALENDAR")

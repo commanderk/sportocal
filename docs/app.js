@@ -33,20 +33,17 @@ function extractRoundNumber(round) {
 
 // The web view's row-title is a stripped-down label, not the full calendar
 // title: no emoji, no competition name, no "Spieltag"/"Etappe" round marker
-// -- those are already shown as the section heading and the row-index. Only
-// `event.title` (used for the .ics export) keeps the full descriptive text.
+// -- those are already shown as the section heading and the row-index. The
+// full calendar title (with club color/gender emoji) is generated at ICS
+// build time from these same raw fields, not stored on the event.
 function eventDisplayTitle(event) {
-  if (event.participants) {
-    const home = event.participants.home;
-    const away = event.participants.away;
-    const homeName = (home && (home.shortName || home.name)) || "";
-    const awayName = (away && (away.shortName || away.name)) || "";
-    return [homeName, awayName].filter(Boolean).join(" – ");
+  if (event.sport === "football") {
+    return [event.homeTeamName, event.awayTeamName].filter(Boolean).join(" – ");
   }
   if (event.route) {
     return `${event.route.start} → ${event.route.finish}`;
   }
-  return event.title;
+  return event.competition;
 }
 
 function setupSubscribeLinks() {
@@ -114,15 +111,11 @@ function renderEventRow(event) {
 
   const logos = document.createElement("div");
   logos.className = "row-logos";
-  if (event.participants) {
-    const home = event.participants.home;
-    const away = event.participants.away;
-    if (home && home.logo) {
-      logos.appendChild(Object.assign(document.createElement("img"), { src: home.logo, alt: "", loading: "lazy" }));
-    }
-    if (away && away.logo) {
-      logos.appendChild(Object.assign(document.createElement("img"), { src: away.logo, alt: "", loading: "lazy" }));
-    }
+  if (event.homeTeamLogo) {
+    logos.appendChild(Object.assign(document.createElement("img"), { src: event.homeTeamLogo, alt: "", loading: "lazy" }));
+  }
+  if (event.awayTeamLogo) {
+    logos.appendChild(Object.assign(document.createElement("img"), { src: event.awayTeamLogo, alt: "", loading: "lazy" }));
   }
   row.appendChild(logos);
 
