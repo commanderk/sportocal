@@ -1,27 +1,22 @@
 #!/usr/bin/env python3
-"""Combine all data/*.json snapshots into docs/data/events.json for the website.
+"""Combine all data/*.json snapshots into public/data/events.json for the website.
 
-docs/ is the GitHub Pages publish root, so the frontend can only fetch files
-that live under docs/ -- the top-level data/ directory itself is not served.
+public/ is the Vercel static root, so the frontend can only fetch files that
+live under public/ -- the top-level data/ directory itself is not served
+(it's only readable server-side, by api/calendar.ics.py).
 """
 from __future__ import annotations
 
 import json
 from datetime import datetime, timezone
 
-from common import DATA_DIR, DOCS_DIR, log
+from common import PUBLIC_DIR, load_all_events, log
 
-SITE_DATA_PATH = DOCS_DIR / "data" / "events.json"
+SITE_DATA_PATH = PUBLIC_DIR / "data" / "events.json"
 
 
 def main() -> None:
-    events = []
-    for path in sorted(DATA_DIR.glob("*.json")):
-        with path.open(encoding="utf-8") as f:
-            snapshot = json.load(f)
-        events.extend(snapshot.get("events", []))
-
-    events.sort(key=lambda e: e["start"])
+    events = sorted(load_all_events(), key=lambda e: e["start"])
 
     payload = {
         "generatedAt": datetime.now(timezone.utc).isoformat(),

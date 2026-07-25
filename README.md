@@ -1,6 +1,6 @@
 # sportocal
 
-Ein Sport-Kalender (Fußball + Radsport) mit personalisierbarem `.ics`-Abo und einer kleinen Website. Aktuell noch auf GitHub Pages gehostet, wöchentlich automatisch aktualisiert über GitHub Actions; eine Migration auf Vercel (statische Seite + Serverless-Function für den personalisierten Kalenderlink) ist als Folgephase geplant, siehe unten. Kein Server im klassischen Sinn, kein API-Key.
+Ein Sport-Kalender (Fußball + Radsport) mit personalisierbarem `.ics`-Abo und einer kleinen Website – gehostet auf Vercel (Hobby-Plan): eine statische Seite unter `public/` und eine Python-Serverless-Function (`api/calendar.ics.py`) für den personalisierten Kalenderlink, aus demselben Repo und Deploy. Die Datenaktualisierung läuft weiterhin wöchentlich im Hintergrund über GitHub Actions (`scripts/fetch_*.py`); jeder daraus entstehende Commit löst automatisch ein Vercel-Redeploy aus, wodurch die Function wieder aktuelle Daten aus dem Deployment-Bundle liest. Kein Login, kein Cookie, kein Server im klassischen Sinn, kein API-Key. Das Frontend (`public/index.html`/`app.js`) zeigt aktuell noch die volle, ungefilterte Terminliste aller ~65 Vereine – die Multi-Select-Auswahl-UI, die daraus einen personalisierten Abo-Link baut, ist als eigene Phase geplant.
 
 ## Was drin ist
 
@@ -95,20 +95,40 @@ config.json                  # Liga-Quellen (Fußball) + Rennen (Radsport) – h
 config/
   clubs.json                  # Vereins-Mapping: Farben, Kurzname, Liga-Zuordnung je Geschlecht
 scripts/
-  common.py                  # Event-Modell, Club-Lookup, Titel-Formatter, Snapshot-Diff, HTTP-/Wikitext-Helper
+  common.py                  # Event-Modell, Club-Lookup, Titel-Formatter, ICS-Rendering, Snapshot-Diff, HTTP-/Wikitext-Helper
   fetch_football.py          # OpenLigaDB, Fuzzy-Match der Liga-Shortcuts, Club-ID-Auflösung
   fetch_cycling.py           # Wikipedia-Wikitext-Parser
-  build_ics.py                # data/*.json + config/clubs.json -> docs/kalender.ics (Titel wird hier generiert)
-  build_site_data.py          # data/*.json -> docs/data/events.json
+  build_ics.py                # data/*.json + config/clubs.json -> public/kalender.ics (unfilterierter Kombi-Feed)
+  build_site_data.py          # data/*.json -> public/data/events.json
+api/
+  calendar.ics.py             # Vercel Python Function: personalisierte /api/calendar.ics
 data/                         # ein JSON-Snapshot pro Liga-Quelle (Diff-Basis), z.B. football-bl1.json
-docs/                         # GitHub Pages Root
+public/                       # Vercel Static Root
   index.html / app.js / style.css
-  kalender.ics                # generierte, kombinierte Kalenderdatei
+  kalender.ics                # generierte, kombinierte Kalenderdatei (Interims-Feed, siehe unten)
   data/events.json            # generierte, kombinierte Website-Daten
+vercel.json                   # Vercel-Projektkonfiguration
 .github/workflows/update.yml # wöchentlicher Cron + manueller Trigger
 ```
 
-**Wichtig:** `docs/` ist der GitHub-Pages-Root. Nur was dort liegt, ist per HTTP erreichbar – deshalb erzeugt `build_site_data.py` eine kombinierte Kopie unter `docs/data/events.json`, obwohl die Roh-Snapshots in `data/` liegen.
+**Wichtig:** `public/` ist der Vercel Static Root. Nur was dort liegt, ist per HTTP erreichbar – deshalb erzeugt `build_site_data.py` eine kombinierte Kopie unter `public/data/events.json`, obwohl die Roh-Snapshots in `data/` liegen. `data/` und `config/` sind trotzdem Teil des Deployments (nur nicht direkt per URL erreichbar) und genau deshalb kann `api/calendar.ics.py` sie serverseitig lesen.
+
+## Personalisierter Kalenderlink (`/api/calendar.ics`)
+
+Zustandslos: die Auswahl steckt komplett in der URL, kein serverseitiger Speicher, kein Cookie.
+
+```
+GET /api/calendar.ics?t=<clubId>:men,<clubId>:women,race:<raceId>,...
+```
+
+- `<clubId>:men` / `<clubId>:women` – Club-ID aus `config/clubs.json` + Geschlecht, z. B. `fc-bayern-muenchen:men`
+- `race:<raceId>` – Renn-ID aus `config.json` (`cycling.races`), z. B. `race:tour-de-france`
+
+Beispiel: `?t=fc-bayern-muenchen:men,stuttgarter-kickers:men,race:tour-de-france`
+
+Die Function liest `data/*.json` + `config/clubs.json` aus dem Deployment-Bundle, filtert und generiert die ICS-Datei bei jedem Aufruf neu (kein Caching, `Cache-Control: no-store`) – automatische Kalender-Refreshes bekommen dadurch immer den Stand des letzten wöchentlichen Redeploys. Im generierten Titel bekommt nur ein ausgewählter Verein sein Farb-/Form-Emoji; der Gegner erscheint auch dann als Klartext, wenn er selbst ein bekannter Verein ist (Ausnahme: spielen zwei ausgewählte Vereine gegeneinander, bekommen beide ihr Emoji). Unbekannte oder nicht mehr existierende Club-/Renn-IDs im Parameter werden stillschweigend ignoriert (führt zu einem entsprechend kleineren, aber gültigen Kalender) statt eines Fehlers – ein alter, bereits abonnierter Link soll nie hart brechen. Fehlt der Parameter `t` komplett oder ist leer, antwortet die Function mit `400`.
+
+Enthalten ist immer die komplette aktuelle Saison (vergangene und zukünftige Termine); der Cut auf eine neue Saison passiert implizit beim wöchentlichen Fetch (siehe Datenmodell oben), nicht in dieser Function.
 
 ## Warum Liga-Shortcuts nicht hartkodiert sind
 
@@ -124,19 +144,23 @@ python scripts/build_ics.py
 python scripts/build_site_data.py
 
 # Website lokal ansehen:
-cd docs && python3 -m http.server 8000
+cd public && python3 -m http.server 8000
 # -> http://localhost:8000
+
+# Mit Vercel CLI (Website + /api/calendar.ics zusammen):
+vercel dev
+# -> http://localhost:3000/api/calendar.ics?t=fc-bayern-muenchen:men
 ```
 
 ## Erweitern
 
 Ein neues Rennen kommt allein durch einen neuen Eintrag in `config.json` dazu. Eine neue Liga (z. B. eine weitere Regionalliga-Staffel) braucht einen neuen Eintrag in `config.json` unter `football.leagues` (mit passendem `scope`: `full`, `club-filter` oder `cup`) plus die entsprechenden Vereine in `config/clubs.json` – kein Umbau von `fetch_football.py` nötig. Ein neuer Verein in einer bereits erfassten Liga kommt automatisch dazu, sobald er bei OpenLigaDB auftaucht; für einen sauber aufgelösten (statt als Klartext angezeigten) Namen braucht er zusätzlich einen Eintrag in `config/clubs.json`. Eine komplett neue Sportart braucht ein neues `fetch_<sportart>.py`, das Events im gleichen Basisschema in `data/<quelle>.json` schreibt, plus einen Fall in `format_event_title()` (`scripts/common.py`); `build_ics.py`, `build_site_data.py` und die Website müssen dafür nicht angefasst werden.
 
-## GitHub Pages einrichten (einmalig)
+## Vercel einrichten (einmalig)
 
-1. Repo auf GitHub anlegen, dieses Verzeichnis pushen.
-2. Repo-Einstellungen → **Pages** → Source: „Deploy from a branch" → Branch `main`, Ordner `/docs`.
-3. Fertig – die Seite liegt danach unter `https://<user>.github.io/<repo>/`, das Kalender-Abo unter derselben URL + `/kalender.ics` (bzw. `webcal://...`).
+1. Auf [vercel.com](https://vercel.com) ein neues Projekt aus diesem GitHub-Repo anlegen (eigener Hobby-Plan-Slot, unabhängig von anderen Projekten). Vercel erkennt `api/calendar.ics.py` automatisch als Python Function und `public/` als Static Root (siehe `vercel.json`) – kein Build-Schritt nötig.
+2. Damit die Function `data/*.json` + `config/clubs.json` sehen kann, müssen diese Teil des Git-Repos sein (sind sie bereits) – Vercel bündelt beim Deploy alles, was zur Build-Zeit erreichbar ist.
+3. Fertig – die Seite liegt danach unter `https://<projekt>.vercel.app/`, der personalisierte Kalenderlink unter `https://<projekt>.vercel.app/api/calendar.ics?t=...` (bzw. `webcal://...`), der unfiltrierte Interims-Feed unter `/kalender.ics`.
 
-Der Workflow `.github/workflows/update.yml` läuft automatisch jeden Montag 06:00 UTC und lässt sich zusätzlich manuell über den Tab „Actions" → „Update sportocal calendar" → „Run workflow" anstoßen.
+Der Workflow `.github/workflows/update.yml` läuft automatisch jeden Montag 06:00 UTC und lässt sich zusätzlich manuell über den Tab „Actions" → „Update sportocal calendar" → „Run workflow" anstoßen. Jeder dadurch entstehende Commit auf dem verbundenen Branch löst automatisch ein Vercel-Redeploy aus (Vercels GitHub-Integration, kein Zutun nötig, sobald das Projekt einmal verbunden ist).
 

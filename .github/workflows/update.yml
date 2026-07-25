@@ -43,6 +43,10 @@ jobs:
         run: |
           git config user.name "sportocal-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/ docs/
+          git add data/ public/
           git diff --staged --quiet || git commit -m "Update calendar data ($(date -u +%Y-%m-%d))"
           git push
+          # This push is also what triggers Vercel's automatic redeploy (once
+          # the Vercel project is connected to this repo's GitHub App) -- the
+          # personalized /api/calendar.ics endpoint reads data/*.json from the
+          # deployment bundle, so it only picks up new fixtures after a redeploy.

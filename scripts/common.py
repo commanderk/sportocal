@@ -11,14 +11,18 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
+
+BERLIN = ZoneInfo("Europe/Berlin")
 
 USER_AGENT = "sportocal/1.0 (https://github.com/; contact via repo issues)"
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data"
-DOCS_DIR = ROOT_DIR / "docs"
+PUBLIC_DIR = ROOT_DIR / "public"
 CONFIG_PATH = ROOT_DIR / "config.json"
 CLUBS_PATH = ROOT_DIR / "config" / "clubs.json"
 
@@ -78,19 +82,23 @@ def club_label(club: dict, gender: str | None) -> str:
     return f"{club_emoji(club.get('colorPalette'), gender)} {club['shortName']}"
 
 
-def format_football_title(event: dict, clubs_by_id: dict[str, dict], perspective_club_id: str | None = None) -> str:
+def format_football_title(
+    event: dict, clubs_by_id: dict[str, dict], perspective_club_ids: set[str] | None = None
+) -> str:
     """Renders the calendar title from raw fields -- never stored, so a future
-    format change needs no data migration. Without a `perspective_club_id`
+    format change needs no data migration. Without `perspective_club_ids`
     (e.g. the combined multi-club feed) both sides get a color/emoji label
-    when we know the club; with one (a personalized single-club calendar),
-    only that club's side gets the emoji and the other side is a plain name."""
+    when we know the club; with a set (a personalized calendar for specific
+    clubs), only sides in that set get the emoji and the other side is a
+    plain name -- so if two of the user's own selected clubs happen to play
+    each other, both still get their emoji, not just one arbitrarily."""
     gender = event.get("gender")
     home_club = clubs_by_id.get(event.get("homeTeamId"))
     away_club = clubs_by_id.get(event.get("awayTeamId"))
 
     def label_for(club: dict | None, team_id: str | None, raw_name: str) -> str:
-        if perspective_club_id is not None:
-            return club_label(club, gender) if club and team_id == perspective_club_id else raw_name
+        if perspective_club_ids is not None:
+            return club_label(club, gender) if club and team_id in perspective_club_ids else raw_name
         return club_label(club, gender) if club else raw_name
 
     home_label = label_for(home_club, event.get("homeTeamId"), event["homeTeamName"])
@@ -110,12 +118,109 @@ def format_cycling_title(event: dict) -> str:
     return f"🚴 {event['competition']} {year}"
 
 
-def format_event_title(event: dict, clubs_by_id: dict[str, dict], perspective_club_id: str | None = None) -> str:
+def format_event_title(
+    event: dict, clubs_by_id: dict[str, dict], perspective_club_ids: set[str] | None = None
+) -> str:
     if event["sport"] == "football":
-        return format_football_title(event, clubs_by_id, perspective_club_id)
+        return format_football_title(event, clubs_by_id, perspective_club_ids)
     if event["sport"] == "cycling":
         return format_cycling_title(event)
     raise ValueError(f"Unbekannte Sportart: {event['sport']!r}")
+
+
+# --- ICS rendering -----------------------------------------------------
+# Shared by the weekly combined-feed build (scripts/build_ics.py) and the
+# on-demand personalized feed (api/calendar.ics.py), so the two never drift
+# apart on VEVENT structure or line folding.
+
+
+def fold_line(line: str) -> str:
+    """RFC 5545 line folding at 75 octets, continuation lines start with a space."""
+    encoded = line.encode("utf-8")
+    if len(encoded) <= 75:
+        return line
+    parts = []
+    while len(encoded) > 75:
+        cut = 75
+        # avoid splitting a multi-byte UTF-8 sequence
+        while (encoded[cut] & 0xC0) == 0x80:
+            cut -= 1
+        parts.append(encoded[:cut].decode("utf-8"))
+        encoded = encoded[cut:]
+    parts.append(encoded.decode("utf-8"))
+    return ("\r\n ").join(parts)
+
+
+def escape_text(value: str) -> str:
+    return value.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
+
+
+def build_vevent(event: dict, clubs_by_id: dict, perspective_club_ids: set[str] | None = None) -> list[str]:
+    start_raw = event["start"]
+    time_confirmed = event.get("timeConfirmed", True)
+    description_parts = [f"Wettbewerb: {event['competition']}"]
+    if event.get("round"):
+        description_parts.append(f"Runde: {event['round']}")
+    if not time_confirmed:
+        description_parts.append("Hinweis: Uhrzeit noch nicht final")
+
+    lines = ["BEGIN:VEVENT", f"UID:{event['id']}@sportocal"]
+
+    if len(start_raw) == 10 or not time_confirmed:
+        # all-day event
+        if len(start_raw) == 10:
+            day = datetime.fromisoformat(start_raw).date()
+        else:
+            day = datetime.fromisoformat(start_raw.replace("Z", "+00:00")).astimezone(BERLIN).date()
+        lines.append(f"DTSTART;VALUE=DATE:{day.strftime('%Y%m%d')}")
+        lines.append(f"DTEND;VALUE=DATE:{(day + timedelta(days=1)).strftime('%Y%m%d')}")
+    else:
+        dt = datetime.fromisoformat(start_raw.replace("Z", "+00:00")).astimezone(timezone.utc)
+        lines.append(f"DTSTART:{dt.strftime('%Y%m%dT%H%M%SZ')}")
+        lines.append(f"DTEND:{(dt + timedelta(hours=2)).strftime('%Y%m%dT%H%M%SZ')}")
+
+    lines.append(f"SUMMARY:{escape_text(format_event_title(event, clubs_by_id, perspective_club_ids))}")
+    lines.append(f"DESCRIPTION:{escape_text(chr(10).join(description_parts))}")
+    if event.get("location"):
+        lines.append(f"LOCATION:{escape_text(event['location'])}")
+    lines.append(f"CATEGORIES:{event['sport'].upper()}")
+    lines.append("END:VEVENT")
+    return lines
+
+
+def build_calendar_text(
+    events: list[dict],
+    clubs_by_id: dict,
+    calendar_name: str = "sportocal",
+    perspective_club_ids: set[str] | None = None,
+) -> str:
+    """Renders a full VCALENDAR document (CRLF line endings, folded) from a
+    list of events, already filtered/sorted by the caller."""
+    now_stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//sportocal//kalender//DE",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        f"X-WR-CALNAME:{calendar_name}",
+        "X-WR-TIMEZONE:Europe/Berlin",
+    ]
+    for event in events:
+        vevent_lines = build_vevent(event, clubs_by_id, perspective_club_ids)
+        vevent_lines.insert(1, f"DTSTAMP:{now_stamp}")
+        lines.extend(vevent_lines)
+    lines.append("END:VCALENDAR")
+    return "\r\n".join(fold_line(l) for l in lines) + "\r\n"
+
+
+def load_all_events(data_dir: Path | None = None) -> list[dict]:
+    events = []
+    for path in sorted((data_dir or DATA_DIR).glob("*.json")):
+        with path.open(encoding="utf-8") as f:
+            snapshot = json.load(f)
+        events.extend(snapshot.get("events", []))
+    return events
 
 
 def http_get_text(url: str, retries: int = 3, timeout: int = 20) -> str:
