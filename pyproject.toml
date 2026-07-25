@@ -1,2 +1,13 @@
+[project]
+name = "sportocal"
+version = "0.1.0"
+requires-python = ">=3.12"
+# Kept in sync with requirements.txt (used by the GitHub Actions fetch/build
+# steps) -- Vercel's build needs this [project] table for `uv lock`, GitHub
+# Actions installs via `pip install -r requirements.txt` instead.
+dependencies = [
+    "tzdata",
+]
+
 [tool.vercel]
 entrypoint = "api.calendar_ics:app"
