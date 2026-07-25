@@ -1,6 +1,6 @@
 # sportocal
 
-Ein Sport-Kalender (Fußball + Radsport) mit personalisierbarem `.ics`-Abo und einer kleinen Website – gehostet auf Vercel (Hobby-Plan): eine statische Seite unter `public/` und eine Python-Serverless-Function (`api/calendar.ics.py`) für den personalisierten Kalenderlink, aus demselben Repo und Deploy. Die Datenaktualisierung läuft weiterhin wöchentlich im Hintergrund über GitHub Actions (`scripts/fetch_*.py`); jeder daraus entstehende Commit löst automatisch ein Vercel-Redeploy aus, wodurch die Function wieder aktuelle Daten aus dem Deployment-Bundle liest. Kein Login, kein Cookie, kein Server im klassischen Sinn, kein API-Key.
+Ein Sport-Kalender (Fußball + Radsport) mit personalisierbarem `.ics`-Abo und einer kleinen Website – gehostet auf Vercel (Hobby-Plan): eine statische Seite unter `public/` und eine Python-Serverless-Function (`api/calendar_ics.py`) für den personalisierten Kalenderlink, aus demselben Repo und Deploy. Die Datenaktualisierung läuft weiterhin wöchentlich im Hintergrund über GitHub Actions (`scripts/fetch_*.py`); jeder daraus entstehende Commit löst automatisch ein Vercel-Redeploy aus, wodurch die Function wieder aktuelle Daten aus dem Deployment-Bundle liest. Kein Login, kein Cookie, kein Server im klassischen Sinn, kein API-Key.
 
 Das Frontend (`public/index.html`/`app.js`, Basis: ein Claude-Design-Entwurf) lässt Nutzer Fußballvereine (gruppiert nach Liga) und Radsport-Rennen per Multi-Select auswählen; ausgewählte Elemente erscheinen als farbige, entfernbare Chips in der jeweiligen Vereinsfarbe. Ohne Auswahl zeigt die Seite eine ungefilterte Vorschau aller Termine; sobald mindestens ein Verein oder Rennen ausgewählt ist, schaltet sich die Abo-Leiste frei: ein `webcal://`-Button ("Kalender abonnieren") plus die reine `https://`-URL zum Kopieren (für Google Calendar, das `webcal://` nicht zuverlässig unterstützt) und eine Klartext-Bestätigungszeile ("Dein Kalender enthält: ..."). Kein Download-Button -- eine heruntergeladene Datei würde sich nie aktualisieren.
 
@@ -117,7 +117,7 @@ vercel.json                   # Vercel-Projektkonfiguration
 .github/workflows/update.yml # wöchentlicher Cron + manueller Trigger
 ```
 
-**Wichtig:** `public/` ist der Vercel Static Root. Nur was dort liegt, ist per HTTP erreichbar – deshalb erzeugt `build_site_data.py` eine kombinierte Kopie unter `public/data/events.json`, obwohl die Roh-Snapshots in `data/` liegen. `data/` und `config/` sind trotzdem Teil des Deployments (nur nicht direkt per URL erreichbar) und genau deshalb kann `api/calendar.ics.py` sie serverseitig lesen.
+**Wichtig:** `public/` ist der Vercel Static Root. Nur was dort liegt, ist per HTTP erreichbar – deshalb erzeugt `build_site_data.py` eine kombinierte Kopie unter `public/data/events.json`, obwohl die Roh-Snapshots in `data/` liegen. `data/` und `config/` sind trotzdem Teil des Deployments (nur nicht direkt per URL erreichbar) und genau deshalb kann `api/calendar_ics.py` sie serverseitig lesen.
 
 ## Personalisierter Kalenderlink (`/api/calendar.ics`)
 
@@ -168,7 +168,7 @@ Ein neues Rennen kommt allein durch einen neuen Eintrag in `config.json` dazu. E
 
 ## Vercel einrichten (einmalig)
 
-1. Auf [vercel.com](https://vercel.com) ein neues Projekt aus diesem GitHub-Repo anlegen (eigener Hobby-Plan-Slot, unabhängig von anderen Projekten). Vercel erkennt `api/calendar.ics.py` automatisch als Python Function und `public/` als Static Root (siehe `vercel.json`) – kein Build-Schritt nötig.
+1. Auf [vercel.com](https://vercel.com) ein neues Projekt aus diesem GitHub-Repo anlegen (eigener Hobby-Plan-Slot, unabhängig von anderen Projekten). Vercel erkennt `api/calendar_ics.py` automatisch als Python Function und `public/` als Static Root (siehe `vercel.json`) – kein Build-Schritt nötig.
 2. Damit die Function `data/*.json` + `config/clubs.json` sehen kann, müssen diese Teil des Git-Repos sein (sind sie bereits) – Vercel bündelt beim Deploy alles, was zur Build-Zeit erreichbar ist.
 3. Fertig – die Seite liegt danach unter `https://<projekt>.vercel.app/`, der personalisierte Kalenderlink unter `https://<projekt>.vercel.app/api/calendar.ics?t=...` (bzw. `webcal://...`), der unfiltrierte Interims-Feed unter `/kalender.ics`.
 

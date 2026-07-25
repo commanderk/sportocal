@@ -5,7 +5,7 @@ Always rebuilt from scratch on every run (cheap, and much simpler than
 tracking per-source dirtiness) -- the actual git workflow only commits the
 result if it actually changed. This is the unfiltered "everything" feed for
 the interim combined site; the personalized single-user feed lives in
-api/calendar.ics.py and shares the same VEVENT/VCALENDAR rendering via
+api/calendar_ics.py and shares the same VEVENT/VCALENDAR rendering via
 common.build_calendar_text().
 """
 from __future__ import annotations

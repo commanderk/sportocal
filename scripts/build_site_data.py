@@ -3,7 +3,7 @@
 
 public/ is the Vercel static root, so the frontend can only fetch files that
 live under public/ -- the top-level data/ and config/ directories themselves
-are not served (they're only readable server-side, by api/calendar.ics.py).
+are not served (they're only readable server-side, by api/calendar_ics.py).
 
 Writes:
   - events.json  -- all events, for the read-only list/preview view

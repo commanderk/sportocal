@@ -2,8 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "outputDirectory": "public",
   "functions": {
-    "api/calendar.ics.py": {
+    "api/calendar_ics.py": {
       "excludeFiles": "{.github/**,scripts/__pycache__/**,**/__pycache__/**,.claude/**}"
     }
-  }
+  },
+  "rewrites": [
+    { "source": "/api/calendar.ics", "destination": "/api/calendar_ics" }
+  ]
 }

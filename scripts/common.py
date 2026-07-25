@@ -130,7 +130,7 @@ def format_event_title(
 
 # --- ICS rendering -----------------------------------------------------
 # Shared by the weekly combined-feed build (scripts/build_ics.py) and the
-# on-demand personalized feed (api/calendar.ics.py), so the two never drift
+# on-demand personalized feed (api/calendar_ics.py), so the two never drift
 # apart on VEVENT structure or line folding.
 
 

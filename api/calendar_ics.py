@@ -23,9 +23,8 @@ also used by the interim combined feed (scripts/build_ics.py).
 from __future__ import annotations
 
 import sys
-from http.server import BaseHTTPRequestHandler
 from pathlib import Path
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import parse_qs
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
@@ -95,29 +94,26 @@ def build_response_body(raw_selection: str) -> bytes:
     return calendar_text.encode("utf-8")
 
 
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self) -> None:
-        query = parse_qs(urlparse(self.path).query)
-        raw_selection = (query.get("t") or [""])[0]
+def app(environ, start_response):
+    """Plain WSGI app (stdlib only, no framework) -- Vercel's Python runtime
+    expects an ASGI/WSGI callable named `app` as the function entrypoint
+    (see pyproject.toml's [tool.vercel] entrypoint)."""
+    query = parse_qs(environ.get("QUERY_STRING", ""))
+    raw_selection = (query.get("t") or [""])[0]
 
-        if not raw_selection.strip():
-            self.send_response(400)
-            self.send_header("Content-Type", "text/plain; charset=utf-8")
-            self.end_headers()
-            self.wfile.write(
-                "Fehlender oder leerer Parameter 't' (Vereins-/Renn-Auswahl).".encode("utf-8")
-            )
-            return
+    if not raw_selection.strip():
+        body = "Fehlender oder leerer Parameter 't' (Vereins-/Renn-Auswahl).".encode("utf-8")
+        start_response("400 Bad Request", [("Content-Type", "text/plain; charset=utf-8")])
+        return [body]
 
-        body = build_response_body(raw_selection)
-
-        self.send_response(200)
-        self.send_header("Content-Type", "text/calendar; charset=utf-8")
-        self.send_header("Content-Disposition", 'inline; filename="sportocal.ics"')
+    body = build_response_body(raw_selection)
+    headers = [
+        ("Content-Type", "text/calendar; charset=utf-8"),
+        ("Content-Disposition", 'inline; filename="sportocal.ics"'),
         # Generated fresh on every request from this deployment's bundled
         # data -- no caching beyond that, so calendar-client auto-refreshes
         # always see whatever the last weekly redeploy picked up.
-        self.send_header("Cache-Control", "no-store")
-        self.end_headers()
-        self.wfile.write(body)
-        return
+        ("Cache-Control", "no-store"),
+    ]
+    start_response("200 OK", headers)
+    return [body]
