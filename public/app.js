@@ -556,6 +556,36 @@ function renderSubscribeBar() {
   document.getElementById("subscribe-summary").textContent = `Dein Kalender enthält: ${selectionSummaryText()}`;
 }
 
+// The in-progress picker selection (not the finished subscribe link) is kept
+// in localStorage so an accidental refresh doesn't wipe out a half-built
+// selection -- this is purely client-side and never sent to the server, so
+// it doesn't conflict with the "no cookies / no server-side state" design.
+const SELECTION_STORAGE_KEY = "sportocal-selection";
+
+function saveSelectionToStorage() {
+  try {
+    localStorage.setItem(
+      SELECTION_STORAGE_KEY,
+      JSON.stringify({ clubs: [...state.selectedClubs], races: [...state.selectedRaces] })
+    );
+  } catch (err) {
+    // Private browsing / quota exceeded -- selection just won't survive a
+    // refresh this time, which is exactly the pre-existing behavior.
+  }
+}
+
+function loadSelectionFromStorage() {
+  try {
+    const raw = localStorage.getItem(SELECTION_STORAGE_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    state.selectedClubs = new Set(parsed.clubs || []);
+    state.selectedRaces = new Set(parsed.races || []);
+  } catch (err) {
+    // Malformed/stale entry -- ignore it and start with an empty selection.
+  }
+}
+
 function refreshSelectionUI() {
   renderFootballCombo();
   renderFootballChips();
@@ -564,6 +594,7 @@ function refreshSelectionUI() {
   renderSubscribeBar();
   updateComboTriggerLabels();
   renderCompetitionFilters();
+  saveSelectionToStorage();
   render();
 }
 
@@ -703,6 +734,7 @@ async function main() {
     state.leagues = leagues;
     state.races = races;
 
+    loadSelectionFromStorage();
     setupSelectorUI();
     renderCompetitionFilters();
     setupViewToggle();
