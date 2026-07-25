@@ -107,6 +107,7 @@ api/
 data/                         # ein JSON-Snapshot pro Liga-Quelle (Diff-Basis), z.B. football-bl1.json
 public/                       # Vercel Static Root
   index.html / app.js / style.css   # Auswahl-UI (Basis: Claude-Design-Entwurf) + Terminliste
+  impressum.html / datenschutz.html # Rechtliches (Platzhalter zum Ausfüllen), im Footer verlinkt
   kalender.ics                # generierte, kombinierte Kalenderdatei (Interims-/Vorschau-Feed)
   data/events.json            # generierte, kombinierte Website-Daten (Terminliste)
   data/clubs.json             # gekürzte Kopie von config/clubs.json fürs Frontend (Auswahl-UI)
@@ -134,6 +135,10 @@ Beispiel: `?t=fc-bayern-muenchen:men,stuttgarter-kickers:men,race:tour-de-france
 Die Function liest `data/*.json` + `config/clubs.json` aus dem Deployment-Bundle, filtert und generiert die ICS-Datei bei jedem Aufruf neu (kein Caching, `Cache-Control: no-store`) – automatische Kalender-Refreshes bekommen dadurch immer den Stand des letzten wöchentlichen Redeploys. Im generierten Titel bekommt nur ein ausgewählter Verein sein Farb-/Form-Emoji; der Gegner erscheint auch dann als Klartext, wenn er selbst ein bekannter Verein ist (Ausnahme: spielen zwei ausgewählte Vereine gegeneinander, bekommen beide ihr Emoji). Unbekannte oder nicht mehr existierende Club-/Renn-IDs im Parameter werden stillschweigend ignoriert (führt zu einem entsprechend kleineren, aber gültigen Kalender) statt eines Fehlers – ein alter, bereits abonnierter Link soll nie hart brechen. Fehlt der Parameter `t` komplett oder ist leer, antwortet die Function mit `400`.
 
 Enthalten ist immer die komplette aktuelle Saison (vergangene und zukünftige Termine); der Cut auf eine neue Saison passiert implizit beim wöchentlichen Fetch (siehe Datenmodell oben), nicht in dieser Function.
+
+## Impressum & Datenschutz
+
+`public/impressum.html` und `public/datenschutz.html` enthalten **Platzhalter** (`[Platzhalter: ...]`), die vor dem Live-Gang ausgefüllt werden müssen (Name, ladungsfähige Anschrift, E-Mail, zweite Kontaktmöglichkeit) – ohne öffentlichen Zugriffsschutz greift die Ausnahme für "rein private Nutzung" nach § 5 DDG nicht. Beide Seiten sind im Footer jeder Seite verlinkt und verweisen auch gegenseitig aufeinander sowie zurück zur Startseite (max. 2 Klicks von überall).
 
 ## Warum Liga-Shortcuts nicht hartkodiert sind
 

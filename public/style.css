@@ -634,8 +634,70 @@ main#app {
 }
 
 .last-updated {
-  padding: 8px 40px 32px;
+  padding: 8px 40px 0;
   margin: 0;
   font-size: 12px;
   color: var(--text-dim);
+}
+
+.footer-legal {
+  padding: 8px 40px 32px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.footer-legal a {
+  color: var(--text-mid);
+}
+
+.legal-page {
+  padding: 40px 40px 80px;
+  max-width: 720px;
+}
+
+.legal-title {
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 56px);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  border-bottom: 6px solid var(--text);
+  padding-bottom: 16px;
+  margin: 0 0 32px;
+}
+
+.legal-section {
+  margin-bottom: 28px;
+}
+
+.legal-section h2 {
+  font-weight: 900;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid var(--hairline);
+  padding-bottom: 8px;
+  margin: 0 0 12px;
+}
+
+.legal-section p {
+  font-size: 15px;
+  color: var(--text-mid);
+  margin: 0;
+}
+
+.legal-section a,
+.legal-back a {
+  color: var(--text);
+}
+
+.legal-section code {
+  background: #ece9e2;
+  padding: 1px 5px;
+  font-size: 13px;
+}
+
+.legal-back {
+  margin-top: 40px;
+  font-size: 14px;
+  font-weight: 700;
 }
