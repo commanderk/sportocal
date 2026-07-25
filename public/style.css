@@ -76,8 +76,8 @@ body {
 
 .hero-headline {
   font-weight: 900;
-  font-size: clamp(48px, 9vw, 132px);
-  line-height: 0.92;
+  font-size: clamp(36px, 6.5vw, 96px);
+  line-height: 0.96;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   max-width: 1200px;
