@@ -103,6 +103,10 @@ function isPastEvent(event) {
   return dayKey(event) < berlinDayFormatter.format(new Date());
 }
 
+function isToday(event) {
+  return dayKey(event) === berlinDayFormatter.format(new Date());
+}
+
 function groupBy(items, keyFn) {
   const map = new Map();
   for (const item of items) {
@@ -116,24 +120,37 @@ function groupBy(items, keyFn) {
 function renderEventRow(event) {
   const startDate = parseStart(event.start);
   const row = document.createElement("div");
-  row.className = "event-row" + (isPastEvent(event) ? " is-past" : "");
+  row.className = "event-row" +
+    (isPastEvent(event) ? " is-past" : "") +
+    (isToday(event) ? " is-today" : "");
+
+  const roundNumber = extractRoundNumber(event.round);
+  const timeText = event.timeConfirmed && !isAllDay(event.start)
+    ? timeFormatter.format(startDate)
+    : "tbd";
+  const titleText = eventDisplayTitle(event);
+  // Cycling rows already show the route (start → finish) as the title, so
+  // repeating it in the venue column would just duplicate the same text.
+  const venueText = event.route ? "" : event.location || "";
+
+  const desktop = document.createElement("div");
+  desktop.className = "row-desktop";
+  row.appendChild(desktop);
 
   const idx = document.createElement("div");
   idx.className = "row-index";
-  idx.textContent = extractRoundNumber(event.round);
-  row.appendChild(idx);
+  idx.textContent = roundNumber;
+  desktop.appendChild(idx);
 
   const dateCol = document.createElement("div");
   dateCol.className = "row-date";
   dateCol.innerHTML = `${weekdayFormatter.format(startDate)}<span class="row-daynum">${formatShortDate(startDate)}</span>`;
-  row.appendChild(dateCol);
+  desktop.appendChild(dateCol);
 
   const timeCol = document.createElement("div");
   timeCol.className = "row-time";
-  timeCol.textContent = event.timeConfirmed && !isAllDay(event.start)
-    ? timeFormatter.format(startDate)
-    : "tbd";
-  row.appendChild(timeCol);
+  timeCol.textContent = timeText;
+  desktop.appendChild(timeCol);
 
   const logos = document.createElement("div");
   logos.className = "row-logos";
@@ -143,19 +160,68 @@ function renderEventRow(event) {
   if (event.awayTeamLogo) {
     logos.appendChild(Object.assign(document.createElement("img"), { src: event.awayTeamLogo, alt: "", loading: "lazy" }));
   }
-  row.appendChild(logos);
+  desktop.appendChild(logos);
 
   const title = document.createElement("div");
   title.className = "row-title";
-  title.textContent = eventDisplayTitle(event);
-  row.appendChild(title);
+  title.textContent = titleText;
+  desktop.appendChild(title);
 
-  // Cycling rows already show the route (start → finish) as the title, so
-  // repeating it in the venue column would just duplicate the same text.
   const venue = document.createElement("div");
   venue.className = "row-venue";
-  venue.textContent = event.route ? "" : event.location || "";
-  row.appendChild(venue);
+  venue.textContent = venueText;
+  desktop.appendChild(venue);
+
+  // Below ~900px .row-desktop is hidden in favor of this compact two-line
+  // layout (round index + teams/logos, then weekday/date · time · venue) so
+  // mobile keeps the same information instead of just hiding columns.
+  const mobile = document.createElement("div");
+  mobile.className = "row-mobile";
+  row.appendChild(mobile);
+
+  const mobileMain = document.createElement("div");
+  mobileMain.className = "row-mobile-main";
+  mobile.appendChild(mobileMain);
+
+  const mobileIdx = document.createElement("span");
+  mobileIdx.className = "row-mobile-index";
+  mobileIdx.textContent = roundNumber;
+  mobileMain.appendChild(mobileIdx);
+
+  if (event.sport === "football") {
+    const home = document.createElement("span");
+    home.className = "row-mobile-team";
+    home.textContent = event.homeTeamName || "";
+    mobileMain.appendChild(home);
+    if (event.homeTeamLogo) {
+      mobileMain.appendChild(Object.assign(document.createElement("img"), { src: event.homeTeamLogo, alt: "", loading: "lazy", className: "row-mobile-logo" }));
+    }
+    const sep = document.createElement("span");
+    sep.className = "row-mobile-sep";
+    sep.textContent = "–";
+    mobileMain.appendChild(sep);
+    if (event.awayTeamLogo) {
+      mobileMain.appendChild(Object.assign(document.createElement("img"), { src: event.awayTeamLogo, alt: "", loading: "lazy", className: "row-mobile-logo" }));
+    }
+    const away = document.createElement("span");
+    away.className = "row-mobile-team";
+    away.textContent = event.awayTeamName || "";
+    mobileMain.appendChild(away);
+  } else {
+    const mobileTitle = document.createElement("span");
+    mobileTitle.className = "row-mobile-title";
+    mobileTitle.textContent = titleText;
+    mobileMain.appendChild(mobileTitle);
+  }
+
+  const mobileMeta = document.createElement("div");
+  mobileMeta.className = "row-mobile-meta";
+  mobileMeta.textContent = [
+    `${weekdayFormatter.format(startDate)} ${formatShortDate(startDate)}`,
+    timeText,
+    venueText,
+  ].filter(Boolean).join(" · ");
+  mobile.appendChild(mobileMeta);
 
   return row;
 }
