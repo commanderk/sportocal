@@ -116,6 +116,46 @@
         "shortcutHint": null,
         "shortcutStable": false,
         "knownGap": "OpenLigaDB fuehrt derzeit (Stand 2026) keinen separaten Frauen-DFB-Pokal -- diese Quelle liefert bislang immer leer. Bleibt konfiguriert (kein Codepfad-Umbau noetig), falls die Daten dort spaeter auftauchen; scheitert sie weiterhin, wird das pro Lauf nur geloggt, nicht als Fehler behandelt."
+      },
+      {
+        "id": "ucl",
+        "competition": "UEFA Champions League",
+        "gender": "men",
+        "scope": "cup",
+        "roundFormat": "raw",
+        "leagueNameKeywords": ["champions", "league"],
+        "leagueNameExcludeKeywords": ["frauen", "women"],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": "ucl",
+        "shortcutStable": false
+      },
+      {
+        "id": "uel",
+        "competition": "UEFA Europa League",
+        "gender": "men",
+        "scope": "cup",
+        "roundFormat": "raw",
+        "leagueNameKeywords": ["europa", "league"],
+        "leagueNameExcludeKeywords": ["conference", "frauen", "women"],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": null,
+        "shortcutStable": false
+      },
+      {
+        "id": "uecl",
+        "competition": "UEFA Conference League",
+        "gender": "men",
+        "scope": "cup",
+        "roundFormat": "raw",
+        "leagueNameKeywords": ["conference", "league"],
+        "leagueNameExcludeKeywords": ["frauen", "women"],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": "uecl",
+        "shortcutStable": false,
+        "knownGap": "OpenLigaDB fuehrt die UEFA Conference League nur bis Saison 2023 (Shortcuts 'uecl'/'uefaconf2023') -- aktuellere Spielzeiten fehlen komplett, daher greift der Stale-Season-Filter und die Liga wird uebersprungen, bis OpenLigaDB nachzieht."
       }
     ]
   },
