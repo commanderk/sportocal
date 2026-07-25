@@ -4,6 +4,28 @@ const SPORT_LABELS = {
 };
 const SPORT_ORDER = ["football", "cycling"];
 
+// Visual grouping color per selectable football league (used for the
+// checkbox accent / swatch in the combobox) -- distinct from a club's own
+// colorHex, which is used for that club's dot/chip so it stays recognizable
+// on its own once it's out of the grouped list.
+const LEAGUE_COLORS = {
+  bl1: "#d92b1c",
+  bl2: "#0f5fd9",
+  bl3: "#0a7a6b",
+  ffb1: "#c2185b",
+  ffb2: "#7b3fa0",
+  "rlsw-kickers": "#e8720c",
+};
+
+const RACE_COLORS = {
+  "tour-de-france": "#e8b400",
+  "giro-d-italia": "#d81b8f",
+  "vuelta-a-espana": "#d92b1c",
+  "cyclassics-hamburg": "#0f5fd9",
+  "muensterland-giro": "#0a7a6b",
+  "deutschland-tour": "#141414",
+};
+
 const dateFormatter = new Intl.DateTimeFormat("de-DE", {
   day: "2-digit",
   month: "short",
@@ -20,6 +42,16 @@ const monthNumFormatter = new Intl.DateTimeFormat("de-DE", { month: "2-digit", t
 
 function formatShortDate(d) {
   return `${dayNumFormatter.format(d)}.${monthNumFormatter.format(d)}.`;
+}
+
+// Picks readable chip/dot text color for an arbitrary club brand color --
+// some clubs (e.g. all-white kits) are too light for the usual off-white text.
+function contrastText(hex) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.6 ? "#141414" : "#f6f5f2";
 }
 
 // The row-index number is the event's actual Spieltag (matchday) or Etappe
@@ -44,12 +76,6 @@ function eventDisplayTitle(event) {
     return `${event.route.start} → ${event.route.finish}`;
   }
   return event.competition;
-}
-
-function setupSubscribeLinks() {
-  const icsUrl = new URL("kalender.ics", window.location.href);
-  document.getElementById("https-link").href = icsUrl.href;
-  document.getElementById("webcal-link").href = icsUrl.href.replace(/^https?:/, "webcal:");
 }
 
 function parseStart(start) {
@@ -262,7 +288,8 @@ function getCompetitionNamesInOrder(events) {
 function renderCompetitionFilters() {
   const container = document.getElementById("competition-filters");
   container.innerHTML = "";
-  const names = [FILTER_ALL, ...getCompetitionNamesInOrder(state.events)];
+  const names = [FILTER_ALL, ...getCompetitionNamesInOrder(visibleEvents())];
+  if (!names.includes(state.competitionFilter)) state.competitionFilter = FILTER_ALL;
   for (const name of names) {
     const btn = document.createElement("button");
     btn.type = "button";
@@ -277,23 +304,350 @@ function renderCompetitionFilters() {
   }
 }
 
-const state = { events: [], viewMode: "competition", competitionFilter: FILTER_ALL };
+const state = {
+  events: [],
+  clubs: [],
+  clubsById: new Map(),
+  leagues: [],
+  races: [],
+  viewMode: "competition",
+  competitionFilter: FILTER_ALL,
+  selectedClubs: new Set(), // tokens "<clubId>:<gender>"
+  selectedRaces: new Set(), // race ids
+  footballOpen: false,
+  cyclingOpen: false,
+  search: "",
+};
+
+// --- selection-aware event list ----------------------------------------
+
+function hasSelection() {
+  return state.selectedClubs.size > 0 || state.selectedRaces.size > 0;
+}
+
+// Without a selection the list is an unfiltered preview of everything, same
+// spirit as the design mock -- so the page is never empty on first load.
+function visibleEvents() {
+  if (!hasSelection()) return state.events;
+  return state.events.filter((e) => {
+    if (e.sport === "football") {
+      return (
+        (state.selectedClubs.has(`${e.homeTeamId}:${e.gender}`) ||
+          state.selectedClubs.has(`${e.awayTeamId}:${e.gender}`))
+      );
+    }
+    if (e.sport === "cycling") {
+      const race = state.races.find((r) => r.name === e.competition);
+      return race && state.selectedRaces.has(race.id);
+    }
+    return false;
+  });
+}
 
 function render() {
   const app = document.getElementById("app");
   app.innerHTML = "";
 
-  if (state.events.length === 0) {
-    app.innerHTML = '<p class="empty-state">Noch keine Termine geladen.</p>';
+  const events = visibleEvents();
+  document.getElementById("count-label").textContent = hasSelection()
+    ? `${events.length} Termine für deine Auswahl`
+    : `${events.length} Termine · Vorschau`;
+
+  if (events.length === 0) {
+    app.innerHTML = '<p class="empty-state">Für diese Auswahl liegen aktuell keine Termine vor.</p>';
     return;
   }
 
   if (state.viewMode === "date") {
-    renderByDate(state.events, app);
+    renderByDate(events, app);
   } else {
-    renderByCompetition(state.events, app, state.competitionFilter);
+    renderByCompetition(events, app, state.competitionFilter);
   }
 }
+
+// --- selection UI: football combobox ------------------------------------
+
+function clubMatchesSearch(club) {
+  if (!state.search.trim()) return true;
+  return club.name.toLowerCase().includes(state.search.trim().toLowerCase());
+}
+
+function renderFootballCombo() {
+  const body = document.getElementById("football-combo-body");
+  body.innerHTML = "";
+
+  for (const league of state.leagues) {
+    const clubs = state.clubs
+      .filter((c) => c.teams[league.gender] && c.teams[league.gender].league === league.competition)
+      .filter(clubMatchesSearch)
+      .sort((a, b) => a.name.localeCompare(b.name, "de"));
+    if (clubs.length === 0) continue;
+
+    const color = LEAGUE_COLORS[league.id] || "#141414";
+    const tokens = clubs.map((c) => `${c.id}:${league.gender}`);
+    const selectedCount = tokens.filter((t) => state.selectedClubs.has(t)).length;
+    const allSelected = selectedCount === tokens.length;
+    const someSelected = selectedCount > 0 && !allSelected;
+
+    const head = document.createElement("div");
+    head.className = "league-group-head";
+    const label = document.createElement("label");
+    label.className = "league-group-label";
+    const allCheckbox = document.createElement("input");
+    allCheckbox.type = "checkbox";
+    allCheckbox.checked = allSelected;
+    allCheckbox.indeterminate = someSelected;
+    allCheckbox.style.accentColor = color;
+    allCheckbox.addEventListener("change", () => {
+      if (allSelected) tokens.forEach((t) => state.selectedClubs.delete(t));
+      else tokens.forEach((t) => state.selectedClubs.add(t));
+      refreshSelectionUI();
+    });
+    const swatch = document.createElement("span");
+    swatch.className = "league-swatch";
+    swatch.style.background = color;
+    const name = document.createElement("span");
+    name.className = "league-group-name";
+    name.textContent = `Alle Vereine der ${league.competition} auswählen`;
+    const count = document.createElement("span");
+    count.className = "league-group-count";
+    count.textContent = `(${tokens.length})`;
+    label.append(allCheckbox, swatch, name, count);
+    head.appendChild(label);
+    body.appendChild(head);
+
+    for (const club of clubs) {
+      const token = `${club.id}:${league.gender}`;
+      const row = document.createElement("label");
+      row.className = "club-row";
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = state.selectedClubs.has(token);
+      checkbox.addEventListener("change", () => {
+        if (state.selectedClubs.has(token)) state.selectedClubs.delete(token);
+        else state.selectedClubs.add(token);
+        refreshSelectionUI();
+      });
+      const dot = document.createElement("span");
+      dot.className = "club-dot";
+      dot.style.background = club.colorHex;
+      const clubName = document.createElement("span");
+      clubName.textContent = club.name;
+      row.append(checkbox, dot, clubName);
+      body.appendChild(row);
+    }
+  }
+}
+
+function renderFootballChips() {
+  const container = document.getElementById("football-chips");
+  container.innerHTML = "";
+  for (const token of state.selectedClubs) {
+    const [clubId] = token.split(":");
+    const club = state.clubsById.get(clubId);
+    if (!club) continue;
+    const chip = document.createElement("div");
+    chip.className = "chip";
+    chip.style.background = club.colorHex;
+    chip.style.color = contrastText(club.colorHex);
+    const name = document.createElement("span");
+    name.textContent = club.name;
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "✕";
+    remove.addEventListener("click", () => {
+      state.selectedClubs.delete(token);
+      refreshSelectionUI();
+    });
+    chip.append(name, remove);
+    container.appendChild(chip);
+  }
+  document.getElementById("football-empty-hint").hidden = state.selectedClubs.size > 0;
+}
+
+// --- selection UI: cycling combobox -------------------------------------
+
+function renderCyclingCombo() {
+  const body = document.getElementById("cycling-combo-body");
+  body.innerHTML = "";
+  for (const race of state.races) {
+    const color = RACE_COLORS[race.id] || "#141414";
+    const row = document.createElement("label");
+    row.className = "race-row";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = state.selectedRaces.has(race.id);
+    checkbox.style.accentColor = color;
+    checkbox.addEventListener("change", () => {
+      if (state.selectedRaces.has(race.id)) state.selectedRaces.delete(race.id);
+      else state.selectedRaces.add(race.id);
+      refreshSelectionUI();
+    });
+    const swatch = document.createElement("span");
+    swatch.className = "race-swatch";
+    swatch.style.background = color;
+    const name = document.createElement("span");
+    name.textContent = race.name;
+    row.append(checkbox, swatch, name);
+    body.appendChild(row);
+  }
+}
+
+function renderCyclingChips() {
+  const container = document.getElementById("cycling-chips");
+  container.innerHTML = "";
+  for (const raceId of state.selectedRaces) {
+    const race = state.races.find((r) => r.id === raceId);
+    if (!race) continue;
+    const color = RACE_COLORS[raceId] || "#141414";
+    const chip = document.createElement("div");
+    chip.className = "chip";
+    chip.style.background = color;
+    chip.style.color = contrastText(color);
+    const name = document.createElement("span");
+    name.textContent = race.name;
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "✕";
+    remove.addEventListener("click", () => {
+      state.selectedRaces.delete(raceId);
+      refreshSelectionUI();
+    });
+    chip.append(name, remove);
+    container.appendChild(chip);
+  }
+  document.getElementById("cycling-empty-hint").hidden = state.selectedRaces.size > 0;
+}
+
+// --- subscribe bar --------------------------------------------------------
+
+function buildSelectionToken() {
+  const clubTokens = [...state.selectedClubs];
+  const raceTokens = [...state.selectedRaces].map((id) => `race:${id}`);
+  return [...clubTokens, ...raceTokens].join(",");
+}
+
+function selectionSummaryText() {
+  const clubNames = [...state.selectedClubs]
+    .map((t) => state.clubsById.get(t.split(":")[0]))
+    .filter(Boolean)
+    .map((c) => c.name);
+  const raceNames = [...state.selectedRaces]
+    .map((id) => state.races.find((r) => r.id === id))
+    .filter(Boolean)
+    .map((r) => r.name);
+  return [...clubNames, ...raceNames].join(", ");
+}
+
+function renderSubscribeBar() {
+  const placeholder = document.getElementById("subscribe-placeholder");
+  const active = document.getElementById("subscribe-active");
+  const selected = hasSelection();
+  placeholder.hidden = selected;
+  active.hidden = !selected;
+  if (!selected) return;
+
+  const token = buildSelectionToken();
+  const apiUrl = new URL("api/calendar.ics", window.location.href);
+  apiUrl.searchParams.set("t", token);
+
+  document.getElementById("webcal-link").href = apiUrl.href.replace(/^https?:/, "webcal:");
+  document.getElementById("https-url").value = apiUrl.href;
+  document.getElementById("subscribe-summary").textContent = `Dein Kalender enthält: ${selectionSummaryText()}`;
+}
+
+function refreshSelectionUI() {
+  renderFootballCombo();
+  renderFootballChips();
+  renderCyclingCombo();
+  renderCyclingChips();
+  renderSubscribeBar();
+  updateComboTriggerLabels();
+  renderCompetitionFilters();
+  render();
+}
+
+// --- combobox open/close wiring ------------------------------------------
+
+function setupCombobox({ triggerId, panelId, doneId, labelId, isOpenKey, emptyLabel, countLabel }) {
+  const trigger = document.getElementById(triggerId);
+  const panel = document.getElementById(panelId);
+
+  const open = () => {
+    state[isOpenKey] = true;
+    panel.hidden = false;
+  };
+  const close = () => {
+    state[isOpenKey] = false;
+    panel.hidden = true;
+  };
+
+  trigger.addEventListener("click", () => (state[isOpenKey] ? close() : open()));
+  trigger.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      state[isOpenKey] ? close() : open();
+    }
+  });
+  document.getElementById(doneId).addEventListener("click", close);
+  document.addEventListener("click", (e) => {
+    if (state[isOpenKey] && !panel.contains(e.target) && !trigger.contains(e.target)) close();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && state[isOpenKey]) close();
+  });
+
+  return { open, close };
+}
+
+function updateComboTriggerLabels() {
+  const footballLabel = document.getElementById("football-combo-trigger-label");
+  footballLabel.textContent = state.selectedClubs.size > 0
+    ? `${state.selectedClubs.size} Verein${state.selectedClubs.size === 1 ? "" : "e"} ausgewählt`
+    : "Vereine suchen und auswählen…";
+
+  const cyclingLabel = document.getElementById("cycling-combo-trigger-label");
+  cyclingLabel.textContent = state.selectedRaces.size > 0
+    ? `${state.selectedRaces.size} Rennen ausgewählt`
+    : "Rennen auswählen…";
+}
+
+function setupSelectorUI() {
+  setupCombobox({ triggerId: "football-combo-trigger", panelId: "football-combo-panel", doneId: "football-combo-done", isOpenKey: "footballOpen" });
+  setupCombobox({ triggerId: "cycling-combo-trigger", panelId: "cycling-combo-panel", doneId: "cycling-combo-done", isOpenKey: "cyclingOpen" });
+
+  const search = document.getElementById("football-search");
+  search.addEventListener("input", (e) => {
+    state.search = e.target.value;
+    renderFootballCombo();
+  });
+
+  document.getElementById("copy-url-btn").addEventListener("click", async () => {
+    const input = document.getElementById("https-url");
+    const btn = document.getElementById("copy-url-btn");
+    try {
+      await navigator.clipboard.writeText(input.value);
+    } catch (err) {
+      input.select();
+      document.execCommand("copy");
+    }
+    btn.textContent = "Kopiert!";
+    btn.classList.add("is-copied");
+    setTimeout(() => {
+      btn.textContent = "Kopieren";
+      btn.classList.remove("is-copied");
+    }, 1600);
+  });
+
+  const footballSublabel = document.getElementById("football-sublabel");
+  footballSublabel.textContent = `${state.clubs.length} Vereine aus ${state.leagues.length} Liga-Gruppen`;
+  const cyclingSublabel = document.getElementById("cycling-sublabel");
+  cyclingSublabel.textContent = `${state.races.length} Rennen`;
+
+  refreshSelectionUI();
+}
+
+// --- view mode (Nach Wettbewerb / Nach Datum) -----------------------------
 
 const VIEW_STORAGE_KEY = "sportocal-view-mode";
 
@@ -326,19 +680,36 @@ function setupViewToggle() {
   applyViewMode();
 }
 
+// --- bootstrap -------------------------------------------------------------
+
+async function fetchJson(path) {
+  const res = await fetch(path, { cache: "no-store" });
+  if (!res.ok) throw new Error(`HTTP ${res.status} für ${path}`);
+  return res.json();
+}
+
 async function main() {
-  setupSubscribeLinks();
   try {
-    const res = await fetch("data/events.json", { cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    state.events = data.events || [];
-    document.getElementById("count-label").textContent = `${state.events.length} Termine`;
+    const [eventsData, clubs, leagues, races] = await Promise.all([
+      fetchJson("data/events.json"),
+      fetchJson("data/clubs.json"),
+      fetchJson("data/leagues.json"),
+      fetchJson("data/races.json"),
+    ]);
+
+    state.events = eventsData.events || [];
+    state.clubs = clubs;
+    state.clubsById = new Map(clubs.map((c) => [c.id, c]));
+    state.leagues = leagues;
+    state.races = races;
+
+    setupSelectorUI();
     renderCompetitionFilters();
     setupViewToggle();
+
     const lastUpdated = document.getElementById("last-updated");
-    if (data.generatedAt) {
-      const dt = new Date(data.generatedAt);
+    if (eventsData.generatedAt) {
+      const dt = new Date(eventsData.generatedAt);
       lastUpdated.textContent = `Zuletzt aktualisiert: ${dateFormatter.format(dt)} ${timeFormatter.format(dt)} Uhr`;
     }
   } catch (err) {

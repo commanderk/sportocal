@@ -1,6 +1,8 @@
 # sportocal
 
-Ein Sport-Kalender (Fußball + Radsport) mit personalisierbarem `.ics`-Abo und einer kleinen Website – gehostet auf Vercel (Hobby-Plan): eine statische Seite unter `public/` und eine Python-Serverless-Function (`api/calendar.ics.py`) für den personalisierten Kalenderlink, aus demselben Repo und Deploy. Die Datenaktualisierung läuft weiterhin wöchentlich im Hintergrund über GitHub Actions (`scripts/fetch_*.py`); jeder daraus entstehende Commit löst automatisch ein Vercel-Redeploy aus, wodurch die Function wieder aktuelle Daten aus dem Deployment-Bundle liest. Kein Login, kein Cookie, kein Server im klassischen Sinn, kein API-Key. Das Frontend (`public/index.html`/`app.js`) zeigt aktuell noch die volle, ungefilterte Terminliste aller ~65 Vereine – die Multi-Select-Auswahl-UI, die daraus einen personalisierten Abo-Link baut, ist als eigene Phase geplant.
+Ein Sport-Kalender (Fußball + Radsport) mit personalisierbarem `.ics`-Abo und einer kleinen Website – gehostet auf Vercel (Hobby-Plan): eine statische Seite unter `public/` und eine Python-Serverless-Function (`api/calendar.ics.py`) für den personalisierten Kalenderlink, aus demselben Repo und Deploy. Die Datenaktualisierung läuft weiterhin wöchentlich im Hintergrund über GitHub Actions (`scripts/fetch_*.py`); jeder daraus entstehende Commit löst automatisch ein Vercel-Redeploy aus, wodurch die Function wieder aktuelle Daten aus dem Deployment-Bundle liest. Kein Login, kein Cookie, kein Server im klassischen Sinn, kein API-Key.
+
+Das Frontend (`public/index.html`/`app.js`, Basis: ein Claude-Design-Entwurf) lässt Nutzer Fußballvereine (gruppiert nach Liga) und Radsport-Rennen per Multi-Select auswählen; ausgewählte Elemente erscheinen als farbige, entfernbare Chips in der jeweiligen Vereinsfarbe. Ohne Auswahl zeigt die Seite eine ungefilterte Vorschau aller Termine; sobald mindestens ein Verein oder Rennen ausgewählt ist, schaltet sich die Abo-Leiste frei: ein `webcal://`-Button ("Kalender abonnieren") plus die reine `https://`-URL zum Kopieren (für Google Calendar, das `webcal://` nicht zuverlässig unterstützt) und eine Klartext-Bestätigungszeile ("Dein Kalender enthält: ..."). Kein Download-Button -- eine heruntergeladene Datei würde sich nie aktualisieren.
 
 ## Was drin ist
 
@@ -104,9 +106,12 @@ api/
   calendar.ics.py             # Vercel Python Function: personalisierte /api/calendar.ics
 data/                         # ein JSON-Snapshot pro Liga-Quelle (Diff-Basis), z.B. football-bl1.json
 public/                       # Vercel Static Root
-  index.html / app.js / style.css
-  kalender.ics                # generierte, kombinierte Kalenderdatei (Interims-Feed, siehe unten)
-  data/events.json            # generierte, kombinierte Website-Daten
+  index.html / app.js / style.css   # Auswahl-UI (Basis: Claude-Design-Entwurf) + Terminliste
+  kalender.ics                # generierte, kombinierte Kalenderdatei (Interims-/Vorschau-Feed)
+  data/events.json            # generierte, kombinierte Website-Daten (Terminliste)
+  data/clubs.json             # gekürzte Kopie von config/clubs.json fürs Frontend (Auswahl-UI)
+  data/leagues.json           # Fußball-Liga-Gruppen fürs Frontend (DFB-Pokal ausgenommen -- kommt automatisch mit)
+  data/races.json             # Radsport-Rennen fürs Frontend
 vercel.json                   # Vercel-Projektkonfiguration
 .github/workflows/update.yml # wöchentlicher Cron + manueller Trigger
 ```

@@ -3,22 +3,69 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>sportocal – Sport-Kalender</title>
-<meta name="description" content="Alle Spieltermine und Radsport-Etappen auf einen Blick – abonnierbar als Kalender." />
+<title>sportocal – Personal Calendar</title>
+<meta name="description" content="Wähle deine Fußballvereine und Radrennen und abonniere einen persönlichen Kalenderlink." />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
     <h1 class="wordmark">SPORTOCAL</h1>
-    <div class="subscribe-box">
-      <a id="webcal-link" class="btn" href="webcal://example.invalid/kalender.ics">Kalender abonnieren</a>
-      <a id="https-link" class="btn" href="kalender.ics">.ics herunterladen</a>
-    </div>
+    <div class="badge">Kostenlos · Kein Login nötig</div>
   </header>
 
   <section class="hero">
     <h2 class="hero-headline">Jedes Spiel.<br>Jede Etappe.<br><span class="hero-accent">Ein Kalender.</span></h2>
-    <p class="hero-subhead">Fußball &amp; Radsport. Alle Termine, von Mainz 05, Stuttgarter Kickers und Grand Tours auf einen Blick.</p>
+    <p class="hero-subhead">Dein Kalender für Fußball &amp; Radsport – wähle deine Vereine und Rennen, abonniere einmal, bleib automatisch aktuell.</p>
+  </section>
+
+  <section class="selector-row" id="selector-row">
+    <div class="selector-group" id="football-selector">
+      <div class="selector-label">Fußball</div>
+      <div class="selector-sublabel" id="football-sublabel"></div>
+      <div class="combo-trigger" id="football-combo-trigger" role="button" tabindex="0">
+        <span id="football-combo-trigger-label">Vereine suchen und auswählen…</span>
+        <span class="combo-caret">▾</span>
+      </div>
+      <div class="combo-panel" id="football-combo-panel" hidden>
+        <div class="combo-panel-head">
+          <input type="text" class="combo-search" id="football-search" placeholder="Verein suchen…" autocomplete="off" />
+          <button type="button" class="btn-outline" id="football-combo-done">Fertig</button>
+        </div>
+        <div class="combo-panel-body" id="football-combo-body"></div>
+      </div>
+      <div class="chip-row" id="football-chips"></div>
+      <p class="empty-hint" id="football-empty-hint">Noch nichts ausgewählt – stöbere durch alle Ligen oder tippe einen Vereinsnamen.</p>
+    </div>
+
+    <div class="selector-group" id="cycling-selector">
+      <div class="selector-label">Radsport</div>
+      <div class="selector-sublabel" id="cycling-sublabel"></div>
+      <div class="combo-trigger" id="cycling-combo-trigger" role="button" tabindex="0">
+        <span id="cycling-combo-trigger-label">Rennen auswählen…</span>
+        <span class="combo-caret">▾</span>
+      </div>
+      <div class="combo-panel combo-panel-narrow" id="cycling-combo-panel" hidden>
+        <div class="combo-panel-head">
+          <span class="combo-panel-title">Radsport</span>
+          <button type="button" class="btn-outline" id="cycling-combo-done">Fertig</button>
+        </div>
+        <div class="combo-panel-body" id="cycling-combo-body"></div>
+      </div>
+      <div class="chip-row" id="cycling-chips"></div>
+      <p class="empty-hint" id="cycling-empty-hint">Noch kein Rennen ausgewählt.</p>
+    </div>
+  </section>
+
+  <section class="subscribe-bar" id="subscribe-bar">
+    <div class="subscribe-placeholder" id="subscribe-placeholder">Wähle mindestens einen Verein oder ein Rennen aus, um deinen Kalender freizuschalten.</div>
+    <div class="subscribe-active" id="subscribe-active" hidden>
+      <a class="btn" id="webcal-link" href="#">Kalender abonnieren</a>
+      <div class="subscribe-url-row">
+        <input type="text" class="subscribe-url" id="https-url" readonly />
+        <button type="button" class="btn-outline btn-copy" id="copy-url-btn" aria-label="Link kopieren">Kopieren</button>
+      </div>
+      <p class="subscribe-summary" id="subscribe-summary"></p>
+    </div>
   </section>
 
   <div class="view-tabs">
@@ -44,7 +91,7 @@
     <p class="footer-attribution">
       Daten von <a href="https://api.openligadb.de" target="_blank" rel="noopener">OpenLigaDB</a>
       und <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>.
-      Automatisch aktualisiert via GitHub Actions.
+      Automatisch aktualisiert via GitHub Actions. Keine Cookies, kein Tracking.
     </p>
     <p class="last-updated" id="last-updated"></p>
   </footer>
