@@ -180,14 +180,12 @@ def parse_stage_table(wikitext: str, year: int) -> list[dict]:
 def build_stage_events(race: dict, year: int, stages: list[dict]) -> list[dict]:
     events = []
     for stage in stages:
-        title = f"{race['emoji']} {race['name']} – {stage['label']}: {stage['start_loc']} → {stage['finish_loc']}"
         events.append(
             {
                 "id": f"cycling-{race['id']}-{year}-{stage['label'].lower().replace(' ', '')}",
                 "sport": "cycling",
                 "competition": race["name"],
                 "round": stage["label"],
-                "title": title,
                 "start": stage["date"].isoformat(),
                 "timeConfirmed": False,
                 "location": f"{stage['start_loc']} → {stage['finish_loc']}",
@@ -198,15 +196,11 @@ def build_stage_events(race: dict, year: int, stages: list[dict]) -> list[dict]:
 
 
 def build_one_day_event(race: dict, year: int, event_date: date, location: str | None) -> dict:
-    title = f"{race['emoji']} {race['name']} {year}"
-    if location:
-        title += f" ({location})"
     return {
         "id": f"cycling-{race['id']}-{year}",
         "sport": "cycling",
         "competition": race["name"],
         "round": None,
-        "title": title,
         "start": event_date.isoformat(),
         "timeConfirmed": False,
         "location": location,

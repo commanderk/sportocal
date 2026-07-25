@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch football fixtures from OpenLigaDB for all clubs configured in config.json.
+"""Fetch football fixtures from OpenLigaDB for every league configured in config.json.
 
 OpenLigaDB is community-maintained: league shortcuts are stable for the
 1. Bundesliga (bl1) but change from season to season (or aren't maintained at
@@ -7,6 +7,17 @@ all) for smaller leagues like Regionalliga Suedwest or the women's leagues.
 So instead of hardcoding shortcuts, we always ask /getavailableleagues first
 and fuzzy-match the current league by name. If no match is found we log a
 clear warning and move on -- a missing league must never abort the whole run.
+
+Three fetch scopes, matched to how each league is used in the personal
+calendar:
+  - "full":        every club in the league is in scope (bl1/bl2/bl3/ffb1/ffb2).
+  - "club-filter":  only one specific club's matches are kept (Regionalliga
+                    Suedwest -> Stuttgarter Kickers only), with a dedicated
+                    non-OpenLigaDB fallback scraper since this league isn't
+                    OpenLigaDB-maintained at all right now.
+  - "cup":          all matches are fetched, but only kept if at least one
+                    side is a club we track (DFB-Pokal draws in amateur clubs
+                    from outside our league scope in early rounds).
 """
 from __future__ import annotations
 
@@ -17,52 +28,45 @@ from urllib.parse import unquote
 from zoneinfo import ZoneInfo
 
 from common import (
+    build_club_indexes,
     contains_keyword,
     diff_and_log,
+    load_clubs,
     load_config,
     load_snapshot,
     log,
     normalize_text,
     http_get_json,
     http_get_text,
+    resolve_club_id,
     save_snapshot,
     warn,
 )
 
 BERLIN = ZoneInfo("Europe/Berlin")
 
-
 MIN_RELEVANT_SEASON_AGE_YEARS = 1  # a league whose newest season is older than this is treated as "not maintained"
 
 
-def is_our_club(entry: dict, team_name: str) -> bool:
-    """Prefix match, not substring: cup competitions pull in many more clubs
-    than a single league, and a plain substring check on e.g. 'Mainz' or
-    'Kickers' would also match unrelated teams like 'TSV Schott Mainz' or
-    'Wuerzburger Kickers'."""
-    return team_name.lower().startswith(entry["clubNameMatch"].lower())
-
-
-def find_league_candidates(leagues: list[dict], entry: dict, current_year: int) -> list[dict]:
+def find_league_candidates(leagues: list[dict], league_cfg: dict, current_year: int) -> list[dict]:
     candidates = []
     for league in leagues:
         name_norm = normalize_text(league["leagueName"])
         sport_norm = normalize_text(league.get("sport", {}).get("sportName", ""))
 
-        if not all(contains_keyword(name_norm, kw) for kw in entry["leagueNameKeywords"]):
+        if not all(contains_keyword(name_norm, kw) for kw in league_cfg["leagueNameKeywords"]):
             continue
-        if any(contains_keyword(name_norm, kw) for kw in entry["leagueNameExcludeKeywords"]):
+        if any(contains_keyword(name_norm, kw) for kw in league_cfg["leagueNameExcludeKeywords"]):
             continue
-        if entry["sportNameKeywords"] and not all(
-            contains_keyword(sport_norm, kw) for kw in entry["sportNameKeywords"]
+        if league_cfg["sportNameKeywords"] and not all(
+            contains_keyword(sport_norm, kw) for kw in league_cfg["sportNameKeywords"]
         ):
             continue
-        if any(contains_keyword(sport_norm, kw) for kw in entry["sportNameExcludeKeywords"]):
+        if any(contains_keyword(sport_norm, kw) for kw in league_cfg["sportNameExcludeKeywords"]):
             continue
 
         candidates.append(league)
 
-    # newest season first
     candidates.sort(key=lambda l: int(l["leagueSeason"]), reverse=True)
 
     # Drop stale leagues entirely: OpenLigaDB keeps every historical season
@@ -72,34 +76,21 @@ def find_league_candidates(leagues: list[dict], entry: dict, current_year: int) 
     return [l for l in candidates if int(l["leagueSeason"]) >= min_season]
 
 
-def build_title(entry: dict, home_name: str, away_name: str, club_is_home: bool, round_label: str | None) -> str:
-    """Title always follows actual home - away order, with the emoji marking
-    wherever our club is -- so at a glance in the calendar you can tell
-    whether it's a home or away game just from where the emoji sits."""
-    if club_is_home:
-        home_label = f"{entry['emoji']} {entry['clubShortName']}"
-        away_label = away_name
-    else:
-        home_label = home_name
-        away_label = f"{entry['emoji']} {entry['clubShortName']}"
-    return f"{home_label} - {away_label} – {entry['competition']} – {round_label or ''}".strip()
+def round_label_from_group(group_name: str, round_format: str) -> str | None:
+    if round_format == "raw":
+        # cup rounds ("1. Runde", "Achtelfinale", ...) are shown as-is
+        return group_name or None
+    match = re.search(r"\d+", group_name)
+    return f"Spieltag {match.group()}" if match else (group_name or None)
 
 
-def build_event(entry: dict, match: dict) -> dict:
+def build_event(league_cfg: dict, match: dict, name_to_id: dict) -> dict:
     home, away = match["team1"], match["team2"]  # team1/team2 are always actual home/away
-    club_is_home = is_our_club(entry, home["teamName"])
     home_name = home["teamName"].strip()
     away_name = away["teamName"].strip()
 
     group_name = match.get("group", {}).get("groupName") or ""
-    if entry.get("roundFormat", "spieltag") == "raw":
-        # cup rounds ("1. Runde", "Achtelfinale", ...) are shown as-is
-        round_label = group_name or None
-    else:
-        round_match = re.search(r"\d+", group_name)
-        round_label = f"Spieltag {round_match.group()}" if round_match else group_name or None
-
-    title = build_title(entry, home_name, away_name, club_is_home, round_label)
+    round_label = round_label_from_group(group_name, league_cfg.get("roundFormat", "spieltag"))
 
     dt_local = datetime.fromisoformat(match["matchDateTime"])
     # OpenLigaDB uses 00:00 as a placeholder when kickoff time isn't confirmed yet.
@@ -112,31 +103,24 @@ def build_event(entry: dict, match: dict) -> dict:
         location = ", ".join(parts) or None
 
     return {
-        "id": f"football-{entry['id']}-{match['matchID']}",
+        "id": f"football-{league_cfg['id']}-{match['matchID']}",
         "sport": "football",
-        "competition": entry["competition"],
+        "competition": league_cfg["competition"],
+        "gender": league_cfg["gender"],
         "round": round_label,
-        "title": title,
         "start": match["matchDateTimeUTC"],
         "timeConfirmed": time_confirmed,
         "location": location,
-        "participants": {
-            "home": {
-                "name": home["teamName"].strip(),
-                "shortName": (home.get("shortName") or home["teamName"]).strip(),
-                "logo": home.get("teamIconUrl"),
-            },
-            "away": {
-                "name": away["teamName"].strip(),
-                "shortName": (away.get("shortName") or away["teamName"]).strip(),
-                "logo": away.get("teamIconUrl"),
-            },
-        },
-        "homeAway": "home" if club_is_home else "away",
+        "homeTeamId": resolve_club_id(name_to_id, home_name),
+        "homeTeamName": home_name,
+        "homeTeamLogo": home.get("teamIconUrl"),
+        "awayTeamId": resolve_club_id(name_to_id, away_name),
+        "awayTeamName": away_name,
+        "awayTeamLogo": away.get("teamIconUrl"),
     }
 
 
-def parse_kickers_fixture_page(html_text: str, entry: dict) -> list[dict]:
+def parse_kickers_fixture_page(html_text: str, league_cfg: dict, name_to_id: dict) -> list[dict]:
     """Parse the official club fixtures page (stuttgarter-kickers.de/team/spielplan).
 
     Server-rendered HTML (no JS execution needed): every match is one
@@ -148,7 +132,8 @@ def parse_kickers_fixture_page(html_text: str, entry: dict) -> list[dict]:
     their site this will need re-checking, hence the narrow try/except in the
     caller rather than letting a markup change break the whole run.
     """
-    only_competition = entry["fallback"]["onlyCompetition"]
+    only_competition = league_cfg["fallback"]["onlyCompetition"]
+    club_name_match = league_cfg["clubNameMatch"]
     events = []
     for block in re.findall(r"<article.*?</article>", html_text, re.DOTALL):
         comp_match = re.search(
@@ -184,8 +169,7 @@ def parse_kickers_fixture_page(html_text: str, entry: dict) -> list[dict]:
             start = f"{year:04d}-{month:02d}-{day:02d}"
             time_confirmed = False
 
-        club_is_home = is_our_club(entry, home_name)
-        opponent_name = away_name if club_is_home else home_name
+        opponent_name = away_name if home_name.lower().startswith(club_name_match.lower()) else home_name
 
         # Each logo appears many times (once per responsive srcSet width), so
         # dedupe by file identity before picking "first team, second team".
@@ -194,23 +178,22 @@ def parse_kickers_fixture_page(html_text: str, entry: dict) -> list[dict]:
         home_logo = f"https://{logo_urls[0]}" if len(logo_urls) > 0 else None
         away_logo = f"https://{logo_urls[1]}" if len(logo_urls) > 1 else None
 
-        title = build_title(entry, home_name, away_name, club_is_home, "{ROUND}")
-
         events.append(
             {
-                "id": f"football-{entry['id']}-{start[:10]}-{re.sub(r'[^a-z0-9]+', '', opponent_name.lower())}",
+                "id": f"football-{league_cfg['id']}-{start[:10]}-{re.sub(r'[^a-z0-9]+', '', opponent_name.lower())}",
                 "sport": "football",
-                "competition": entry["competition"],
+                "competition": league_cfg["competition"],
+                "gender": league_cfg["gender"],
                 "round": None,  # this source doesn't expose a matchday number; filled in below
-                "title": title,
                 "start": start,
                 "timeConfirmed": time_confirmed,
                 "location": location,
-                "participants": {
-                    "home": {"name": home_name, "shortName": home_name, "logo": home_logo},
-                    "away": {"name": away_name, "shortName": away_name, "logo": away_logo},
-                },
-                "homeAway": "home" if club_is_home else "away",
+                "homeTeamId": resolve_club_id(name_to_id, home_name),
+                "homeTeamName": home_name,
+                "homeTeamLogo": home_logo,
+                "awayTeamId": resolve_club_id(name_to_id, away_name),
+                "awayTeamName": away_name,
+                "awayTeamLogo": away_logo,
             }
         )
 
@@ -219,76 +202,99 @@ def parse_kickers_fixture_page(html_text: str, entry: dict) -> list[dict]:
     events.sort(key=lambda e: e["start"])
     for i, event in enumerate(events, start=1):
         event["round"] = f"Spieltag {i}"
-        event["title"] = event["title"].replace("{ROUND}", event["round"])
 
     return events
 
 
-def fetch_entry(config: dict, leagues: list[dict], entry: dict, current_year: int) -> list[dict] | None:
-    candidates = find_league_candidates(leagues, entry, current_year)
+def fetch_league_matches(config: dict, shortcut: str, season: str) -> list[dict]:
+    api_base = config["football"]["apiBase"]
+    return http_get_json(f"{api_base}/getmatchdata/{shortcut}/{season}")
+
+
+def matches_for_club(matches: list[dict], club_name_match: str) -> list[dict]:
+    def is_club(team_name: str) -> bool:
+        # Prefix match, not substring: a plain substring check on e.g.
+        # 'Kickers' would also match unrelated teams like 'Wuerzburger Kickers'.
+        return team_name.lower().startswith(club_name_match.lower())
+
+    return [m for m in matches if is_club(m["team1"]["teamName"]) or is_club(m["team2"]["teamName"])]
+
+
+def fetch_entry(config: dict, leagues: list[dict], league_cfg: dict, current_year: int, name_to_id: dict) -> list[dict] | None:
+    candidates = find_league_candidates(leagues, league_cfg, current_year)
     if not candidates:
-        fallback = entry.get("fallback")
+        fallback = league_cfg.get("fallback")
         if fallback and fallback["source"] == "kickers-site":
             warn(
-                f"Keine aktuelle Liga bei OpenLigaDB gefunden, die zu '{entry['competition']}' passt. "
-                f"Nutze Fallback-Quelle fuer {entry['id']}: {fallback['url']}"
+                f"Keine aktuelle Liga bei OpenLigaDB gefunden, die zu '{league_cfg['competition']}' passt. "
+                f"Nutze Fallback-Quelle fuer {league_cfg['id']}: {fallback['url']}"
             )
             try:
                 page = http_get_text(fallback["url"])
-                events = parse_kickers_fixture_page(page, entry)
+                events = parse_kickers_fixture_page(page, league_cfg, name_to_id)
             except Exception as exc:
-                warn(f"[{entry['id']}] Fallback-Quelle fehlgeschlagen: {exc}")
+                warn(f"[{league_cfg['id']}] Fallback-Quelle fehlgeschlagen: {exc}")
                 return None
             if not events:
-                warn(f"[{entry['id']}] Fallback-Quelle lieferte keine '{fallback['onlyCompetition']}'-Spiele.")
+                warn(f"[{league_cfg['id']}] Fallback-Quelle lieferte keine '{fallback['onlyCompetition']}'-Spiele.")
                 return None
-            log(f"[{entry['id']}] Fallback-Quelle verwendet, {len(events)} Spiele gefunden.")
+            log(f"[{league_cfg['id']}] Fallback-Quelle verwendet, {len(events)} Spiele gefunden.")
             return events
 
+        gap_note = f" ({league_cfg['knownGap']})" if league_cfg.get("knownGap") else ""
         warn(
-            f"Keine aktuelle Liga gefunden, die zu '{entry['competition']}' passt "
-            f"(Keywords: {entry['leagueNameKeywords']}). Ueberspringe {entry['id']}."
+            f"Keine aktuelle Liga gefunden, die zu '{league_cfg['competition']}' "
+            f"(gender={league_cfg['gender']}) passt (Keywords: {league_cfg['leagueNameKeywords']}). "
+            f"Ueberspringe {league_cfg['id']}.{gap_note}"
         )
         return None
 
-    api_base = config["football"]["apiBase"]
+    scope = league_cfg["scope"]
     for league in candidates[:3]:
         shortcut, season = league["leagueShortcut"], league["leagueSeason"]
         try:
-            matches = http_get_json(f"{api_base}/getmatchdata/{shortcut}/{season}")
+            matches = fetch_league_matches(config, shortcut, season)
         except RuntimeError as exc:
-            warn(f"[{entry['id']}] Abruf von {shortcut}/{season} fehlgeschlagen: {exc}")
+            warn(f"[{league_cfg['id']}] Abruf von {shortcut}/{season} fehlgeschlagen: {exc}")
             continue
 
-        club_matches = [
-            m
-            for m in matches
-            if is_our_club(entry, m["team1"]["teamName"]) or is_our_club(entry, m["team2"]["teamName"])
-        ]
-        if club_matches:
+        if scope == "club-filter":
+            relevant = matches_for_club(matches, league_cfg["clubNameMatch"])
+        elif scope == "cup":
+            relevant = [
+                m
+                for m in matches
+                if resolve_club_id(name_to_id, m["team1"]["teamName"]) or resolve_club_id(name_to_id, m["team2"]["teamName"])
+            ]
+        else:  # "full" -- every match in the league is in scope
+            relevant = matches
+
+        if relevant:
             log(
-                f"[{entry['id']}] Liga '{league['leagueName']}' (Shortcut {shortcut}, "
-                f"Saison {season}) verwendet, {len(club_matches)} Spiele gefunden."
+                f"[{league_cfg['id']}] Liga '{league['leagueName']}' (Shortcut {shortcut}, "
+                f"Saison {season}) verwendet, {len(relevant)} Spiele gefunden."
             )
-            events = [build_event(entry, m) for m in club_matches]
+            events = [build_event(league_cfg, m, name_to_id) for m in relevant]
             if max(e["start"] for e in events) < datetime.now(timezone.utc).isoformat():
                 warn(
-                    f"[{entry['id']}] Alle Spiele dieser Saison liegen bereits in der Vergangenheit "
+                    f"[{league_cfg['id']}] Alle Spiele dieser Saison liegen bereits in der Vergangenheit "
                     f"-- naechste Saison ist bei OpenLigaDB fuer diese Liga offenbar noch nicht befuellt."
                 )
             return events
 
         warn(
-            f"[{entry['id']}] Liga '{league['leagueName']}' (Shortcut {shortcut}, Saison {season}) "
-            f"gefunden, aber keine Spiele fuer '{entry['clubNameMatch']}'. Versuche naechste Saison."
+            f"[{league_cfg['id']}] Liga '{league['leagueName']}' (Shortcut {shortcut}, Saison {season}) "
+            f"gefunden, aber keine relevanten Spiele. Versuche naechste Saison."
         )
 
-    warn(f"[{entry['id']}] In keiner der letzten Saisons Spiele gefunden.")
+    warn(f"[{league_cfg['id']}] In keiner der letzten Saisons Spiele gefunden.")
     return None
 
 
 def main() -> None:
     config = load_config()
+    clubs = load_clubs()
+    _, name_to_id = build_club_indexes(clubs)
     now = datetime.now(timezone.utc)
     now_iso = now.isoformat()
 
@@ -298,12 +304,12 @@ def main() -> None:
         warn(f"getavailableleagues nicht erreichbar, ueberspringe Fussball komplett: {exc}")
         return
 
-    for entry in config["football"]["entries"]:
-        source_id = f"football-{entry['id']}"
+    for league_cfg in config["football"]["leagues"]:
+        source_id = f"football-{league_cfg['id']}"
         try:
-            events = fetch_entry(config, leagues, entry, now.year)
+            events = fetch_entry(config, leagues, league_cfg, now.year, name_to_id)
         except Exception as exc:  # a single bad source must not break the others
-            warn(f"[{entry['id']}] Unerwarteter Fehler: {exc}")
+            warn(f"[{league_cfg['id']}] Unerwarteter Fehler: {exc}")
             continue
 
         if events is None:

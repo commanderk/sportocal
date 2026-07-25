@@ -1,0 +1,1077 @@
+[
+  {
+    "id": "1-fc-heidenheim-1846",
+    "name": "1. FC Heidenheim 1846",
+    "shortName": "FCH",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "1. FC Heidenheim 1846"
+      }
+    }
+  },
+  {
+    "id": "1-fc-kaiserslautern",
+    "name": "1. FC Kaiserslautern",
+    "shortName": "FCK",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "1. FC Kaiserslautern"
+      }
+    }
+  },
+  {
+    "id": "1-fc-koeln",
+    "name": "1. FC Köln",
+    "shortName": "KOE",
+    "colorHex": "#ED1C24",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "1. FC Köln"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "1. FC Köln Frauen"
+      }
+    }
+  },
+  {
+    "id": "1-fc-koeln-ii",
+    "name": "1. FC Köln II",
+    "shortName": "KOE II",
+    "colorHex": "#ED1C24",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "1. FC Köln II"
+      }
+    }
+  },
+  {
+    "id": "1-fc-magdeburg",
+    "name": "1. FC Magdeburg",
+    "shortName": "FCM",
+    "colorHex": "#005CA9",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "1. FC Magdeburg"
+      }
+    }
+  },
+  {
+    "id": "1-fc-nuernberg",
+    "name": "1. FC Nürnberg",
+    "shortName": "FCN",
+    "colorHex": "#C8102E",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "1. FC Nürnberg"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "1. FC Nürnberg Frauen"
+      }
+    }
+  },
+  {
+    "id": "1-fc-saarbruecken",
+    "name": "1. FC Saarbrücken",
+    "shortName": "FCS",
+    "colorHex": "#003087",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "1. FC Saarbrücken"
+      }
+    }
+  },
+  {
+    "id": "1-fc-union-berlin",
+    "name": "1. FC Union Berlin",
+    "shortName": "FCU",
+    "colorHex": "#EB1923",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "1. FC Union Berlin"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "1. FC Union Berlin Frauen"
+      }
+    }
+  },
+  {
+    "id": "1-ffc-turbine-potsdam",
+    "name": "1. FFC Turbine Potsdam",
+    "shortName": "FFC",
+    "colorHex": "#0057A8",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "1. FFC Turbine Potsdam"
+      }
+    }
+  },
+  {
+    "id": "1-fsv-mainz-05",
+    "name": "1. FSV Mainz 05",
+    "shortName": "M05",
+    "colorHex": "#C8102E",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "1. FSV Mainz 05"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "1. FSV Mainz 05 Frauen"
+      }
+    }
+  },
+  {
+    "id": "alemannia-aachen",
+    "name": "Alemannia Aachen",
+    "shortName": "AAC",
+    "colorHex": "#FFD100",
+    "colorPalette": "yellow",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "Alemannia Aachen"
+      }
+    }
+  },
+  {
+    "id": "bayer-04-leverkusen",
+    "name": "Bayer 04 Leverkusen",
+    "shortName": "B04",
+    "colorHex": "#E32219",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "Bayer 04 Leverkusen"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "Bayer 04 Leverkusen Frauen"
+      }
+    }
+  },
+  {
+    "id": "borussia-dortmund",
+    "name": "Borussia Dortmund",
+    "shortName": "BVB",
+    "colorHex": "#FDE100",
+    "colorPalette": "yellow",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "Borussia Dortmund"
+      }
+    }
+  },
+  {
+    "id": "borussia-moenchengladbach",
+    "name": "Borussia Mönchengladbach",
+    "shortName": "BMG",
+    "colorHex": "#00693E",
+    "colorPalette": "green",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "Borussia Mönchengladbach"
+      },
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "Borussia Mönchengladbach Frauen"
+      }
+    }
+  },
+  {
+    "id": "dsc-arminia-bielefeld",
+    "name": "DSC Arminia Bielefeld",
+    "shortName": "DSC",
+    "colorHex": "#0066B3",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "DSC Arminia Bielefeld"
+      }
+    }
+  },
+  {
+    "id": "dynamo-dresden",
+    "name": "Dynamo Dresden",
+    "shortName": "SGD",
+    "colorHex": "#FFCC00",
+    "colorPalette": "yellow",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "Dynamo Dresden"
+      }
+    }
+  },
+  {
+    "id": "eintracht-braunschweig",
+    "name": "Eintracht Braunschweig",
+    "shortName": "EBS",
+    "colorHex": "#FFDD00",
+    "colorPalette": "yellow",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "Eintracht Braunschweig"
+      }
+    }
+  },
+  {
+    "id": "eintracht-frankfurt",
+    "name": "Eintracht Frankfurt",
+    "shortName": "SGE",
+    "colorHex": "#E1000F",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "Eintracht Frankfurt"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "Eintracht Frankfurt Frauen"
+      }
+    }
+  },
+  {
+    "id": "eintracht-frankfurt-ii",
+    "name": "Eintracht Frankfurt II",
+    "shortName": "SGE II",
+    "colorHex": "#E1000F",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "Eintracht Frankfurt Frauen II"
+      }
+    }
+  },
+  {
+    "id": "energie-cottbus",
+    "name": "Energie Cottbus",
+    "shortName": "FCE",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "Energie Cottbus"
+      }
+    }
+  },
+  {
+    "id": "fc-augsburg",
+    "name": "FC Augsburg",
+    "shortName": "FCA",
+    "colorHex": "#C8102E",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "FC Augsburg"
+      }
+    }
+  },
+  {
+    "id": "fc-bayern-muenchen",
+    "name": "FC Bayern München",
+    "shortName": "FCB",
+    "colorHex": "#DC052D",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "FC Bayern München"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "FC Bayern München Frauen"
+      }
+    }
+  },
+  {
+    "id": "fc-carl-zeiss-jena",
+    "name": "FC Carl Zeiss Jena",
+    "shortName": "CZJ",
+    "colorHex": "#004B87",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "FC Carl Zeiss Jena Frauen"
+      }
+    }
+  },
+  {
+    "id": "fc-ingolstadt-04",
+    "name": "FC Ingolstadt 04",
+    "shortName": "FCI",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "FC Ingolstadt 04"
+      },
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "FC Ingolstadt 04 Frauen"
+      }
+    }
+  },
+  {
+    "id": "fc-schalke-04",
+    "name": "FC Schalke 04",
+    "shortName": "S04",
+    "colorHex": "#004D9D",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "FC Schalke 04"
+      }
+    }
+  },
+  {
+    "id": "fc-st-pauli",
+    "name": "FC St. Pauli",
+    "shortName": "FCSP",
+    "colorHex": "#6F4E37",
+    "colorPalette": "brown",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "FC St. Pauli"
+      }
+    }
+  },
+  {
+    "id": "fc-viktoria-1889-berlin",
+    "name": "FC Viktoria 1889 Berlin",
+    "shortName": "FCV",
+    "colorHex": "#6CACE4",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "FC Viktoria 1889 Berlin"
+      }
+    }
+  },
+  {
+    "id": "fortuna-duesseldorf",
+    "name": "Fortuna Düsseldorf",
+    "shortName": "F95",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "Fortuna Düsseldorf"
+      }
+    }
+  },
+  {
+    "id": "fortuna-koeln",
+    "name": "Fortuna Köln",
+    "shortName": "FOR",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "Fortuna Köln"
+      }
+    }
+  },
+  {
+    "id": "hamburger-sv",
+    "name": "Hamburger SV",
+    "shortName": "HSV",
+    "colorHex": "#0F1E45",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "Hamburger SV"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "Hamburger SV Frauen"
+      }
+    }
+  },
+  {
+    "id": "hannover-96",
+    "name": "Hannover 96",
+    "shortName": "H96",
+    "colorHex": "#179D33",
+    "colorPalette": "green",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "Hannover 96"
+      }
+    }
+  },
+  {
+    "id": "hansa-rostock",
+    "name": "Hansa Rostock",
+    "shortName": "HRO",
+    "colorHex": "#005CA9",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "Hansa Rostock"
+      }
+    }
+  },
+  {
+    "id": "hertha-bsc",
+    "name": "Hertha BSC",
+    "shortName": "BSC",
+    "colorHex": "#005CA9",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "Hertha BSC"
+      },
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "Hertha BSC"
+      }
+    }
+  },
+  {
+    "id": "holstein-kiel",
+    "name": "Holstein Kiel",
+    "shortName": "KSV",
+    "colorHex": "#00539F",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "Holstein Kiel"
+      }
+    }
+  },
+  {
+    "id": "jahn-regensburg",
+    "name": "Jahn Regensburg",
+    "shortName": "SSV",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "Jahn Regensburg"
+      }
+    }
+  },
+  {
+    "id": "karlsruher-sc",
+    "name": "Karlsruher SC",
+    "shortName": "KSC",
+    "colorHex": "#0060A9",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "Karlsruher SC"
+      }
+    }
+  },
+  {
+    "id": "msv-duisburg",
+    "name": "MSV Duisburg",
+    "shortName": "MSV",
+    "colorHex": "#0057A8",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "MSV Duisburg"
+      }
+    }
+  },
+  {
+    "id": "preussen-muenster",
+    "name": "Preußen Münster",
+    "shortName": "PRM",
+    "colorHex": "#00843D",
+    "colorPalette": "green",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "Preußen Münster"
+      }
+    }
+  },
+  {
+    "id": "rb-leipzig",
+    "name": "RB Leipzig",
+    "shortName": "RBL",
+    "colorHex": "#E4002B",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "RB Leipzig"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "RB Leipzig Frauen"
+      }
+    }
+  },
+  {
+    "id": "rot-weiss-essen",
+    "name": "Rot-Weiss Essen",
+    "shortName": "RWE",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "Rot-Weiss Essen"
+      }
+    }
+  },
+  {
+    "id": "sc-freiburg",
+    "name": "SC Freiburg",
+    "shortName": "SCF",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "SC Freiburg"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "SC Freiburg Frauen"
+      }
+    }
+  },
+  {
+    "id": "sc-paderborn-07",
+    "name": "SC Paderborn 07",
+    "shortName": "SCP",
+    "colorHex": "#003F87",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "SC Paderborn 07"
+      }
+    }
+  },
+  {
+    "id": "sc-sand",
+    "name": "SC Sand",
+    "shortName": "SCS",
+    "colorHex": "#0057A8",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "SC Sand"
+      }
+    }
+  },
+  {
+    "id": "sc-verl",
+    "name": "SC Verl",
+    "shortName": "SCV",
+    "colorHex": "#FFFFFF",
+    "colorPalette": "white",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "SC Verl"
+      }
+    }
+  },
+  {
+    "id": "sg-99-andernach",
+    "name": "SG 99 Andernach",
+    "shortName": "SG99",
+    "colorHex": "#0057A8",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "SG 99 Andernach"
+      }
+    }
+  },
+  {
+    "id": "sg-sonnenhof-grossaspach",
+    "name": "SG Sonnenhof Großaspach",
+    "shortName": "SGG",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "SG Sonnenhof Großaspach"
+      }
+    }
+  },
+  {
+    "id": "sgs-essen",
+    "name": "SGS Essen",
+    "shortName": "SGS",
+    "colorHex": "#8E44AD",
+    "colorPalette": "purple",
+    "logo": null,
+    "teams": {
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "SGS Essen Frauen"
+      }
+    }
+  },
+  {
+    "id": "sv-07-elversberg",
+    "name": "SV 07 Elversberg",
+    "shortName": "SVE",
+    "colorHex": "#1A1A1A",
+    "colorPalette": "black",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "SV 07 Elversberg"
+      }
+    }
+  },
+  {
+    "id": "sv-darmstadt-98",
+    "name": "SV Darmstadt 98",
+    "shortName": "D98",
+    "colorHex": "#0057A8",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "SV Darmstadt 98"
+      }
+    }
+  },
+  {
+    "id": "sv-meppen",
+    "name": "SV Meppen",
+    "shortName": "SVM",
+    "colorHex": "#0057A8",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "SV Meppen"
+      },
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "SV Meppen"
+      }
+    }
+  },
+  {
+    "id": "sv-waldhof-mannheim",
+    "name": "SV Waldhof Mannheim",
+    "shortName": "WSV",
+    "colorHex": "#0057A8",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "SV Waldhof Mannheim"
+      }
+    }
+  },
+  {
+    "id": "sv-wehen-wiesbaden",
+    "name": "SV Wehen Wiesbaden",
+    "shortName": "SVWW",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "SV Wehen Wiesbaden"
+      }
+    }
+  },
+  {
+    "id": "sv-werder-bremen",
+    "name": "SV Werder Bremen",
+    "shortName": "SVW",
+    "colorHex": "#1D9053",
+    "colorPalette": "green",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "SV Werder Bremen"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "SV Werder Bremen Frauen"
+      }
+    }
+  },
+  {
+    "id": "spvgg-greuther-fuerth",
+    "name": "SpVgg Greuther Fürth",
+    "shortName": "SGF",
+    "colorHex": "#007A3D",
+    "colorPalette": "green",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "SpVgg Greuther Fürth"
+      }
+    }
+  },
+  {
+    "id": "tsg-1899-hoffenheim",
+    "name": "TSG 1899 Hoffenheim",
+    "shortName": "TSG",
+    "colorHex": "#1961B5",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "TSG Hoffenheim"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "TSG 1899 Hoffenheim Frauen"
+      }
+    }
+  },
+  {
+    "id": "tsg-1899-hoffenheim-ii",
+    "name": "TSG 1899 Hoffenheim II",
+    "shortName": "TSG II",
+    "colorHex": "#1961B5",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "TSG 1899 Hoffenheim II"
+      },
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "TSG 1899 Hoffenheim Frauen II"
+      }
+    }
+  },
+  {
+    "id": "tsv-havelse",
+    "name": "TSV Havelse",
+    "shortName": "HAV",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "TSV Havelse"
+      }
+    }
+  },
+  {
+    "id": "vfb-stuttgart",
+    "name": "VfB Stuttgart",
+    "shortName": "VfB",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Bundesliga",
+        "openligadbShortcut": "bl1",
+        "openligadbTeamName": "VfB Stuttgart"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "VfB Stuttgart Frauen"
+      }
+    }
+  },
+  {
+    "id": "vfb-stuttgart-ii",
+    "name": "VfB Stuttgart II",
+    "shortName": "VfB II",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "VfB Stuttgart II"
+      }
+    }
+  },
+  {
+    "id": "vfl-bochum",
+    "name": "VfL Bochum",
+    "shortName": "BOC",
+    "colorHex": "#0059A3",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "VfL Bochum"
+      },
+      "women": {
+        "league": "2. Frauen-Bundesliga",
+        "openligadbShortcut": "ffb2",
+        "openligadbTeamName": "VfL Bochum Frauen"
+      }
+    }
+  },
+  {
+    "id": "vfl-osnabrueck",
+    "name": "VfL Osnabrück",
+    "shortName": "OSN",
+    "colorHex": "#6E2585",
+    "colorPalette": "purple",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "VfL Osnabrück"
+      }
+    }
+  },
+  {
+    "id": "vfl-wolfsburg",
+    "name": "VfL Wolfsburg",
+    "shortName": "WOB",
+    "colorHex": "#65B32E",
+    "colorPalette": "green",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "2. Bundesliga",
+        "openligadbShortcut": "bl2",
+        "openligadbTeamName": "VfL Wolfsburg"
+      },
+      "women": {
+        "league": "Frauen-Bundesliga",
+        "openligadbShortcut": "ffb1",
+        "openligadbTeamName": "VfL Wolfsburg Frauen"
+      }
+    }
+  },
+  {
+    "id": "viktoria-koeln",
+    "name": "Viktoria Köln",
+    "shortName": "VIK",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "Viktoria Köln"
+      }
+    }
+  },
+  {
+    "id": "wuerzburger-kickers",
+    "name": "Würzburger Kickers",
+    "shortName": "WUE",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "3. Liga",
+        "openligadbShortcut": "bl3",
+        "openligadbTeamName": "Würzburger Kickers"
+      }
+    }
+  },
+  {
+    "id": "stuttgarter-kickers",
+    "name": "Stuttgarter Kickers",
+    "shortName": "SVK",
+    "colorHex": "#0057A8",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest",
+        "openligadbShortcut": null,
+        "fallbackSource": "kickers-site"
+      }
+    }
+  }
+]

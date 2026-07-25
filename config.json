@@ -3,13 +3,12 @@
   "timezone": "Europe/Berlin",
   "football": {
     "apiBase": "https://api.openligadb.de",
-    "entries": [
+    "leagues": [
       {
-        "id": "mainz05-herren",
+        "id": "bl1",
         "competition": "Bundesliga",
-        "emoji": "🟥",
-        "clubShortName": "MZ05",
-        "clubNameMatch": "1. FSV Mainz 05",
+        "gender": "men",
+        "scope": "full",
         "roundFormat": "spieltag",
         "leagueNameKeywords": ["bundesliga"],
         "leagueNameExcludeKeywords": ["2", "frauen", "regionalliga", "3"],
@@ -19,10 +18,63 @@
         "shortcutStable": true
       },
       {
-        "id": "stuttgarter-kickers",
+        "id": "bl2",
+        "competition": "2. Bundesliga",
+        "gender": "men",
+        "scope": "full",
+        "roundFormat": "spieltag",
+        "leagueNameKeywords": ["2", "bundesliga"],
+        "leagueNameExcludeKeywords": ["frauen", "regionalliga", "3"],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": "bl2",
+        "shortcutStable": true
+      },
+      {
+        "id": "bl3",
+        "competition": "3. Liga",
+        "gender": "men",
+        "scope": "full",
+        "roundFormat": "spieltag",
+        "leagueNameKeywords": ["3", "liga"],
+        "leagueNameExcludeKeywords": ["frauen", "regionalliga", "bundesliga"],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": "bl3",
+        "shortcutStable": true
+      },
+      {
+        "id": "ffb1",
+        "competition": "Frauen-Bundesliga",
+        "gender": "women",
+        "scope": "full",
+        "roundFormat": "spieltag",
+        "leagueNameKeywords": ["bundesliga", "frauen"],
+        "leagueNameExcludeKeywords": ["regionalliga", "2"],
+        "sportNameKeywords": [],
+        "sportNameExcludeKeywords": [],
+        "shortcutHint": "ffb1",
+        "shortcutStable": false
+      },
+      {
+        "id": "ffb2",
+        "competition": "2. Frauen-Bundesliga",
+        "gender": "women",
+        "scope": "full",
+        "roundFormat": "spieltag",
+        "leagueNameKeywords": ["2", "bundesliga", "frauen"],
+        "leagueNameExcludeKeywords": ["regionalliga"],
+        "sportNameKeywords": [],
+        "sportNameExcludeKeywords": [],
+        "shortcutHint": "ffb2",
+        "shortcutStable": false
+      },
+      {
+        "id": "rlsw-kickers",
         "competition": "Regionalliga Südwest",
-        "emoji": "🟦",
-        "clubShortName": "SVK",
+        "gender": "men",
+        "scope": "club-filter",
+        "clubId": "stuttgarter-kickers",
         "clubNameMatch": "Stuttgarter Kickers",
         "roundFormat": "spieltag",
         "leagueNameKeywords": ["regionalliga", "sudwest"],
@@ -33,52 +85,37 @@
         "shortcutStable": false,
         "fallback": {
           "source": "kickers-site",
-          "note": "OpenLigaDB pflegt Regionalliga Suedwest aktuell nicht (letzter Datensatz: 2016/17). Fallback: die offizielle Spielplan-Seite des Vereins selbst (server-rendertes HTML, robots.txt erlaubt Crawling).",
+          "note": "OpenLigaDB pflegt Regionalliga Suedwest aktuell nicht (letzter Datensatz: 2016/17). Fallback: die offizielle Spielplan-Seite des Vereins selbst (server-rendertes HTML, robots.txt erlaubt Crawling). Bewusst getrennt vom generischen OpenLigaDB-Pfad, damit spaetere Anpassungen nicht versehentlich wieder auf einen OpenLigaDB-Abruf fuer diese Liga zurueckfallen.",
           "url": "https://www.stuttgarter-kickers.de/team/spielplan",
           "onlyCompetition": "Regionalliga Südwest"
         }
       },
       {
-        "id": "mainz05-frauen",
-        "competition": "1. Frauen-Bundesliga",
-        "emoji": "🔴",
-        "clubShortName": "MZ05",
-        "clubNameMatch": "1. FSV Mainz 05",
-        "roundFormat": "spieltag",
-        "leagueNameKeywords": ["bundesliga", "frauen"],
-        "leagueNameExcludeKeywords": ["regionalliga", "2"],
+        "id": "dfb-pokal-men",
+        "competition": "DFB-Pokal",
+        "gender": "men",
+        "scope": "cup",
+        "roundFormat": "raw",
+        "leagueNameKeywords": ["dfb", "pokal"],
+        "leagueNameExcludeKeywords": ["frauen"],
+        "sportNameKeywords": ["fussball"],
+        "sportNameExcludeKeywords": ["frauenfussball"],
+        "shortcutHint": "dfb",
+        "shortcutStable": true
+      },
+      {
+        "id": "dfb-pokal-women",
+        "competition": "DFB-Pokal",
+        "gender": "women",
+        "scope": "cup",
+        "roundFormat": "raw",
+        "leagueNameKeywords": ["dfb", "pokal", "frauen"],
+        "leagueNameExcludeKeywords": [],
         "sportNameKeywords": [],
         "sportNameExcludeKeywords": [],
         "shortcutHint": null,
-        "shortcutStable": false
-      },
-      {
-        "id": "mainz05-dfbpokal",
-        "competition": "DFB-Pokal",
-        "emoji": "🟥",
-        "clubShortName": "MZ05",
-        "clubNameMatch": "1. FSV Mainz 05",
-        "roundFormat": "raw",
-        "leagueNameKeywords": ["dfb", "pokal"],
-        "leagueNameExcludeKeywords": ["frauen"],
-        "sportNameKeywords": ["fussball"],
-        "sportNameExcludeKeywords": ["frauenfussball"],
-        "shortcutHint": "dfb",
-        "shortcutStable": true
-      },
-      {
-        "id": "kickers-dfbpokal",
-        "competition": "DFB-Pokal",
-        "emoji": "🟦",
-        "clubShortName": "SVK",
-        "clubNameMatch": "Stuttgarter Kickers",
-        "roundFormat": "raw",
-        "leagueNameKeywords": ["dfb", "pokal"],
-        "leagueNameExcludeKeywords": ["frauen"],
-        "sportNameKeywords": ["fussball"],
-        "sportNameExcludeKeywords": ["frauenfussball"],
-        "shortcutHint": "dfb",
-        "shortcutStable": true
+        "shortcutStable": false,
+        "knownGap": "OpenLigaDB fuehrt derzeit (Stand 2026) keinen separaten Frauen-DFB-Pokal -- diese Quelle liefert bislang immer leer. Bleibt konfiguriert (kein Codepfad-Umbau noetig), falls die Daten dort spaeter auftauchen; scheitert sie weiterhin, wird das pro Lauf nur geloggt, nicht als Fehler behandelt."
       }
     ]
   },
@@ -88,42 +125,36 @@
       {
         "id": "tour-de-france",
         "name": "Tour de France",
-        "emoji": "🚴",
         "type": "stage-race",
         "wikipediaTitleTemplate": "{year} Tour de France"
       },
       {
         "id": "giro-d-italia",
         "name": "Giro d'Italia",
-        "emoji": "🚴",
         "type": "stage-race",
         "wikipediaTitleTemplate": "{year} Giro d'Italia"
       },
       {
         "id": "vuelta-a-espana",
         "name": "Vuelta a España",
-        "emoji": "🚴",
         "type": "stage-race",
         "wikipediaTitleTemplate": "{year} Vuelta a España"
       },
       {
         "id": "cyclassics-hamburg",
         "name": "Cyclassics Hamburg",
-        "emoji": "🚴",
         "type": "one-day",
         "wikipediaTitleTemplate": "{year} Hamburg Cyclassics"
       },
       {
         "id": "muensterland-giro",
         "name": "Sparkassen Münsterland Giro",
-        "emoji": "🚴",
         "type": "one-day",
         "wikipediaTitleTemplate": "{year} Münsterland Giro"
       },
       {
         "id": "deutschland-tour",
         "name": "Deutschland Tour",
-        "emoji": "🚴",
         "type": "stage-race",
         "wikipediaTitleTemplate": "{year} Deutschland Tour"
       }
