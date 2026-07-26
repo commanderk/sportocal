@@ -737,7 +737,7 @@ function setupSelectorUI() {
   });
 
   const footballSublabel = document.getElementById("football-sublabel");
-  footballSublabel.textContent = `${state.clubs.length} Vereine aus ${state.leagues.length} Liga-Gruppen`;
+  footballSublabel.textContent = `${state.clubs.length} Vereine aus ${state.leagues.length} Ligen`;
   const cyclingSublabel = document.getElementById("cycling-sublabel");
   cyclingSublabel.textContent = `${state.races.length} Rennen`;
 
