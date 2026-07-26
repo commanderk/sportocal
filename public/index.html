@@ -56,17 +56,46 @@
     </div>
   </section>
 
-  <section class="subscribe-bar" id="subscribe-bar">
+  <section class="subscribe-section" id="subscribe-section">
     <div class="subscribe-placeholder" id="subscribe-placeholder">Wähle mindestens einen Verein oder ein Rennen aus, um deinen Kalender freizuschalten.</div>
-    <div class="subscribe-active" id="subscribe-active" hidden>
-      <a class="btn" id="webcal-link" href="#">Kalender abonnieren</a>
-      <div class="subscribe-url-row">
-        <input type="text" class="subscribe-url" id="https-url" readonly />
-        <button type="button" class="btn-outline btn-copy" id="copy-url-btn" aria-label="Link kopieren">Kopieren</button>
+    <div class="subscribe-box" id="subscribe-box" hidden>
+      <div class="subscribe-grid">
+        <div class="subscribe-main">
+          <p class="subscribe-intro">Ein Klick verbindet den Kalender direkt mit deiner Kalender-App – neue oder geänderte Anstoßzeiten tauchen danach automatisch auf, ganz ohne dass du nochmal etwas tun musst.</p>
+          <div class="app-tabs-label">Welche Kalender-App nutzt du?</div>
+          <div class="app-box">
+            <div class="app-tabs" id="app-tabs" role="tablist" aria-label="Kalender-App"></div>
+            <div class="app-panel" id="app-panel"></div>
+          </div>
+        </div>
+        <div class="subscribe-preview" aria-hidden="true">
+          <div class="preview-label">So sieht's danach aus</div>
+          <div class="preview-frame">
+            <div class="preview-month">August 2026</div>
+            <div class="preview-events">
+              <div class="preview-event">
+                <span class="preview-event-bar" style="background:#d92b1c"></span>
+                <div><div class="preview-event-time">18:30 · Sa</div><div class="preview-event-title">Hamburger SV – FC St. Pauli</div></div>
+              </div>
+              <div class="preview-event">
+                <span class="preview-event-bar" style="background:#e8b400"></span>
+                <div><div class="preview-event-time">17:00 · Mi</div><div class="preview-event-title">Vuelta a España, Etappe 1</div></div>
+              </div>
+              <div class="preview-event">
+                <span class="preview-event-bar" style="background:#0f5fd9"></span>
+                <div><div class="preview-event-time">15:30 · So</div><div class="preview-event-title">1. FC Köln – Werder Bremen</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <p class="subscribe-summary" id="subscribe-summary"></p>
     </div>
   </section>
+
+  <div class="sticky-subscribe-bar" id="sticky-subscribe-bar" hidden>
+    <div class="sticky-subscribe-text">Deine Auswahl: <span id="sticky-subscribe-summary"></span></div>
+    <button type="button" class="sticky-subscribe-link" id="sticky-subscribe-link"><span aria-hidden="true">↑</span> Auswahl anpassen</button>
+  </div>
 
   <div class="view-tabs">
     <div id="view-toggle" role="tablist" aria-label="Sortierung">
