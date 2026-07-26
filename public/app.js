@@ -370,6 +370,16 @@ function renderCompetitionFilters() {
   }
 }
 
+// Rough client detection to pick a sensible default calendar-app tab -- not
+// exhaustive, just nice-to-have so most visitors don't have to switch tabs
+// at all. Anyone not matched falls back to "apple", the most direct path.
+function detectDefaultApp() {
+  const ua = navigator.userAgent || "";
+  if (/Android/.test(ua)) return "google";
+  if (/Windows/.test(ua)) return "outlook";
+  return "apple";
+}
+
 const state = {
   events: [],
   clubs: [],
@@ -383,6 +393,9 @@ const state = {
   footballOpen: false,
   cyclingOpen: false,
   search: "",
+  activeApp: detectDefaultApp(),
+  fallbackOpen: false,
+  stickyVisible: false,
 };
 
 // --- selection-aware event list ----------------------------------------
@@ -456,7 +469,7 @@ function renderFootballCombo() {
     const someSelected = selectedCount > 0 && !allSelected;
 
     const head = document.createElement("div");
-    head.className = "league-group-head";
+    head.className = "league-group-head sticky-group-header";
     const label = document.createElement("label");
     label.className = "league-group-label";
     const allCheckbox = document.createElement("input");
@@ -605,21 +618,242 @@ function selectionSummaryText() {
   return [...clubNames, ...raceNames].join(", ");
 }
 
+// --- subscribe app tabs (Apple/Outlook/Google/Andere) --------------------
+
+// Apple and Outlook both support subscribing straight off a webcal:// link,
+// so they get a primary CTA button with the raw URL tucked behind a
+// collapsed "doesn't work?" fallback. Google's webcal:// support is
+// unreliable, so instead of a button that silently fails it goes straight
+// to numbered steps plus an always-visible URL to paste -- same visible
+// pattern as "Andere", which has no app-specific steps of its own.
+const SUBSCRIBE_APPS = [
+  {
+    id: "apple",
+    label: "Apple Kalender",
+    direct: true,
+    ctaLabel: "Für Apple Kalender hinzufügen",
+    caption: "Öffnet automatisch deine Kalender-App und fragt nach Bestätigung.",
+    fallbackHint: "Falls sich nichts öffnet: Kopiere den Link und füge ihn unter Einstellungen → Kalender → Accounts → Account hinzufügen → Andere → Kalenderabo hinzufügen ein.",
+  },
+  {
+    id: "outlook",
+    label: "Outlook",
+    direct: true,
+    ctaLabel: "Für Outlook hinzufügen",
+    caption: "Öffnet Outlook und schlägt vor, den Kalender zu abonnieren.",
+    fallbackHint: "Falls sich nichts öffnet: Kopiere den Link und füge ihn unter Kalender → Kalender hinzufügen → Aus dem Internet ein.",
+  },
+  {
+    id: "google",
+    label: "Google Kalender",
+    direct: false,
+    steps: [
+      "Öffne Google Kalender am Computer.",
+      "Klicke neben „Weitere Kalender“ auf + → „Per URL“.",
+      "Füge den Link unten ein und bestätige mit „Kalender hinzufügen“.",
+    ],
+    pasteHint: "Hier einfügen bei „Per URL hinzufügen“:",
+  },
+  {
+    id: "other",
+    label: "Andere",
+    direct: false,
+    simpleNote: "Kopiere diesen Link und füge ihn in den Kalender-Einstellungen deiner App hinzu (meist unter „Kalender abonnieren“ oder „Von URL hinzufügen“).",
+    pasteHint: "Hier einfügen:",
+  },
+];
+
+function activeSubscribeApp() {
+  return SUBSCRIBE_APPS.find((a) => a.id === state.activeApp) || SUBSCRIBE_APPS[0];
+}
+
+function currentIcsUrls() {
+  const apiUrl = new URL("api/calendar.ics", window.location.href);
+  apiUrl.searchParams.set("t", buildSelectionToken());
+  return { httpsUrl: apiUrl.href, webcalUrl: apiUrl.href.replace(/^https?:/, "webcal:") };
+}
+
+async function copyToClipboard(text, btn) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (err) {
+    // Older browsers without async clipboard support.
+    const tmp = document.createElement("textarea");
+    tmp.value = text;
+    document.body.appendChild(tmp);
+    tmp.select();
+    document.execCommand("copy");
+    document.body.removeChild(tmp);
+  }
+  btn.textContent = "Kopiert!";
+  btn.classList.add("is-copied");
+  setTimeout(() => {
+    btn.textContent = "Kopieren";
+    btn.classList.remove("is-copied");
+  }, 1600);
+}
+
+function buildUrlRow(url) {
+  const row = document.createElement("div");
+  row.className = "subscribe-url-row";
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "subscribe-url";
+  input.readOnly = true;
+  input.value = url;
+  const copyBtn = document.createElement("button");
+  copyBtn.type = "button";
+  copyBtn.className = "app-copy-btn";
+  copyBtn.textContent = "Kopieren";
+  copyBtn.addEventListener("click", () => copyToClipboard(url, copyBtn));
+  row.append(input, copyBtn);
+  return row;
+}
+
+function renderAppTabs() {
+  const container = document.getElementById("app-tabs");
+  container.innerHTML = "";
+  for (const app of SUBSCRIBE_APPS) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "app-tab" + (state.activeApp === app.id ? " is-active" : "");
+    btn.textContent = app.label;
+    btn.setAttribute("role", "tab");
+    btn.setAttribute("aria-selected", String(state.activeApp === app.id));
+    btn.addEventListener("click", () => {
+      if (state.activeApp === app.id) return;
+      state.activeApp = app.id;
+      state.fallbackOpen = false;
+      renderAppTabs();
+      renderAppPanel();
+    });
+    container.appendChild(btn);
+  }
+}
+
+function renderAppPanel() {
+  const panel = document.getElementById("app-panel");
+  panel.innerHTML = "";
+  const app = activeSubscribeApp();
+  const { httpsUrl, webcalUrl } = currentIcsUrls();
+
+  if (app.direct) {
+    const ctaRow = document.createElement("div");
+    ctaRow.className = "app-cta-row";
+    const cta = document.createElement("a");
+    cta.className = "btn app-cta";
+    cta.href = webcalUrl;
+    cta.textContent = app.ctaLabel;
+    const caption = document.createElement("div");
+    caption.className = "app-cta-caption";
+    caption.textContent = app.caption;
+    ctaRow.append(cta, caption);
+    panel.appendChild(ctaRow);
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "app-fallback-toggle";
+    toggle.textContent = state.fallbackOpen ? "Link ausblenden" : "Button funktioniert nicht? → Link manuell hinzufügen";
+    toggle.addEventListener("click", () => {
+      state.fallbackOpen = !state.fallbackOpen;
+      renderAppPanel();
+    });
+    panel.appendChild(toggle);
+
+    if (state.fallbackOpen) {
+      const box = document.createElement("div");
+      box.className = "app-fallback-box";
+      const hint = document.createElement("div");
+      hint.className = "app-fallback-hint";
+      hint.textContent = app.fallbackHint;
+      box.appendChild(hint);
+      box.appendChild(buildUrlRow(httpsUrl));
+      panel.appendChild(box);
+    }
+  } else {
+    if (app.steps && app.steps.length > 0) {
+      const stepsEl = document.createElement("div");
+      stepsEl.className = "app-steps";
+      app.steps.forEach((text, i) => {
+        const row = document.createElement("div");
+        row.className = "app-step";
+        const n = document.createElement("span");
+        n.className = "app-step-n";
+        n.textContent = String(i + 1);
+        const t = document.createElement("span");
+        t.textContent = text;
+        row.append(n, t);
+        stepsEl.appendChild(row);
+      });
+      panel.appendChild(stepsEl);
+    } else if (app.simpleNote) {
+      const note = document.createElement("p");
+      note.className = "app-simple-note";
+      note.textContent = app.simpleNote;
+      panel.appendChild(note);
+    }
+    const pasteHint = document.createElement("div");
+    pasteHint.className = "app-paste-hint";
+    pasteHint.textContent = app.pasteHint;
+    panel.appendChild(pasteHint);
+    panel.appendChild(buildUrlRow(httpsUrl));
+  }
+
+  const summary = document.createElement("p");
+  summary.className = "subscribe-summary";
+  summary.textContent = `Dein Kalender enthält: ${selectionSummaryText()}`;
+  panel.appendChild(summary);
+}
+
 function renderSubscribeBar() {
   const placeholder = document.getElementById("subscribe-placeholder");
-  const active = document.getElementById("subscribe-active");
+  const box = document.getElementById("subscribe-box");
   const selected = hasSelection();
   placeholder.hidden = selected;
-  active.hidden = !selected;
-  if (!selected) return;
+  box.hidden = !selected;
+  if (!selected) {
+    updateStickyBarVisibility();
+    return;
+  }
+  renderAppTabs();
+  renderAppPanel();
+  updateStickySubscribeBar();
+}
 
-  const token = buildSelectionToken();
-  const apiUrl = new URL("api/calendar.ics", window.location.href);
-  apiUrl.searchParams.set("t", token);
+// --- sticky subscribe bar --------------------------------------------------
 
-  document.getElementById("webcal-link").href = apiUrl.href.replace(/^https?:/, "webcal:");
-  document.getElementById("https-url").value = apiUrl.href;
-  document.getElementById("subscribe-summary").textContent = `Dein Kalender enthält: ${selectionSummaryText()}`;
+// An IntersectionObserver on the filter section (rather than a scroll-offset
+// threshold) so the show/hide point tracks the section's real position --
+// stays correct regardless of viewport height or content length above it.
+let stickyObserver = null;
+
+function updateStickyBarVisibility() {
+  document.getElementById("sticky-subscribe-bar").hidden = !(state.stickyVisible && hasSelection());
+}
+
+function updateStickySubscribeBar() {
+  document.getElementById("sticky-subscribe-summary").textContent = selectionSummaryText();
+  updateStickyBarVisibility();
+}
+
+function setupStickyBar() {
+  const filterSection = document.getElementById("selector-row");
+
+  document.getElementById("sticky-subscribe-link").addEventListener("click", () => {
+    filterSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  stickyObserver = new IntersectionObserver(
+    ([entry]) => {
+      // Only "scrolled past" (section above the viewport) counts -- not
+      // intersecting because the section is still below (e.g. on load)
+      // must not show the bar.
+      state.stickyVisible = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+      updateStickyBarVisibility();
+    },
+    { threshold: 0 }
+  );
+  stickyObserver.observe(filterSection);
 }
 
 // The in-progress picker selection (not the finished subscribe link) is kept
@@ -719,22 +953,7 @@ function setupSelectorUI() {
     renderFootballCombo();
   });
 
-  document.getElementById("copy-url-btn").addEventListener("click", async () => {
-    const input = document.getElementById("https-url");
-    const btn = document.getElementById("copy-url-btn");
-    try {
-      await navigator.clipboard.writeText(input.value);
-    } catch (err) {
-      input.select();
-      document.execCommand("copy");
-    }
-    btn.textContent = "Kopiert!";
-    btn.classList.add("is-copied");
-    setTimeout(() => {
-      btn.textContent = "Kopieren";
-      btn.classList.remove("is-copied");
-    }, 1600);
-  });
+  setupStickyBar();
 
   const footballSublabel = document.getElementById("football-sublabel");
   footballSublabel.textContent = `${state.clubs.length} Vereine aus ${state.leagues.length} Ligen`;

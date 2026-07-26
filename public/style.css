@@ -221,6 +221,17 @@ body {
   padding: 14px 14px 6px;
 }
 
+/* Reusable: apply to any group header inside a scrolling grouped list so it
+   stays pinned to the top of its scroll container until the next group
+   arrives -- not tied to any single list, works wherever a scroll container
+   (overflow-y: auto/scroll) contains grouped items with a header per group. */
+.sticky-group-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg);
+}
+
 .league-group-label {
   display: flex;
   align-items: center;
@@ -329,9 +340,9 @@ body {
   display: none;
 }
 
-.subscribe-bar {
+.subscribe-section {
   margin: 28px 40px 0;
-  padding: 20px 0;
+  padding: 28px 0;
   border-top: 2px solid var(--text);
   border-bottom: 2px solid var(--text);
 }
@@ -343,36 +354,195 @@ body {
 }
 
 .subscribe-placeholder[hidden],
-.subscribe-active[hidden] {
+.subscribe-box[hidden] {
   display: none;
 }
 
-.subscribe-active {
+.subscribe-grid {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 44px;
+  align-items: start;
+}
+
+.subscribe-intro {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-mid);
+  margin: 0 0 22px;
+  line-height: 1.4;
+}
+
+.app-tabs-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.app-box {
+  border: 2px solid var(--text);
+  margin-bottom: 14px;
+}
+
+.app-tabs {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: flex-start;
+}
+
+.app-tab {
+  flex: 1;
+  border: none;
+  border-left: 2px solid var(--text);
+  border-bottom: 2px solid var(--text);
+  background: #fff;
+  color: var(--text);
+  padding: 10px 12px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.app-tab:first-child {
+  border-left: none;
+}
+
+.app-tab.is-active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.app-panel {
+  padding: 20px;
+}
+
+.app-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.app-cta {
+  padding: 16px 26px;
+  font-size: 14px;
+}
+
+.app-cta:hover,
+.app-cta:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.app-cta-caption {
+  font-size: 12px;
+  color: var(--text-dim);
+  max-width: 240px;
+}
+
+.app-fallback-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-decoration: underline;
+  padding: 0;
+}
+
+.app-fallback-box {
+  margin-top: 14px;
+  padding: 16px;
+  background: #ece9e2;
+  border: 2px solid var(--text);
+}
+
+.app-fallback-hint {
+  font-size: 12px;
+  color: var(--text-mid);
+  margin-bottom: 10px;
+}
+
+.app-steps {
+  margin-bottom: 14px;
+}
+
+.app-step {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-mid);
+  margin-bottom: 6px;
+}
+
+.app-step-n {
+  font-weight: 900;
+  color: var(--text);
+  flex: none;
+}
+
+.app-simple-note {
+  font-size: 13px;
+  color: var(--text-mid);
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+.app-paste-hint {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
 }
 
 .subscribe-url-row {
   display: flex;
   gap: 8px;
-  width: 100%;
-  max-width: 640px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .subscribe-url {
   flex: 1;
-  min-width: 0;
-  border: 2px solid var(--hairline);
+  min-width: 200px;
+  border: 2px solid var(--text);
   background: #fff;
-  font-family: inherit;
+  font-family: monospace;
   font-size: 13px;
-  color: var(--text-mid);
-  padding: 10px 12px;
+  padding: 11px 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.btn-copy.is-copied {
+.app-copy-btn {
+  border: 2px solid var(--text);
+  background: var(--text);
+  color: var(--bg);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 16px;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.app-copy-btn:hover,
+.app-copy-btn:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.app-copy-btn.is-copied {
   background: var(--text);
   color: var(--bg);
 }
@@ -380,7 +550,140 @@ body {
 .subscribe-summary {
   font-size: 13px;
   color: var(--text-mid);
-  margin: 0;
+  margin: 14px 0 0;
+}
+
+.subscribe-preview {
+  background: #fff;
+  border: 2px solid var(--text);
+  padding: 14px;
+}
+
+.preview-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+.preview-frame {
+  border: 1px solid var(--hairline);
+}
+
+.preview-month {
+  background: var(--text);
+  color: var(--bg);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 8px;
+}
+
+.preview-events {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.preview-event {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.preview-event-bar {
+  width: 3px;
+  height: 20px;
+  flex: none;
+}
+
+.preview-event-time {
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.preview-event-title {
+  font-size: 10px;
+  color: var(--text-dim);
+  line-height: 1.3;
+}
+
+.sticky-subscribe-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 45;
+  background: var(--text);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 40px;
+  box-shadow: 0 2px 0 var(--accent);
+}
+
+.sticky-subscribe-bar[hidden] {
+  display: none;
+}
+
+.sticky-subscribe-text {
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.sticky-subscribe-text span {
+  font-weight: 700;
+}
+
+.sticky-subscribe-link {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 2px solid var(--bg);
+  color: var(--bg);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 7px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sticky-subscribe-link:hover,
+.sticky-subscribe-link:focus-visible {
+  background: var(--bg);
+  color: var(--text);
+}
+
+@media (max-width: 700px) {
+  .subscribe-grid {
+    grid-template-columns: 1fr;
+  }
+  .subscribe-preview {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-tabs {
+    flex-wrap: wrap;
+  }
+  .app-tab {
+    flex: 1 1 50%;
+    white-space: normal;
+  }
 }
 
 .view-tabs {
