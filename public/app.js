@@ -807,7 +807,7 @@ function renderAppPanel() {
   // README), so changing the selection later produces a *different* link --
   // the already-subscribed calendar keeps pointing at the old one. Worth
   // saying right here, since this is the only moment it's relevant.
-  summary.appendChild(document.createTextNode("Änderst du deine Auswahl später, ändert sich auch dieser Link – der alte muss dann neu abonniert werden."));
+  summary.appendChild(document.createTextNode("Änderst du deine Auswahl später, ändert sich auch dieser Link, der alte muss dann neu abonniert werden."));
   panel.appendChild(summary);
 }
 
