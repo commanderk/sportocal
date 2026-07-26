@@ -1,0 +1,29 @@
+{{short description|Cycling race}}
+{{use dmy dates|date=August 2025}}
+{{Infobox cycling race report
+| name               = 2025 ADAC Cyclassics
+| series             = [[2025 UCI World Tour]]
+| race_no            = 29
+| season_no          = 36
+| image              =
+| image_caption      =
+| image_size         =
+| date               = 17 August 2025
+| stages             = 1
+| distance           = 207.4
+| unit               = km
+| time               = 4h 24' 06"
+| speed              =
+| first              = [[Rory Townsend]]
+| first_nat          = IRL
+| first_team         = {{UCI team code|Q36|2025}}
+| second             = [[Arnaud De Lie]]
+| second_nat         = BEL
+| second_team        = {{UCI team code|LTS|2025}}
+| third              = [[Paul Magnier]]
+| third_nat          = FRA
+| third_team         = {{UCI team code|QST|2025}}
+| previous           = [[2024 Hamburg Cyclassics|2024]]
+| next               = [[2026 Hamburg Cyclassics|2026]]
+}}
+The '''2025 Hamburg Cyclassics''', known for sponsorship reasons as the '''ADAC Cyclassics''', was a [[road bicycle racing|road cycling]] one-day race that took place on 17 August 2025 in Germany. It was the 28th edition of [[EuroEyes Cyclassics]] and the 29th event of the [[2025 UCI World Tour]].

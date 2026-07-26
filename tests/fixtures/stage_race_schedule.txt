@@ -1,0 +1,91 @@
+{{refimprove|date=September 2025}}
+{{Infobox cycling race report
+| name               = 2025 Deutschland Tour
+| image              =
+| image_caption      =
+| image_alt          =
+| image_size         =
+| date               = 20–24 August 2025
+| series             = [[2025 UCI ProSeries]]
+| stages             = 4 + Prologue
+| distance           = 735.4
+| unit               = km
+| time               =
+| speed               =
+| first              = [[Søren Wærenskjold]]
+| first_nat          = NOR
+| first_team         = {{UCI team code|UXM men|2025}}
+| first_color        = blue
+| second             = [[Jhonatan Narváez]]
+| second_nat         = ECU
+| second_team        = {{UCI team code|UAD men|2025}}
+| third              = [[Riley Sheehan]]
+| third_nat          = USA
+| third_team         = {{UCI team code|IPT|2025}}
+| previous           = [[2024 Deutschland Tour|2024]]
+| next               = [[2026 Deutschland Tour|2026]]
+}}
+
+The '''2025 Deutschland Tour''' was a men's [[road bicycle racing|road cycling]] [[race stage|stage race]] which took place from 20 to 24 August 2025. It was the 39th edition of the [[Deutschland Tour]], which is rated as a [[UCI race classifications#Road racing|2.Pro]] event on the [[2025 UCI ProSeries]] calendar.
+
+== Teams ==
+11 of the 18 [[UCI WorldTeam]]s, five [[UCI Professional Continental|UCI ProTeams]] and two [[UCI Continental]] teams made up the eighteen teams in the race.
+
+== Schedule ==
+{| class="wikitable"
+|+ Stage characteristics and winners
+! scope="col" | Stage
+! scope="col" | Date
+! scope="col" | Route
+! scope="col" | Distance
+! scope="col" colspan="2" | Type
+! scope="col" | Stage winner
+|-
+! scope="row" style="text-align:center;" | [[#Prologue|P]]
+| style="text-align:center;" | 20 August
+| [[Essen]]
+| style="text-align:center;" | {{convert|3.1|km|abbr=on}}
+| |[[File:Time Trial.svg|20px|alt=|link=]]
+| [[Individual time trial]]
+| {{Flag athlete|[[Søren Wærenskjold]]|NOR}}
+|-
+! scope="row" style="text-align:center;" | [[#Stage 1|1]]
+| style="text-align:center;" | 21 August
+| Essen to [[Herford]]
+| style="text-align:center;" | {{convert|202.6|km|abbr=on}}
+| [[File:Hillystage.svg|20px|alt=|link=]]
+| Hilly stage
+| {{Flag athlete|[[Matthew Brennan (cyclist)|Matthew Brennan]]|GBR}}
+|-
+! scope="row" style="text-align:center;" | [[#Stage 2|2]]
+| style="text-align:center;" | 22 August
+| Herford to [[Arnsberg]]
+| style="text-align:center;" | {{convert|190.3|km|abbr=on}}
+| [[File:Hillystage.svg|20px|alt=|link=]]
+| Hilly stage
+| {{Flag athlete|[[Jhonatan Narváez]]|ECU}}
+|-
+! scope="row" style="text-align:center;" | [[#Stage 3|3]]
+| style="text-align:center;" | 23 August
+| Arnsberg to [[Kassel]]
+| style="text-align:center;" | {{convert|175.7|km|abbr=on}}
+| [[File:Hillystage.svg|20px|alt=|link=]]
+| Hilly stage
+| {{Flag athlete|[[Søren Wærenskjold]]|NOR}}
+|-
+! scope="row" style="text-align:center;" | [[#Stage 4|4]]
+| style="text-align:center;" | 24 August
+| [[Halle (Saale)]] to [[Magdeburg]]
+| style="text-align:center;" | {{convert|163.7|km|abbr=on}}
+| [[File:Plainstage.svg|22x22px]]
+| Flat stage
+| {{Flag athlete|[[Matthew Brennan (cyclist)|Matthew Brennan]]|GBR}}
+|-
+! colspan="3" | Total
+| colspan="4" align="center" | {{convert|735.4|km|abbr=on}}
+|}
+
+== Stages ==
+
+=== Prologue ===
+;20 August 2025 – [[Essen]], {{convert|3.1|km|abbr=on}}
