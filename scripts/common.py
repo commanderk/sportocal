@@ -18,7 +18,7 @@ from zoneinfo import ZoneInfo
 
 BERLIN = ZoneInfo("Europe/Berlin")
 
-USER_AGENT = "sportocal/1.0 (https://github.com/; contact via repo issues)"
+USER_AGENT = "sportocal/1.0 (https://github.com/commanderk/sportocal; contact via GitHub issues)"
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data"
