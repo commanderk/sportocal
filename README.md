@@ -34,6 +34,30 @@ Es gibt keine freie, gepflegte API wie OpenLigaDB für Radsport. Geprüft und ve
 
 **Bekannte Einschränkung:** Wikipedia legt den Jahres-Artikel für kleinere Rennen (Cyclassics, Münsterland Giro, Deutschland Tour) oft erst kurz vor dem Termin an – manchmal erst wenige Wochen vorher. Existiert der Artikel für das aktuelle/nächste Jahr noch nicht, loggt das Script eine Warnung und lässt den letzten bekannten Snapshot unverändert; sobald der Artikel erscheint, wird er beim nächsten wöchentlichen Lauf automatisch aufgenommen. **Rund um Köln** wurde bewusst nicht aufgenommen: es gibt dort keine jahresspezifischen Wikipedia-Artikel, nur eine Gewinner-Liste ohne Termine für kommende Ausgaben.
 
+## Radsport-Taxonomie: Gender, Tier, Begriffe
+
+Jedes Rennen unter `cycling.races` in `config.json` trägt neben `type` (`one-day`/`stage-race`, rein strukturell) drei redaktionelle Felder: `gender` (`men`/`women`), `tier` (`grand-tour`/`uci-worldtour`/`uci-proseries`/`regional`) und optional `country` (z. B. `DE`, quer zu den Tiers – für eine "wichtige deutsche Rennen"-Gruppierung, aktuell nur als Datenfeld, noch ohne eigene UI). Die Auswahl-UI gruppiert Rennen im Radsport-Selector nach `tier` (Reihenfolge: Grand Tour, UCI WorldTour, UCI ProSeries, Regional) und bietet einen Männer/Frauen/Alle-Filter an, der sowohl die Rennliste im Picker als auch die angezeigten Termine einschränkt.
+
+Begriffsklärung, falls die UCI-Kürzel in Rennnamen oder Quellen auftauchen:
+
+| Begriff | Bedeutung | Achse |
+|---|---|---|
+| `ME` / `WE` | Men Elite / Women Elite | Kategorie (Alter/Startberechtigung), nicht Renn-Tier |
+| `1.` / `2.` | Eintagesrennen / Etappenrennen | Renntyp |
+| `UWT` / `WWT` | UCI (Women's) WorldTour, höchste Stufe | Tier |
+| `Pro` | UCI ProSeries, zweithöchste Stufe | Tier |
+| `.1` / `.2` | Continental Circuits, `.1` > `.2` | Tier |
+| `CM` / `JOJ` | Weltmeisterschaft / Jugend-Olympia | eigenes System, kein Tier |
+| "Grand Tour" | informeller Begriff, kein UCI-Code | redaktionelle Kategorie |
+
+**Vorbehalt bei den Frauen-"Grand Tours":** Tour de France Femmes, Giro d'Italia Women und Vuelta España Femenina laufen hier als `tier: "grand-tour"`, weil sie inhaltlich das Pendant zu den Männer-Grand-Tours sind und in der Presse auch so behandelt werden – sie erfüllen aber (Stand heute) nicht die offizielle UCI-Definition eines Grand Tours (dauern 7–8 statt 3 Wochen). Die Einordnung ist also bewusst redaktionell, nicht UCI-formal.
+
+## Wie wird für ein neues Rennen die Quelle entschieden?
+
+Bevor ein neues Rennen einen scraper-basierten Eintrag in `config.json` bekommt, läuft `scripts/tools/verify_race_sources.py` – ein manuelles, nicht in `update.yml` eingebundenes Tool (Aufruf: `python scripts/tools/verify_race_sources.py`), das für eine Kandidatenliste (`scripts/tools/race_candidates.json`) prüft, ob Wikipedia für das aktuelle und das nächste Jahr einen Artikel mit parsbarer Etappentabelle liefert – dieselbe Prüfung, die für Deutschland Tour schon einmal manuell gemacht wurde, jetzt als wiederholbarer Batch-Lauf für beliebig viele Kandidaten auf einmal. Das Tool schreibt nur einen Report (`scripts/tools/verification-report.md`, nicht eingecheckt) und ändert nie `config.json` oder `data/*.json` selbst – das Übernehmen einer Empfehlung bleibt ein bewusster, manueller letzter Schritt.
+
+Klassifizierung pro Rennen und Jahr: `ok` (Artikel + Etappentabelle sauber geparst), `article-missing` (kein Jahresartikel), `unparseable` (Artikel da, Tabelle aber nicht extrahierbar, z. B. bei Wikidata-Vorlagen), `title-unclear` (der Wikipedia-Titel lässt sich nicht zuverlässig aus dem Rennnamen raten, z. B. bei wechselnden Sponsorennamen – wird ohne Netzwerk-Aufruf direkt als "manuell prüfen" markiert). Empfehlung: **Scraper**, wenn beide geprüften Jahre `ok` sind, sonst **Manuell** (CSV-Sheet) – schon ein einziger Fehlschlag würde im Betrieb einen wöchentlichen `warn()`-Fall erzeugen, den dieses Verfahren bewusst vermeidet. Der Prozess ist der Standardweg für **jedes** künftige Rennen, nicht nur für eine einmalige Kandidatenliste, und wird bei Bedarf erneut angestoßen (z. B. einmal jährlich vor Saisonbeginn) – kein automatisches Hochstufen von "manuell" zu "Scraper", falls später doch ein Artikel auftaucht.
+
 ## Datenmodell
 
 Ein generisches, sportartübergreifendes Event-Schema (siehe `scripts/common.py` und die `data/*.json`-Snapshots). Der Kalender-Titel wird **nicht** gespeichert, sondern von `format_event_title()` in `scripts/common.py` zur Build-Zeit aus den Rohdaten generiert – ein Format-Wechsel braucht dadurch keine Datenmigration:
