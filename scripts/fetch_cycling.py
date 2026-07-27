@@ -171,6 +171,15 @@ def strip_cell_attrs(text: str) -> str:
     return text
 
 
+def strip_stage_type_suffix(stage_type: str) -> str:
+    """Wikipedia's stage-type cell says e.g. "Hilly stage", but
+    common.STAGE_TYPES uses the short form ("Hilly") so scraped and
+    manually-entered (build_manual_cycling.py) values share one vocabulary --
+    "Individual/Team time trial" already has no "stage" suffix and passes
+    through unchanged."""
+    return re.sub(r"\s+stage$", "", stage_type, flags=re.IGNORECASE)
+
+
 def parse_stage_table(wikitext: str, year: int) -> list[dict]:
     table_match = re.search(r"\{\|.*?\n\|\}", wikitext, re.DOTALL)
     if not table_match:
@@ -204,8 +213,11 @@ def parse_stage_table(wikitext: str, year: int) -> list[dict]:
 
         stage_type = ""
         for c in cells[3:]:
-            if c:
-                stage_type = c
+            # Skip cells that are just leftover punctuation from a cleaned-out
+            # icon embed (e.g. a stray "|" from "| |[[File:...]]", seen on the
+            # Deutschland Tour prologue row) rather than an actual type label.
+            if c and any(ch.isalpha() for ch in c):
+                stage_type = strip_stage_type_suffix(c)
                 break
 
         if " to " in course:
@@ -309,6 +321,17 @@ def fetch_race(api_base: str, race: dict, today: date) -> list[dict] | None:
     return None
 
 
+def merge_events(old_events: list[dict], new_events: list[dict]) -> list[dict]:
+    """Additive merge for cycling snapshots: unlike football (season-cut by
+    design, see README), a race's `id` has no season/league coupling, so a
+    fetch run must never drop a past edition just because it wasn't part of
+    this run's (today.year, today.year + 1) window. New/changed ids overlay
+    the old snapshot; every old id that isn't in `new_events` is kept as-is."""
+    by_id = {e["id"]: e for e in old_events}
+    by_id.update({e["id"]: e for e in new_events})
+    return sorted(by_id.values(), key=lambda e: (e["start"], e["id"]))
+
+
 def main() -> None:
     config = load_config()
     api_base = config["cycling"]["wikipediaApi"]
@@ -316,6 +339,9 @@ def main() -> None:
     now_iso = datetime.now(timezone.utc).isoformat()
 
     for race in config["cycling"]["races"]:
+        if race.get("source") == "manual":
+            continue  # handled by build_manual_cycling.py instead, see README
+
         source_id = f"cycling-{race['id']}"
         try:
             events = fetch_race(api_base, race, today)
@@ -327,12 +353,13 @@ def main() -> None:
             continue
 
         old_snapshot = load_snapshot(source_id)
-        changed = diff_and_log(source_id, old_snapshot["events"], events)
+        merged_events = merge_events(old_snapshot["events"], events)
+        changed = diff_and_log(source_id, old_snapshot["events"], merged_events)
         if changed:
             log(f"[{source_id}] Aenderungen gefunden, Snapshot wird aktualisiert.")
         else:
             log(f"[{source_id}] Keine Aenderungen.")
-        save_snapshot(source_id, events, now_iso)
+        save_snapshot(source_id, merged_events, now_iso)
 
 
 if __name__ == "__main__":

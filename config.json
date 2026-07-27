@@ -166,37 +166,188 @@
         "id": "tour-de-france",
         "name": "Tour de France",
         "type": "stage-race",
+        "gender": "men",
+        "tier": "grand-tour",
         "wikipediaTitleTemplate": "{year} Tour de France"
       },
       {
         "id": "giro-d-italia",
         "name": "Giro d'Italia",
         "type": "stage-race",
+        "gender": "men",
+        "tier": "grand-tour",
         "wikipediaTitleTemplate": "{year} Giro d'Italia"
       },
       {
         "id": "vuelta-a-espana",
         "name": "Vuelta a España",
         "type": "stage-race",
+        "gender": "men",
+        "tier": "grand-tour",
         "wikipediaTitleTemplate": "{year} Vuelta a España"
       },
       {
         "id": "cyclassics-hamburg",
         "name": "Cyclassics Hamburg",
         "type": "one-day",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "country": "DE",
         "wikipediaTitleTemplate": "{year} Hamburg Cyclassics"
       },
       {
         "id": "muensterland-giro",
         "name": "Sparkassen Münsterland Giro",
         "type": "one-day",
+        "gender": "men",
+        "tier": "uci-proseries",
+        "country": "DE",
         "wikipediaTitleTemplate": "{year} Münsterland Giro"
       },
       {
         "id": "deutschland-tour",
         "name": "Deutschland Tour",
         "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-proseries",
+        "country": "DE",
         "wikipediaTitleTemplate": "{year} Deutschland Tour"
+      },
+      {
+        "id": "paris-nice",
+        "name": "Paris-Nice",
+        "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "tirreno-adriatico",
+        "name": "Tirreno-Adriatico",
+        "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "volta-ciclista-a-catalunya",
+        "name": "Volta Ciclista a Catalunya",
+        "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "itzulia-basque-country",
+        "name": "Itzulia Basque Country",
+        "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "tour-de-romandie",
+        "name": "Tour de Romandie",
+        "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "tour-auvergne-rhone-alpes",
+        "name": "Tour Auvergne-Rhône-Alpes",
+        "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "tour-de-suisse",
+        "name": "Tour de Suisse",
+        "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "tour-de-pologne",
+        "name": "Tour de Pologne",
+        "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "renewi-tour",
+        "name": "Renewi Tour",
+        "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "tour-de-france-femmes",
+        "name": "Tour de France Femmes",
+        "type": "stage-race",
+        "gender": "women",
+        "tier": "grand-tour",
+        "source": "manual"
+      },
+      {
+        "id": "giro-d-italia-women",
+        "name": "Giro d'Italia Women",
+        "type": "stage-race",
+        "gender": "women",
+        "tier": "grand-tour",
+        "source": "manual"
+      },
+      {
+        "id": "vuelta-espana-femenina",
+        "name": "Vuelta España Femenina",
+        "type": "stage-race",
+        "gender": "women",
+        "tier": "grand-tour",
+        "source": "manual"
+      },
+      {
+        "id": "itzulia-women",
+        "name": "Itzulia Women",
+        "type": "stage-race",
+        "gender": "women",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "vuelta-a-burgos-feminas",
+        "name": "Vuelta a Burgos Feminas",
+        "type": "stage-race",
+        "gender": "women",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "tour-de-suisse-women",
+        "name": "Tour de Suisse Women",
+        "type": "stage-race",
+        "gender": "women",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "tour-of-britain-women",
+        "name": "Tour of Britain Women",
+        "type": "stage-race",
+        "gender": "women",
+        "tier": "uci-worldtour",
+        "source": "manual"
+      },
+      {
+        "id": "tour-de-romandie-feminin",
+        "name": "Tour de Romandie Féminin",
+        "type": "stage-race",
+        "gender": "women",
+        "tier": "uci-worldtour",
+        "source": "manual"
       }
     ]
   }

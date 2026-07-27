@@ -26,6 +26,7 @@ const RACE_COLORS = {
   "deutschland-tour": "#141414",
 };
 
+
 const dateFormatter = new Intl.DateTimeFormat("de-DE", {
   day: "2-digit",
   month: "short",
@@ -63,6 +64,26 @@ function extractRoundNumber(round) {
   return match ? match[0].padStart(2, "0") : "";
 }
 
+// Cycling snapshots now merge additively across years (see README), so a
+// one-day race's past and future editions can both be in view at once, with
+// the same title -- that's ambiguous especially in "Nach Datum", where they
+// aren't grouped together the way "Nach Wettbewerb" groups a competition's
+// own upcoming/past rows. computeDuplicateOneDayCompetitions() below,
+// populated once per render() call, is a deliberate module-level-state
+// shortcut so eventDisplayTitle() can see it without threading a parameter
+// through renderByDate/renderByCompetition/renderCompetitionSection/renderEventRow.
+let duplicateOneDayCompetitions = new Set();
+
+function computeDuplicateOneDayCompetitions(events) {
+  const counts = new Map();
+  for (const event of events) {
+    if (event.sport === "cycling" && !event.round) {
+      counts.set(event.competition, (counts.get(event.competition) || 0) + 1);
+    }
+  }
+  return new Set([...counts].filter(([, count]) => count > 1).map(([name]) => name));
+}
+
 // The web view's row-title is a stripped-down label, not the full calendar
 // title: no emoji, no competition name, no "Spieltag"/"Etappe" round marker
 // -- those are already shown as the section heading and the row-index. The
@@ -74,6 +95,9 @@ function eventDisplayTitle(event) {
   }
   if (event.route) {
     return `${event.route.start} → ${event.route.finish}`;
+  }
+  if (!event.round && duplicateOneDayCompetitions.has(event.competition)) {
+    return `${event.competition} ${event.start.slice(0, 4)}`;
   }
   return event.competition;
 }
@@ -385,14 +409,16 @@ const state = {
   clubs: [],
   clubsById: new Map(),
   leagues: [],
-  races: [],
+  raceGroups: [], // server-grouped (tier, gender-suffixed where needed) races, see build_site_data.py
+  races: [], // flattened from raceGroups, for id/name lookups
   viewMode: "competition",
   competitionFilter: FILTER_ALL,
   selectedClubs: new Set(), // tokens "<clubId>:<gender>"
   selectedRaces: new Set(), // race ids
   footballOpen: false,
   cyclingOpen: false,
-  search: "",
+  search: "", // football combobox search (kept separate from cyclingSearch so the two panels don't filter each other)
+  cyclingSearch: "",
   activeApp: detectDefaultApp(),
   fallbackOpen: false,
   stickyVisible: false,
@@ -428,6 +454,7 @@ function render() {
   app.innerHTML = "";
 
   const events = visibleEvents();
+  duplicateOneDayCompetitions = computeDuplicateOneDayCompetitions(events);
   document.getElementById("count-label").textContent = hasSelection()
     ? `${events.length} Termine für deine Auswahl`
     : `${events.length} Termine · Vorschau`;
@@ -546,29 +573,72 @@ function renderFootballChips() {
 
 // --- selection UI: cycling combobox -------------------------------------
 
+function raceMatchesSearch(race) {
+  if (!state.cyclingSearch.trim()) return true;
+  return race.name.toLowerCase().includes(state.cyclingSearch.trim().toLowerCase());
+}
+
+// Groups (tier, gender-suffixed where a tier has both genders) come
+// pre-computed from races.json (build_race_groups_payload() in
+// build_site_data.py) -- same shape as football's leagues.json entries,
+// which are also already-formed groups by the time app.js sees them.
 function renderCyclingCombo() {
   const body = document.getElementById("cycling-combo-body");
   body.innerHTML = "";
-  for (const race of state.races) {
-    const color = RACE_COLORS[race.id] || "#141414";
-    const row = document.createElement("label");
-    row.className = "race-row";
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = state.selectedRaces.has(race.id);
-    checkbox.style.accentColor = color;
-    checkbox.addEventListener("change", () => {
-      if (state.selectedRaces.has(race.id)) state.selectedRaces.delete(race.id);
-      else state.selectedRaces.add(race.id);
+
+  for (const group of state.raceGroups) {
+    const races = group.races.filter(raceMatchesSearch);
+    if (races.length === 0) continue;
+
+    const tokens = races.map((r) => r.id);
+    const selectedCount = tokens.filter((t) => state.selectedRaces.has(t)).length;
+    const allSelected = selectedCount === tokens.length;
+    const someSelected = selectedCount > 0 && !allSelected;
+
+    const head = document.createElement("div");
+    head.className = "league-group-head sticky-group-header";
+    const label = document.createElement("label");
+    label.className = "league-group-label";
+    const allCheckbox = document.createElement("input");
+    allCheckbox.type = "checkbox";
+    allCheckbox.checked = allSelected;
+    allCheckbox.indeterminate = someSelected;
+    allCheckbox.addEventListener("change", () => {
+      if (allSelected) tokens.forEach((t) => state.selectedRaces.delete(t));
+      else tokens.forEach((t) => state.selectedRaces.add(t));
       refreshSelectionUI();
     });
-    const swatch = document.createElement("span");
-    swatch.className = "race-swatch";
-    swatch.style.background = color;
     const name = document.createElement("span");
-    name.textContent = race.name;
-    row.append(checkbox, swatch, name);
-    body.appendChild(row);
+    name.className = "league-group-name";
+    name.textContent = group.label;
+    const count = document.createElement("span");
+    count.className = "league-group-count";
+    count.textContent = `(${tokens.length})`;
+    label.append(allCheckbox, name, count);
+    head.appendChild(label);
+    body.appendChild(head);
+
+    for (const race of races) {
+      const color = RACE_COLORS[race.id] || "#141414";
+      const row = document.createElement("label");
+      row.className = "race-row";
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = state.selectedRaces.has(race.id);
+      checkbox.style.accentColor = color;
+      checkbox.addEventListener("change", () => {
+        if (state.selectedRaces.has(race.id)) state.selectedRaces.delete(race.id);
+        else state.selectedRaces.add(race.id);
+        refreshSelectionUI();
+      });
+      const swatch = document.createElement("span");
+      swatch.className = "race-swatch";
+      swatch.style.background = color;
+      const name = document.createElement("span");
+      name.textContent = race.name;
+      row.append(checkbox, swatch, name);
+      body.appendChild(row);
+    }
   }
 }
 
@@ -959,6 +1029,12 @@ function setupSelectorUI() {
     renderFootballCombo();
   });
 
+  const cyclingSearch = document.getElementById("cycling-search");
+  cyclingSearch.addEventListener("input", (e) => {
+    state.cyclingSearch = e.target.value;
+    renderCyclingCombo();
+  });
+
   setupStickyBar();
 
   const footballSublabel = document.getElementById("football-sublabel");
@@ -1012,7 +1088,7 @@ async function fetchJson(path) {
 
 async function main() {
   try {
-    const [eventsData, clubs, leagues, races] = await Promise.all([
+    const [eventsData, clubs, leagues, raceGroups] = await Promise.all([
       fetchJson("data/events.json"),
       fetchJson("data/clubs.json"),
       fetchJson("data/leagues.json"),
@@ -1023,7 +1099,8 @@ async function main() {
     state.clubs = clubs;
     state.clubsById = new Map(clubs.map((c) => [c.id, c]));
     state.leagues = leagues;
-    state.races = races;
+    state.raceGroups = raceGroups;
+    state.races = raceGroups.flatMap((group) => group.races);
 
     loadSelectionFromStorage();
     setupSelectorUI();

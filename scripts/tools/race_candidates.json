@@ -1,0 +1,19 @@
+[
+  { "name": "Paris-Nice", "gender": "men", "tier": "uci-worldtour" },
+  { "name": "Tirreno-Adriatico", "gender": "men", "tier": "uci-worldtour" },
+  { "name": "Volta Ciclista a Catalunya", "gender": "men", "tier": "uci-worldtour" },
+  { "name": "Itzulia Basque Country", "gender": "men", "tier": "uci-worldtour" },
+  { "name": "Tour de Romandie", "gender": "men", "tier": "uci-worldtour" },
+  { "name": "Tour Auvergne-Rhône-Alpes", "gender": "men", "tier": "uci-worldtour" },
+  { "name": "Tour de Suisse", "gender": "men", "tier": "uci-worldtour" },
+  { "name": "Tour de Pologne", "gender": "men", "tier": "uci-worldtour" },
+  { "name": "Renewi Tour", "gender": "men", "tier": "uci-worldtour" },
+  { "name": "Tour de France Femmes avec Zwift", "gender": "women", "tier": "grand-tour" },
+  { "name": "Giro d'Italia Women", "gender": "women", "tier": "grand-tour" },
+  { "name": "Vuelta España Femenina", "gender": "women", "tier": "grand-tour" },
+  { "name": "Itzulia Women", "gender": "women", "tier": "uci-worldtour" },
+  { "name": "Vuelta a Burgos Feminas", "gender": "women", "tier": "uci-worldtour" },
+  { "name": "Tour de Suisse Women", "gender": "women", "tier": "uci-worldtour" },
+  { "name": "Lloyds Tour of Britain Women", "gender": "women", "tier": "uci-worldtour" },
+  { "name": "Tour de Romandie Féminin", "gender": "women", "tier": "uci-worldtour" }
+]

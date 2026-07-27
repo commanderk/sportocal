@@ -16,9 +16,10 @@ Das Frontend (`public/index.html`/`app.js`, Basis: ein Claude-Design-Entwurf) l�
 
 **Regionalliga Südwest – Fallback-Quelle:** OpenLigaDB hat für diese Liga aktuell (Stand 2026) keine gepflegten Daten – der letzte vorhandene Datensatz stammt aus der Saison 2016/17 (echte Lücke in der freien Datenquelle, keine fehlerhafte Fuzzy-Match; veraltete Season-Treffer werden aktiv ignoriert statt Jahre alte Spielpläne anzuzeigen). `fetch_football.py` versucht deshalb zuerst OpenLigaDB und weicht bei dieser Liga automatisch auf die offizielle Spielplan-Seite der Stuttgarter Kickers aus (`stuttgarter-kickers.de/team/spielplan`, robots.txt erlaubt Crawling, server-rendertes HTML). Sobald OpenLigaDB die Liga wieder pflegt, greift wieder die generische API-Quelle. Einschränkungen der Fallback-Quelle: sie kennt keine offizielle Spieltag-Nummer (wird chronologisch approximiert) und ist an das aktuelle Markup der Vereins-Website gebunden – ändert sich das Seiten-Layout grundlegend, greift wieder nur die Warnung statt eines Absturzes.
 
-**Radsport** (Quelle: Wikipedia, siehe Begründung unten):
+**Radsport** (Quelle: Wikipedia-Scraper oder manuelle CSV-Pflege, siehe Begründung unten):
 - Tour de France, Giro d'Italia, Vuelta a España – alle Einzeletappen (Kernumfang)
 - ADAC Cyclassics Hamburg, Sparkassen Münsterland Giro, Deutschland Tour – bewusste Erweiterung, kein Rückbau geplant
+- 17 weitere Etappenrennen (Männer-UCI-WorldTour + Frauen-Grand-Tour-Kandidaten/UCI-WorldTour, siehe `scripts/tools/race_candidates.json`) als `"source": "manual"`-Einträge – Config-Gerüst steht, Etappendaten kommen über `data/manual/stage-race.csv` nach und nach dazu (siehe unten)
 
 ## Warum Wikipedia für Radsport?
 
@@ -33,6 +34,32 @@ Es gibt keine freie, gepflegte API wie OpenLigaDB für Radsport. Geprüft und ve
 `scripts/fetch_cycling.py` parst beide Formate direkt aus dem Wikitext, abgerufen über `action=query&prop=revisions` (der reine Rohtext-Abruf, ohne Wikipedias Seiten-Parser zu triggern). Der Existenz-Check läuft über das noch leichtere `action=query&prop=info` (ganz ohne Content-Transfer). Beides folgt der MediaWiki-API-Etikette (https://www.mediawiki.org/wiki/API:Etiquette), die für reine Rohtext-Abrufe explizit von `action=parse` abrät, sowie einem eigenen User-Agent mit Projektname und Kontakt-URL. Da `action=query&prop=revisions` – anders als `action=parse` – keinen `section=`-Parameter kennt, bildet `extract_section()` in `fetch_cycling.py` die Sektionsauswahl lokal nach; nur die Suche nach der Etappentabellen-Sektion selbst (`action=parse&prop=sections`) bleibt auf dem alten Endpunkt, da es dafür keinen 1:1-Ersatz gibt.
 
 **Bekannte Einschränkung:** Wikipedia legt den Jahres-Artikel für kleinere Rennen (Cyclassics, Münsterland Giro, Deutschland Tour) oft erst kurz vor dem Termin an – manchmal erst wenige Wochen vorher. Existiert der Artikel für das aktuelle/nächste Jahr noch nicht, loggt das Script eine Warnung und lässt den letzten bekannten Snapshot unverändert; sobald der Artikel erscheint, wird er beim nächsten wöchentlichen Lauf automatisch aufgenommen. **Rund um Köln** wurde bewusst nicht aufgenommen: es gibt dort keine jahresspezifischen Wikipedia-Artikel, nur eine Gewinner-Liste ohne Termine für kommende Ausgaben.
+
+## Radsport-Taxonomie: Gender, Tier, Begriffe
+
+Jedes Rennen unter `cycling.races` in `config.json` trägt neben `type` (`one-day`/`stage-race`, rein strukturell) drei redaktionelle Felder: `gender` (`men`/`women`), `tier` (`grand-tour`/`uci-worldtour`/`uci-proseries`/`regional`) und optional `country` (z. B. `DE`, quer zu den Tiers – für eine "wichtige deutsche Rennen"-Gruppierung, aktuell nur als Datenfeld, noch ohne eigene UI). Die Auswahl-UI gruppiert Rennen im Radsport-Selector nach `tier` (Reihenfolge: Grand Tour, UCI WorldTour, UCI ProSeries, Regional) und bietet einen Männer/Frauen/Alle-Filter an, der sowohl die Rennliste im Picker als auch die angezeigten Termine einschränkt.
+
+Begriffsklärung, falls die UCI-Kürzel in Rennnamen oder Quellen auftauchen:
+
+| Begriff | Bedeutung | Achse |
+|---|---|---|
+| `ME` / `WE` | Men Elite / Women Elite | Kategorie (Alter/Startberechtigung), nicht Renn-Tier |
+| `1.` / `2.` | Eintagesrennen / Etappenrennen | Renntyp |
+| `UWT` / `WWT` | UCI (Women's) WorldTour, höchste Stufe | Tier |
+| `Pro` | UCI ProSeries, zweithöchste Stufe | Tier |
+| `.1` / `.2` | Continental Circuits, `.1` > `.2` | Tier |
+| `CM` / `JOJ` | Weltmeisterschaft / Jugend-Olympia | eigenes System, kein Tier |
+| "Grand Tour" | informeller Begriff, kein UCI-Code | redaktionelle Kategorie |
+
+**Vorbehalt bei den Frauen-"Grand Tours":** Tour de France Femmes, Giro d'Italia Women und Vuelta España Femenina laufen hier als `tier: "grand-tour"`, weil sie inhaltlich das Pendant zu den Männer-Grand-Tours sind und in der Presse auch so behandelt werden – sie erfüllen aber (Stand heute) nicht die offizielle UCI-Definition eines Grand Tours (dauern 7–8 statt 3 Wochen). Die Einordnung ist also bewusst redaktionell, nicht UCI-formal.
+
+## Wie wird für ein neues Rennen die Quelle entschieden?
+
+Bevor ein neues Rennen einen scraper-basierten Eintrag in `config.json` bekommt, läuft `scripts/tools/verify_race_sources.py` – ein manuelles, nicht in `update.yml` eingebundenes Tool (Aufruf: `python scripts/tools/verify_race_sources.py`), das für eine Kandidatenliste (`scripts/tools/race_candidates.json`) prüft, ob Wikipedia für das aktuelle und das nächste Jahr einen Artikel mit parsbarer Etappentabelle liefert – dieselbe Prüfung, die für Deutschland Tour schon einmal manuell gemacht wurde, jetzt als wiederholbarer Batch-Lauf für beliebig viele Kandidaten auf einmal. Das Tool schreibt nur einen Report (`scripts/tools/verification-report.md`, nicht eingecheckt) und ändert nie `config.json` oder `data/*.json` selbst – das Übernehmen einer Empfehlung bleibt ein bewusster, manueller letzter Schritt.
+
+Klassifizierung pro Rennen und Jahr: `ok` (Artikel + Etappentabelle sauber geparst), `article-missing` (kein Jahresartikel), `unparseable` (Artikel da, Tabelle aber nicht extrahierbar, z. B. bei Wikidata-Vorlagen), `title-unclear` (der Wikipedia-Titel lässt sich nicht zuverlässig aus dem Rennnamen raten, z. B. bei wechselnden Sponsorennamen – wird ohne Netzwerk-Aufruf direkt als "manuell prüfen" markiert). Empfehlung: **Scraper**, wenn beide geprüften Jahre `ok` sind, sonst **Manuell** (CSV-Sheet) – schon ein einziger Fehlschlag würde im Betrieb einen wöchentlichen `warn()`-Fall erzeugen, den dieses Verfahren bewusst vermeidet. Der Prozess ist der Standardweg für **jedes** künftige Rennen, nicht nur für eine einmalige Kandidatenliste, und wird bei Bedarf erneut angestoßen (z. B. einmal jährlich vor Saisonbeginn) – kein automatisches Hochstufen von "manuell" zu "Scraper", falls später doch ein Artikel auftaucht.
+
+**Die 17 als "Manuell" verifizierten Rennen** (9 Männer-UCI-WorldTour-Etappenrennen + 3 Frauen-Grand-Tour-Kandidaten + 5 weitere Frauen-UCI-WorldTour-Etappenrennen – die komplette Liste aus `scripts/tools/race_candidates.json`) laufen über dieselbe CSV-Pipeline, die für die deutschen Regional-/ProSeries-Rennen vorgesehen ist: ein Eintrag in `config.json` mit `"source": "manual"` (kein `wikipediaTitleTemplate`) sagt `fetch_cycling.py`, dieses Rennen zu überspringen; `scripts/build_manual_cycling.py` liest stattdessen `data/manual/stage-race.csv` (Spalten `race_id,year,stage_label,date,start,finish,type`, Datum als `YYYY-MM-DD`, `type` muss einer der Werte aus `common.STAGE_TYPES` sein) und schreibt denselben additiven Snapshot (`merge_events()`, siehe oben) unter `data/cycling-<race-id>.json` – für `build_ics.py`/`build_site_data.py` nicht unterscheidbar von einem gescrapten Rennen. Eine fehlerhafte Zeile (unbekannter `type`, fehlendes Pflichtfeld, kaputtes Datum) wird geloggt und übersprungen, nicht zum Absturz des ganzen Laufs. Auch dieses Skript ist **nicht** Teil von `update.yml` – Aufruf bei Bedarf: `python scripts/build_manual_cycling.py`, nachdem die CSV-Datei gepflegt wurde.
 
 ## Datenmodell
 
@@ -63,7 +90,9 @@ Radsport-Events haben statt `homeTeamId`/… ein optionales `route`-Feld (`start
 
 `start` ist entweder ein volles ISO-8601-UTC-Datum/Zeit (Fußball, `Z`-Suffix) oder ein reines Datum `YYYY-MM-DD` (Radsport – Uhrzeit unbekannt). `timeConfirmed: false` bedeutet: Uhrzeit ist Platzhalter/unbekannt, die ICS-Datei und die Website zeigen den Termin dann als ganztägig bzw. mit Hinweis-Badge.
 
-**Saison-Cut:** Innerhalb einer Saison wird nie gefiltert (vergangene und zukünftige Termine bleiben beide im Snapshot). Der Cut auf eine neue Saison passiert implizit dadurch, dass `fetch_football.py` bei jedem Lauf die neueste befüllte Saison sucht und den kompletten Snapshot durch deren Daten ersetzt – kein zusätzlicher Zeit-Filter nötig, Website und Kalender können dadurch nicht auseinanderlaufen.
+**Saison-Cut (nur Fußball):** Innerhalb einer Saison wird nie gefiltert (vergangene und zukünftige Termine bleiben beide im Snapshot). Der Cut auf eine neue Saison passiert implizit dadurch, dass `fetch_football.py` bei jedem Lauf die neueste befüllte Saison sucht und den kompletten Snapshot durch deren Daten ersetzt – kein zusätzlicher Zeit-Filter nötig, Website und Kalender können dadurch nicht auseinanderlaufen. Das ist hier strukturell nötig, weil Vereine zwischen Saisons die Liga wechseln (Auf-/Abstieg) und die Zuordnung in `config/clubs.json` pro Saison neu stimmen muss.
+
+**Additiver Merge (nur Radsport):** `fetch_cycling.py` hat keine solche Saison-Kopplung – ein Rennen wird über seine eigene `race_id` abgerufen, unabhängig von einer Liga-Zuordnung. Ein neuer Lauf **ersetzt** den Snapshot deshalb nicht, sondern merged additiv (`merge_events()`): neue Renn-IDs kommen dazu, bestehende IDs werden aktualisiert, aber keine alte ID wird je entfernt, nur weil sie in diesem Lauf nicht erneut geliefert wurde. Vergangene Ausgaben bleiben dadurch dauerhaft in ICS-Datei und Website erhalten, statt beim nächsten Lauf zu verschwinden. Das Datenvolumen bleibt dabei überschaubar (aktuell ~6 Rennen, auch bei vollem Ausbau auf ~39 Config-Einträge nur wenige Termine mehr pro Jahr), daher gibt es dafür bewusst kein Zeitfenster-Limit in Web-Ansicht oder ICS. Da dadurch mehrere Ausgaben desselben Eintagesrennens gleichzeitig sichtbar sein können, hängt `eventDisplayTitle()` in `public/app.js` in diesem Fall die Jahreszahl an den Zeilentitel an (z. B. "Cyclassics Hamburg 2026"), sobald mehr als eine Ausgabe im aktuell angezeigten Datensatz steckt.
 
 ## Vereins-Datenmodell (`config/clubs.json`)
 
@@ -99,12 +128,18 @@ config/
 scripts/
   common.py                  # Event-Modell, Club-Lookup, Titel-Formatter, ICS-Rendering, Snapshot-Diff, HTTP-/Wikitext-Helper
   fetch_football.py          # OpenLigaDB, Fuzzy-Match der Liga-Shortcuts, Club-ID-Auflösung
-  fetch_cycling.py           # Wikipedia-Wikitext-Parser
+  fetch_cycling.py           # Wikipedia-Wikitext-Parser (ueberspringt "source": "manual"-Rennen)
+  build_manual_cycling.py     # data/manual/stage-race.csv -> data/cycling-<race-id>.json, fuer "source": "manual"-Rennen
   build_ics.py                # data/*.json + config/clubs.json -> public/kalender.ics (unfilterierter Kombi-Feed)
   build_site_data.py          # data/*.json -> public/data/events.json
+  tools/
+    verify_race_sources.py    # manuell, ~1x/Jahr: scraper-vs-manuell-Entscheidung fuer Kandidatenrennen
+    race_candidates.json      # Input-Liste fuer verify_race_sources.py
 api/
   calendar.ics.py             # Vercel Python Function: personalisierte /api/calendar.ics
 data/                         # ein JSON-Snapshot pro Liga-Quelle (Diff-Basis), z.B. football-bl1.json
+  manual/
+    stage-race.csv            # manuell gepflegte Etappendaten fuer "source": "manual"-Rennen
 public/                       # Vercel Static Root
   index.html / app.js / style.css   # Auswahl-UI (Basis: Claude-Design-Entwurf) + Terminliste
   impressum.html / datenschutz.html # Rechtliches (Platzhalter zum Ausfüllen), im Footer verlinkt
@@ -164,7 +199,7 @@ vercel dev
 
 ## Erweitern
 
-Ein neues Rennen kommt allein durch einen neuen Eintrag in `config.json` dazu. Eine neue Liga (z. B. eine weitere Regionalliga-Staffel) braucht einen neuen Eintrag in `config.json` unter `football.leagues` (mit passendem `scope`: `full`, `club-filter` oder `cup`) plus die entsprechenden Vereine in `config/clubs.json` – kein Umbau von `fetch_football.py` nötig. Ein neuer Verein in einer bereits erfassten Liga kommt automatisch dazu, sobald er bei OpenLigaDB auftaucht; für einen sauber aufgelösten (statt als Klartext angezeigten) Namen braucht er zusätzlich einen Eintrag in `config/clubs.json`. Eine komplett neue Sportart braucht ein neues `fetch_<sportart>.py`, das Events im gleichen Basisschema in `data/<quelle>.json` schreibt, plus einen Fall in `format_event_title()` (`scripts/common.py`); `build_ics.py`, `build_site_data.py` und die Website müssen dafür nicht angefasst werden.
+Ein neues Rennen kommt durch einen neuen Eintrag in `config.json` dazu – bei einem scrapebaren Wikipedia-Artikel reicht das allein (`wikipediaTitleTemplate`), sonst zusätzlich `"source": "manual"` plus die Etappendaten in `data/manual/stage-race.csv` (siehe oben und `scripts/build_manual_cycling.py`). Welcher Fall zutrifft, entscheidet `scripts/tools/verify_race_sources.py`. Eine neue Liga (z. B. eine weitere Regionalliga-Staffel) braucht einen neuen Eintrag in `config.json` unter `football.leagues` (mit passendem `scope`: `full`, `club-filter` oder `cup`) plus die entsprechenden Vereine in `config/clubs.json` – kein Umbau von `fetch_football.py` nötig. Ein neuer Verein in einer bereits erfassten Liga kommt automatisch dazu, sobald er bei OpenLigaDB auftaucht; für einen sauber aufgelösten (statt als Klartext angezeigten) Namen braucht er zusätzlich einen Eintrag in `config/clubs.json`. Eine komplett neue Sportart braucht ein neues `fetch_<sportart>.py`, das Events im gleichen Basisschema in `data/<quelle>.json` schreibt, plus einen Fall in `format_event_title()` (`scripts/common.py`); `build_ics.py`, `build_site_data.py` und die Website müssen dafür nicht angefasst werden.
 
 ## Vercel einrichten (einmalig)
 

@@ -26,6 +26,23 @@ PUBLIC_DIR = ROOT_DIR / "public"
 CONFIG_PATH = ROOT_DIR / "config.json"
 CLUBS_PATH = ROOT_DIR / "config" / "clubs.json"
 
+# Short form (no "stage" suffix) shared by both scraped and manually-entered
+# `route.type` values, so Grand Tours and the CSV-sourced races use the same
+# vocabulary -- fetch_cycling.py's parser strips a trailing " stage" from
+# whatever Wikipedia's wikitext cell says, and build_manual_cycling.py
+# validates the manual CSV sheet against this same set. "Prologue" has no
+# scraped equivalent yet (Wikipedia labels it via the stage number/heading,
+# not this cell) but is included for the Deutschland Tour prologue case.
+STAGE_TYPES = {
+    "Flat",
+    "Hilly",
+    "Medium-mountain",
+    "Mountain",
+    "Individual time trial",
+    "Team time trial",
+    "Prologue",
+}
+
 
 def load_config() -> dict:
     with CONFIG_PATH.open(encoding="utf-8") as f:
