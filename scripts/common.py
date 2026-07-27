@@ -26,6 +26,19 @@ PUBLIC_DIR = ROOT_DIR / "public"
 CONFIG_PATH = ROOT_DIR / "config.json"
 CLUBS_PATH = ROOT_DIR / "config" / "clubs.json"
 
+# The `route.type` values fetch_cycling.py's Wikipedia scraper has actually
+# produced so far (checked against every stage in data/cycling-*.json) --
+# used by build_manual_cycling.py to reject typos in the manual CSV sheet
+# before they reach a snapshot. Extend as new stage-type wording shows up.
+STAGE_TYPES = {
+    "Flat stage",
+    "Hilly stage",
+    "Medium-mountain stage",
+    "Mountain stage",
+    "Individual time trial",
+    "Team time trial",
+}
+
 
 def load_config() -> dict:
     with CONFIG_PATH.open(encoding="utf-8") as f:

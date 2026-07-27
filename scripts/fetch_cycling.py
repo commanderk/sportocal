@@ -327,6 +327,9 @@ def main() -> None:
     now_iso = datetime.now(timezone.utc).isoformat()
 
     for race in config["cycling"]["races"]:
+        if race.get("source") == "manual":
+            continue  # handled by build_manual_cycling.py instead, see README
+
         source_id = f"cycling-{race['id']}"
         try:
             events = fetch_race(api_base, race, today)

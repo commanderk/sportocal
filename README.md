@@ -16,9 +16,10 @@ Das Frontend (`public/index.html`/`app.js`, Basis: ein Claude-Design-Entwurf) l�
 
 **Regionalliga Südwest – Fallback-Quelle:** OpenLigaDB hat für diese Liga aktuell (Stand 2026) keine gepflegten Daten – der letzte vorhandene Datensatz stammt aus der Saison 2016/17 (echte Lücke in der freien Datenquelle, keine fehlerhafte Fuzzy-Match; veraltete Season-Treffer werden aktiv ignoriert statt Jahre alte Spielpläne anzuzeigen). `fetch_football.py` versucht deshalb zuerst OpenLigaDB und weicht bei dieser Liga automatisch auf die offizielle Spielplan-Seite der Stuttgarter Kickers aus (`stuttgarter-kickers.de/team/spielplan`, robots.txt erlaubt Crawling, server-rendertes HTML). Sobald OpenLigaDB die Liga wieder pflegt, greift wieder die generische API-Quelle. Einschränkungen der Fallback-Quelle: sie kennt keine offizielle Spieltag-Nummer (wird chronologisch approximiert) und ist an das aktuelle Markup der Vereins-Website gebunden – ändert sich das Seiten-Layout grundlegend, greift wieder nur die Warnung statt eines Absturzes.
 
-**Radsport** (Quelle: Wikipedia, siehe Begründung unten):
+**Radsport** (Quelle: Wikipedia-Scraper oder manuelle CSV-Pflege, siehe Begründung unten):
 - Tour de France, Giro d'Italia, Vuelta a España – alle Einzeletappen (Kernumfang)
 - ADAC Cyclassics Hamburg, Sparkassen Münsterland Giro, Deutschland Tour – bewusste Erweiterung, kein Rückbau geplant
+- 17 weitere Etappenrennen (Männer-UCI-WorldTour + Frauen-Grand-Tour-Kandidaten/UCI-WorldTour, siehe `scripts/tools/race_candidates.json`) als `"source": "manual"`-Einträge – Config-Gerüst steht, Etappendaten kommen über `data/manual/stage-race.csv` nach und nach dazu (siehe unten)
 
 ## Warum Wikipedia für Radsport?
 
@@ -57,6 +58,8 @@ Begriffsklärung, falls die UCI-Kürzel in Rennnamen oder Quellen auftauchen:
 Bevor ein neues Rennen einen scraper-basierten Eintrag in `config.json` bekommt, läuft `scripts/tools/verify_race_sources.py` – ein manuelles, nicht in `update.yml` eingebundenes Tool (Aufruf: `python scripts/tools/verify_race_sources.py`), das für eine Kandidatenliste (`scripts/tools/race_candidates.json`) prüft, ob Wikipedia für das aktuelle und das nächste Jahr einen Artikel mit parsbarer Etappentabelle liefert – dieselbe Prüfung, die für Deutschland Tour schon einmal manuell gemacht wurde, jetzt als wiederholbarer Batch-Lauf für beliebig viele Kandidaten auf einmal. Das Tool schreibt nur einen Report (`scripts/tools/verification-report.md`, nicht eingecheckt) und ändert nie `config.json` oder `data/*.json` selbst – das Übernehmen einer Empfehlung bleibt ein bewusster, manueller letzter Schritt.
 
 Klassifizierung pro Rennen und Jahr: `ok` (Artikel + Etappentabelle sauber geparst), `article-missing` (kein Jahresartikel), `unparseable` (Artikel da, Tabelle aber nicht extrahierbar, z. B. bei Wikidata-Vorlagen), `title-unclear` (der Wikipedia-Titel lässt sich nicht zuverlässig aus dem Rennnamen raten, z. B. bei wechselnden Sponsorennamen – wird ohne Netzwerk-Aufruf direkt als "manuell prüfen" markiert). Empfehlung: **Scraper**, wenn beide geprüften Jahre `ok` sind, sonst **Manuell** (CSV-Sheet) – schon ein einziger Fehlschlag würde im Betrieb einen wöchentlichen `warn()`-Fall erzeugen, den dieses Verfahren bewusst vermeidet. Der Prozess ist der Standardweg für **jedes** künftige Rennen, nicht nur für eine einmalige Kandidatenliste, und wird bei Bedarf erneut angestoßen (z. B. einmal jährlich vor Saisonbeginn) – kein automatisches Hochstufen von "manuell" zu "Scraper", falls später doch ein Artikel auftaucht.
+
+**Die 17 als "Manuell" verifizierten Rennen** (9 Männer-UCI-WorldTour-Etappenrennen + 3 Frauen-Grand-Tour-Kandidaten + 5 weitere Frauen-UCI-WorldTour-Etappenrennen – die komplette Liste aus `scripts/tools/race_candidates.json`) laufen über dieselbe CSV-Pipeline, die für die deutschen Regional-/ProSeries-Rennen vorgesehen ist: ein Eintrag in `config.json` mit `"source": "manual"` (kein `wikipediaTitleTemplate`) sagt `fetch_cycling.py`, dieses Rennen zu überspringen; `scripts/build_manual_cycling.py` liest stattdessen `data/manual/stage-race.csv` (Spalten `race_id,year,stage_label,date,start,finish,type`, Datum als `YYYY-MM-DD`, `type` muss einer der Werte aus `common.STAGE_TYPES` sein) und schreibt denselben additiven Snapshot (`merge_events()`, siehe oben) unter `data/cycling-<race-id>.json` – für `build_ics.py`/`build_site_data.py` nicht unterscheidbar von einem gescrapten Rennen. Eine fehlerhafte Zeile (unbekannter `type`, fehlendes Pflichtfeld, kaputtes Datum) wird geloggt und übersprungen, nicht zum Absturz des ganzen Laufs. Auch dieses Skript ist **nicht** Teil von `update.yml` – Aufruf bei Bedarf: `python scripts/build_manual_cycling.py`, nachdem die CSV-Datei gepflegt wurde.
 
 ## Datenmodell
 
@@ -125,12 +128,18 @@ config/
 scripts/
   common.py                  # Event-Modell, Club-Lookup, Titel-Formatter, ICS-Rendering, Snapshot-Diff, HTTP-/Wikitext-Helper
   fetch_football.py          # OpenLigaDB, Fuzzy-Match der Liga-Shortcuts, Club-ID-Auflösung
-  fetch_cycling.py           # Wikipedia-Wikitext-Parser
+  fetch_cycling.py           # Wikipedia-Wikitext-Parser (ueberspringt "source": "manual"-Rennen)
+  build_manual_cycling.py     # data/manual/stage-race.csv -> data/cycling-<race-id>.json, fuer "source": "manual"-Rennen
   build_ics.py                # data/*.json + config/clubs.json -> public/kalender.ics (unfilterierter Kombi-Feed)
   build_site_data.py          # data/*.json -> public/data/events.json
+  tools/
+    verify_race_sources.py    # manuell, ~1x/Jahr: scraper-vs-manuell-Entscheidung fuer Kandidatenrennen
+    race_candidates.json      # Input-Liste fuer verify_race_sources.py
 api/
   calendar.ics.py             # Vercel Python Function: personalisierte /api/calendar.ics
 data/                         # ein JSON-Snapshot pro Liga-Quelle (Diff-Basis), z.B. football-bl1.json
+  manual/
+    stage-race.csv            # manuell gepflegte Etappendaten fuer "source": "manual"-Rennen
 public/                       # Vercel Static Root
   index.html / app.js / style.css   # Auswahl-UI (Basis: Claude-Design-Entwurf) + Terminliste
   impressum.html / datenschutz.html # Rechtliches (Platzhalter zum Ausfüllen), im Footer verlinkt
@@ -190,7 +199,7 @@ vercel dev
 
 ## Erweitern
 
-Ein neues Rennen kommt allein durch einen neuen Eintrag in `config.json` dazu. Eine neue Liga (z. B. eine weitere Regionalliga-Staffel) braucht einen neuen Eintrag in `config.json` unter `football.leagues` (mit passendem `scope`: `full`, `club-filter` oder `cup`) plus die entsprechenden Vereine in `config/clubs.json` – kein Umbau von `fetch_football.py` nötig. Ein neuer Verein in einer bereits erfassten Liga kommt automatisch dazu, sobald er bei OpenLigaDB auftaucht; für einen sauber aufgelösten (statt als Klartext angezeigten) Namen braucht er zusätzlich einen Eintrag in `config/clubs.json`. Eine komplett neue Sportart braucht ein neues `fetch_<sportart>.py`, das Events im gleichen Basisschema in `data/<quelle>.json` schreibt, plus einen Fall in `format_event_title()` (`scripts/common.py`); `build_ics.py`, `build_site_data.py` und die Website müssen dafür nicht angefasst werden.
+Ein neues Rennen kommt durch einen neuen Eintrag in `config.json` dazu – bei einem scrapebaren Wikipedia-Artikel reicht das allein (`wikipediaTitleTemplate`), sonst zusätzlich `"source": "manual"` plus die Etappendaten in `data/manual/stage-race.csv` (siehe oben und `scripts/build_manual_cycling.py`). Welcher Fall zutrifft, entscheidet `scripts/tools/verify_race_sources.py`. Eine neue Liga (z. B. eine weitere Regionalliga-Staffel) braucht einen neuen Eintrag in `config.json` unter `football.leagues` (mit passendem `scope`: `full`, `club-filter` oder `cup`) plus die entsprechenden Vereine in `config/clubs.json` – kein Umbau von `fetch_football.py` nötig. Ein neuer Verein in einer bereits erfassten Liga kommt automatisch dazu, sobald er bei OpenLigaDB auftaucht; für einen sauber aufgelösten (statt als Klartext angezeigten) Namen braucht er zusätzlich einen Eintrag in `config/clubs.json`. Eine komplett neue Sportart braucht ein neues `fetch_<sportart>.py`, das Events im gleichen Basisschema in `data/<quelle>.json` schreibt, plus einen Fall in `format_event_title()` (`scripts/common.py`); `build_ics.py`, `build_site_data.py` und die Website müssen dafür nicht angefasst werden.
 
 ## Vercel einrichten (einmalig)
 
