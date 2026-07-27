@@ -65,9 +65,19 @@ def main() -> None:
     write_json(SITE_DATA_DIR / "leagues.json", leagues)
     log(f"leagues.json geschrieben mit {len(leagues)} Liga-Gruppen -> {SITE_DATA_DIR / 'leagues.json'}")
 
-    races = [{"id": race["id"], "name": race["name"]} for race in config["cycling"]["races"]]
+    races = build_races_payload(config)
     write_json(SITE_DATA_DIR / "races.json", races)
     log(f"races.json geschrieben mit {len(races)} Rennen -> {SITE_DATA_DIR / 'races.json'}")
+
+
+def build_races_payload(config: dict) -> list[dict]:
+    races = []
+    for race in config["cycling"]["races"]:
+        entry = {"id": race["id"], "name": race["name"], "gender": race["gender"], "tier": race["tier"]}
+        if race.get("country"):
+            entry["country"] = race["country"]
+        races.append(entry)
+    return races
 
 
 if __name__ == "__main__":

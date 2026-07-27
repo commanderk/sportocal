@@ -1,26 +1,41 @@
 [
   {
     "id": "tour-de-france",
-    "name": "Tour de France"
+    "name": "Tour de France",
+    "gender": "men",
+    "tier": "grand-tour"
   },
   {
     "id": "giro-d-italia",
-    "name": "Giro d'Italia"
+    "name": "Giro d'Italia",
+    "gender": "men",
+    "tier": "grand-tour"
   },
   {
     "id": "vuelta-a-espana",
-    "name": "Vuelta a España"
+    "name": "Vuelta a España",
+    "gender": "men",
+    "tier": "grand-tour"
   },
   {
     "id": "cyclassics-hamburg",
-    "name": "Cyclassics Hamburg"
+    "name": "Cyclassics Hamburg",
+    "gender": "men",
+    "tier": "uci-worldtour",
+    "country": "DE"
   },
   {
     "id": "muensterland-giro",
-    "name": "Sparkassen Münsterland Giro"
+    "name": "Sparkassen Münsterland Giro",
+    "gender": "men",
+    "tier": "uci-proseries",
+    "country": "DE"
   },
   {
     "id": "deutschland-tour",
-    "name": "Deutschland Tour"
+    "name": "Deutschland Tour",
+    "gender": "men",
+    "tier": "uci-proseries",
+    "country": "DE"
   }
 ]

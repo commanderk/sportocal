@@ -329,6 +329,13 @@ body {
   padding: 0 0 0 2px;
 }
 
+/* A selected race hidden by the current gender-toggle position, not removed
+   from the selection -- dimmed so it still reads as "chosen", just not
+   currently shown, rather than looking identical to an active chip. */
+.chip.is-dimmed {
+  opacity: 0.45;
+}
+
 .empty-hint {
   margin-top: 14px;
   font-size: 13px;
@@ -755,6 +762,12 @@ body {
 .filter-pill.is-active {
   color: var(--text);
   text-decoration: underline;
+}
+
+.gender-toggle {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 10px;
 }
 
 main#app {
