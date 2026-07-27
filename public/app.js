@@ -71,6 +71,26 @@ function extractRoundNumber(round) {
   return match ? match[0].padStart(2, "0") : "";
 }
 
+// Cycling snapshots now merge additively across years (see README), so a
+// one-day race's past and future editions can both be in view at once, with
+// the same title -- that's ambiguous especially in "Nach Datum", where they
+// aren't grouped together the way "Nach Wettbewerb" groups a competition's
+// own upcoming/past rows. computeDuplicateOneDayCompetitions() below,
+// populated once per render() call, is a deliberate module-level-state
+// shortcut so eventDisplayTitle() can see it without threading a parameter
+// through renderByDate/renderByCompetition/renderCompetitionSection/renderEventRow.
+let duplicateOneDayCompetitions = new Set();
+
+function computeDuplicateOneDayCompetitions(events) {
+  const counts = new Map();
+  for (const event of events) {
+    if (event.sport === "cycling" && !event.round) {
+      counts.set(event.competition, (counts.get(event.competition) || 0) + 1);
+    }
+  }
+  return new Set([...counts].filter(([, count]) => count > 1).map(([name]) => name));
+}
+
 // The web view's row-title is a stripped-down label, not the full calendar
 // title: no emoji, no competition name, no "Spieltag"/"Etappe" round marker
 // -- those are already shown as the section heading and the row-index. The
@@ -82,6 +102,9 @@ function eventDisplayTitle(event) {
   }
   if (event.route) {
     return `${event.route.start} → ${event.route.finish}`;
+  }
+  if (!event.round && duplicateOneDayCompetitions.has(event.competition)) {
+    return `${event.competition} ${event.start.slice(0, 4)}`;
   }
   return event.competition;
 }
@@ -445,6 +468,7 @@ function render() {
   app.innerHTML = "";
 
   const events = visibleEvents();
+  duplicateOneDayCompetitions = computeDuplicateOneDayCompetitions(events);
   document.getElementById("count-label").textContent = hasSelection()
     ? `${events.length} Termine für deine Auswahl`
     : `${events.length} Termine · Vorschau`;

@@ -309,6 +309,17 @@ def fetch_race(api_base: str, race: dict, today: date) -> list[dict] | None:
     return None
 
 
+def merge_events(old_events: list[dict], new_events: list[dict]) -> list[dict]:
+    """Additive merge for cycling snapshots: unlike football (season-cut by
+    design, see README), a race's `id` has no season/league coupling, so a
+    fetch run must never drop a past edition just because it wasn't part of
+    this run's (today.year, today.year + 1) window. New/changed ids overlay
+    the old snapshot; every old id that isn't in `new_events` is kept as-is."""
+    by_id = {e["id"]: e for e in old_events}
+    by_id.update({e["id"]: e for e in new_events})
+    return sorted(by_id.values(), key=lambda e: (e["start"], e["id"]))
+
+
 def main() -> None:
     config = load_config()
     api_base = config["cycling"]["wikipediaApi"]
@@ -327,12 +338,13 @@ def main() -> None:
             continue
 
         old_snapshot = load_snapshot(source_id)
-        changed = diff_and_log(source_id, old_snapshot["events"], events)
+        merged_events = merge_events(old_snapshot["events"], events)
+        changed = diff_and_log(source_id, old_snapshot["events"], merged_events)
         if changed:
             log(f"[{source_id}] Aenderungen gefunden, Snapshot wird aktualisiert.")
         else:
             log(f"[{source_id}] Keine Aenderungen.")
-        save_snapshot(source_id, events, now_iso)
+        save_snapshot(source_id, merged_events, now_iso)
 
 
 if __name__ == "__main__":
