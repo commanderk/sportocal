@@ -184,13 +184,6 @@ body {
   flex: none;
 }
 
-.combo-panel-title {
-  font-weight: 900;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-
 .combo-search {
   flex: 1;
   border: 2px solid var(--text);
@@ -270,10 +263,6 @@ body {
   gap: 10px;
   padding: 7px 14px 7px 35px;
   cursor: pointer;
-}
-
-.race-row {
-  padding: 9px 14px;
 }
 
 .club-row:hover,

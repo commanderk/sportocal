@@ -417,7 +417,8 @@ const state = {
   selectedRaces: new Set(), // race ids
   footballOpen: false,
   cyclingOpen: false,
-  search: "",
+  search: "", // football combobox search (kept separate from cyclingSearch so the two panels don't filter each other)
+  cyclingSearch: "",
   activeApp: detectDefaultApp(),
   fallbackOpen: false,
   stickyVisible: false,
@@ -572,6 +573,11 @@ function renderFootballChips() {
 
 // --- selection UI: cycling combobox -------------------------------------
 
+function raceMatchesSearch(race) {
+  if (!state.cyclingSearch.trim()) return true;
+  return race.name.toLowerCase().includes(state.cyclingSearch.trim().toLowerCase());
+}
+
 // Groups (tier, gender-suffixed where a tier has both genders) come
 // pre-computed from races.json (build_race_groups_payload() in
 // build_site_data.py) -- same shape as football's leagues.json entries,
@@ -581,7 +587,10 @@ function renderCyclingCombo() {
   body.innerHTML = "";
 
   for (const group of state.raceGroups) {
-    const tokens = group.races.map((r) => r.id);
+    const races = group.races.filter(raceMatchesSearch);
+    if (races.length === 0) continue;
+
+    const tokens = races.map((r) => r.id);
     const selectedCount = tokens.filter((t) => state.selectedRaces.has(t)).length;
     const allSelected = selectedCount === tokens.length;
     const someSelected = selectedCount > 0 && !allSelected;
@@ -609,7 +618,7 @@ function renderCyclingCombo() {
     head.appendChild(label);
     body.appendChild(head);
 
-    for (const race of group.races) {
+    for (const race of races) {
       const color = RACE_COLORS[race.id] || "#141414";
       const row = document.createElement("label");
       row.className = "race-row";
@@ -1018,6 +1027,12 @@ function setupSelectorUI() {
   search.addEventListener("input", (e) => {
     state.search = e.target.value;
     renderFootballCombo();
+  });
+
+  const cyclingSearch = document.getElementById("cycling-search");
+  cyclingSearch.addEventListener("input", (e) => {
+    state.cyclingSearch = e.target.value;
+    renderCyclingCombo();
   });
 
   setupStickyBar();
