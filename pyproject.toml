@@ -9,5 +9,10 @@ dependencies = [
     "tzdata",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
 [tool.vercel]
 entrypoint = "api.calendar_ics:app"

@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import re
 from datetime import date, datetime, timezone
+from urllib.parse import urlencode
 
 from common import (
     clean_wikitext,
@@ -37,26 +38,76 @@ MONTHS = (
 
 
 def wiki_get(api_base: str, params: dict) -> dict:
-    query = "&".join(f"{k}={v}" for k, v in params.items())
-    return http_get_json(f"{api_base}?{query}&format=json")
+    query = urlencode({**params, "format": "json"})
+    return http_get_json(f"{api_base}?{query}")
+
+
+def _single_page(data: dict) -> dict:
+    """`action=query` always returns exactly one page for a single `titles=`
+    lookup, keyed by pageid (or "-1" for a missing title)."""
+    return next(iter(data["query"]["pages"].values()))
+
+
+def fetch_full_wikitext(api_base: str, title: str) -> str | None:
+    """Full current wikitext via the lightweight revisions endpoint (no
+    parser invocation), per MediaWiki API etiquette
+    (https://www.mediawiki.org/wiki/API:Etiquette)."""
+    data = wiki_get(
+        api_base,
+        {"action": "query", "prop": "revisions", "rvslots": "main", "rvprop": "content", "titles": title},
+    )
+    page = _single_page(data)
+    if "missing" in page:
+        return None
+    return page["revisions"][0]["slots"]["main"]["*"]
+
+
+def extract_section(wikitext: str, section_index: int) -> str | None:
+    """Mimic MediaWiki's `section=N` extraction locally, since the
+    `revisions` endpoint (unlike `action=parse`) has no section parameter.
+
+    Section 0 is the lead (everything before the first heading). Section N
+    (N >= 1) is the Nth heading in document order, including that heading
+    line, up to (not including) the next heading of equal or higher level --
+    the same numbering `action=parse&prop=sections` uses, which
+    fetch_stage_table_section_index() still calls directly.
+
+    Known limitation: heading detection is a plain regex over the raw
+    wikitext, so it can miscount relative to MediaWiki's own parser for
+    edge cases such as heading-like lines inside <!-- comments -->,
+    <nowiki> blocks, or template transclusions. This is only verified
+    against the two fixtures in tests/fixtures/, not against every possible
+    wikitext shape.
+    """
+    heading_re = re.compile(r"^(={2,6})\s*(.+?)\s*\1\s*$", re.MULTILINE)
+    headings = list(heading_re.finditer(wikitext))
+    if section_index == 0:
+        end = headings[0].start() if headings else len(wikitext)
+        return wikitext[:end]
+    if section_index > len(headings):
+        return None
+    start_match = headings[section_index - 1]
+    level = len(start_match.group(1))
+    start = start_match.start()
+    end = len(wikitext)
+    for next_match in headings[section_index:]:
+        if len(next_match.group(1)) <= level:
+            end = next_match.start()
+            break
+    return wikitext[start:end]
 
 
 def fetch_wikitext_section(api_base: str, title: str, section: int | None = None) -> str | None:
-    from urllib.parse import quote
-
-    params = {"action": "parse", "prop": "wikitext", "page": quote(title, safe="")}
-    if section is not None:
-        params["section"] = section
-    data = wiki_get(api_base, params)
-    if "error" in data:
+    wikitext = fetch_full_wikitext(api_base, title)
+    if wikitext is None:
         return None
-    return data["parse"]["wikitext"]["*"]
+    if section is None:
+        return wikitext
+    return extract_section(wikitext, section)
 
 
 def fetch_stage_table_section_index(api_base: str, title: str) -> int | None:
-    from urllib.parse import quote
-
-    data = wiki_get(api_base, {"action": "parse", "page": quote(title, safe=""), "prop": "sections"})
+    data = wiki_get(api_base, {"action": "parse", "page": title, "prop": "sections"})
     if "error" in data:
         return None
     for section in data["parse"]["sections"]:
@@ -66,12 +117,10 @@ def fetch_stage_table_section_index(api_base: str, title: str) -> int | None:
 
 
 def page_exists(api_base: str, title: str) -> bool:
-    from urllib.parse import quote
-
-    data = wiki_get(
-        api_base, {"action": "parse", "page": quote(title, safe=""), "prop": "wikitext", "section": 0}
-    )
-    return "error" not in data
+    """Lightweight existence check (no content transfer): `action=query`
+    with `prop=info` only, not `revisions`."""
+    data = wiki_get(api_base, {"action": "query", "prop": "info", "titles": title})
+    return "missing" not in _single_page(data)
 
 
 def parse_infobox_field(wikitext: str, field: str) -> str | None:
