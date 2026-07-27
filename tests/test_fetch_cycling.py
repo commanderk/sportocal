@@ -67,6 +67,28 @@ def test_parse_stage_table_from_extracted_section():
     assert stages[4]["finish_loc"] == "Magdeburg"
 
 
+def test_parse_stage_table_strips_stage_suffix_from_type():
+    """Wikitext says "Hilly stage"/"Flat stage" (with suffix), but
+    common.STAGE_TYPES uses the short form so scraped and manually-entered
+    (build_manual_cycling.py) values share one vocabulary. "Individual time
+    trial" has no suffix to begin with and must pass through unchanged."""
+    wikitext = load_fixture("stage_race_schedule.txt")
+    schedule = fetch_cycling.extract_section(wikitext, 2)
+    stages = fetch_cycling.parse_stage_table(schedule, year=2025)
+
+    assert [s["type"] for s in stages] == ["Individual time trial", "Hilly", "Hilly", "Hilly", "Flat"]
+    assert all(s["type"] in common.STAGE_TYPES for s in stages)
+
+
+def test_strip_stage_type_suffix_is_case_insensitive():
+    assert fetch_cycling.strip_stage_type_suffix("Mountain Stage") == "Mountain"
+    assert fetch_cycling.strip_stage_type_suffix("Individual time trial") == "Individual time trial"
+
+
+def test_stage_types_includes_prologue_for_deutschland_tour():
+    assert "Prologue" in common.STAGE_TYPES
+
+
 # --- revisions-API response parsing (mocked, no network) ----------------
 
 REVISIONS_OK = {

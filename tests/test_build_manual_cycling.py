@@ -19,8 +19,8 @@ def test_reuses_fetch_cycling_merge_events_directly():
 def test_group_rows_groups_by_race_id_and_year():
     csv_text = (
         "race_id,year,stage_label,date,start,finish,type\n"
-        "paris-nice,2026,Etappe 1,2026-03-08,Paris,Nemours,Flat stage\n"
-        "paris-nice,2026,Etappe 2,2026-03-09,Nemours,Ligny-en-Barrois,Hilly stage\n"
+        "paris-nice,2026,Etappe 1,2026-03-08,Paris,Nemours,Flat\n"
+        "paris-nice,2026,Etappe 2,2026-03-09,Nemours,Ligny-en-Barrois,Hilly\n"
     )
 
     groups = build_manual_cycling.group_rows(rows_from_csv(csv_text))
@@ -31,7 +31,7 @@ def test_group_rows_groups_by_race_id_and_year():
     assert stages[0]["date"] == date(2026, 3, 8)
     assert stages[0]["start_loc"] == "Paris"
     assert stages[0]["finish_loc"] == "Nemours"
-    assert stages[0]["type"] == "Flat stage"
+    assert stages[0]["type"] == "Flat"
 
 
 def test_group_rows_skips_row_with_unknown_stage_type():
@@ -48,7 +48,7 @@ def test_group_rows_skips_row_with_unknown_stage_type():
 def test_group_rows_skips_row_with_missing_required_field():
     csv_text = (
         "race_id,year,stage_label,date,start,finish,type\n"
-        "paris-nice,2026,Etappe 1,,Paris,Nemours,Flat stage\n"
+        "paris-nice,2026,Etappe 1,,Paris,Nemours,Flat\n"
     )
 
     groups = build_manual_cycling.group_rows(rows_from_csv(csv_text))
@@ -59,7 +59,7 @@ def test_group_rows_skips_row_with_missing_required_field():
 def test_group_rows_skips_row_with_malformed_date():
     csv_text = (
         "race_id,year,stage_label,date,start,finish,type\n"
-        "paris-nice,2026,Etappe 1,08 March 2026,Paris,Nemours,Flat stage\n"
+        "paris-nice,2026,Etappe 1,08 March 2026,Paris,Nemours,Flat\n"
     )
 
     groups = build_manual_cycling.group_rows(rows_from_csv(csv_text))
@@ -70,7 +70,7 @@ def test_group_rows_skips_row_with_malformed_date():
 def test_group_rows_keeps_valid_rows_alongside_invalid_ones():
     csv_text = (
         "race_id,year,stage_label,date,start,finish,type\n"
-        "paris-nice,2026,Etappe 1,2026-03-08,Paris,Nemours,Flat stage\n"
+        "paris-nice,2026,Etappe 1,2026-03-08,Paris,Nemours,Flat\n"
         "paris-nice,2026,Etappe 2,2026-03-09,Nemours,Ligny-en-Barrois,Not A Real Type\n"
     )
 
@@ -85,7 +85,7 @@ def test_main_writes_merged_snapshot(monkeypatch, tmp_path):
     monkeypatch.setattr(build_manual_cycling, "CSV_PATH", tmp_path / "stage-race.csv")
     (tmp_path / "stage-race.csv").write_text(
         "race_id,year,stage_label,date,start,finish,type\n"
-        "paris-nice,2026,Etappe 1,2026-03-08,Paris,Nemours,Flat stage\n",
+        "paris-nice,2026,Etappe 1,2026-03-08,Paris,Nemours,Flat\n",
         encoding="utf-8",
     )
 

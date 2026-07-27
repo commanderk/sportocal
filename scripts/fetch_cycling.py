@@ -171,6 +171,15 @@ def strip_cell_attrs(text: str) -> str:
     return text
 
 
+def strip_stage_type_suffix(stage_type: str) -> str:
+    """Wikipedia's stage-type cell says e.g. "Hilly stage", but
+    common.STAGE_TYPES uses the short form ("Hilly") so scraped and
+    manually-entered (build_manual_cycling.py) values share one vocabulary --
+    "Individual/Team time trial" already has no "stage" suffix and passes
+    through unchanged."""
+    return re.sub(r"\s+stage$", "", stage_type, flags=re.IGNORECASE)
+
+
 def parse_stage_table(wikitext: str, year: int) -> list[dict]:
     table_match = re.search(r"\{\|.*?\n\|\}", wikitext, re.DOTALL)
     if not table_match:
@@ -204,8 +213,11 @@ def parse_stage_table(wikitext: str, year: int) -> list[dict]:
 
         stage_type = ""
         for c in cells[3:]:
-            if c:
-                stage_type = c
+            # Skip cells that are just leftover punctuation from a cleaned-out
+            # icon embed (e.g. a stray "|" from "| |[[File:...]]", seen on the
+            # Deutschland Tour prologue row) rather than an actual type label.
+            if c and any(ch.isalpha() for ch in c):
+                stage_type = strip_stage_type_suffix(c)
                 break
 
         if " to " in course:
