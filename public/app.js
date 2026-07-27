@@ -26,13 +26,6 @@ const RACE_COLORS = {
   "deutschland-tour": "#141414",
 };
 
-const TIER_ORDER = ["grand-tour", "uci-worldtour", "uci-proseries", "regional"];
-const TIER_LABELS = {
-  "grand-tour": "Grand Tour",
-  "uci-worldtour": "UCI WorldTour",
-  "uci-proseries": "UCI ProSeries",
-  regional: "Regional",
-};
 
 const dateFormatter = new Intl.DateTimeFormat("de-DE", {
   day: "2-digit",
@@ -416,12 +409,12 @@ const state = {
   clubs: [],
   clubsById: new Map(),
   leagues: [],
-  races: [],
+  raceGroups: [], // server-grouped (tier, gender-suffixed where needed) races, see build_site_data.py
+  races: [], // flattened from raceGroups, for id/name lookups
   viewMode: "competition",
   competitionFilter: FILTER_ALL,
   selectedClubs: new Set(), // tokens "<clubId>:<gender>"
   selectedRaces: new Set(), // race ids
-  cyclingGenderFilter: "all", // "all" | "men" | "women" -- narrows the race picker and the displayed calendar, not persisted across reloads
   footballOpen: false,
   cyclingOpen: false,
   search: "",
@@ -438,29 +431,21 @@ function hasSelection() {
 
 // Without a selection the list is an unfiltered preview of everything, same
 // spirit as the design mock -- so the page is never empty on first load.
-function passesCyclingGenderFilter(event) {
-  if (event.sport !== "cycling" || state.cyclingGenderFilter === "all") return true;
-  const race = state.races.find((r) => r.name === event.competition);
-  return !!race && race.gender === state.cyclingGenderFilter;
-}
-
 function visibleEvents() {
-  const bySelection = hasSelection()
-    ? state.events.filter((e) => {
-        if (e.sport === "football") {
-          return (
-            (state.selectedClubs.has(`${e.homeTeamId}:${e.gender}`) ||
-              state.selectedClubs.has(`${e.awayTeamId}:${e.gender}`))
-          );
-        }
-        if (e.sport === "cycling") {
-          const race = state.races.find((r) => r.name === e.competition);
-          return race && state.selectedRaces.has(race.id);
-        }
-        return false;
-      })
-    : state.events;
-  return bySelection.filter(passesCyclingGenderFilter);
+  if (!hasSelection()) return state.events;
+  return state.events.filter((e) => {
+    if (e.sport === "football") {
+      return (
+        (state.selectedClubs.has(`${e.homeTeamId}:${e.gender}`) ||
+          state.selectedClubs.has(`${e.awayTeamId}:${e.gender}`))
+      );
+    }
+    if (e.sport === "cycling") {
+      const race = state.races.find((r) => r.name === e.competition);
+      return race && state.selectedRaces.has(race.id);
+    }
+    return false;
+  });
 }
 
 function render() {
@@ -587,28 +572,16 @@ function renderFootballChips() {
 
 // --- selection UI: cycling combobox -------------------------------------
 
+// Groups (tier, gender-suffixed where a tier has both genders) come
+// pre-computed from races.json (build_race_groups_payload() in
+// build_site_data.py) -- same shape as football's leagues.json entries,
+// which are also already-formed groups by the time app.js sees them.
 function renderCyclingCombo() {
   const body = document.getElementById("cycling-combo-body");
   body.innerHTML = "";
 
-  const gender = state.cyclingGenderFilter;
-  const racesForGender = gender === "all" ? state.races : state.races.filter((r) => r.gender === gender);
-
-  if (racesForGender.length === 0) {
-    const empty = document.createElement("p");
-    empty.className = "empty-state";
-    empty.textContent = gender === "women"
-      ? "Noch keine Frauen-Rennen erfasst."
-      : "Noch keine Rennen für diese Auswahl erfasst.";
-    body.appendChild(empty);
-    return;
-  }
-
-  for (const tier of TIER_ORDER) {
-    const races = racesForGender.filter((r) => r.tier === tier);
-    if (races.length === 0) continue;
-
-    const tokens = races.map((r) => r.id);
+  for (const group of state.raceGroups) {
+    const tokens = group.races.map((r) => r.id);
     const selectedCount = tokens.filter((t) => state.selectedRaces.has(t)).length;
     const allSelected = selectedCount === tokens.length;
     const someSelected = selectedCount > 0 && !allSelected;
@@ -628,7 +601,7 @@ function renderCyclingCombo() {
     });
     const name = document.createElement("span");
     name.className = "league-group-name";
-    name.textContent = TIER_LABELS[tier];
+    name.textContent = group.label;
     const count = document.createElement("span");
     count.className = "league-group-count";
     count.textContent = `(${tokens.length})`;
@@ -636,7 +609,7 @@ function renderCyclingCombo() {
     head.appendChild(label);
     body.appendChild(head);
 
-    for (const race of races) {
+    for (const race of group.races) {
       const color = RACE_COLORS[race.id] || "#141414";
       const row = document.createElement("label");
       row.className = "race-row";
@@ -667,12 +640,8 @@ function renderCyclingChips() {
     const race = state.races.find((r) => r.id === raceId);
     if (!race) continue;
     const color = RACE_COLORS[raceId] || "#141414";
-    // A chip stays visible (dimmed, not removed) when its race's gender is
-    // currently excluded by the toggle -- the selection persists, only its
-    // events stop showing in the calendar until the toggle changes back.
-    const isDimmed = state.cyclingGenderFilter !== "all" && race.gender !== state.cyclingGenderFilter;
     const chip = document.createElement("div");
-    chip.className = "chip" + (isDimmed ? " is-dimmed" : "");
+    chip.className = "chip";
     chip.style.background = color;
     chip.style.color = contrastText(color);
     const name = document.createElement("span");
@@ -998,10 +967,9 @@ function refreshSelectionUI() {
 
 // --- combobox open/close wiring ------------------------------------------
 
-function setupCombobox({ triggerId, panelId, doneId, labelId, isOpenKey, emptyLabel, countLabel, extraIgnoreIds = [] }) {
+function setupCombobox({ triggerId, panelId, doneId, labelId, isOpenKey, emptyLabel, countLabel }) {
   const trigger = document.getElementById(triggerId);
   const panel = document.getElementById(panelId);
-  const extraIgnoreEls = extraIgnoreIds.map((id) => document.getElementById(id)).filter(Boolean);
 
   const open = () => {
     state[isOpenKey] = true;
@@ -1021,12 +989,7 @@ function setupCombobox({ triggerId, panelId, doneId, labelId, isOpenKey, emptyLa
   });
   document.getElementById(doneId).addEventListener("click", close);
   document.addEventListener("click", (e) => {
-    // extraIgnoreIds: elements that live outside the panel/trigger but should
-    // still count as "part of this control" for the purposes of staying open
-    // (currently just the cycling gender toggle, which sits above the combo
-    // trigger and re-renders the still-open panel's contents on click).
-    const insideIgnored = extraIgnoreEls.some((el) => el.contains(e.target));
-    if (state[isOpenKey] && !panel.contains(e.target) && !trigger.contains(e.target) && !insideIgnored) close();
+    if (state[isOpenKey] && !panel.contains(e.target) && !trigger.contains(e.target)) close();
   });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && state[isOpenKey]) close();
@@ -1047,32 +1010,9 @@ function updateComboTriggerLabels() {
     : "Rennen auswählen…";
 }
 
-// Männer/Frauen/Alle above the Radsport selector: narrows both the race
-// picker (renderCyclingCombo) and the displayed calendar (visibleEvents()),
-// same as the "Nach Wettbewerb" filter pills -- reuses refreshSelectionUI()
-// so every dependent view (chips, subscribe bar, filter pills, event list)
-// stays in sync without a bespoke partial-refresh path.
-function setupCyclingGenderToggle() {
-  const container = document.getElementById("cycling-gender-toggle");
-  const buttons = [...container.querySelectorAll(".filter-pill")];
-  for (const btn of buttons) {
-    btn.addEventListener("click", () => {
-      if (state.cyclingGenderFilter === btn.dataset.gender) return;
-      state.cyclingGenderFilter = btn.dataset.gender;
-      for (const b of buttons) {
-        const isActive = b === btn;
-        b.classList.toggle("is-active", isActive);
-        b.setAttribute("aria-selected", String(isActive));
-      }
-      refreshSelectionUI();
-    });
-  }
-}
-
 function setupSelectorUI() {
   setupCombobox({ triggerId: "football-combo-trigger", panelId: "football-combo-panel", doneId: "football-combo-done", isOpenKey: "footballOpen" });
-  setupCombobox({ triggerId: "cycling-combo-trigger", panelId: "cycling-combo-panel", doneId: "cycling-combo-done", isOpenKey: "cyclingOpen", extraIgnoreIds: ["cycling-gender-toggle"] });
-  setupCyclingGenderToggle();
+  setupCombobox({ triggerId: "cycling-combo-trigger", panelId: "cycling-combo-panel", doneId: "cycling-combo-done", isOpenKey: "cyclingOpen" });
 
   const search = document.getElementById("football-search");
   search.addEventListener("input", (e) => {
@@ -1133,7 +1073,7 @@ async function fetchJson(path) {
 
 async function main() {
   try {
-    const [eventsData, clubs, leagues, races] = await Promise.all([
+    const [eventsData, clubs, leagues, raceGroups] = await Promise.all([
       fetchJson("data/events.json"),
       fetchJson("data/clubs.json"),
       fetchJson("data/leagues.json"),
@@ -1144,7 +1084,8 @@ async function main() {
     state.clubs = clubs;
     state.clubsById = new Map(clubs.map((c) => [c.id, c]));
     state.leagues = leagues;
-    state.races = races;
+    state.raceGroups = raceGroups;
+    state.races = raceGroups.flatMap((group) => group.races);
 
     loadSelectionFromStorage();
     setupSelectorUI();

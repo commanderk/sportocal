@@ -1,41 +1,132 @@
 [
   {
-    "id": "tour-de-france",
-    "name": "Tour de France",
+    "tier": "grand-tour",
     "gender": "men",
-    "tier": "grand-tour"
+    "label": "Grand Tours Männer",
+    "races": [
+      {
+        "id": "tour-de-france",
+        "name": "Tour de France"
+      },
+      {
+        "id": "giro-d-italia",
+        "name": "Giro d'Italia"
+      },
+      {
+        "id": "vuelta-a-espana",
+        "name": "Vuelta a España"
+      }
+    ]
   },
   {
-    "id": "giro-d-italia",
-    "name": "Giro d'Italia",
-    "gender": "men",
-    "tier": "grand-tour"
+    "tier": "grand-tour",
+    "gender": "women",
+    "label": "Grand Tours Frauen",
+    "races": [
+      {
+        "id": "tour-de-france-femmes",
+        "name": "Tour de France Femmes"
+      },
+      {
+        "id": "giro-d-italia-women",
+        "name": "Giro d'Italia Women"
+      },
+      {
+        "id": "vuelta-espana-femenina",
+        "name": "Vuelta España Femenina"
+      }
+    ]
   },
   {
-    "id": "vuelta-a-espana",
-    "name": "Vuelta a España",
-    "gender": "men",
-    "tier": "grand-tour"
-  },
-  {
-    "id": "cyclassics-hamburg",
-    "name": "Cyclassics Hamburg",
-    "gender": "men",
     "tier": "uci-worldtour",
-    "country": "DE"
+    "gender": "men",
+    "label": "UCI WorldTour Männer",
+    "races": [
+      {
+        "id": "cyclassics-hamburg",
+        "name": "Cyclassics Hamburg",
+        "country": "DE"
+      },
+      {
+        "id": "paris-nice",
+        "name": "Paris-Nice"
+      },
+      {
+        "id": "tirreno-adriatico",
+        "name": "Tirreno-Adriatico"
+      },
+      {
+        "id": "volta-ciclista-a-catalunya",
+        "name": "Volta Ciclista a Catalunya"
+      },
+      {
+        "id": "itzulia-basque-country",
+        "name": "Itzulia Basque Country"
+      },
+      {
+        "id": "tour-de-romandie",
+        "name": "Tour de Romandie"
+      },
+      {
+        "id": "tour-auvergne-rhone-alpes",
+        "name": "Tour Auvergne-Rhône-Alpes"
+      },
+      {
+        "id": "tour-de-suisse",
+        "name": "Tour de Suisse"
+      },
+      {
+        "id": "tour-de-pologne",
+        "name": "Tour de Pologne"
+      },
+      {
+        "id": "renewi-tour",
+        "name": "Renewi Tour"
+      }
+    ]
   },
   {
-    "id": "muensterland-giro",
-    "name": "Sparkassen Münsterland Giro",
-    "gender": "men",
-    "tier": "uci-proseries",
-    "country": "DE"
+    "tier": "uci-worldtour",
+    "gender": "women",
+    "label": "UCI WorldTour Frauen",
+    "races": [
+      {
+        "id": "itzulia-women",
+        "name": "Itzulia Women"
+      },
+      {
+        "id": "vuelta-a-burgos-feminas",
+        "name": "Vuelta a Burgos Feminas"
+      },
+      {
+        "id": "tour-de-suisse-women",
+        "name": "Tour de Suisse Women"
+      },
+      {
+        "id": "tour-of-britain-women",
+        "name": "Tour of Britain Women"
+      },
+      {
+        "id": "tour-de-romandie-feminin",
+        "name": "Tour de Romandie Féminin"
+      }
+    ]
   },
   {
-    "id": "deutschland-tour",
-    "name": "Deutschland Tour",
-    "gender": "men",
     "tier": "uci-proseries",
-    "country": "DE"
+    "gender": "men",
+    "label": "UCI ProSeries",
+    "races": [
+      {
+        "id": "muensterland-giro",
+        "name": "Sparkassen Münsterland Giro",
+        "country": "DE"
+      },
+      {
+        "id": "deutschland-tour",
+        "name": "Deutschland Tour",
+        "country": "DE"
+      }
+    ]
   }
 ]
