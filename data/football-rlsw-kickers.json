@@ -24,7 +24,7 @@
       "round": "Spieltag 2",
       "start": "2026-08-15T12:00:00Z",
       "timeConfirmed": true,
-      "location": "Ahorn Camp Sportpark in Dreieich",
+      "location": "maxworx Sportpark in Dreieich",
       "homeTeamId": "eintracht-frankfurt-ii",
       "homeTeamName": "Eintracht Frankfurt II",
       "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/6828ac36-0a43-4cca-99ee-fe8164bcfcc4_frankfurt.png",
@@ -545,5 +545,5 @@
       "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/aHAtIEMqNJQqHxeZ_SV_Sandhausen.png"
     }
   ],
-  "lastChecked": "2026-07-25T09:51:14.679949+00:00"
+  "lastChecked": "2026-07-27T09:51:05.822312+00:00"
 }

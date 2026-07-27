@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T13:12:14.449042+00:00",
+  "generatedAt": "2026-07-27T09:51:22.160567+00:00",
   "events": [
     {
       "id": "football-ffb2-78894",
@@ -4495,7 +4495,7 @@
       "round": "Spieltag 2",
       "start": "2026-08-15T12:00:00Z",
       "timeConfirmed": true,
-      "location": "Ahorn Camp Sportpark in Dreieich",
+      "location": "maxworx Sportpark in Dreieich",
       "homeTeamId": "eintracht-frankfurt-ii",
       "homeTeamName": "Eintracht Frankfurt II",
       "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/6828ac36-0a43-4cca-99ee-fe8164bcfcc4_frankfurt.png",
