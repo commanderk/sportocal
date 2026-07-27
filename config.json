@@ -166,36 +166,51 @@
         "id": "tour-de-france",
         "name": "Tour de France",
         "type": "stage-race",
+        "gender": "men",
+        "tier": "grand-tour",
         "wikipediaTitleTemplate": "{year} Tour de France"
       },
       {
         "id": "giro-d-italia",
         "name": "Giro d'Italia",
         "type": "stage-race",
+        "gender": "men",
+        "tier": "grand-tour",
         "wikipediaTitleTemplate": "{year} Giro d'Italia"
       },
       {
         "id": "vuelta-a-espana",
         "name": "Vuelta a España",
         "type": "stage-race",
+        "gender": "men",
+        "tier": "grand-tour",
         "wikipediaTitleTemplate": "{year} Vuelta a España"
       },
       {
         "id": "cyclassics-hamburg",
         "name": "Cyclassics Hamburg",
         "type": "one-day",
+        "gender": "men",
+        "tier": "uci-worldtour",
+        "country": "DE",
         "wikipediaTitleTemplate": "{year} Hamburg Cyclassics"
       },
       {
         "id": "muensterland-giro",
         "name": "Sparkassen Münsterland Giro",
         "type": "one-day",
+        "gender": "men",
+        "tier": "uci-proseries",
+        "country": "DE",
         "wikipediaTitleTemplate": "{year} Münsterland Giro"
       },
       {
         "id": "deutschland-tour",
         "name": "Deutschland Tour",
         "type": "stage-race",
+        "gender": "men",
+        "tier": "uci-proseries",
+        "country": "DE",
         "wikipediaTitleTemplate": "{year} Deutschland Tour"
       }
     ]
