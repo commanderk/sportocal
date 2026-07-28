@@ -12,7 +12,8 @@
         "start": "Sondrio",
         "finish": "Sondrio",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe2",
@@ -26,7 +27,8 @@
         "start": "Lorcano",
         "finish": "Lorcano",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe3",
@@ -40,7 +42,8 @@
         "start": "Bad Ragaz",
         "finish": "Bad Ragaz",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe4",
@@ -54,7 +57,8 @@
         "start": "Aarburg",
         "finish": "Aarburg",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe5",
@@ -68,7 +72,8 @@
         "start": "Villars-sur-Ollon",
         "finish": "Villars-sur-Ollon",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     }
   ],
   "lastChecked": "2026-07-28T11:19:06.956961+00:00"

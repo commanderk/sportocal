@@ -4,6 +4,16 @@ const SPORT_LABELS = {
 };
 const SPORT_ORDER = ["football", "cycling"];
 
+// Per-row gender cue for cycling (see eventDisplayTitle()) -- several
+// men's/women's one-day classics share the exact same competition name
+// (e.g. "Ronde Van Brugge"), so without this the row title alone can't
+// tell them apart. Same mapping as scripts/common.py's CYCLING_GENDER_EMOJI,
+// used there for the ICS calendar title. Falls back to the plain bicycle
+// for any event missing gender (shouldn't happen for current data, but see
+// that Python-side fallback for why: older snapshots from before this
+// field existed).
+const CYCLING_GENDER_EMOJI = { men: "🚴‍♂️", women: "🚴‍♀️" };
+
 // Visual grouping color per selectable football league (used for the
 // checkbox accent / swatch in the combobox) -- distinct from a club's own
 // colorHex, which is used for that club's dot/chip so it stays recognizable
@@ -163,13 +173,14 @@ function eventDisplayTitle(event) {
   if (event.sport === "football") {
     return [event.homeTeamName, event.awayTeamName].filter(Boolean).join(" – ");
   }
+  const emoji = CYCLING_GENDER_EMOJI[event.gender] || "🚴";
   if (event.round) {
-    return `${event.competition}, ${event.round}`;
+    return `${emoji} ${event.competition}, ${event.round}`;
   }
   if (duplicateOneDayCompetitions.has(event.competition)) {
-    return `${event.competition} ${event.start.slice(0, 4)}`;
+    return `${emoji} ${event.competition} ${event.start.slice(0, 4)}`;
   }
-  return event.competition;
+  return `${emoji} ${event.competition}`;
 }
 
 function parseStart(start) {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T11:19:22.162348+00:00",
+  "generatedAt": "2026-07-28T16:54:55.053921+00:00",
   "events": [
     {
       "id": "football-ffb2-78894",
@@ -2573,7 +2573,8 @@
         "start": "Gent",
         "finish": "Ninove",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-omloop-het-nieuwsblad-2026",
@@ -2587,7 +2588,8 @@
         "start": "Gent",
         "finish": "Ninove",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-strade-bianche-donne-2026",
@@ -2601,7 +2603,8 @@
         "start": "Siena",
         "finish": "Siena",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-strade-bianche-2026",
@@ -2615,7 +2618,8 @@
         "start": "Siena",
         "finish": "Siena",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-ffb2-79011",
@@ -2709,7 +2713,8 @@
         "start": "Cocquio-Trevisago",
         "finish": "Cittiglio",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "football-ffb2-79036",
@@ -2915,7 +2920,8 @@
         "start": "Genova",
         "finish": "Sanremo",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-milano-sanremo-2026",
@@ -2929,7 +2935,8 @@
         "start": "Pavia",
         "finish": "Sanremo",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-ffb2-79047",
@@ -3055,7 +3062,8 @@
         "start": "Brugge",
         "finish": "De Panne",
         "type": "Flat"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-ronde-van-brugge-women-2026",
@@ -3069,7 +3077,8 @@
         "start": "Brugge",
         "finish": "De Panne",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-e3-saxo-classic-2026",
@@ -3083,7 +3092,8 @@
         "start": "Harelbeke",
         "finish": "Harelbeke",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-in-flanders-fields-women-2026",
@@ -3097,7 +3107,8 @@
         "start": "",
         "finish": "",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-in-flanders-fields-2026",
@@ -3111,7 +3122,8 @@
         "start": "Middelkerke",
         "finish": "Wevelgem",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-ffb2-79048",
@@ -3237,7 +3249,8 @@
         "start": "Roeselare",
         "finish": "Waregem",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-dwars-door-vlaanderen-2026",
@@ -3251,7 +3264,8 @@
         "start": "Roeselare",
         "finish": "Waregem",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-ffb2-79057",
@@ -3297,7 +3311,8 @@
         "start": "Oudenaarde",
         "finish": "Oudenaarde",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-ronde-van-vlaanderen-2026",
@@ -3311,7 +3326,8 @@
         "start": "Antwerpen",
         "finish": "Oudenaarde",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-ffb2-79055",
@@ -3421,7 +3437,8 @@
         "start": "Denain",
         "finish": "Roubaix",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-paris-roubaix-2026",
@@ -3435,7 +3452,8 @@
         "start": "Compiègne",
         "finish": "Roubaix",
         "type": "Flat"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-ucl-81330",
@@ -3465,7 +3483,8 @@
         "start": "Maastricht",
         "finish": "Berg en Terblijt",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-amstel-gold-race-2026",
@@ -3479,7 +3498,8 @@
         "start": "Maastricht",
         "finish": "Berg en Terblijt",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-fleche-wallonne-femmes-2026",
@@ -3493,7 +3513,8 @@
         "start": "Huy",
         "finish": "Huy",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-fleche-wallonne-2026",
@@ -3507,7 +3528,8 @@
         "start": "Charleroi",
         "finish": "Huy",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-liege-bastogne-liege-femmes-2026",
@@ -3521,7 +3543,8 @@
         "start": "Bastogne",
         "finish": "Liège",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-liege-bastogne-liege-2026",
@@ -3535,7 +3558,8 @@
         "start": "Liège",
         "finish": "Liège",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-ffb2-79064",
@@ -3677,7 +3701,8 @@
         "start": "Eschborn",
         "finish": "Frankfurt",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe1",
@@ -3691,7 +3716,8 @@
         "start": "Marín",
         "finish": "Salvaterra de Miño",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "football-ffb2-79072",
@@ -3817,7 +3843,8 @@
         "start": "Lobios",
         "finish": "San Vibrao das Viñas",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe3",
@@ -3831,7 +3858,8 @@
         "start": "Padrón",
         "finish": "A Coruña",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe4",
@@ -3845,7 +3873,8 @@
         "start": "Monforte de Lemos",
         "finish": "Antas de Ulla",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "football-ucl-81435",
@@ -3875,7 +3904,8 @@
         "start": "Léon",
         "finish": "Astorga",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe6",
@@ -3889,7 +3919,8 @@
         "start": "Gijón/Xixón",
         "finish": "Les Praeres, Nava",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe7",
@@ -3903,7 +3934,8 @@
         "start": "La Pola LLaviana/Pola de Laviana",
         "finish": "L'Angliru",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "football-ffb2-79082",
@@ -4029,7 +4061,8 @@
         "start": "Zarautz",
         "finish": "Zarautz",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-itzulia-women-2026-etappe2",
@@ -4043,7 +4076,8 @@
         "start": "Abadiño",
         "finish": "Amorebieta-Etxano",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "football-ffb2-79083",
@@ -4169,7 +4203,8 @@
         "start": "Donostia-San Sebastián",
         "finish": "Donostia-San Sebastián",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "football-uel-81606",
@@ -4199,7 +4234,8 @@
         "start": "Cesenatico",
         "finish": "Ravenna",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe2",
@@ -4213,7 +4249,8 @@
         "start": "Roncade",
         "finish": "Caorle",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe3",
@@ -4227,7 +4264,8 @@
         "start": "Bibione",
         "finish": "Buja",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe4",
@@ -4241,7 +4279,8 @@
         "start": "Belluno",
         "finish": "Nevegal",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe5",
@@ -4255,7 +4294,8 @@
         "start": "Longarone",
         "finish": "Santo Stefano di Cadore",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe6",
@@ -4269,7 +4309,8 @@
         "start": "Ala",
         "finish": "Brescello",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe7",
@@ -4283,7 +4324,8 @@
         "start": "Sorbolo Mezzani",
         "finish": "Salice Terme",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe8",
@@ -4297,7 +4339,8 @@
         "start": "Rivoli",
         "finish": "Sestriere",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe9",
@@ -4311,7 +4354,8 @@
         "start": "Saluzzo",
         "finish": "Saluzzo",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-copenhagen-sprint-women-2026",
@@ -4325,7 +4369,8 @@
         "start": "Copenhagen",
         "finish": "Copenhagen",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-copenhagen-sprint-2026",
@@ -4339,7 +4384,8 @@
         "start": "Copenhagen",
         "finish": "Copenhagen",
         "type": "Flat"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe1",
@@ -4353,7 +4399,8 @@
         "start": "Sondrio",
         "finish": "Sondrio",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe2",
@@ -4367,7 +4414,8 @@
         "start": "Lorcano",
         "finish": "Lorcano",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe3",
@@ -4381,7 +4429,8 @@
         "start": "Bad Ragaz",
         "finish": "Bad Ragaz",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe4",
@@ -4395,7 +4444,8 @@
         "start": "Aarburg",
         "finish": "Aarburg",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe5",
@@ -4409,7 +4459,8 @@
         "start": "Villars-sur-Ollon",
         "finish": "Villars-sur-Ollon",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe1",
@@ -4423,7 +4474,8 @@
         "start": "Barcelona (Spain)",
         "finish": "Barcelona (Spain)",
         "type": "Team time trial"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe2",
@@ -4437,7 +4489,8 @@
         "start": "Tarragona (Spain)",
         "finish": "Barcelona (Spain)",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe3",
@@ -4451,7 +4504,8 @@
         "start": "Granollers (Spain)",
         "finish": "Les Angles",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe4",
@@ -4465,7 +4519,8 @@
         "start": "Carcassonne",
         "finish": "Foix",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe5",
@@ -4479,7 +4534,8 @@
         "start": "Lannemezan",
         "finish": "Pau",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe6",
@@ -4493,7 +4549,8 @@
         "start": "Pau",
         "finish": "Gavarnie-Gèdre",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe7",
@@ -4507,7 +4564,8 @@
         "start": "Hagetmau",
         "finish": "Bordeaux",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe8",
@@ -4521,7 +4579,8 @@
         "start": "Périgueux",
         "finish": "Bergerac",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe9",
@@ -4535,7 +4594,8 @@
         "start": "Malemort",
         "finish": "Ussel",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe10",
@@ -4549,7 +4609,8 @@
         "start": "Aurillac",
         "finish": "Le Lioran",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe11",
@@ -4563,7 +4624,8 @@
         "start": "Vichy",
         "finish": "Nevers",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe12",
@@ -4577,7 +4639,8 @@
         "start": "Circuit de Nevers Magny-Cours",
         "finish": "Chalon-sur-Saône",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe13",
@@ -4591,7 +4654,8 @@
         "start": "Dole",
         "finish": "Belfort",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe14",
@@ -4605,7 +4669,8 @@
         "start": "Mulhouse",
         "finish": "Le Markstein Fellering",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe15",
@@ -4619,7 +4684,8 @@
         "start": "Champagnole",
         "finish": "Plateau de Solaison",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe16",
@@ -4633,7 +4699,8 @@
         "start": "Évian-les-Bains",
         "finish": "Thonon-les-Bains",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe17",
@@ -4647,7 +4714,8 @@
         "start": "Chambéry",
         "finish": "Voiron",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe18",
@@ -4661,7 +4729,8 @@
         "start": "Voiron",
         "finish": "Orcières-Merlette",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe19",
@@ -4675,7 +4744,8 @@
         "start": "Gap",
         "finish": "Alpe d'Huez",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe20",
@@ -4689,7 +4759,8 @@
         "start": "Le Bourg-d'Oisans",
         "finish": "Alpe d'Huez",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe21",
@@ -4703,7 +4774,8 @@
         "start": "Thoiry",
         "finish": "Paris (Champs-Élysées)",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-neuss-2026",
@@ -4717,7 +4789,8 @@
         "start": "Neuss",
         "finish": "Neuss",
         "type": "Flat"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-schmitter-nacht-von-huerth-2026",
@@ -4731,7 +4804,8 @@
         "start": "Hürth",
         "finish": "Hürth",
         "type": "Flat"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-dssk-2026",
@@ -4745,7 +4819,8 @@
         "start": "San Sebastián",
         "finish": "San Sebastián",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe1",
@@ -4759,7 +4834,8 @@
         "start": "Lausanne",
         "finish": "Lausanne",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe2",
@@ -4773,7 +4849,8 @@
         "start": "Aigle",
         "finish": "Genf",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe3",
@@ -4787,7 +4864,8 @@
         "start": "Genf",
         "finish": "Poligny",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe4",
@@ -4801,7 +4879,8 @@
         "start": "Gevrey-Chambertin",
         "finish": "Dijon",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-pologne-2026-etappe2",
@@ -4815,7 +4894,8 @@
         "start": "Międzyzdroje",
         "finish": "Szczecin",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe5",
@@ -4829,7 +4909,8 @@
         "start": "Mâcon",
         "finish": "Belleville-en-Beaujolais",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe6",
@@ -4843,7 +4924,8 @@
         "start": "Montbrison",
         "finish": "Tournon-sur-Rhône",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe7",
@@ -4857,7 +4939,8 @@
         "start": "La Voulte-sur-Rhône",
         "finish": "Mont Ventoux",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "football-bl3-84745",
@@ -4919,7 +5002,8 @@
         "start": "Sisteron",
         "finish": "Nizza",
         "type": "Flat"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "football-bl2-83513",
@@ -5109,7 +5193,8 @@
         "start": "Nizza",
         "finish": "Nizza",
         "type": "Mountain"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "football-bl2-83511",
@@ -5443,7 +5528,8 @@
         "start": "Buxtehude",
         "finish": "Hamburg",
         "type": "Flat"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-bl2-83526",
@@ -5553,7 +5639,8 @@
         "start": "Bad Orb",
         "finish": "Bad Orb",
         "type": "Flat"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-deutschland-tour-2026-etappe1",
@@ -5567,7 +5654,8 @@
         "start": "Bad Orb",
         "finish": "Schwäbisch Hall",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-deutschland-tour-2026-etappe2",
@@ -5581,7 +5669,8 @@
         "start": "Schwäbisch Hall",
         "finish": "Offenbach an der Queich",
         "type": "Flat"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-dfb-pokal-men-81832",
@@ -5675,7 +5764,8 @@
         "start": "Herxheim",
         "finish": "Bad Dürkheim",
         "type": "Mountain"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe1",
@@ -5689,7 +5779,8 @@
         "start": "Monaco",
         "finish": "Monaco",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-dfb-pokal-men-81842",
@@ -5895,7 +5986,8 @@
         "start": "Heilbronn",
         "finish": "Heilbronn",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe2",
@@ -5909,7 +6001,8 @@
         "start": "Monaco",
         "finish": "Manosque (France)",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-dfb-pokal-men-81841",
@@ -6195,7 +6288,8 @@
         "start": "Gruissan (France)",
         "finish": "Font Romeu (France)",
         "type": "Medium-mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-dfb-pokal-men-81854",
@@ -6273,7 +6367,8 @@
         "start": "Andorra La Vella (Andorra)",
         "finish": "Andorra La Vella (Andorra)",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe5",
@@ -6287,7 +6382,8 @@
         "start": "Falset",
         "finish": "Roquetes",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe6",
@@ -6301,7 +6397,8 @@
         "start": "Alcossebre",
         "finish": "Castellón",
         "type": "Medium-mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe7",
@@ -6315,7 +6412,8 @@
         "start": "Vall d'Alba",
         "finish": "Aramón Valdelinares",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-bl2-83543",
@@ -6393,7 +6491,8 @@
         "start": "Plouay",
         "finish": "Plouay",
         "type": "Hilly"
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe8",
@@ -6407,7 +6506,8 @@
         "start": "Puçol",
         "finish": "Xeraco",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-rlsw-kickers-2026-08-29-fc08homburg",
@@ -6693,7 +6793,8 @@
         "start": "Plouay",
         "finish": "Plouay",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe9",
@@ -6707,7 +6808,8 @@
         "start": "Villajoyosa",
         "finish": "Alto de Aitana",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-bl2-83539",
@@ -6961,7 +7063,8 @@
         "start": "Alcaraz",
         "finish": "Elche de la Sierra",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-dfb-pokal-men-81836",
@@ -6991,7 +7094,8 @@
         "start": "Cartagena",
         "finish": "Lorca",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-dfb-pokal-men-81852",
@@ -7021,7 +7125,8 @@
         "start": "Vera",
         "finish": "Calar Alto",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe13",
@@ -7035,7 +7140,8 @@
         "start": "Almuñécar",
         "finish": "Loja",
         "type": "Medium-mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-bl2-83550",
@@ -7113,7 +7219,8 @@
         "start": "Jaén",
         "finish": "Sierra de la Pandera",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-rlsw-kickers-2026-09-05-1fsvmainz05ii",
@@ -7399,7 +7506,8 @@
         "start": "Palma del Río",
         "finish": "Córdoba",
         "type": "Medium-mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-bl2-83556",
@@ -7653,7 +7761,8 @@
         "start": "Cortegana",
         "finish": "Palos de la Frontera",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe17",
@@ -7667,7 +7776,8 @@
         "start": "Dos Hermanas",
         "finish": "Seville",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-rlsw-kickers-2026-09-09-fcastoriawalldorf",
@@ -7697,7 +7807,8 @@
         "start": "El Puerto de Santa María",
         "finish": "Jerez de la Frontera",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe19",
@@ -7711,7 +7822,8 @@
         "start": "Vélez-Málaga",
         "finish": "Peñas Blancas",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-bl2-83569",
@@ -7789,7 +7901,8 @@
         "start": "La Calahorra",
         "finish": "Collado del Alguacil",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-rlsw-kickers-2026-09-12-sgbarockstadtfuldalehnerz",
@@ -8075,7 +8188,8 @@
         "start": "Granada",
         "finish": "Granada",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-bl2-83567",
@@ -8857,7 +8971,8 @@
         "start": "Borken",
         "finish": "Münster",
         "type": "Flat"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-rlsw-kickers-2026-10-03-kickersoffenbach",
@@ -8887,7 +9002,8 @@
         "start": "Como",
         "finish": "Bergamo",
         "type": "Hilly"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "football-rlsw-kickers-2026-10-10-vfrmannheim",

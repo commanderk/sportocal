@@ -12,7 +12,8 @@
         "start": "Monaco",
         "finish": "Monaco",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe2",
@@ -26,7 +27,8 @@
         "start": "Monaco",
         "finish": "Manosque (France)",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe3",
@@ -40,7 +42,8 @@
         "start": "Gruissan (France)",
         "finish": "Font Romeu (France)",
         "type": "Medium-mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe4",
@@ -54,7 +57,8 @@
         "start": "Andorra La Vella (Andorra)",
         "finish": "Andorra La Vella (Andorra)",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe5",
@@ -68,7 +72,8 @@
         "start": "Falset",
         "finish": "Roquetes",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe6",
@@ -82,7 +87,8 @@
         "start": "Alcossebre",
         "finish": "Castellón",
         "type": "Medium-mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe7",
@@ -96,7 +102,8 @@
         "start": "Vall d'Alba",
         "finish": "Aramón Valdelinares",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe8",
@@ -110,7 +117,8 @@
         "start": "Puçol",
         "finish": "Xeraco",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe9",
@@ -124,7 +132,8 @@
         "start": "Villajoyosa",
         "finish": "Alto de Aitana",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe10",
@@ -138,7 +147,8 @@
         "start": "Alcaraz",
         "finish": "Elche de la Sierra",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe11",
@@ -152,7 +162,8 @@
         "start": "Cartagena",
         "finish": "Lorca",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe12",
@@ -166,7 +177,8 @@
         "start": "Vera",
         "finish": "Calar Alto",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe13",
@@ -180,7 +192,8 @@
         "start": "Almuñécar",
         "finish": "Loja",
         "type": "Medium-mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe14",
@@ -194,7 +207,8 @@
         "start": "Jaén",
         "finish": "Sierra de la Pandera",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe15",
@@ -208,7 +222,8 @@
         "start": "Palma del Río",
         "finish": "Córdoba",
         "type": "Medium-mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe16",
@@ -222,7 +237,8 @@
         "start": "Cortegana",
         "finish": "Palos de la Frontera",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe17",
@@ -236,7 +252,8 @@
         "start": "Dos Hermanas",
         "finish": "Seville",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe18",
@@ -250,7 +267,8 @@
         "start": "El Puerto de Santa María",
         "finish": "Jerez de la Frontera",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe19",
@@ -264,7 +282,8 @@
         "start": "Vélez-Málaga",
         "finish": "Peñas Blancas",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe20",
@@ -278,7 +297,8 @@
         "start": "La Calahorra",
         "finish": "Collado del Alguacil",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe21",
@@ -292,7 +312,8 @@
         "start": "Granada",
         "finish": "Granada",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     }
   ],
   "lastChecked": "2026-07-27T09:51:19.416414+00:00"

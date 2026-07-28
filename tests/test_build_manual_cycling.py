@@ -95,7 +95,7 @@ def test_main_writes_merged_snapshot(monkeypatch, tmp_path):
     monkeypatch.setattr(
         build_manual_cycling,
         "load_config",
-        lambda: {"cycling": {"races": [{"id": "paris-nice", "name": "Paris-Nice", "type": "stage-race", "source": "manual"}]}},
+        lambda: {"cycling": {"races": [{"id": "paris-nice", "name": "Paris-Nice", "type": "stage-race", "gender": "men", "source": "manual"}]}},
     )
 
     build_manual_cycling.main()

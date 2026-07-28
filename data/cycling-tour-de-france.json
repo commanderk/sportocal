@@ -12,7 +12,8 @@
         "start": "Barcelona (Spain)",
         "finish": "Barcelona (Spain)",
         "type": "Team time trial"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe2",
@@ -26,7 +27,8 @@
         "start": "Tarragona (Spain)",
         "finish": "Barcelona (Spain)",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe3",
@@ -40,7 +42,8 @@
         "start": "Granollers (Spain)",
         "finish": "Les Angles",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe4",
@@ -54,7 +57,8 @@
         "start": "Carcassonne",
         "finish": "Foix",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe5",
@@ -68,7 +72,8 @@
         "start": "Lannemezan",
         "finish": "Pau",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe6",
@@ -82,7 +87,8 @@
         "start": "Pau",
         "finish": "Gavarnie-Gèdre",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe7",
@@ -96,7 +102,8 @@
         "start": "Hagetmau",
         "finish": "Bordeaux",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe8",
@@ -110,7 +117,8 @@
         "start": "Périgueux",
         "finish": "Bergerac",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe9",
@@ -124,7 +132,8 @@
         "start": "Malemort",
         "finish": "Ussel",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe10",
@@ -138,7 +147,8 @@
         "start": "Aurillac",
         "finish": "Le Lioran",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe11",
@@ -152,7 +162,8 @@
         "start": "Vichy",
         "finish": "Nevers",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe12",
@@ -166,7 +177,8 @@
         "start": "Circuit de Nevers Magny-Cours",
         "finish": "Chalon-sur-Saône",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe13",
@@ -180,7 +192,8 @@
         "start": "Dole",
         "finish": "Belfort",
         "type": "Hilly stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe14",
@@ -194,7 +207,8 @@
         "start": "Mulhouse",
         "finish": "Le Markstein Fellering",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe15",
@@ -208,7 +222,8 @@
         "start": "Champagnole",
         "finish": "Plateau de Solaison",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe16",
@@ -222,7 +237,8 @@
         "start": "Évian-les-Bains",
         "finish": "Thonon-les-Bains",
         "type": "Individual time trial"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe17",
@@ -236,7 +252,8 @@
         "start": "Chambéry",
         "finish": "Voiron",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe18",
@@ -250,7 +267,8 @@
         "start": "Voiron",
         "finish": "Orcières-Merlette",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe19",
@@ -264,7 +282,8 @@
         "start": "Gap",
         "finish": "Alpe d'Huez",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe20",
@@ -278,7 +297,8 @@
         "start": "Le Bourg-d'Oisans",
         "finish": "Alpe d'Huez",
         "type": "Mountain stage"
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "cycling-tour-de-france-2026-etappe21",
@@ -292,7 +312,8 @@
         "start": "Thoiry",
         "finish": "Paris (Champs-Élysées)",
         "type": "Flat stage"
-      }
+      },
+      "gender": "men"
     }
   ],
   "lastChecked": "2026-07-25T09:51:16.763566+00:00"

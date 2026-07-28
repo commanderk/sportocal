@@ -137,12 +137,22 @@ def format_football_title(
     return title
 
 
+# Distinguishes men's/women's races in both the ICS title and the web list
+# (see app.js's CYCLING_GENDER_EMOJI) -- several men's/women's one-day
+# classics share the exact same competition name (e.g. "Ronde Van Brugge"),
+# so the emoji is the only visual gender cue, not just decoration. Falls
+# back to the plain bicycle for any event missing a gender (older snapshots
+# from before this field existed, until they're next refreshed).
+CYCLING_GENDER_EMOJI = {"men": "🚴‍♂️", "women": "🚴‍♀️"}
+
+
 def format_cycling_title(event: dict) -> str:
+    emoji = CYCLING_GENDER_EMOJI.get(event.get("gender"), "🚴")
     if event.get("round"):
         route = event.get("route") or {}
-        return f"🚴 {event['competition']} – {event['round']}: {route.get('start', '')} → {route.get('finish', '')}"
+        return f"{emoji} {event['competition']} – {event['round']}: {route.get('start', '')} → {route.get('finish', '')}"
     year = event["start"][:4]
-    return f"🚴 {event['competition']} {year}"
+    return f"{emoji} {event['competition']} {year}"
 
 
 def format_event_title(
