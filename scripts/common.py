@@ -49,6 +49,16 @@ def load_config() -> dict:
         return json.load(f)
 
 
+def race_group_key(tier: str, gender: str) -> str:
+    """Stable, URL-safe key identifying a cycling race's tier+gender group --
+    the same derivation build_site_data.py's races.json groups and app.js's
+    picker both use client-side, so a group selected in the UI resolves back
+    to exactly the right set of config.json races at ICS request time (see
+    api/calendar_ics.py). No new config.json field: tier/gender already
+    exist per race, this just names their combination."""
+    return f"{tier}-{gender}"
+
+
 def load_clubs() -> list[dict]:
     with CLUBS_PATH.open(encoding="utf-8") as f:
         return json.load(f)

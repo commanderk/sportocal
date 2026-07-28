@@ -3,9 +3,20 @@
 GET /api/calendar.ics?t=<selection>
 
 `t` is a comma-separated list of tokens, each either:
-  - "<clubId>:men"   -- e.g. "fc-bayern-muenchen:men"
-  - "<clubId>:women" -- club ids come from config/clubs.json
-  - "race:<raceId>"  -- e.g. "race:tour-de-france", race ids from config.json's cycling.races
+  - "<clubId>:men"        -- e.g. "fc-bayern-muenchen:men"
+  - "<clubId>:women"      -- club ids come from config/clubs.json
+  - "raceGroup:<key>"     -- e.g. "raceGroup:uci-worldtour-men", where <key>
+                             is "{tier}-{gender}" (see common.race_group_key()
+                             and build_site_data.py's races.json export).
+
+Cycling selection is at the tier×gender group level, not per-race (see
+README/commit history): resolving "raceGroup:<key>" against config.json's
+cycling.races happens fresh on every request, not once at subscribe time --
+so a race added to a group later shows up in already-subscribed calendars
+without the user having to resubscribe. This replaced an earlier
+per-race "race:<raceId>" token; that token is not accepted anymore (no
+public subscribers existed yet at the time of the switch, so no
+compatibility shim was needed -- see git history if that ever changes).
 
 Stateless by design (see README): the selection lives entirely in the URL, no
 server-side storage, no cookies. Reads data/*.json + config/clubs.json from
@@ -33,28 +44,36 @@ from common import (  # noqa: E402
     load_all_events,
     load_clubs,
     load_config,
+    race_group_key,
 )
 
 GENDER_SUFFIXES = (":men", ":women")
+RACE_GROUP_PREFIX = "raceGroup:"
 
 
 def parse_selection(raw: str) -> tuple[set[tuple[str, str]], set[str]]:
-    """Returns (set of (clubId, gender) pairs, set of race ids). Unparseable
-    or unknown tokens are silently dropped -- a typo'd/renamed id should just
-    mean "this one piece is missing", never a broken calendar."""
+    """Returns (set of (clubId, gender) pairs, set of race-group keys).
+    Unparseable or unknown tokens are silently dropped -- a typo'd/renamed id
+    should just mean "this one piece is missing", never a broken calendar."""
     club_tokens: set[tuple[str, str]] = set()
-    race_ids: set[str] = set()
+    race_group_keys: set[str] = set()
     for token in (t.strip() for t in raw.split(",")):
         if not token:
             continue
-        if token.startswith("race:"):
-            race_ids.add(token[len("race:") :])
+        if token.startswith(RACE_GROUP_PREFIX):
+            race_group_keys.add(token[len(RACE_GROUP_PREFIX) :])
             continue
         for suffix in GENDER_SUFFIXES:
             if token.endswith(suffix):
                 club_tokens.add((token[: -len(suffix)], suffix[1:]))
                 break
-    return club_tokens, race_ids
+    return club_tokens, race_group_keys
+
+
+def resolve_race_ids(race_group_keys: set[str], races: list[dict]) -> set[str]:
+    """Race-group keys -> the *current* set of matching race ids in
+    config.json, resolved fresh on every call (see module docstring)."""
+    return {race["id"] for race in races if race_group_key(race["tier"], race["gender"]) in race_group_keys}
 
 
 def selection_summary(club_tokens: set[tuple[str, str]], race_ids: set[str], clubs_by_id: dict, race_names: dict) -> str:
@@ -80,10 +99,12 @@ def filter_events(events: list[dict], club_tokens: set[tuple[str, str]], race_id
 
 
 def build_response_body(raw_selection: str) -> bytes:
-    club_tokens, race_ids = parse_selection(raw_selection)
+    club_tokens, race_group_keys = parse_selection(raw_selection)
     clubs_by_id = {c["id"]: c for c in load_clubs()}
     config = load_config()
-    race_names = {r["id"]: r["name"] for r in config["cycling"]["races"]}
+    races = config["cycling"]["races"]
+    race_ids = resolve_race_ids(race_group_keys, races)
+    race_names = {r["id"]: r["name"] for r in races}
 
     events = filter_events(load_all_events(), club_tokens, race_ids, race_names)
     selected_club_ids = {cid for cid, _ in club_tokens}

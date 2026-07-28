@@ -17,6 +17,11 @@ const LEAGUE_COLORS = {
   "rlsw-kickers": "#e8720c",
 };
 
+// Currently unreferenced: the cycling picker moved to group-level selection
+// (see renderCyclingCombo()), so there are no more per-race rows/chips to
+// color. Kept rather than deleted -- these are real logo-derived hex values,
+// not estimates, and a future per-race UI (e.g. a color accent on individual
+// event rows) would otherwise have to re-source them from scratch.
 const RACE_COLORS = {
   "tour-de-france": "#e8b400",
   "giro-d-italia": "#d81b8f",
@@ -61,6 +66,30 @@ const RACE_COLORS = {
   "classic-lorient": "#1B1B3A",
 };
 
+// Visual accent per cycling tier×gender group (picker checkbox + chip) --
+// same role LEAGUE_COLORS plays for football's group-select-all rows.
+// Deliberately not derived from RACE_COLORS: a group mixes many races with
+// different colors, so it needs its own single accent. A group key with no
+// entry here (e.g. a future "uci-proseries-women") falls back to #141414,
+// same fallback RACE_COLORS already uses for unlisted races.
+const RACE_GROUP_COLORS = {
+  "grand-tour-men": "#e8b400",
+  "grand-tour-women": "#d81b8f",
+  "uci-worldtour-men": "#2f6fed",
+  "uci-worldtour-women": "#a8325e",
+  "uci-proseries-men": "#3d8f7a",
+  "regional-men": "#c9622a",
+};
+
+// Stable, URL-safe key identifying a race's tier×gender group -- same
+// derivation as scripts/common.py's race_group_key(), used server-side by
+// api/calendar_ics.py to resolve a "raceGroup:<key>" token back to the
+// current set of config.json races on every request. Groups already carry
+// tier/gender (see build_site_data.py's build_race_groups_payload()), so no
+// new races.json field is needed for this.
+function raceGroupKey(group) {
+  return `${group.tier}-${group.gender}`;
+}
 
 const dateFormatter = new Intl.DateTimeFormat("de-DE", {
   day: "2-digit",
@@ -445,11 +474,11 @@ const state = {
   clubsById: new Map(),
   leagues: [],
   raceGroups: [], // server-grouped (tier, gender-suffixed where needed) races, see build_site_data.py
-  races: [], // flattened from raceGroups, for id/name lookups
+  races: [], // flattened from raceGroups, each augmented with tier/gender/groupKey -- for id/name lookups
   viewMode: "competition",
   competitionFilter: FILTER_ALL,
   selectedClubs: new Set(), // tokens "<clubId>:<gender>"
-  selectedRaces: new Set(), // race ids
+  selectedRaceGroups: new Set(), // tier×gender group keys, see raceGroupKey() -- cycling selection is group-level, not per-race
   footballOpen: false,
   cyclingOpen: false,
   search: "", // football combobox search (kept separate from cyclingSearch so the two panels don't filter each other)
@@ -462,7 +491,7 @@ const state = {
 // --- selection-aware event list ----------------------------------------
 
 function hasSelection() {
-  return state.selectedClubs.size > 0 || state.selectedRaces.size > 0;
+  return state.selectedClubs.size > 0 || state.selectedRaceGroups.size > 0;
 }
 
 // Without a selection the list is an unfiltered preview of everything, same
@@ -478,7 +507,7 @@ function visibleEvents() {
     }
     if (e.sport === "cycling") {
       const race = state.races.find((r) => r.name === e.competition);
-      return race && state.selectedRaces.has(race.id);
+      return race && state.selectedRaceGroups.has(race.groupKey);
     }
     return false;
   });
@@ -608,107 +637,91 @@ function renderFootballChips() {
 
 // --- selection UI: cycling combobox -------------------------------------
 
-function raceMatchesSearch(race) {
+function raceGroupMatchesSearch(group) {
   if (!state.cyclingSearch.trim()) return true;
-  return race.name.toLowerCase().includes(state.cyclingSearch.trim().toLowerCase());
+  return group.label.toLowerCase().includes(state.cyclingSearch.trim().toLowerCase());
 }
 
-// Groups (tier, gender-suffixed where a tier has both genders) come
-// pre-computed from races.json (build_race_groups_payload() in
-// build_site_data.py) -- same shape as football's leagues.json entries,
-// which are also already-formed groups by the time app.js sees them.
+// Cycling is selected at the tier×gender group level, not per-race (see
+// commit history): with 56+ races and growing, a 56-chip row was unusable,
+// and group-level selection makes a subscribed calendar automatically pick
+// up new races added to an already-selected group later (resolved fresh on
+// every ICS request server-side, see api/calendar_ics.py). So each group
+// gets exactly one checkbox here -- no nested per-race rows, no
+// all-selected/indeterminate tri-state, groups are atomic (all or nothing).
+// Groups themselves (tier, gender-suffixed where a tier has both genders)
+// come pre-computed from races.json (build_race_groups_payload() in
+// build_site_data.py).
 function renderCyclingCombo() {
   const body = document.getElementById("cycling-combo-body");
   body.innerHTML = "";
 
   for (const group of state.raceGroups) {
-    const races = group.races.filter(raceMatchesSearch);
-    if (races.length === 0) continue;
+    if (!raceGroupMatchesSearch(group)) continue;
 
-    const tokens = races.map((r) => r.id);
-    const selectedCount = tokens.filter((t) => state.selectedRaces.has(t)).length;
-    const allSelected = selectedCount === tokens.length;
-    const someSelected = selectedCount > 0 && !allSelected;
+    const key = raceGroupKey(group);
+    const color = RACE_GROUP_COLORS[key] || "#141414";
 
     const head = document.createElement("div");
-    head.className = "league-group-head sticky-group-header";
+    head.className = "league-group-head";
     const label = document.createElement("label");
     label.className = "league-group-label";
-    const allCheckbox = document.createElement("input");
-    allCheckbox.type = "checkbox";
-    allCheckbox.checked = allSelected;
-    allCheckbox.indeterminate = someSelected;
-    allCheckbox.addEventListener("change", () => {
-      if (allSelected) tokens.forEach((t) => state.selectedRaces.delete(t));
-      else tokens.forEach((t) => state.selectedRaces.add(t));
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = state.selectedRaceGroups.has(key);
+    checkbox.style.accentColor = color;
+    checkbox.addEventListener("change", () => {
+      if (state.selectedRaceGroups.has(key)) state.selectedRaceGroups.delete(key);
+      else state.selectedRaceGroups.add(key);
       refreshSelectionUI();
     });
+    const swatch = document.createElement("span");
+    swatch.className = "league-swatch";
+    swatch.style.background = color;
     const name = document.createElement("span");
     name.className = "league-group-name";
     name.textContent = group.label;
     const count = document.createElement("span");
     count.className = "league-group-count";
-    count.textContent = `(${tokens.length})`;
-    label.append(allCheckbox, name, count);
+    count.textContent = `(${group.races.length} Rennen)`;
+    label.append(checkbox, swatch, name, count);
     head.appendChild(label);
     body.appendChild(head);
-
-    for (const race of races) {
-      const color = RACE_COLORS[race.id] || "#141414";
-      const row = document.createElement("label");
-      row.className = "race-row";
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.checked = state.selectedRaces.has(race.id);
-      checkbox.style.accentColor = color;
-      checkbox.addEventListener("change", () => {
-        if (state.selectedRaces.has(race.id)) state.selectedRaces.delete(race.id);
-        else state.selectedRaces.add(race.id);
-        refreshSelectionUI();
-      });
-      const swatch = document.createElement("span");
-      swatch.className = "race-swatch";
-      swatch.style.background = color;
-      const name = document.createElement("span");
-      name.textContent = race.name;
-      row.append(checkbox, swatch, name);
-      body.appendChild(row);
-    }
   }
 }
 
 function renderCyclingChips() {
   const container = document.getElementById("cycling-chips");
   container.innerHTML = "";
-  for (const raceId of state.selectedRaces) {
-    const race = state.races.find((r) => r.id === raceId);
-    if (!race) continue;
-    const color = RACE_COLORS[raceId] || "#141414";
+  for (const key of state.selectedRaceGroups) {
+    const group = state.raceGroups.find((g) => raceGroupKey(g) === key);
+    if (!group) continue;
+    const color = RACE_GROUP_COLORS[key] || "#141414";
     const chip = document.createElement("div");
     chip.className = "chip";
     chip.style.background = color;
     chip.style.color = contrastText(color);
     const name = document.createElement("span");
-    name.textContent = race.name;
+    name.textContent = group.label;
     const remove = document.createElement("button");
     remove.type = "button";
     remove.textContent = "✕";
     remove.addEventListener("click", () => {
-      state.selectedRaces.delete(raceId);
+      state.selectedRaceGroups.delete(key);
       refreshSelectionUI();
     });
     chip.append(name, remove);
     container.appendChild(chip);
   }
-  document.getElementById("cycling-empty-hint").hidden = state.selectedRaces.size > 0;
+  document.getElementById("cycling-empty-hint").hidden = state.selectedRaceGroups.size > 0;
 }
 
 // --- subscribe bar --------------------------------------------------------
 
 function buildSelectionToken() {
   const clubTokens = [...state.selectedClubs];
-  const raceTokens = [...state.selectedRaces].map((id) => `race:${id}`);
-  return [...clubTokens, ...raceTokens].join(",");
+  const raceGroupTokens = [...state.selectedRaceGroups].map((key) => `raceGroup:${key}`);
+  return [...clubTokens, ...raceGroupTokens].join(",");
 }
 
 function selectionSummaryText() {
@@ -716,11 +729,11 @@ function selectionSummaryText() {
     .map((t) => state.clubsById.get(t.split(":")[0]))
     .filter(Boolean)
     .map((c) => c.name);
-  const raceNames = [...state.selectedRaces]
-    .map((id) => state.races.find((r) => r.id === id))
+  const raceGroupNames = [...state.selectedRaceGroups]
+    .map((key) => state.raceGroups.find((g) => raceGroupKey(g) === key))
     .filter(Boolean)
-    .map((r) => r.name);
-  return [...clubNames, ...raceNames].join(", ");
+    .map((g) => g.label);
+  return [...clubNames, ...raceGroupNames].join(", ");
 }
 
 // --- subscribe app tabs (Apple/Outlook/Google/Andere) --------------------
@@ -977,7 +990,7 @@ function saveSelectionToStorage() {
   try {
     localStorage.setItem(
       SELECTION_STORAGE_KEY,
-      JSON.stringify({ clubs: [...state.selectedClubs], races: [...state.selectedRaces] })
+      JSON.stringify({ clubs: [...state.selectedClubs], raceGroups: [...state.selectedRaceGroups] })
     );
   } catch (err) {
     // Private browsing / quota exceeded -- selection just won't survive a
@@ -991,7 +1004,10 @@ function loadSelectionFromStorage() {
     if (!raw) return;
     const parsed = JSON.parse(raw);
     state.selectedClubs = new Set(parsed.clubs || []);
-    state.selectedRaces = new Set(parsed.races || []);
+    // Older key ("races", pre-group-selection) is intentionally not read --
+    // per-race ids wouldn't be valid group keys anyway, so this just starts
+    // cycling selection empty for anyone with that stale entry.
+    state.selectedRaceGroups = new Set(parsed.raceGroups || []);
   } catch (err) {
     // Malformed/stale entry -- ignore it and start with an empty selection.
   }
@@ -1049,9 +1065,9 @@ function updateComboTriggerLabels() {
     : "Vereine suchen und auswählen…";
 
   const cyclingLabel = document.getElementById("cycling-combo-trigger-label");
-  cyclingLabel.textContent = state.selectedRaces.size > 0
-    ? `${state.selectedRaces.size} Rennen ausgewählt`
-    : "Rennen auswählen…";
+  cyclingLabel.textContent = state.selectedRaceGroups.size > 0
+    ? `${state.selectedRaceGroups.size} Serie${state.selectedRaceGroups.size === 1 ? "" : "n"} ausgewählt`
+    : "Rennserien auswählen…";
 }
 
 function setupSelectorUI() {
@@ -1075,7 +1091,7 @@ function setupSelectorUI() {
   const footballSublabel = document.getElementById("football-sublabel");
   footballSublabel.textContent = `${state.clubs.length} Vereine aus ${state.leagues.length} Ligen`;
   const cyclingSublabel = document.getElementById("cycling-sublabel");
-  cyclingSublabel.textContent = `${state.races.length} Rennen`;
+  cyclingSublabel.textContent = `${state.raceGroups.length} Serien · ${state.races.length} Rennen`;
 
   refreshSelectionUI();
 }
@@ -1135,9 +1151,20 @@ async function main() {
     state.clubsById = new Map(clubs.map((c) => [c.id, c]));
     state.leagues = leagues;
     state.raceGroups = raceGroups;
-    state.races = raceGroups.flatMap((group) => group.races);
+    // Each race is augmented with its group's tier/gender/groupKey client-side
+    // (races.json itself stays unchanged, see raceGroupKey()) so visibleEvents()
+    // and the chips can go straight from a race to its group without a second lookup.
+    state.races = raceGroups.flatMap((group) =>
+      group.races.map((race) => ({ ...race, tier: group.tier, gender: group.gender, groupKey: raceGroupKey(group) }))
+    );
 
     loadSelectionFromStorage();
+    // Drop any group keys from a stale localStorage entry that no longer
+    // match a real group (e.g. races.json changed since it was saved) --
+    // otherwise hasSelection() would report a selection that resolves to
+    // nothing, silently showing an empty calendar.
+    const validGroupKeys = new Set(state.raceGroups.map(raceGroupKey));
+    state.selectedRaceGroups = new Set([...state.selectedRaceGroups].filter((key) => validGroupKeys.has(key)));
     setupSelectorUI();
     renderCompetitionFilters();
     setupViewToggle();
