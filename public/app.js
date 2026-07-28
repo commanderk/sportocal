@@ -149,18 +149,24 @@ function computeDuplicateOneDayCompetitions(events) {
 }
 
 // The web view's row-title is a stripped-down label, not the full calendar
-// title: no emoji, no competition name, no "Spieltag"/"Etappe" round marker
-// -- those are already shown as the section heading and the row-index. The
-// full calendar title (with club color/gender emoji) is generated at ICS
-// build time from these same raw fields, not stored on the event.
+// title: no emoji, no "Spieltag" round marker for football (already shown as
+// the row-index there). Cycling does need its round spelled out here though
+// -- unlike football's competition-named section headers ("Bundesliga"),
+// "Nach Datum" has no per-row grouping to fall back on, and the section
+// header in "Nach Wettbewerb" is the competition name, not the round. Route
+// (start → finish) is detail for the venue column (see renderEventRow()),
+// never the title -- a bare "Neuss → Neuss" or "Lausanne → Genf" doesn't say
+// which race it even is. The full calendar title (with club color/gender
+// emoji) is generated separately at ICS build time from these same raw
+// fields, not stored on the event.
 function eventDisplayTitle(event) {
   if (event.sport === "football") {
     return [event.homeTeamName, event.awayTeamName].filter(Boolean).join(" – ");
   }
-  if (event.route) {
-    return `${event.route.start} → ${event.route.finish}`;
+  if (event.round) {
+    return `${event.competition}, ${event.round}`;
   }
-  if (!event.round && duplicateOneDayCompetitions.has(event.competition)) {
+  if (duplicateOneDayCompetitions.has(event.competition)) {
     return `${event.competition} ${event.start.slice(0, 4)}`;
   }
   return event.competition;
@@ -217,9 +223,14 @@ function renderEventRow(event) {
     ? timeFormatter.format(startDate)
     : "tbd";
   const titleText = eventDisplayTitle(event);
-  // Cycling rows already show the route (start → finish) as the title, so
-  // repeating it in the venue column would just duplicate the same text.
-  const venueText = event.route ? "" : event.location || "";
+  // Route (start → finish) is the venue-column detail for cycling rows now
+  // that the title is always the race name (+ round) -- see eventDisplayTitle().
+  // Falls back to plain `location` when start/finish aren't both known yet
+  // (e.g. a manually-entered race awaiting confirmed dates/venues, route
+  // still present but start/finish left blank -- see data/manual/*.csv).
+  const venueText = event.route && event.route.start && event.route.finish
+    ? `${event.route.start} → ${event.route.finish}`
+    : event.location || "";
 
   const desktop = document.createElement("div");
   desktop.className = "row-desktop";
