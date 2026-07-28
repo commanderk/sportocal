@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-eschborn-frankfurt-2026",
+      "sport": "cycling",
+      "competition": "Eschborn-Frankfurt",
+      "round": null,
+      "start": "2026-05-01",
+      "timeConfirmed": false,
+      "location": "Eschborn → Frankfurt",
+      "route": {
+        "start": "Eschborn",
+        "finish": "Frankfurt",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

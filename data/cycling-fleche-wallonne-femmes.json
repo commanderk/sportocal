@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-fleche-wallonne-femmes-2026",
+      "sport": "cycling",
+      "competition": "La Flèche Wallonne Femmes",
+      "round": null,
+      "start": "2026-04-22",
+      "timeConfirmed": false,
+      "location": "Huy → Huy",
+      "route": {
+        "start": "Huy",
+        "finish": "Huy",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

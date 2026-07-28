@@ -1,0 +1,103 @@
+{
+  "events": [
+    {
+      "id": "cycling-vuelta-espana-femenina-2026-etappe1",
+      "sport": "cycling",
+      "competition": "Vuelta España Femenina",
+      "round": "Etappe 1",
+      "start": "2026-05-03",
+      "timeConfirmed": false,
+      "location": "Marín → Salvaterra de Miño",
+      "route": {
+        "start": "Marín",
+        "finish": "Salvaterra de Miño",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-vuelta-espana-femenina-2026-etappe2",
+      "sport": "cycling",
+      "competition": "Vuelta España Femenina",
+      "round": "Etappe 2",
+      "start": "2026-05-04",
+      "timeConfirmed": false,
+      "location": "Lobios → San Vibrao das Viñas",
+      "route": {
+        "start": "Lobios",
+        "finish": "San Vibrao das Viñas",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-vuelta-espana-femenina-2026-etappe3",
+      "sport": "cycling",
+      "competition": "Vuelta España Femenina",
+      "round": "Etappe 3",
+      "start": "2026-05-05",
+      "timeConfirmed": false,
+      "location": "Padrón → A Coruña",
+      "route": {
+        "start": "Padrón",
+        "finish": "A Coruña",
+        "type": "Flat"
+      }
+    },
+    {
+      "id": "cycling-vuelta-espana-femenina-2026-etappe4",
+      "sport": "cycling",
+      "competition": "Vuelta España Femenina",
+      "round": "Etappe 4",
+      "start": "2026-05-06",
+      "timeConfirmed": false,
+      "location": "Monforte de Lemos → Antas de Ulla",
+      "route": {
+        "start": "Monforte de Lemos",
+        "finish": "Antas de Ulla",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-vuelta-espana-femenina-2026-etappe5",
+      "sport": "cycling",
+      "competition": "Vuelta España Femenina",
+      "round": "Etappe 5",
+      "start": "2026-05-07",
+      "timeConfirmed": false,
+      "location": "Léon → Astorga",
+      "route": {
+        "start": "Léon",
+        "finish": "Astorga",
+        "type": "Flat"
+      }
+    },
+    {
+      "id": "cycling-vuelta-espana-femenina-2026-etappe6",
+      "sport": "cycling",
+      "competition": "Vuelta España Femenina",
+      "round": "Etappe 6",
+      "start": "2026-05-08",
+      "timeConfirmed": false,
+      "location": "Gijón/Xixón → Les Praeres, Nava",
+      "route": {
+        "start": "Gijón/Xixón",
+        "finish": "Les Praeres, Nava",
+        "type": "Mountain"
+      }
+    },
+    {
+      "id": "cycling-vuelta-espana-femenina-2026-etappe7",
+      "sport": "cycling",
+      "competition": "Vuelta España Femenina",
+      "round": "Etappe 7",
+      "start": "2026-05-09",
+      "timeConfirmed": false,
+      "location": "La Pola LLaviana/Pola de Laviana → L'Angliru",
+      "route": {
+        "start": "La Pola LLaviana/Pola de Laviana",
+        "finish": "L'Angliru",
+        "type": "Mountain"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

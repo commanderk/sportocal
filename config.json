@@ -193,7 +193,7 @@
         "gender": "men",
         "tier": "uci-worldtour",
         "country": "DE",
-        "wikipediaTitleTemplate": "{year} Hamburg Cyclassics"
+        "source": "manual"
       },
       {
         "id": "muensterland-giro",
@@ -202,7 +202,7 @@
         "gender": "men",
         "tier": "uci-proseries",
         "country": "DE",
-        "wikipediaTitleTemplate": "{year} Münsterland Giro"
+        "source": "manual"
       },
       {
         "id": "deutschland-tour",
@@ -211,7 +211,7 @@
         "gender": "men",
         "tier": "uci-proseries",
         "country": "DE",
-        "wikipediaTitleTemplate": "{year} Deutschland Tour"
+        "source": "manual"
       },
       {
         "id": "paris-nice",
@@ -348,7 +348,40 @@
         "gender": "women",
         "tier": "uci-worldtour",
         "source": "manual"
-      }
+      },
+      { "id": "omloop-het-nieuwsblad-women", "name": "Omloop Het Nieuwsblad Women", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "strade-bianche-donne", "name": "Strade Bianche Donne", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "trofeo-alfredo-binda", "name": "Trofeo Alfredo Binda", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "milano-sanremo-women", "name": "Milano–Sanremo Women", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "ronde-van-brugge-women", "name": "Ronde Van Brugge", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "in-flanders-fields-women", "name": "In Flanders Fields", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "dwars-door-vlaanderen-women", "name": "Dwars door Vlaanderen", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "ronde-van-vlaanderen-women", "name": "Ronde van Vlaanderen", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "paris-roubaix-femmes", "name": "Paris-Roubaix Femmes", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "amstel-gold-race-ladies", "name": "Amstel Gold Race Ladies Edition", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "fleche-wallonne-femmes", "name": "La Flèche Wallonne Femmes", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "liege-bastogne-liege-femmes", "name": "Liège–Bastogne–Liège Femmes", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "copenhagen-sprint-women", "name": "Copenhagen Sprint", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "classic-lorient", "name": "Classic Lorient Agglomération", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "omloop-het-nieuwsblad", "name": "Omloop Het Nieuwsblad", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "strade-bianche", "name": "Strade Bianche", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "milano-sanremo", "name": "Milano-Sanremo", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "ronde-van-brugge", "name": "Ronde Van Brugge", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "e3-saxo-classic", "name": "E3 Saxo Classic", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "in-flanders-fields", "name": "In Flanders Fields", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "dwars-door-vlaanderen", "name": "Dwars door Vlaanderen", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "ronde-van-vlaanderen", "name": "Ronde van Vlaanderen", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "paris-roubaix", "name": "Paris-Roubaix", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "amstel-gold-race", "name": "Amstel Gold Race", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "fleche-wallonne", "name": "La Flèche Wallonne", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "liege-bastogne-liege", "name": "Liège–Bastogne–Liège", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "eschborn-frankfurt", "name": "Eschborn-Frankfurt", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "copenhagen-sprint", "name": "Copenhagen Sprint", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "dssk", "name": "DSSK", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "bretagne-classic", "name": "Bretagne Classic", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "il-lombardia", "name": "Il Lombardia", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "tour-de-neuss", "name": "Tour de Neuss", "type": "one-day", "gender": "men", "tier": "regional", "country": "DE", "source": "manual" },
+      { "id": "schmitter-nacht-von-huerth", "name": "Schmitter-Nacht von Hürth", "type": "one-day", "gender": "men", "tier": "regional", "country": "DE", "source": "manual" }
     ]
   }
 }

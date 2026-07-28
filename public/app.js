@@ -24,6 +24,41 @@ const RACE_COLORS = {
   "cyclassics-hamburg": "#0f5fd9",
   "muensterland-giro": "#0a7a6b",
   "deutschland-tour": "#141414",
+
+  // 17 Etappenrennen
+  "paris-nice": "#1878c4",
+  "tirreno-adriatico": "#003D82",
+  "volta-ciclista-a-catalunya": "#e2231a",
+  "itzulia-basque-country": "#ED6A21",
+  "tour-de-romandie": "#D2232A",
+  "tour-auvergne-rhone-alpes": "#4a90d9",
+  "tour-de-suisse": "#D52B1E",
+  "tour-de-pologne": "#DC1428",
+  "renewi-tour": "#009688",
+  "tour-de-france-femmes": "#f2e100",
+  "giro-d-italia-women": "#E61E73",
+  "vuelta-espana-femenina": "#d0201a",
+  "itzulia-women": "#ED6A21",
+  "vuelta-a-burgos-feminas": "#C8102E",
+  "tour-de-suisse-women": "#D52B1E",
+  "tour-of-britain-women": "#00205B",
+  "tour-de-romandie-feminin": "#4B3F72",
+
+  // 14 Eintagesklassiker (Frauen) -- IDs matchen config.json
+  "omloop-het-nieuwsblad-women": "#F26522",
+  "strade-bianche-donne": "#8C6D46",
+  "trofeo-alfredo-binda": "#0057A0",
+  "milano-sanremo-women": "#C8102E",
+  "ronde-van-brugge-women": "#1A1A1A",
+  "in-flanders-fields-women": "#C8102E",
+  "dwars-door-vlaanderen-women": "#FFD700",
+  "ronde-van-vlaanderen-women": "#FFD700",
+  "paris-roubaix-femmes": "#1A1A1A",
+  "amstel-gold-race-ladies": "#E2001A",
+  "fleche-wallonne-femmes": "#FFD90F",
+  "liege-bastogne-liege-femmes": "#6B2C4E",
+  "copenhagen-sprint-women": "#C8102E",
+  "classic-lorient": "#1B1B3A",
 };
 
 

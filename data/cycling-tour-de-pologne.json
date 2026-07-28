@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-tour-de-pologne-2026-etappe2",
+      "sport": "cycling",
+      "competition": "Tour de Pologne",
+      "round": "Etappe 2",
+      "start": "2026-08-04",
+      "timeConfirmed": false,
+      "location": "Międzyzdroje → Szczecin",
+      "route": {
+        "start": "Międzyzdroje",
+        "finish": "Szczecin",
+        "type": "Individual time trial"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

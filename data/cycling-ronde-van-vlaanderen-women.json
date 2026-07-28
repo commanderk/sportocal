@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-ronde-van-vlaanderen-women-2026",
+      "sport": "cycling",
+      "competition": "Ronde van Vlaanderen",
+      "round": null,
+      "start": "2026-04-05",
+      "timeConfirmed": false,
+      "location": "Oudenaarde → Oudenaarde",
+      "route": {
+        "start": "Oudenaarde",
+        "finish": "Oudenaarde",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-trofeo-alfredo-binda-2026",
+      "sport": "cycling",
+      "competition": "Trofeo Alfredo Binda",
+      "round": null,
+      "start": "2026-03-15",
+      "timeConfirmed": false,
+      "location": "Cocquio-Trevisago → Cittiglio",
+      "route": {
+        "start": "Cocquio-Trevisago",
+        "finish": "Cittiglio",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-dssk-2026",
+      "sport": "cycling",
+      "competition": "DSSK",
+      "round": null,
+      "start": "2026-08-01",
+      "timeConfirmed": false,
+      "location": "San Sebastián → San Sebastián",
+      "route": {
+        "start": "San Sebastián",
+        "finish": "San Sebastián",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

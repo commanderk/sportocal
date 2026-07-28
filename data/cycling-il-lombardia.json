@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-il-lombardia-2026",
+      "sport": "cycling",
+      "competition": "Il Lombardia",
+      "round": null,
+      "start": "2026-10-10",
+      "timeConfirmed": false,
+      "location": "Como → Bergamo",
+      "route": {
+        "start": "Como",
+        "finish": "Bergamo",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

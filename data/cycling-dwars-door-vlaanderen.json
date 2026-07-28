@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-dwars-door-vlaanderen-2026",
+      "sport": "cycling",
+      "competition": "Dwars door Vlaanderen",
+      "round": null,
+      "start": "2026-04-01",
+      "timeConfirmed": false,
+      "location": "Roeselare → Waregem",
+      "route": {
+        "start": "Roeselare",
+        "finish": "Waregem",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

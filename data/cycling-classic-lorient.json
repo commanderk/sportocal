@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-classic-lorient-2026",
+      "sport": "cycling",
+      "competition": "Classic Lorient Agglomération",
+      "round": null,
+      "start": "2026-08-29",
+      "timeConfirmed": false,
+      "location": "Plouay → Plouay",
+      "route": {
+        "start": "Plouay",
+        "finish": "Plouay",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

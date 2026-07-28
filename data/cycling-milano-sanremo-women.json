@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "cycling-milano-sanremo-women-2026",
+      "sport": "cycling",
+      "competition": "Milano–Sanremo Women",
+      "round": null,
+      "start": "2026-03-21",
+      "timeConfirmed": false,
+      "location": "Genova → Sanremo",
+      "route": {
+        "start": "Genova",
+        "finish": "Sanremo",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+}

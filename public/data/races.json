@@ -82,6 +82,74 @@
       {
         "id": "renewi-tour",
         "name": "Renewi Tour"
+      },
+      {
+        "id": "omloop-het-nieuwsblad",
+        "name": "Omloop Het Nieuwsblad"
+      },
+      {
+        "id": "strade-bianche",
+        "name": "Strade Bianche"
+      },
+      {
+        "id": "milano-sanremo",
+        "name": "Milano-Sanremo"
+      },
+      {
+        "id": "ronde-van-brugge",
+        "name": "Ronde Van Brugge"
+      },
+      {
+        "id": "e3-saxo-classic",
+        "name": "E3 Saxo Classic"
+      },
+      {
+        "id": "in-flanders-fields",
+        "name": "In Flanders Fields"
+      },
+      {
+        "id": "dwars-door-vlaanderen",
+        "name": "Dwars door Vlaanderen"
+      },
+      {
+        "id": "ronde-van-vlaanderen",
+        "name": "Ronde van Vlaanderen"
+      },
+      {
+        "id": "paris-roubaix",
+        "name": "Paris-Roubaix"
+      },
+      {
+        "id": "amstel-gold-race",
+        "name": "Amstel Gold Race"
+      },
+      {
+        "id": "fleche-wallonne",
+        "name": "La Flèche Wallonne"
+      },
+      {
+        "id": "liege-bastogne-liege",
+        "name": "Liège–Bastogne–Liège"
+      },
+      {
+        "id": "eschborn-frankfurt",
+        "name": "Eschborn-Frankfurt"
+      },
+      {
+        "id": "copenhagen-sprint",
+        "name": "Copenhagen Sprint"
+      },
+      {
+        "id": "dssk",
+        "name": "DSSK"
+      },
+      {
+        "id": "bretagne-classic",
+        "name": "Bretagne Classic"
+      },
+      {
+        "id": "il-lombardia",
+        "name": "Il Lombardia"
       }
     ]
   },
@@ -109,6 +177,62 @@
       {
         "id": "tour-de-romandie-feminin",
         "name": "Tour de Romandie Féminin"
+      },
+      {
+        "id": "omloop-het-nieuwsblad-women",
+        "name": "Omloop Het Nieuwsblad Women"
+      },
+      {
+        "id": "strade-bianche-donne",
+        "name": "Strade Bianche Donne"
+      },
+      {
+        "id": "trofeo-alfredo-binda",
+        "name": "Trofeo Alfredo Binda"
+      },
+      {
+        "id": "milano-sanremo-women",
+        "name": "Milano–Sanremo Women"
+      },
+      {
+        "id": "ronde-van-brugge-women",
+        "name": "Ronde Van Brugge"
+      },
+      {
+        "id": "in-flanders-fields-women",
+        "name": "In Flanders Fields"
+      },
+      {
+        "id": "dwars-door-vlaanderen-women",
+        "name": "Dwars door Vlaanderen"
+      },
+      {
+        "id": "ronde-van-vlaanderen-women",
+        "name": "Ronde van Vlaanderen"
+      },
+      {
+        "id": "paris-roubaix-femmes",
+        "name": "Paris-Roubaix Femmes"
+      },
+      {
+        "id": "amstel-gold-race-ladies",
+        "name": "Amstel Gold Race Ladies Edition"
+      },
+      {
+        "id": "fleche-wallonne-femmes",
+        "name": "La Flèche Wallonne Femmes"
+      },
+      {
+        "id": "liege-bastogne-liege-femmes",
+        "name": "Liège–Bastogne–Liège Femmes"
+      },
+      {
+        "id": "copenhagen-sprint-women",
+        "name": "Copenhagen Sprint"
+      },
+      {
+        "id": "classic-lorient",
+        "name": "Classic Lorient Agglomération"
       }
     ]
   },
@@ -125,6 +249,23 @@
       {
         "id": "deutschland-tour",
         "name": "Deutschland Tour",
+        "country": "DE"
+      }
+    ]
+  },
+  {
+    "tier": "regional",
+    "gender": "men",
+    "label": "Regional",
+    "races": [
+      {
+        "id": "tour-de-neuss",
+        "name": "Tour de Neuss",
+        "country": "DE"
+      },
+      {
+        "id": "schmitter-nacht-von-huerth",
+        "name": "Schmitter-Nacht von Hürth",
         "country": "DE"
       }
     ]

@@ -256,8 +256,10 @@ def build_stage_events(race: dict, year: int, stages: list[dict]) -> list[dict]:
     return events
 
 
-def build_one_day_event(race: dict, year: int, event_date: date, location: str | None) -> dict:
-    return {
+def build_one_day_event(
+    race: dict, year: int, event_date: date, location: str | None, route: dict | None = None
+) -> dict:
+    event = {
         "id": f"cycling-{race['id']}-{year}",
         "sport": "cycling",
         "competition": race["name"],
@@ -266,6 +268,9 @@ def build_one_day_event(race: dict, year: int, event_date: date, location: str |
         "timeConfirmed": False,
         "location": location,
     }
+    if route:
+        event["route"] = route
+    return event
 
 
 def fetch_race_year(api_base: str, race: dict, year: int) -> list[dict] | None:
