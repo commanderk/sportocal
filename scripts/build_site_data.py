@@ -20,7 +20,15 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 
-from common import PUBLIC_DIR, load_all_events, load_clubs, load_config, log
+from common import (
+    PUBLIC_DIR,
+    STAGE_TYPE_DISPLAY_DE,
+    load_all_events,
+    load_clubs,
+    load_config,
+    log,
+    normalize_stage_type,
+)
 
 SITE_DATA_DIR = PUBLIC_DIR / "data"
 
@@ -46,8 +54,25 @@ def write_json(path, payload) -> None:
         f.write("\n")
 
 
+def with_stage_type_display(event: dict) -> dict:
+    """Adds route.typeDisplay (German translation, see STAGE_TYPE_DISPLAY_DE
+    in common.py) alongside the untouched route.type raw value, so the web
+    view can render the German label without duplicating the translation
+    table client-side (see app.js). Only touches cycling events that
+    actually have a recognized route.type -- everything else, including
+    one-day races with no route.type at all, passes through unchanged."""
+    if event.get("sport") != "cycling":
+        return event
+    route = event.get("route")
+    stage_type = normalize_stage_type(route.get("type")) if route else None
+    if not stage_type:
+        return event
+    return {**event, "route": {**route, "typeDisplay": STAGE_TYPE_DISPLAY_DE[stage_type]}}
+
+
 def main() -> None:
     events = sorted(load_all_events(), key=lambda e: e["start"])
+    events = [with_stage_type_display(e) for e in events]
     write_json(
         SITE_DATA_DIR / "events.json",
         {"generatedAt": datetime.now(timezone.utc).isoformat(), "events": events},
