@@ -4,6 +4,7 @@
       "id": "cycling-tour-de-suisse-women-2026-etappe1",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 1",
       "start": "2026-06-17",
       "timeConfirmed": false,
@@ -12,13 +13,13 @@
         "start": "Sondrio",
         "finish": "Sondrio",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe2",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 2",
       "start": "2026-06-18",
       "timeConfirmed": false,
@@ -27,13 +28,13 @@
         "start": "Lorcano",
         "finish": "Lorcano",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe3",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 3",
       "start": "2026-06-19",
       "timeConfirmed": false,
@@ -42,13 +43,13 @@
         "start": "Bad Ragaz",
         "finish": "Bad Ragaz",
         "type": "Flat"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe4",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 4",
       "start": "2026-06-20",
       "timeConfirmed": false,
@@ -57,13 +58,13 @@
         "start": "Aarburg",
         "finish": "Aarburg",
         "type": "Individual time trial"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe5",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 5",
       "start": "2026-06-21",
       "timeConfirmed": false,
@@ -72,9 +73,8 @@
         "start": "Villars-sur-Ollon",
         "finish": "Villars-sur-Ollon",
         "type": "Mountain"
-      },
-      "gender": "women"
+      }
     }
   ],
-  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+  "lastChecked": "2026-08-02T18:02:01.993419+00:00"
 }

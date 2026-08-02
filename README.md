@@ -1,5 +1,7 @@
 # sportocal
 
+Live unter **[sportocal.de](https://sportocal.de)**.
+
 Ein Sport-Kalender (Fußball + Radsport) mit personalisierbarem `.ics`-Abo und einer kleinen Website – gehostet auf Vercel (Hobby-Plan): eine statische Seite unter `public/` und eine Python-Serverless-Function (`api/calendar_ics.py`) für den personalisierten Kalenderlink, aus demselben Repo und Deploy. Die Datenaktualisierung läuft weiterhin wöchentlich im Hintergrund über GitHub Actions (`scripts/fetch_*.py`); jeder daraus entstehende Commit löst automatisch ein Vercel-Redeploy aus, wodurch die Function wieder aktuelle Daten aus dem Deployment-Bundle liest. Kein Login, kein Cookie, kein Server im klassischen Sinn, kein API-Key.
 
 Das Frontend (`public/index.html`/`app.js`, Basis: ein Claude-Design-Entwurf) lässt Nutzer Fußballvereine (gruppiert nach Liga) und Radsport-Rennen per Multi-Select auswählen; ausgewählte Elemente erscheinen als farbige, entfernbare Chips in der jeweiligen Vereinsfarbe. Ohne Auswahl zeigt die Seite eine ungefilterte Vorschau aller Termine; sobald mindestens ein Verein oder Rennen ausgewählt ist, schaltet sich die Abo-Leiste frei: ein `webcal://`-Button ("Kalender abonnieren") plus die reine `https://`-URL zum Kopieren (für Google Calendar, das `webcal://` nicht zuverlässig unterstützt) und eine Klartext-Bestätigungszeile ("Dein Kalender enthält: ..."). Kein Download-Button -- eine heruntergeladene Datei würde sich nie aktualisieren.
@@ -11,15 +13,16 @@ Das Frontend (`public/index.html`/`app.js`, Basis: ein Claude-Design-Entwurf) l�
 - Frauen-Bundesliga, 2. Frauen-Bundesliga
 - Regionalliga Südwest – **nur** Stuttgarter Kickers (bewusst kein voller Liga-Ausbau)
 - DFB-Pokal (Herren) für alle oben genannten Vereine, die daran teilnehmen
+- UEFA Champions League, UEFA Europa League, UEFA Conference League – jeweils nur für teilnehmende Vereine aus den obigen Ligen (dieselbe `homeTeamId`/`awayTeamId`-Auflösung wie beim DFB-Pokal, kein eigener Vereinskader nötig)
 
-**DFB-Pokal der Frauen:** aktuell (Stand 2026) führt OpenLigaDB dafür keine eigene Liga – die Quelle ist trotzdem in `config.json` konfiguriert (`dfb-pokal-women`) und wird bei jedem Lauf versucht; liefert sie weiterhin nichts, wird das nur geloggt, nicht als Fehler behandelt. Taucht die Liga dort später auf, greift sie ohne Codeänderung.
+**DFB-Pokal der Frauen** und **UEFA Conference League**: aktuell (Stand 2026) führt OpenLigaDB dafür keine eigene, befüllte Liga (`dfb-pokal-women` bzw. `uecl`) – beide Quellen sind trotzdem in `config.json` konfiguriert und werden bei jedem Lauf versucht; liefern sie weiterhin nichts, wird das nur geloggt, nicht als Fehler behandelt. Taucht eine Liga dort später auf, greift sie ohne Codeänderung.
 
 **Regionalliga Südwest – Fallback-Quelle:** OpenLigaDB hat für diese Liga aktuell (Stand 2026) keine gepflegten Daten – der letzte vorhandene Datensatz stammt aus der Saison 2016/17 (echte Lücke in der freien Datenquelle, keine fehlerhafte Fuzzy-Match; veraltete Season-Treffer werden aktiv ignoriert statt Jahre alte Spielpläne anzuzeigen). `fetch_football.py` versucht deshalb zuerst OpenLigaDB und weicht bei dieser Liga automatisch auf die offizielle Spielplan-Seite der Stuttgarter Kickers aus (`stuttgarter-kickers.de/team/spielplan`, robots.txt erlaubt Crawling, server-rendertes HTML). Sobald OpenLigaDB die Liga wieder pflegt, greift wieder die generische API-Quelle. Einschränkungen der Fallback-Quelle: sie kennt keine offizielle Spieltag-Nummer (wird chronologisch approximiert) und ist an das aktuelle Markup der Vereins-Website gebunden – ändert sich das Seiten-Layout grundlegend, greift wieder nur die Warnung statt eines Absturzes.
 
-**Radsport** (Quelle: Wikipedia-Scraper oder manuelle CSV-Pflege, siehe Begründung unten):
-- Tour de France, Giro d'Italia, Vuelta a España – alle Einzeletappen (Kernumfang)
-- ADAC Cyclassics Hamburg, Sparkassen Münsterland Giro, Deutschland Tour – bewusste Erweiterung, kein Rückbau geplant
-- 17 weitere Etappenrennen (Männer-UCI-WorldTour + Frauen-Grand-Tour-Kandidaten/UCI-WorldTour, siehe `scripts/tools/race_candidates.json`) als `"source": "manual"`-Einträge – Config-Gerüst steht, Etappendaten kommen über `data/manual/stage-race.csv` nach und nach dazu (siehe unten)
+**Radsport** (Quelle: Wikipedia-Scraper oder manuelle CSV-Pflege, siehe Begründung unten) – 56 Rennen in `config.json` (Stand 2026-08-02):
+- Tour de France, Giro d'Italia, Vuelta a España – Wikipedia-gescrapt, alle Einzeletappen (Kernumfang)
+- 18 weitere Etappenrennen als `"source": "manual"`-Einträge über `data/manual/stage-race.csv`: Deutschland Tour, Männer-UCI-WorldTour-Rundfahrten (Tour de Pologne, Tour de Suisse, Paris–Nice, Tirreno–Adriatico, …) sowie die Frauen-Grand-Tours und -UCI-WorldTour-Rundfahrten (Tour de France Femmes, Giro d'Italia Women, Vuelta España Femenina, Vuelta a Burgos Feminas, Tour de Suisse Women, …) – ursprünglich als Kandidatenliste in `scripts/tools/race_candidates.json` verifiziert (siehe unten)
+- 35 Eintagesrennen als `"source": "manual"`-Einträge über `data/manual/one-day.csv`: die klassischen Monumente (Milano-Sanremo, Ronde van Vlaanderen, Paris-Roubaix, Liège–Bastogne–Liège, Il Lombardia), weitere Männer- und die fast durchgängig gespiegelten Frauen-UCI-WorldTour-Klassiker (Omloop Het Nieuwsblad, Strade Bianche, Flandern-Rundfahrt-Woche, Amstel Gold Race, La Flèche Wallonne, …), plus ADAC Cyclassics Hamburg, Sparkassen Münsterland Giro und zwei weitere deutsche Regionalrennen (Tour de Neuss, Schmitter-Nacht von Hürth)
 
 ## Warum Wikipedia für Radsport?
 
@@ -59,7 +62,13 @@ Bevor ein neues Rennen einen scraper-basierten Eintrag in `config.json` bekommt,
 
 Klassifizierung pro Rennen und Jahr: `ok` (Artikel + Etappentabelle sauber geparst), `article-missing` (kein Jahresartikel), `unparseable` (Artikel da, Tabelle aber nicht extrahierbar, z. B. bei Wikidata-Vorlagen), `title-unclear` (der Wikipedia-Titel lässt sich nicht zuverlässig aus dem Rennnamen raten, z. B. bei wechselnden Sponsorennamen – wird ohne Netzwerk-Aufruf direkt als "manuell prüfen" markiert). Empfehlung: **Scraper**, wenn beide geprüften Jahre `ok` sind, sonst **Manuell** (CSV-Sheet) – schon ein einziger Fehlschlag würde im Betrieb einen wöchentlichen `warn()`-Fall erzeugen, den dieses Verfahren bewusst vermeidet. Der Prozess ist der Standardweg für **jedes** künftige Rennen, nicht nur für eine einmalige Kandidatenliste, und wird bei Bedarf erneut angestoßen (z. B. einmal jährlich vor Saisonbeginn) – kein automatisches Hochstufen von "manuell" zu "Scraper", falls später doch ein Artikel auftaucht.
 
-**Die 17 als "Manuell" verifizierten Rennen** (9 Männer-UCI-WorldTour-Etappenrennen + 3 Frauen-Grand-Tour-Kandidaten + 5 weitere Frauen-UCI-WorldTour-Etappenrennen – die komplette Liste aus `scripts/tools/race_candidates.json`) laufen über dieselbe CSV-Pipeline, die für die deutschen Regional-/ProSeries-Rennen vorgesehen ist: ein Eintrag in `config.json` mit `"source": "manual"` (kein `wikipediaTitleTemplate`) sagt `fetch_cycling.py`, dieses Rennen zu überspringen; `scripts/build_manual_cycling.py` liest stattdessen `data/manual/stage-race.csv` (Spalten `race_id,year,stage_label,date,start,finish,type`, Datum als `YYYY-MM-DD`, `type` muss einer der Werte aus `common.STAGE_TYPES` sein) und schreibt denselben additiven Snapshot (`merge_events()`, siehe oben) unter `data/cycling-<race-id>.json` – für `build_ics.py`/`build_site_data.py` nicht unterscheidbar von einem gescrapten Rennen. Eine fehlerhafte Zeile (unbekannter `type`, fehlendes Pflichtfeld, kaputtes Datum) wird geloggt und übersprungen, nicht zum Absturz des ganzen Laufs. Auch dieses Skript ist **nicht** Teil von `update.yml` – Aufruf bei Bedarf: `python scripts/build_manual_cycling.py`, nachdem die CSV-Datei gepflegt wurde.
+**Die ursprünglich 17 als "Manuell" verifizierten Etappenrennen** (9 Männer-UCI-WorldTour-Etappenrennen + 3 Frauen-Grand-Tour-Kandidaten + 5 weitere Frauen-UCI-WorldTour-Etappenrennen – die komplette Liste aus `scripts/tools/race_candidates.json`) liefen zuerst über dieselbe CSV-Pipeline, die für die deutschen Regional-/ProSeries-Rennen vorgesehen war; inzwischen sind auf demselben Weg weitere Etappenrennen sowie sämtliche Eintagesrennen dazugekommen (56 Config-Einträge insgesamt, siehe "Was drin ist" oben). Ein Eintrag in `config.json` mit `"source": "manual"` (kein `wikipediaTitleTemplate`) sagt `fetch_cycling.py`, dieses Rennen zu überspringen; `scripts/build_manual_cycling.py` liest stattdessen die passende CSV und schreibt denselben additiven Snapshot (`merge_events()`, siehe oben) unter `data/cycling-<race-id>.json` – für `build_ics.py`/`build_site_data.py` nicht unterscheidbar von einem gescrapten Rennen.
+
+Zwei getrennte CSV-Dateien, je nach Renntyp:
+- **`data/manual/stage-race.csv`** (Etappenrennen, eine Zeile pro Etappe): Spalten `race_id,year,stage_label,date,start,finish,type,start_time`. `date` als `YYYY-MM-DD`, `type` muss einer der Werte aus `common.STAGE_TYPES` sein. `start_time` ist optional (`HH:MM`, Europe/Berlin) – ist er gesetzt, bekommt die Etappe eine echte, DST-bewusst nach UTC konvertierte Startzeit und `timeConfirmed: true` statt des ganztägigen Platzhalters (siehe `build_stage_events()` in `fetch_cycling.py`, das auch der Wikipedia-Scraper nutzt).
+- **`data/manual/one-day.csv`** (Eintagesrennen, eine Zeile pro Austragung): Spalten `race_id,year,date,start,finish,type` – `start`/`finish` dürfen leer bleiben, solange sie noch nicht feststehen.
+
+Eine fehlerhafte Zeile (unbekannter `type`, fehlendes Pflichtfeld, kaputtes Datum) wird nur geloggt und übersprungen, nicht zum Absturz des ganzen Laufs gebracht – **Vorsicht:** das gilt auch für einen Platzhalterwert wie `"TBD"` in `type`, der nicht in `common.STAGE_TYPES` steht. Eine betroffene Etappe fehlt dann komplett im Kalender (nicht nur ohne Uhrzeit), bis der echte Wert nachgetragen wird – ein wiederkehrender Stolperstein, der schon mehrfach unbemerkt ganze Rennen leer gelassen hat. Auch dieses Skript ist **nicht** Teil von `update.yml` – Aufruf bei Bedarf: `python scripts/build_manual_cycling.py`, nachdem eine CSV-Datei gepflegt wurde.
 
 ## Datenmodell
 
@@ -92,7 +101,7 @@ Radsport-Events haben statt `homeTeamId`/… ein optionales `route`-Feld (`start
 
 **Saison-Cut (nur Fußball):** Innerhalb einer Saison wird nie gefiltert (vergangene und zukünftige Termine bleiben beide im Snapshot). Der Cut auf eine neue Saison passiert implizit dadurch, dass `fetch_football.py` bei jedem Lauf die neueste befüllte Saison sucht und den kompletten Snapshot durch deren Daten ersetzt – kein zusätzlicher Zeit-Filter nötig, Website und Kalender können dadurch nicht auseinanderlaufen. Das ist hier strukturell nötig, weil Vereine zwischen Saisons die Liga wechseln (Auf-/Abstieg) und die Zuordnung in `config/clubs.json` pro Saison neu stimmen muss.
 
-**Additiver Merge (nur Radsport):** `fetch_cycling.py` hat keine solche Saison-Kopplung – ein Rennen wird über seine eigene `race_id` abgerufen, unabhängig von einer Liga-Zuordnung. Ein neuer Lauf **ersetzt** den Snapshot deshalb nicht, sondern merged additiv (`merge_events()`): neue Renn-IDs kommen dazu, bestehende IDs werden aktualisiert, aber keine alte ID wird je entfernt, nur weil sie in diesem Lauf nicht erneut geliefert wurde. Vergangene Ausgaben bleiben dadurch dauerhaft in ICS-Datei und Website erhalten, statt beim nächsten Lauf zu verschwinden. Das Datenvolumen bleibt dabei überschaubar (aktuell ~6 Rennen, auch bei vollem Ausbau auf ~39 Config-Einträge nur wenige Termine mehr pro Jahr), daher gibt es dafür bewusst kein Zeitfenster-Limit in Web-Ansicht oder ICS. Da dadurch mehrere Ausgaben desselben Eintagesrennens gleichzeitig sichtbar sein können, hängt `eventDisplayTitle()` in `public/app.js` in diesem Fall die Jahreszahl an den Zeilentitel an (z. B. "Cyclassics Hamburg 2026"), sobald mehr als eine Ausgabe im aktuell angezeigten Datensatz steckt.
+**Additiver Merge (nur Radsport):** `fetch_cycling.py` hat keine solche Saison-Kopplung – ein Rennen wird über seine eigene `race_id` abgerufen, unabhängig von einer Liga-Zuordnung. Ein neuer Lauf **ersetzt** den Snapshot deshalb nicht, sondern merged additiv (`merge_events()`): neue Renn-IDs kommen dazu, bestehende IDs werden aktualisiert, aber keine alte ID wird je entfernt, nur weil sie in diesem Lauf nicht erneut geliefert wurde. Vergangene Ausgaben bleiben dadurch dauerhaft in ICS-Datei und Website erhalten, statt beim nächsten Lauf zu verschwinden. Das Datenvolumen bleibt dabei überschaubar (56 Config-Einträge, siehe "Was drin ist" oben, jeweils nur eine Handvoll Termine pro Rennen und Jahr), daher gibt es dafür bewusst kein Zeitfenster-Limit in Web-Ansicht oder ICS. Da dadurch mehrere Ausgaben desselben Eintagesrennens gleichzeitig sichtbar sein können, hängt `eventDisplayTitle()` in `public/app.js` in diesem Fall die Jahreszahl an den Zeilentitel an (z. B. "Cyclassics Hamburg 2026"), sobald mehr als eine Ausgabe im aktuell angezeigten Datensatz steckt.
 
 ## Vereins-Datenmodell (`config/clubs.json`)
 
@@ -129,26 +138,31 @@ scripts/
   common.py                  # Event-Modell, Club-Lookup, Titel-Formatter, ICS-Rendering, Snapshot-Diff, HTTP-/Wikitext-Helper
   fetch_football.py          # OpenLigaDB, Fuzzy-Match der Liga-Shortcuts, Club-ID-Auflösung
   fetch_cycling.py           # Wikipedia-Wikitext-Parser (ueberspringt "source": "manual"-Rennen)
-  build_manual_cycling.py     # data/manual/stage-race.csv -> data/cycling-<race-id>.json, fuer "source": "manual"-Rennen
+  build_manual_cycling.py     # data/manual/{stage-race,one-day}.csv -> data/cycling-<race-id>.json, fuer "source": "manual"-Rennen
   build_ics.py                # data/*.json + config/clubs.json -> public/kalender.ics (unfilterierter Kombi-Feed)
   build_site_data.py          # data/*.json -> public/data/events.json
   tools/
     verify_race_sources.py    # manuell, ~1x/Jahr: scraper-vs-manuell-Entscheidung fuer Kandidatenrennen
     race_candidates.json      # Input-Liste fuer verify_race_sources.py
 api/
-  calendar.ics.py             # Vercel Python Function: personalisierte /api/calendar.ics
-data/                         # ein JSON-Snapshot pro Liga-Quelle (Diff-Basis), z.B. football-bl1.json
+  calendar_ics.py             # Vercel Python Function (WSGI-App `app`): personalisierte /api/calendar.ics
+data/                         # ein JSON-Snapshot pro Liga-/Renn-Quelle (Diff-Basis), z.B. football-bl1.json
   manual/
-    stage-race.csv            # manuell gepflegte Etappendaten fuer "source": "manual"-Rennen
+    stage-race.csv            # manuell gepflegte Etappendaten fuer "source": "manual"-Etappenrennen
+    one-day.csv                # manuell gepflegte Termine fuer "source": "manual"-Eintagesrennen
 public/                       # Vercel Static Root
   index.html / app.js / style.css   # Auswahl-UI (Basis: Claude-Design-Entwurf) + Terminliste
-  impressum.html / datenschutz.html # Rechtliches (Platzhalter zum Ausfüllen), im Footer verlinkt
+  impressum.html / datenschutz.html # Rechtliches (ausgefuellt, siehe unten), im Footer verlinkt
   kalender.ics                # generierte, kombinierte Kalenderdatei (Interims-/Vorschau-Feed)
   data/events.json            # generierte, kombinierte Website-Daten (Terminliste)
   data/clubs.json             # gekürzte Kopie von config/clubs.json fürs Frontend (Auswahl-UI)
-  data/leagues.json           # Fußball-Liga-Gruppen fürs Frontend (DFB-Pokal ausgenommen -- kommt automatisch mit)
+  data/leagues.json           # Fußball-Liga-Gruppen fürs Frontend (DFB-Pokal/UEFA-Wettbewerbe ausgenommen -- kommen automatisch mit)
   data/races.json             # Radsport-Rennen fürs Frontend
-vercel.json                   # Vercel-Projektkonfiguration
+tests/                        # pytest-Suite fuer scripts/ + api/ (siehe "Tests ausführen")
+tests-e2e/                    # Playwright-Suite fuer public/app.js (siehe "Tests ausführen")
+vercel.json                   # Vercel-Projektkonfiguration (Static Root, Function-Routing)
+pyproject.toml / uv.lock      # Python-Projektmetadaten, u.a. fuer Vercels `uv lock`-Build; requirements*.txt bleiben die Quelle fuer pip/CI
+package.json / playwright.config.js # Node-Tooling ausschliesslich fuer die Playwright-Suite (kein Frontend-Build)
 .github/workflows/update.yml # wöchentlicher Cron + manueller Trigger
 ```
 
@@ -156,24 +170,33 @@ vercel.json                   # Vercel-Projektkonfiguration
 
 ## Personalisierter Kalenderlink (`/api/calendar.ics`)
 
-Zustandslos: die Auswahl steckt komplett in der URL, kein serverseitiger Speicher, kein Cookie.
+Zustandslos: die Auswahl steckt komplett in der URL, kein serverseitiger Speicher, kein Cookie. Erreichbar sowohl unter `https://sportocal.de/api/calendar.ics` als auch (Vercel-Rewrite, siehe `vercel.json`) direkt unter der Function-Route.
 
 ```
-GET /api/calendar.ics?t=<clubId>:men,<clubId>:women,race:<raceId>,...
+GET /api/calendar.ics?t=<selection>
 ```
+
+`t` ist eine kommagetrennte Liste von Tokens, jedes eines von:
 
 - `<clubId>:men` / `<clubId>:women` – Club-ID aus `config/clubs.json` + Geschlecht, z. B. `fc-bayern-muenchen:men`
-- `race:<raceId>` – Renn-ID aus `config.json` (`cycling.races`), z. B. `race:tour-de-france`
+- `league:<leagueId>:<gender>` – eine ganze Liga ("Alle Vereine der Bundesliga auswählen" im Picker), z. B. `league:bl1:men`. `<leagueId>` kommt aus `config.json`s `football.leagues` (dieselben IDs, die `public/data/leagues.json` als `league.id` exponiert); wird bei jedem Request frisch gegen `config/clubs.json` aufgelöst, sodass Auf-/Abstieg ein bereits abonniertes Kalender automatisch aktualisiert.
+- `raceGroup:<key>` – eine ganze Tier×Gender-Rennguppe (Radsport wird nicht pro Rennen, sondern gruppenweise abonniert), z. B. `raceGroup:uci-worldtour-men`. `<key>` ist `"{tier}-{gender}"` (siehe `common.race_group_key()`); wird ebenfalls bei jedem Request frisch aufgelöst, ein später zur Gruppe hinzugefügtes Rennen erscheint automatisch.
 
-Beispiel: `?t=fc-bayern-muenchen:men,stuttgarter-kickers:men,race:tour-de-france`
+  (Ein früheres `race:<raceId>`-Einzelrennen-Token wurde durch `raceGroup:` ersetzt und wird nicht mehr akzeptiert.)
 
-Die Function liest `data/*.json` + `config/clubs.json` aus dem Deployment-Bundle, filtert und generiert die ICS-Datei bei jedem Aufruf neu (kein Caching, `Cache-Control: no-store`) – automatische Kalender-Refreshes bekommen dadurch immer den Stand des letzten wöchentlichen Redeploys. Im generierten Titel bekommt nur ein ausgewählter Verein sein Farb-/Form-Emoji; der Gegner erscheint auch dann als Klartext, wenn er selbst ein bekannter Verein ist (Ausnahme: spielen zwei ausgewählte Vereine gegeneinander, bekommen beide ihr Emoji). Unbekannte oder nicht mehr existierende Club-/Renn-IDs im Parameter werden stillschweigend ignoriert (führt zu einem entsprechend kleineren, aber gültigen Kalender) statt eines Fehlers – ein alter, bereits abonnierter Link soll nie hart brechen. Fehlt der Parameter `t` komplett oder ist leer, antwortet die Function mit `400`.
+Beispiel: `?t=fc-bayern-muenchen:men,league:bl1:women,raceGroup:grand-tour-men`
+
+Die Function liest `data/*.json` + `config/clubs.json` aus dem Deployment-Bundle, filtert und generiert die ICS-Datei bei jedem Aufruf neu (kein Caching, `Cache-Control: no-store`) – automatische Kalender-Refreshes bekommen dadurch immer den Stand des letzten wöchentlichen Redeploys. Im generierten Titel bekommt nur ein ausgewählter Verein sein Farb-/Form-Emoji; der Gegner erscheint auch dann als Klartext, wenn er selbst ein bekannter Verein ist (Ausnahme: spielen zwei ausgewählte Vereine gegeneinander, bekommen beide ihr Emoji) – eine über `league:` mitgezogene Vereinsauswahl bekommt bewusst nie ein Emoji, nur individuell ausgewählte Vereine. Unbekannte oder nicht mehr existierende IDs im Parameter werden stillschweigend ignoriert (führt zu einem entsprechend kleineren, aber gültigen Kalender) statt eines Fehlers – ein alter, bereits abonnierter Link soll nie hart brechen. Fehlt der Parameter `t` komplett oder ist leer, antwortet die Function mit `400`.
 
 Enthalten ist immer die komplette aktuelle Saison (vergangene und zukünftige Termine); der Cut auf eine neue Saison passiert implizit beim wöchentlichen Fetch (siehe Datenmodell oben), nicht in dieser Function.
 
+Der Kalendername (`X-WR-CALNAME`) wird pro Auswahl frisch aus `build_calendar_name()` (`api/calendar_ics.py`) gebaut: "Sportocal – {Items}", jedes Item so kurz wie möglich (Vereins-`shortName`, oder eine ganze Liga-/Renngruppe als ein sprechender Name statt einer Mitgliederliste). Ab 3 Items wird auf die ersten 2 + ", u.a." gekürzt, ab mehr als 6 Items (oder wenn nichts auflösbar ist) greift der Fallback "Sportocal – Mein Kalender".
+
+Jedes generierte `VEVENT` bekommt außerdem: `LOCATION` (Stadion/Ort bzw. Zielort der Etappe, falls bekannt), `URL` (`https://sportocal.de`), sowie einen `VALARM` mit fixem Trigger um 08:00 Uhr Europe/Berlin am Tag des Termins (DST-bewusst, unabhängig davon, ob die eigentliche Startzeit schon feststeht) – siehe `build_vevent()`/`build_valarm()` in `scripts/common.py`, gemeinsam genutzt von diesem Endpoint und dem unfiltrierten `public/kalender.ics`.
+
 ## Impressum & Datenschutz
 
-`public/impressum.html` und `public/datenschutz.html` enthalten **Platzhalter** (`[Platzhalter: ...]`), die vor dem Live-Gang ausgefüllt werden müssen (Name, ladungsfähige Anschrift, E-Mail, zweite Kontaktmöglichkeit) – ohne öffentlichen Zugriffsschutz greift die Ausnahme für "rein private Nutzung" nach § 5 DDG nicht. Beide Seiten sind im Footer jeder Seite verlinkt und verweisen auch gegenseitig aufeinander sowie zurück zur Startseite (max. 2 Klicks von überall).
+`public/impressum.html` und `public/datenschutz.html` sind ausgefüllt (Name, ladungsfähige Anschrift, E-Mail; die Angaben nach § 5 DDG/§ 18 Abs. 2 MStV sind zusätzlich in `Impressum.md` im Repo-Root als Klartext-Quelle gepflegt) – ohne öffentlichen Zugriffsschutz greift die Ausnahme für "rein private Nutzung" nach § 5 DDG nicht, die Seite ist also live und braucht ein echtes Impressum. Beide Seiten sind im Footer jeder Seite verlinkt und verweisen auch gegenseitig aufeinander sowie zurück zur Startseite (max. 2 Klicks von überall).
 
 ## Warum Liga-Shortcuts nicht hartkodiert sind
 
@@ -197,15 +220,33 @@ vercel dev
 # -> http://localhost:3000/api/calendar.ics?t=fc-bayern-muenchen:men
 ```
 
+## Tests ausführen
+
+Python (`scripts/`, `api/` – `tests/`, pytest):
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+Frontend (`public/app.js` – `tests-e2e/`, Playwright, einzige Node-Abhängigkeit im Repo):
+
+```bash
+npm install
+npx playwright install chromium   # einmalig, lädt den Browser
+npm run test:e2e
+```
+
 ## Erweitern
 
-Ein neues Rennen kommt durch einen neuen Eintrag in `config.json` dazu – bei einem scrapebaren Wikipedia-Artikel reicht das allein (`wikipediaTitleTemplate`), sonst zusätzlich `"source": "manual"` plus die Etappendaten in `data/manual/stage-race.csv` (siehe oben und `scripts/build_manual_cycling.py`). Welcher Fall zutrifft, entscheidet `scripts/tools/verify_race_sources.py`. Eine neue Liga (z. B. eine weitere Regionalliga-Staffel) braucht einen neuen Eintrag in `config.json` unter `football.leagues` (mit passendem `scope`: `full`, `club-filter` oder `cup`) plus die entsprechenden Vereine in `config/clubs.json` – kein Umbau von `fetch_football.py` nötig. Ein neuer Verein in einer bereits erfassten Liga kommt automatisch dazu, sobald er bei OpenLigaDB auftaucht; für einen sauber aufgelösten (statt als Klartext angezeigten) Namen braucht er zusätzlich einen Eintrag in `config/clubs.json`. Eine komplett neue Sportart braucht ein neues `fetch_<sportart>.py`, das Events im gleichen Basisschema in `data/<quelle>.json` schreibt, plus einen Fall in `format_event_title()` (`scripts/common.py`); `build_ics.py`, `build_site_data.py` und die Website müssen dafür nicht angefasst werden.
+Ein neues Rennen kommt durch einen neuen Eintrag in `config.json` dazu – bei einem scrapebaren Wikipedia-Artikel reicht das allein (`wikipediaTitleTemplate`), sonst zusätzlich `"source": "manual"` plus die Termine in `data/manual/stage-race.csv` (Etappenrennen) bzw. `data/manual/one-day.csv` (Eintagesrennen), siehe oben und `scripts/build_manual_cycling.py`. Welcher Fall zutrifft, entscheidet `scripts/tools/verify_race_sources.py`. Eine neue Liga (z. B. eine weitere Regionalliga-Staffel) braucht einen neuen Eintrag in `config.json` unter `football.leagues` (mit passendem `scope`: `full`, `club-filter` oder `cup`) plus die entsprechenden Vereine in `config/clubs.json` – kein Umbau von `fetch_football.py` nötig. Ein neuer Verein in einer bereits erfassten Liga kommt automatisch dazu, sobald er bei OpenLigaDB auftaucht; für einen sauber aufgelösten (statt als Klartext angezeigten) Namen braucht er zusätzlich einen Eintrag in `config/clubs.json`. Eine komplett neue Sportart braucht ein neues `fetch_<sportart>.py`, das Events im gleichen Basisschema in `data/<quelle>.json` schreibt, plus einen Fall in `format_event_title()` (`scripts/common.py`); `build_ics.py`, `build_site_data.py` und die Website müssen dafür nicht angefasst werden.
 
 ## Vercel einrichten (einmalig)
 
 1. Auf [vercel.com](https://vercel.com) ein neues Projekt aus diesem GitHub-Repo anlegen (eigener Hobby-Plan-Slot, unabhängig von anderen Projekten). Vercel erkennt `api/calendar_ics.py` automatisch als Python Function und `public/` als Static Root (siehe `vercel.json`) – kein Build-Schritt nötig.
 2. Damit die Function `data/*.json` + `config/clubs.json` sehen kann, müssen diese Teil des Git-Repos sein (sind sie bereits) – Vercel bündelt beim Deploy alles, was zur Build-Zeit erreichbar ist.
 3. Fertig – die Seite liegt danach unter `https://<projekt>.vercel.app/`, der personalisierte Kalenderlink unter `https://<projekt>.vercel.app/api/calendar.ics?t=...` (bzw. `webcal://...`), der unfiltrierte Interims-Feed unter `/kalender.ics`.
+4. Optional: eigene Domain in den Vercel-Projekteinstellungen verbinden. Produktiv läuft das Projekt unter der eigenen Domain **sportocal.de** (statt `<projekt>.vercel.app`) – `SPORTOCAL_URL`/`SPORTOCAL_DOMAIN` in `scripts/common.py` sind hart auf `https://sportocal.de` gesetzt (u. a. für die `URL`-Property in jedem generierten `VEVENT`, siehe oben) und müssten bei einer anderen Domain dort angepasst werden.
 
 Der Workflow `.github/workflows/update.yml` läuft automatisch jeden Montag 06:00 UTC und lässt sich zusätzlich manuell über den Tab „Actions" → „Update sportocal calendar" → „Run workflow" anstoßen. Jeder dadurch entstehende Commit auf dem verbundenen Branch löst automatisch ein Vercel-Redeploy aus (Vercels GitHub-Integration, kein Zutun nötig, sobald das Projekt einmal verbunden ist).
 

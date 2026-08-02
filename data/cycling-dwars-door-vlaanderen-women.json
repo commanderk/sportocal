@@ -4,6 +4,7 @@
       "id": "cycling-dwars-door-vlaanderen-women-2026",
       "sport": "cycling",
       "competition": "Dwars door Vlaanderen",
+      "gender": "women",
       "round": null,
       "start": "2026-04-01",
       "timeConfirmed": false,
@@ -12,9 +13,8 @@
         "start": "Roeselare",
         "finish": "Waregem",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     }
   ],
-  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+  "lastChecked": "2026-08-02T18:02:01.993419+00:00"
 }

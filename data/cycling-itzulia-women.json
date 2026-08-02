@@ -4,6 +4,7 @@
       "id": "cycling-itzulia-women-2026-etappe1",
       "sport": "cycling",
       "competition": "Itzulia Women",
+      "gender": "women",
       "round": "Etappe 1",
       "start": "2026-05-16",
       "timeConfirmed": false,
@@ -12,13 +13,13 @@
         "start": "Zarautz",
         "finish": "Zarautz",
         "type": "Mountain"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-itzulia-women-2026-etappe2",
       "sport": "cycling",
       "competition": "Itzulia Women",
+      "gender": "women",
       "round": "Etappe 2",
       "start": "2026-05-17",
       "timeConfirmed": false,
@@ -27,13 +28,13 @@
         "start": "Abadiño",
         "finish": "Amorebieta-Etxano",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-itzulia-women-2026-etappe3",
       "sport": "cycling",
       "competition": "Itzulia Women",
+      "gender": "women",
       "round": "Etappe 3",
       "start": "2026-05-18",
       "timeConfirmed": false,
@@ -42,9 +43,8 @@
         "start": "Donostia-San Sebastián",
         "finish": "Donostia-San Sebastián",
         "type": "Mountain"
-      },
-      "gender": "women"
+      }
     }
   ],
-  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+  "lastChecked": "2026-08-02T18:02:01.993419+00:00"
 }

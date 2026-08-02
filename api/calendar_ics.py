@@ -36,6 +36,14 @@ individually selected clubs get the emoji/color treatment in the calendar
 title, a league-only-covered club's matches render as plain team names
 (see format_football_title() in scripts/common.py).
 
+A whole-league selection's calendar-name label (league_group_label() below)
+uses the same "Männer"/"Frauen" wording as app.js's own leagueGroupLabel(),
+but a different rule: the picker UI always spells out the gender ("1.
+Bundesliga Männer"), while the calendar name only appends "(Männer)"/
+"(Frauen)" when the competition name doesn't already say it
+("Frauen-Bundesliga" stays as-is; "DFB-Pokal", shared by both genders, gets
+the suffix either way).
+
 Stateless by design (see README): the selection lives entirely in the URL, no
 server-side storage, no cookies. Reads data/*.json + config/clubs.json from
 the deployment bundle (Python Functions on Vercel include all files reachable
@@ -48,8 +56,8 @@ implicit one from fetch_football.py always snapshotting the newest available
 season, so an old season's fixtures simply aren't present anymore once a new
 one starts. See scripts/common.py for the shared VEVENT/title-rendering logic
 also used by the interim combined feed (scripts/build_ics.py) -- reminder
-timing (absolute, DST-aware), LOCATION, and the "— via sportocal.de"
-description footer all come from there and need no per-feed handling here.
+timing (absolute, DST-aware), LOCATION and the URL property all come from
+there and need no per-feed handling here.
 
 X-WR-CALNAME is built fresh per selection by build_calendar_name() below --
 "Sportocal – {items}", each item as short as possible (a club's shortName, a
@@ -79,13 +87,7 @@ GENDER_SUFFIXES = (":men", ":women")
 RACE_GROUP_PREFIX = "raceGroup:"
 LEAGUE_GROUP_PREFIX = "league:"
 GENDER_LABELS = {"men": "Männer", "women": "Frauen"}
-
-# Calendar-name-specific gender wording ("UCI WorldTour (Herren)") --
-# deliberately distinct from GENDER_LABELS above (used for league-group
-# names, "Alle Vereine Bundesliga Männer") and from the website's own
-# "Männer"/"Frauen" convention. See build_calendar_name().
-CALNAME_GENDER_LABELS = {"men": "Herren", "women": "Damen"}
-MAX_CALNAME_ITEMS = 3
+MAX_CALNAME_ITEMS = 2
 MAX_CALNAME_TOTAL_ITEMS = 6
 DEFAULT_CALENDAR_NAME = "Sportocal – Mein Kalender"
 
@@ -141,12 +143,22 @@ def resolve_league_club_tokens(
 
 
 def league_group_label(league: dict) -> str:
-    return f"Alle Vereine {league['competition']} {GENDER_LABELS.get(league['gender'], league['gender'])}"
+    """League name for the calendar name, e.g. "Bundesliga (Männer)" -- the
+    " (Männer)"/"(Frauen)" suffix is only appended when the competition name
+    doesn't already say the gender itself ("Frauen-Bundesliga" stays as-is),
+    since several competitions (e.g. "DFB-Pokal") share the same name across
+    both genders and would otherwise be indistinguishable in the calendar
+    name. Deliberately not app.js's leagueGroupLabel(), which always spells
+    out the gender for the picker UI regardless of the name."""
+    competition = league["competition"]
+    if "Frauen" in competition:
+        return competition
+    return f"{competition} ({GENDER_LABELS.get(league['gender'], league['gender'])})"
 
 
 def race_group_display_name(key: str) -> str | None:
     """"<tier>-<gender>" race-group key -> a short, speaking group name for
-    the calendar name, e.g. "UCI WorldTour (Herren)" -- never a listing of
+    the calendar name, e.g. "UCI WorldTour (Männer)" -- never a listing of
     the group's current individual races. A group is always resolved fresh
     against config.json (see module docstring), so naming it after whichever
     races happen to be in it right now would make the calendar's own name
@@ -158,7 +170,7 @@ def race_group_display_name(key: str) -> str | None:
     tier_label = TIER_LABELS.get(tier)
     if not tier_label:
         return None
-    return f"{tier_label} ({CALNAME_GENDER_LABELS.get(gender, gender)})"
+    return f"{tier_label} ({GENDER_LABELS.get(gender, gender)})"
 
 
 def build_calendar_name(

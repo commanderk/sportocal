@@ -1,55 +1,55 @@
-race_id,year,stage_label,date,start,finish,type
-deutschland-tour,2026,Prolog,2026-08-19,Bad Orb,Bad Orb,Flat
-deutschland-tour,2026,Etappe 1,2026-08-20,Bad Orb,Schwäbisch Hall,Hilly
-deutschland-tour,2026,Etappe 2,2026-08-21,Schwäbisch Hall,Offenbach an der Queich,Flat
-deutschland-tour,2026,Etappe 3,2026-08-22,Herxheim,Bad Dürkheim,Mountain
-deutschland-tour,2026,Etappe 4,2026-08-23,Heilbronn,Heilbronn,Hilly
-tour-de-france-femmes,2026,Etappe 1,2026-08-01,Lausanne,Lausanne,Flat
-tour-de-france-femmes,2026,Etappe 2,2026-08-02,Aigle,Genf,Flat
-tour-de-france-femmes,2026,Etappe 3,2026-08-03,Genf,Poligny,Hilly
-tour-de-france-femmes,2026,Etappe 4,2026-08-04,Gevrey-Chambertin,Dijon,Individual time trial
-tour-de-france-femmes,2026,Etappe 5,2026-08-05,Mâcon,Belleville-en-Beaujolais,Hilly
-tour-de-france-femmes,2026,Etappe 6,2026-08-06,Montbrison,Tournon-sur-Rhône,Hilly
-tour-de-france-femmes,2026,Etappe 7,2026-08-07,La Voulte-sur-Rhône,Mont Ventoux,Mountain
-tour-de-france-femmes,2026,Etappe 8,2026-08-08,Sisteron,Nizza,Flat
-tour-de-france-femmes,2026,Etappe 9,2026-08-09,Nizza,Nizza,Mountain
-vuelta-espana-femenina,2026,Etappe 1,2026-05-03,Marín,Salvaterra de Miño,Hilly
-vuelta-espana-femenina,2026,Etappe 2,2026-05-04,Lobios,San Vibrao das Viñas,Hilly
-vuelta-espana-femenina,2026,Etappe 3,2026-05-05,Padrón,A Coruña,Flat
-vuelta-espana-femenina,2026,Etappe 4,2026-05-06,Monforte de Lemos,Antas de Ulla,Hilly
-vuelta-espana-femenina,2026,Etappe 5,2026-05-07,Léon,Astorga,Flat
-vuelta-espana-femenina,2026,Etappe 6,2026-05-08,Gijón/Xixón,"Les Praeres, Nava",Mountain
-vuelta-espana-femenina,2026,Etappe 7,2026-05-09,La Pola LLaviana/Pola de Laviana,L'Angliru,Mountain
-itzulia-women,2026,Etappe 1,2026-05-16,Zarautz,Zarautz,Mountain
-itzulia-women,2026,Etappe 2,2026-05-17,Abadiño,Amorebieta-Etxano,Hilly
-itzulia-women,2026,Etappe 3,2026-05-18,Donostia-San Sebastián,Donostia-San Sebastián,Mountain
-vuelta-a-burgos-feminas,2026,Etappe 1,2026-05-21,Burgos,Burgos,TBD
-vuelta-a-burgos-feminas,2026,Etappe 2,2026-05-22,Castrojeriz,Bodega Viña Pedrosa. Pedrosa de Duero,TBD
-vuelta-a-burgos-feminas,2026,Etappe 3,2026-05-23,Busto de Bureba,Medina de Pomar,TBD
-vuelta-a-burgos-feminas,2026,Etappe 4,2026-05-24,Gumiel de Mercado,Lagunas de Neila,TBD
-tour-de-suisse-women,2026,Etappe 1,2026-06-17,Sondrio,Sondrio,Hilly
-tour-de-suisse-women,2026,Etappe 2,2026-06-18,Lorcano,Lorcano,Hilly
-tour-de-suisse-women,2026,Etappe 3,2026-06-19,Bad Ragaz,Bad Ragaz,Flat
-tour-de-suisse-women,2026,Etappe 4,2026-06-20,Aarburg,Aarburg,Individual time trial
-tour-de-suisse-women,2026,Etappe 5,2026-06-21,Villars-sur-Ollon,Villars-sur-Ollon,Mountain
-tour-de-pologne,2026,Etappe 1,2026-08-03,Gdynia,Koszalin,TBD
-tour-de-pologne,2026,Etappe 2,2026-08-04,Międzyzdroje,Szczecin,Individual time trial
-tour-de-pologne,2026,Etappe 3,2026-08-05,Gorzów Wielkopolski,Zielona Góra,TBD
-tour-de-pologne,2026,Etappe 4,2026-08-06,Żagań,Karpacz,TBD
-tour-de-pologne,2026,Etappe 5,2026-08-07,Opole,Kocierz Resort,TBD
-tour-de-pologne,2026,Etappe 6,2026-08-08,Bukovina Resort,Bukowina Tatrzańska,TBD
-tour-de-pologne,2026,Etappe 7,2026-08-09,Kopalnia Soli „Wieliczka”,Kopalnia Soli „Wieliczka”,TBD
-renewi-tour,2026,Etappe 1,2026-08-19,Diest,Diest,TBD
-renewi-tour,2026,Etappe 2,2026-08-20,Blankenberge,Ardooie,TBD
-renewi-tour,2026,Etappe 3,2026-08-21,Celles,Geraardsbergen,TBD
-renewi-tour,2026,Etappe 4,2026-08-22,Riemst,Bilzen-Hoeselt,TBD
-renewi-tour,2026,Etappe 5,2026-08-23,Leuven,Leuven,TBD
-giro-d-italia-women,2026,Etappe 1,2026-05-30,Cesenatico,Ravenna,Flat
-giro-d-italia-women,2026,Etappe 2,2026-05-31,Roncade,Caorle,Flat
-giro-d-italia-women,2026,Etappe 3,2026-06-01,Bibione,Buja,Hilly
-giro-d-italia-women,2026,Etappe 4,2026-06-02,Belluno,Nevegal,Individual time trial
-giro-d-italia-women,2026,Etappe 5,2026-06-03,Longarone,Santo Stefano di Cadore,Mountain
-giro-d-italia-women,2026,Etappe 6,2026-06-04,Ala,Brescello,Flat
-giro-d-italia-women,2026,Etappe 7,2026-06-05,Sorbolo Mezzani,Salice Terme,Hilly
-giro-d-italia-women,2026,Etappe 8,2026-06-06,Rivoli,Sestriere,Mountain
-giro-d-italia-women,2026,Etappe 9,2026-06-07,Saluzzo,Saluzzo,Mountain
+race_id,year,stage_label,date,start,finish,type,start_time
+deutschland-tour,2026,Prolog,2026-08-19,Bad Orb,Bad Orb,Flat,
+deutschland-tour,2026,Etappe 1,2026-08-20,Bad Orb,Schwäbisch Hall,Hilly,
+deutschland-tour,2026,Etappe 2,2026-08-21,Schwäbisch Hall,Offenbach an der Queich,Flat,
+deutschland-tour,2026,Etappe 3,2026-08-22,Herxheim,Bad Dürkheim,Mountain,
+deutschland-tour,2026,Etappe 4,2026-08-23,Heilbronn,Heilbronn,Hilly,
+tour-de-france-femmes,2026,Etappe 1,2026-08-01,Lausanne,Lausanne,Flat,14:40
+tour-de-france-femmes,2026,Etappe 2,2026-08-02,Aigle,Genf,Flat,14:30
+tour-de-france-femmes,2026,Etappe 3,2026-08-03,Genf,Poligny,Hilly,13:45
+tour-de-france-femmes,2026,Etappe 4,2026-08-04,Gevrey-Chambertin,Dijon,Individual time trial,14:35
+tour-de-france-femmes,2026,Etappe 5,2026-08-05,Mâcon,Belleville-en-Beaujolais,Hilly,14:00
+tour-de-france-femmes,2026,Etappe 6,2026-08-06,Montbrison,Tournon-sur-Rhône,Hilly,13:45
+tour-de-france-femmes,2026,Etappe 7,2026-08-07,La Voulte-sur-Rhône,Mont Ventoux,Mountain,13:15
+tour-de-france-femmes,2026,Etappe 8,2026-08-08,Sisteron,Nizza,Flat,14:00
+tour-de-france-femmes,2026,Etappe 9,2026-08-09,Nizza,Nizza,Mountain,16:10
+vuelta-espana-femenina,2026,Etappe 1,2026-05-03,Marín,Salvaterra de Miño,Hilly,
+vuelta-espana-femenina,2026,Etappe 2,2026-05-04,Lobios,San Vibrao das Viñas,Hilly,
+vuelta-espana-femenina,2026,Etappe 3,2026-05-05,Padrón,A Coruña,Flat,
+vuelta-espana-femenina,2026,Etappe 4,2026-05-06,Monforte de Lemos,Antas de Ulla,Hilly,
+vuelta-espana-femenina,2026,Etappe 5,2026-05-07,Léon,Astorga,Flat,
+vuelta-espana-femenina,2026,Etappe 6,2026-05-08,Gijón/Xixón,"Les Praeres, Nava",Mountain,
+vuelta-espana-femenina,2026,Etappe 7,2026-05-09,La Pola LLaviana/Pola de Laviana,L'Angliru,Mountain,
+itzulia-women,2026,Etappe 1,2026-05-16,Zarautz,Zarautz,Mountain,
+itzulia-women,2026,Etappe 2,2026-05-17,Abadiño,Amorebieta-Etxano,Hilly,
+itzulia-women,2026,Etappe 3,2026-05-18,Donostia-San Sebastián,Donostia-San Sebastián,Mountain,
+vuelta-a-burgos-feminas,2026,Etappe 1,2026-05-21,Burgos,Burgos,Hilly,
+vuelta-a-burgos-feminas,2026,Etappe 2,2026-05-22,Castrojeriz,Bodega Viña Pedrosa. Pedrosa de Duero,Hilly,
+vuelta-a-burgos-feminas,2026,Etappe 3,2026-05-23,Busto de Bureba,Medina de Pomar,Hilly,
+vuelta-a-burgos-feminas,2026,Etappe 4,2026-05-24,Gumiel de Mercado,Lagunas de Neila,Mountain,
+tour-de-suisse-women,2026,Etappe 1,2026-06-17,Sondrio,Sondrio,Hilly,
+tour-de-suisse-women,2026,Etappe 2,2026-06-18,Lorcano,Lorcano,Hilly,
+tour-de-suisse-women,2026,Etappe 3,2026-06-19,Bad Ragaz,Bad Ragaz,Flat,
+tour-de-suisse-women,2026,Etappe 4,2026-06-20,Aarburg,Aarburg,Individual time trial,
+tour-de-suisse-women,2026,Etappe 5,2026-06-21,Villars-sur-Ollon,Villars-sur-Ollon,Mountain,
+tour-de-pologne,2026,Etappe 1,2026-08-03,Gdynia,Koszalin,Hilly,12:05
+tour-de-pologne,2026,Etappe 2,2026-08-04,Międzyzdroje,Szczecin,Flat,13:00
+tour-de-pologne,2026,Etappe 3,2026-08-05,Gorzów Wielkopolski,Zielona Góra,Hilly,12:25
+tour-de-pologne,2026,Etappe 4,2026-08-06,Żagań,Karpacz,Mountain,12:00
+tour-de-pologne,2026,Etappe 5,2026-08-07,Opole,Kocierz Resort,Mountain,11:45
+tour-de-pologne,2026,Etappe 6,2026-08-08,Bukovina Resort,Bukowina Tatrzańska,Mountain,12:55
+tour-de-pologne,2026,Etappe 7,2026-08-09,Kopalnia Soli „Wieliczka”,Kopalnia Soli „Wieliczka”,Individual time trial,13:30
+renewi-tour,2026,Etappe 1,2026-08-19,Diest,Diest,Flat,
+renewi-tour,2026,Etappe 2,2026-08-20,Blankenberge,Ardooie,Flat,
+renewi-tour,2026,Etappe 3,2026-08-21,Celles,Geraardsbergen,Hilly,
+renewi-tour,2026,Etappe 4,2026-08-22,Riemst,Bilzen-Hoeselt,Hilly,
+renewi-tour,2026,Etappe 5,2026-08-23,Leuven,Leuven,Hilly,
+giro-d-italia-women,2026,Etappe 1,2026-05-30,Cesenatico,Ravenna,Flat,
+giro-d-italia-women,2026,Etappe 2,2026-05-31,Roncade,Caorle,Flat,
+giro-d-italia-women,2026,Etappe 3,2026-06-01,Bibione,Buja,Hilly,
+giro-d-italia-women,2026,Etappe 4,2026-06-02,Belluno,Nevegal,Individual time trial,
+giro-d-italia-women,2026,Etappe 5,2026-06-03,Longarone,Santo Stefano di Cadore,Mountain,
+giro-d-italia-women,2026,Etappe 6,2026-06-04,Ala,Brescello,Flat,
+giro-d-italia-women,2026,Etappe 7,2026-06-05,Sorbolo Mezzani,Salice Terme,Hilly,
+giro-d-italia-women,2026,Etappe 8,2026-06-06,Rivoli,Sestriere,Mountain,
+giro-d-italia-women,2026,Etappe 9,2026-06-07,Saluzzo,Saluzzo,Mountain,

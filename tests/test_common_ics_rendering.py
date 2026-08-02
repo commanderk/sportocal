@@ -151,7 +151,11 @@ def test_build_vevent_includes_url_property():
     assert "URL:https://sportocal.de" in lines
 
 
-def test_build_vevent_description_ends_with_sportocal_footer():
+def test_build_vevent_description_has_no_sportocal_footer_line():
+    """The URL property alone carries the sportocal.de link -- a redundant
+    footer line in DESCRIPTION was removed after real-world feedback that
+    three visible links (URL property + alarm + footer) in one event was
+    too much."""
     lines = common.build_vevent(_cycling_event(), {})
     description_line = next(line for line in lines if line.startswith("DESCRIPTION:"))
-    assert description_line.endswith("— via sportocal.de")
+    assert "sportocal.de" not in description_line

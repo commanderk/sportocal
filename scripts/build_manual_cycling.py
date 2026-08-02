@@ -14,11 +14,17 @@ additive-merge logic.
 Not part of the weekly update.yml pipeline -- run manually whenever a CSV
 sheet changes: `python scripts/build_manual_cycling.py`.
 
-data/manual/stage-race.csv columns: race_id,year,stage_label,date,start,finish,type
+data/manual/stage-race.csv columns: race_id,year,stage_label,date,start,finish,type,start_time
   - race_id: must match a "source": "manual" entry's id in config.json.
   - date: ISO format YYYY-MM-DD (manual entry, no wikitext month names to
     parse, unlike fetch_cycling.py's parse_single_date).
   - type: must be one of common.STAGE_TYPES.
+  - start_time: optional, "HH:MM" 24h, Europe/Berlin local time (source
+    listings report CET/CEST). When given, the stage gets a real timed
+    DTSTART and timeConfirmed: true instead of the all-day/unconfirmed
+    default -- see build_stage_events() in fetch_cycling.py, which this
+    script reuses directly. Leave blank when no start time is published yet
+    (typical for Grand Tours, published only ~1-2 weeks out).
 
 data/manual/one-day.csv columns: race_id,year,date,start,finish,type
   - same race_id/date/type rules as above; unlike a stage race, one row is
@@ -86,6 +92,7 @@ def group_rows(rows: list[dict]) -> dict[tuple[str, int], list[dict]]:
                 "start_loc": row["start"].strip(),
                 "finish_loc": row["finish"].strip(),
                 "type": row["type"].strip(),
+                "start_time": (row.get("start_time") or "").strip(),
             }
         )
     return groups

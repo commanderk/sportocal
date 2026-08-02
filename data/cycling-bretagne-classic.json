@@ -4,6 +4,7 @@
       "id": "cycling-bretagne-classic-2026",
       "sport": "cycling",
       "competition": "Bretagne Classic",
+      "gender": "men",
       "round": null,
       "start": "2026-08-30",
       "timeConfirmed": false,
@@ -12,9 +13,8 @@
         "start": "Plouay",
         "finish": "Plouay",
         "type": "Hilly"
-      },
-      "gender": "men"
+      }
     }
   ],
-  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+  "lastChecked": "2026-08-02T18:02:01.993419+00:00"
 }

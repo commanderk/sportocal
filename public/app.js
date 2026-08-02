@@ -106,6 +106,16 @@ function leagueGroupKey(league) {
   return `${league.id}:${league.gender}`;
 }
 
+// Every club currently in `league`, unfiltered by search -- the group-token
+// semantics ("whole league, whoever's in it") always apply to the full
+// roster. Shared by renderFootballCombo() (which rows to show / whether the
+// master checkbox is fully/partially checked) and
+// consolidateFullyCoveredLeagueGroups() (whether an individual-token
+// selection now covers the whole league).
+function clubsInLeague(league) {
+  return state.clubs.filter((c) => c.teams[league.gender] && c.teams[league.gender].league === league.competition);
+}
+
 const GENDER_LABELS = { men: "Männer", women: "Frauen" };
 
 // league.competition names don't share one consistent shape: the women's
@@ -813,9 +823,7 @@ function renderFootballCombo() {
     // just whatever a search happens to currently show. `clubs` (search-
     // filtered) is only used for which rows to render and, while a search is
     // active, for the pre-existing "select the filtered subset" fallback.
-    const leagueClubs = state.clubs
-      .filter((c) => c.teams[league.gender] && c.teams[league.gender].league === league.competition)
-      .sort((a, b) => a.name.localeCompare(b.name, "de"));
+    const leagueClubs = clubsInLeague(league).sort((a, b) => a.name.localeCompare(b.name, "de"));
     const clubs = leagueClubs.filter(clubMatchesSearch);
     if (clubs.length === 0) continue;
 
@@ -1345,7 +1353,30 @@ function loadSelectionFromStorage() {
   }
 }
 
+// A league whose individually-selected clubs happen to add up to its whole
+// current roster is equivalent to a group selection -- collapse those
+// tokens into the single league-group token so the checkbox/chip reflect
+// that consistently. Re-derived from scratch on every selection change
+// (called from refreshSelectionUI()) by comparing the current selectedClubs
+// set against the league's full roster, rather than relying on a flag set
+// only when the master "select all" checkbox itself is clicked -- so
+// manually re-checking the one club that was missing (regardless of which
+// club, or the order individual clubs were (re-)checked in) also collapses
+// back to the group chip, not just a fresh individual chip alongside it.
+function consolidateFullyCoveredLeagueGroups() {
+  for (const league of state.leagues) {
+    const key = leagueGroupKey(league);
+    if (state.selectedLeagueGroups.has(key)) continue;
+    const fullTokens = clubsInLeague(league).map((c) => `${c.id}:${league.gender}`);
+    if (fullTokens.length > 0 && fullTokens.every((t) => state.selectedClubs.has(t))) {
+      state.selectedLeagueGroups.add(key);
+      fullTokens.forEach((t) => state.selectedClubs.delete(t));
+    }
+  }
+}
+
 function refreshSelectionUI() {
+  consolidateFullyCoveredLeagueGroups();
   renderFootballCombo();
   renderFootballChips();
   renderCyclingCombo();
@@ -1398,7 +1429,7 @@ function updateComboTriggerLabels() {
     footballLabel.textContent = "Vereine suchen und auswählen…";
   } else {
     const parts = [];
-    if (leagueCount > 0) parts.push(`${leagueCount} Liga${leagueCount === 1 ? "" : "en"}`);
+    if (leagueCount > 0) parts.push(`${leagueCount} ${leagueCount === 1 ? "Liga" : "Ligen"}`);
     if (clubCount > 0) parts.push(`${clubCount} Verein${clubCount === 1 ? "" : "e"}`);
     footballLabel.textContent = `${parts.join(" + ")} ausgewählt`;
   }

@@ -1,0 +1,80 @@
+{
+  "events": [
+    {
+      "id": "cycling-renewi-tour-2026-etappe1",
+      "sport": "cycling",
+      "competition": "Renewi Tour",
+      "gender": "men",
+      "round": "Etappe 1",
+      "start": "2026-08-19",
+      "timeConfirmed": false,
+      "location": "Diest → Diest",
+      "route": {
+        "start": "Diest",
+        "finish": "Diest",
+        "type": "Flat"
+      }
+    },
+    {
+      "id": "cycling-renewi-tour-2026-etappe2",
+      "sport": "cycling",
+      "competition": "Renewi Tour",
+      "gender": "men",
+      "round": "Etappe 2",
+      "start": "2026-08-20",
+      "timeConfirmed": false,
+      "location": "Blankenberge → Ardooie",
+      "route": {
+        "start": "Blankenberge",
+        "finish": "Ardooie",
+        "type": "Flat"
+      }
+    },
+    {
+      "id": "cycling-renewi-tour-2026-etappe3",
+      "sport": "cycling",
+      "competition": "Renewi Tour",
+      "gender": "men",
+      "round": "Etappe 3",
+      "start": "2026-08-21",
+      "timeConfirmed": false,
+      "location": "Celles → Geraardsbergen",
+      "route": {
+        "start": "Celles",
+        "finish": "Geraardsbergen",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-renewi-tour-2026-etappe4",
+      "sport": "cycling",
+      "competition": "Renewi Tour",
+      "gender": "men",
+      "round": "Etappe 4",
+      "start": "2026-08-22",
+      "timeConfirmed": false,
+      "location": "Riemst → Bilzen-Hoeselt",
+      "route": {
+        "start": "Riemst",
+        "finish": "Bilzen-Hoeselt",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-renewi-tour-2026-etappe5",
+      "sport": "cycling",
+      "competition": "Renewi Tour",
+      "gender": "men",
+      "round": "Etappe 5",
+      "start": "2026-08-23",
+      "timeConfirmed": false,
+      "location": "Leuven → Leuven",
+      "route": {
+        "start": "Leuven",
+        "finish": "Leuven",
+        "type": "Hilly"
+      }
+    }
+  ],
+  "lastChecked": "2026-08-02T18:02:01.993419+00:00"
+}

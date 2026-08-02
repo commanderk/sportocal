@@ -4,137 +4,137 @@
       "id": "cycling-tour-de-france-femmes-2026-etappe1",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 1",
-      "start": "2026-08-01",
-      "timeConfirmed": false,
+      "start": "2026-08-01T12:40:00Z",
+      "timeConfirmed": true,
       "location": "Lausanne → Lausanne",
       "route": {
         "start": "Lausanne",
         "finish": "Lausanne",
         "type": "Flat"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe2",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 2",
-      "start": "2026-08-02",
-      "timeConfirmed": false,
+      "start": "2026-08-02T12:30:00Z",
+      "timeConfirmed": true,
       "location": "Aigle → Genf",
       "route": {
         "start": "Aigle",
         "finish": "Genf",
         "type": "Flat"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe3",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 3",
-      "start": "2026-08-03",
-      "timeConfirmed": false,
+      "start": "2026-08-03T11:45:00Z",
+      "timeConfirmed": true,
       "location": "Genf → Poligny",
       "route": {
         "start": "Genf",
         "finish": "Poligny",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe4",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 4",
-      "start": "2026-08-04",
-      "timeConfirmed": false,
+      "start": "2026-08-04T12:35:00Z",
+      "timeConfirmed": true,
       "location": "Gevrey-Chambertin → Dijon",
       "route": {
         "start": "Gevrey-Chambertin",
         "finish": "Dijon",
         "type": "Individual time trial"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe5",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 5",
-      "start": "2026-08-05",
-      "timeConfirmed": false,
+      "start": "2026-08-05T12:00:00Z",
+      "timeConfirmed": true,
       "location": "Mâcon → Belleville-en-Beaujolais",
       "route": {
         "start": "Mâcon",
         "finish": "Belleville-en-Beaujolais",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe6",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 6",
-      "start": "2026-08-06",
-      "timeConfirmed": false,
+      "start": "2026-08-06T11:45:00Z",
+      "timeConfirmed": true,
       "location": "Montbrison → Tournon-sur-Rhône",
       "route": {
         "start": "Montbrison",
         "finish": "Tournon-sur-Rhône",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe7",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 7",
-      "start": "2026-08-07",
-      "timeConfirmed": false,
+      "start": "2026-08-07T11:15:00Z",
+      "timeConfirmed": true,
       "location": "La Voulte-sur-Rhône → Mont Ventoux",
       "route": {
         "start": "La Voulte-sur-Rhône",
         "finish": "Mont Ventoux",
         "type": "Mountain"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe8",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 8",
-      "start": "2026-08-08",
-      "timeConfirmed": false,
+      "start": "2026-08-08T12:00:00Z",
+      "timeConfirmed": true,
       "location": "Sisteron → Nizza",
       "route": {
         "start": "Sisteron",
         "finish": "Nizza",
         "type": "Flat"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe9",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 9",
-      "start": "2026-08-09",
-      "timeConfirmed": false,
+      "start": "2026-08-09T14:10:00Z",
+      "timeConfirmed": true,
       "location": "Nizza → Nizza",
       "route": {
         "start": "Nizza",
         "finish": "Nizza",
         "type": "Mountain"
-      },
-      "gender": "women"
+      }
     }
   ],
-  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+  "lastChecked": "2026-08-02T18:02:01.993419+00:00"
 }
