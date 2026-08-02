@@ -8,6 +8,12 @@ GET /api/calendar.ics?t=<selection>
   - "raceGroup:<key>"     -- e.g. "raceGroup:uci-worldtour-men", where <key>
                              is "{tier}-{gender}" (see common.race_group_key()
                              and build_site_data.py's races.json export).
+  - "league:<leagueId>:<gender>" -- e.g. "league:bl1:men", a whole league's
+                             worth of clubs ("Alle Vereine der Bundesliga
+                             auswählen" in the picker), resolved fresh below.
+                             <leagueId> comes from config.json's
+                             football.leagues (same ids public/data/leagues.json
+                             exposes as league.id).
 
 Cycling selection is at the tier×gender group level, not per-race (see
 README/commit history): resolving "raceGroup:<key>" against config.json's
@@ -17,6 +23,18 @@ without the user having to resubscribe. This replaced an earlier
 per-race "race:<raceId>" token; that token is not accepted anymore (no
 public subscribers existed yet at the time of the switch, so no
 compatibility shim was needed -- see git history if that ever changes).
+
+A "league:<leagueId>:<gender>" token is resolved against config/clubs.json
+the same "fresh on every request" way -- whichever clubs currently have
+`teams[gender].league` equal to that league's name are members, so
+promotion/relegation to a new season is reflected automatically without
+resubscribing. Membership only depends on the club, never on
+event["competition"], so a member club's cup/UEFA fixtures are pulled in
+too without any special-casing. League-group club ids are deliberately
+*not* added to `perspective_club_ids` (see build_response_body()) -- only
+individually selected clubs get the emoji/color treatment in the calendar
+title, a league-only-covered club's matches render as plain team names
+(see format_football_title() in scripts/common.py).
 
 Stateless by design (see README): the selection lives entirely in the URL, no
 server-side storage, no cookies. Reads data/*.json + config/clubs.json from
@@ -49,25 +67,32 @@ from common import (  # noqa: E402
 
 GENDER_SUFFIXES = (":men", ":women")
 RACE_GROUP_PREFIX = "raceGroup:"
+LEAGUE_GROUP_PREFIX = "league:"
+GENDER_LABELS = {"men": "Männer", "women": "Frauen"}
 
 
-def parse_selection(raw: str) -> tuple[set[tuple[str, str]], set[str]]:
-    """Returns (set of (clubId, gender) pairs, set of race-group keys).
-    Unparseable or unknown tokens are silently dropped -- a typo'd/renamed id
-    should just mean "this one piece is missing", never a broken calendar."""
+def parse_selection(raw: str) -> tuple[set[tuple[str, str]], set[str], set[str]]:
+    """Returns (set of (clubId, gender) pairs, set of race-group keys, set of
+    league-group keys). Unparseable or unknown tokens are silently dropped --
+    a typo'd/renamed id should just mean "this one piece is missing", never a
+    broken calendar."""
     club_tokens: set[tuple[str, str]] = set()
     race_group_keys: set[str] = set()
+    league_group_keys: set[str] = set()
     for token in (t.strip() for t in raw.split(",")):
         if not token:
             continue
         if token.startswith(RACE_GROUP_PREFIX):
             race_group_keys.add(token[len(RACE_GROUP_PREFIX) :])
             continue
+        if token.startswith(LEAGUE_GROUP_PREFIX):
+            league_group_keys.add(token[len(LEAGUE_GROUP_PREFIX) :])
+            continue
         for suffix in GENDER_SUFFIXES:
             if token.endswith(suffix):
                 club_tokens.add((token[: -len(suffix)], suffix[1:]))
                 break
-    return club_tokens, race_group_keys
+    return club_tokens, race_group_keys, league_group_keys
 
 
 def resolve_race_ids(race_group_keys: set[str], races: list[dict]) -> set[str]:
@@ -76,9 +101,42 @@ def resolve_race_ids(race_group_keys: set[str], races: list[dict]) -> set[str]:
     return {race["id"] for race in races if race_group_key(race["tier"], race["gender"]) in race_group_keys}
 
 
-def selection_summary(club_tokens: set[tuple[str, str]], race_ids: set[str], clubs_by_id: dict, race_names: dict) -> str:
+def resolve_league_club_tokens(
+    league_group_keys: set[str], leagues: list[dict], clubs: list[dict]
+) -> set[tuple[str, str]]:
+    """League-group keys ("<leagueId>:<gender>") -> the *current* set of
+    (clubId, gender) pairs for every club presently in that league, resolved
+    fresh on every call against config.json/clubs.json (see module
+    docstring) -- so promotion/relegation to a new season is reflected in an
+    already-subscribed calendar without resubscribing."""
+    leagues_by_key = {f"{league['id']}:{league['gender']}": league for league in leagues}
+    matched_leagues = [leagues_by_key[key] for key in league_group_keys if key in leagues_by_key]
+    tokens: set[tuple[str, str]] = set()
+    for league in matched_leagues:
+        gender = league["gender"]
+        for club in clubs:
+            team = club.get("teams", {}).get(gender)
+            if team and team.get("league") == league["competition"]:
+                tokens.add((club["id"], gender))
+    return tokens
+
+
+def league_group_label(league: dict) -> str:
+    return f"Alle Vereine {league['competition']} {GENDER_LABELS.get(league['gender'], league['gender'])}"
+
+
+def selection_summary(
+    club_tokens: set[tuple[str, str]],
+    race_ids: set[str],
+    league_group_keys: set[str],
+    clubs_by_id: dict,
+    race_names: dict,
+    leagues: list[dict],
+) -> str:
     names = [clubs_by_id[cid]["name"] for cid, _ in club_tokens if cid in clubs_by_id]
     names += [race_names[rid] for rid in race_ids if rid in race_names]
+    leagues_by_key = {f"{league['id']}:{league['gender']}": league for league in leagues}
+    names += [league_group_label(leagues_by_key[key]) for key in league_group_keys if key in leagues_by_key]
     return ", ".join(sorted(names)) or "(keine bekannten Vereine/Rennen in der Auswahl)"
 
 
@@ -99,16 +157,25 @@ def filter_events(events: list[dict], club_tokens: set[tuple[str, str]], race_id
 
 
 def build_response_body(raw_selection: str) -> bytes:
-    club_tokens, race_group_keys = parse_selection(raw_selection)
-    clubs_by_id = {c["id"]: c for c in load_clubs()}
+    club_tokens, race_group_keys, league_group_keys = parse_selection(raw_selection)
+    clubs = load_clubs()
+    clubs_by_id = {c["id"]: c for c in clubs}
     config = load_config()
     races = config["cycling"]["races"]
+    leagues = config["football"]["leagues"]
     race_ids = resolve_race_ids(race_group_keys, races)
     race_names = {r["id"]: r["name"] for r in races}
+    league_club_tokens = resolve_league_club_tokens(league_group_keys, leagues, clubs)
 
-    events = filter_events(load_all_events(), club_tokens, race_ids, race_names)
+    # Visibility uses the union of explicitly selected clubs and whoever a
+    # selected league currently contains; the calendar title's emoji/color
+    # ("perspective") stays scoped to *only* the explicitly selected clubs --
+    # see module docstring and format_football_title() in scripts/common.py.
+    events = filter_events(load_all_events(), club_tokens | league_club_tokens, race_ids, race_names)
     selected_club_ids = {cid for cid, _ in club_tokens}
-    calendar_name = f"sportocal – {selection_summary(club_tokens, race_ids, clubs_by_id, race_names)}"
+    calendar_name = (
+        f"sportocal – {selection_summary(club_tokens, race_ids, league_group_keys, clubs_by_id, race_names, leagues)}"
+    )
     calendar_text = build_calendar_text(
         events, clubs_by_id, calendar_name=calendar_name, perspective_club_ids=selected_club_ids
     )

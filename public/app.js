@@ -95,6 +95,27 @@ function raceGroupKey(group) {
   return `${group.tier}-${group.gender}`;
 }
 
+// Stable key identifying a full football league×gender selection -- same
+// "<id>:<gender>" shape club tokens already use, so it slots into the same
+// URL-token/localStorage patterns as selectedClubs and selectedRaceGroups.
+// A league is inherently single-gender in this app's data (see
+// leagues.json), so the gender suffix is redundant with league.id alone,
+// but kept for consistency with raceGroupKey()'s tier+gender shape and
+// buildSelectionToken()'s "prefix:<key>" convention.
+function leagueGroupKey(league) {
+  return `${league.id}:${league.gender}`;
+}
+
+const GENDER_LABELS = { men: "Männer", women: "Frauen" };
+
+// Chip/summary label for a full league-group selection, e.g.
+// "Alle Vereine Bundesliga Männer" -- unlike an individual club row/chip,
+// this one spells out the gender since the league name alone doesn't always
+// make it obvious (a men's league name usually has no gender marker at all).
+function leagueGroupLabel(league) {
+  return `Alle Vereine ${league.competition} ${GENDER_LABELS[league.gender] || league.gender}`;
+}
+
 const dateFormatter = new Intl.DateTimeFormat("de-DE", {
   day: "2-digit",
   month: "short",
@@ -614,6 +635,10 @@ function getFilterItemsInOrder() {
       const teamInfo = club && club.teams[gender];
       if (teamInfo) selectedLeagueNames.add(teamInfo.league);
     }
+    for (const key of state.selectedLeagueGroups) {
+      const league = state.leagues.find((l) => leagueGroupKey(l) === key);
+      if (league) selectedLeagueNames.add(league.competition);
+    }
     for (const league of state.leagues) {
       if (selectedLeagueNames.has(league.competition)) {
         items.push({ value: league.competition, label: league.competition });
@@ -684,6 +709,7 @@ const state = {
   competitionFilter: FILTER_ALL,
   selectedClubs: new Set(), // tokens "<clubId>:<gender>"
   selectedRaceGroups: new Set(), // tier×gender group keys, see raceGroupKey() -- cycling selection is group-level, not per-race
+  selectedLeagueGroups: new Set(), // "<leagueId>:<gender>" keys, see leagueGroupKey() -- "whole league, whoever's in it" selection, analogous to selectedRaceGroups
   footballOpen: false,
   cyclingOpen: false,
   search: "", // football combobox search (kept separate from cyclingSearch so the two panels don't filter each other)
@@ -696,7 +722,33 @@ const state = {
 // --- selection-aware event list ----------------------------------------
 
 function hasSelection() {
-  return state.selectedClubs.size > 0 || state.selectedRaceGroups.size > 0;
+  return state.selectedClubs.size > 0 || state.selectedRaceGroups.size > 0 || state.selectedLeagueGroups.size > 0;
+}
+
+// A league-group selection ("Alle Vereine der <Liga> auswählen", see
+// renderFootballCombo()) means "whoever's currently in this league", not a
+// snapshot of today's clubs -- so membership is checked live against
+// club.teams[gender].league here, never against a stored club-id list. This
+// is also what pulls a member club's cup/UEFA fixtures in automatically:
+// membership only depends on the club (via homeTeamId/awayTeamId), never on
+// event.competition itself, so a DFB-Pokal match is included the same way a
+// league match is, no special-casing needed.
+// `gender` must be the *event's* gender, and is compared against the
+// league's own gender (not just "does the club have any team in that
+// league") -- a club fielding both a men's and a women's team (e.g. 1. FC
+// Köln) must not have its women's fixtures pulled in by a men's-league
+// group selection just because the club also has a men's team somewhere.
+function clubMatchesAnySelectedLeagueGroup(clubId, gender) {
+  if (!clubId) return false;
+  const club = state.clubsById.get(clubId);
+  if (!club) return false;
+  for (const key of state.selectedLeagueGroups) {
+    const league = state.leagues.find((l) => leagueGroupKey(l) === key);
+    if (!league || league.gender !== gender) continue;
+    const team = club.teams[league.gender];
+    if (team && team.league === league.competition) return true;
+  }
+  return false;
 }
 
 // Without a selection the list is an unfiltered preview of everything, same
@@ -706,8 +758,10 @@ function visibleEvents() {
   return state.events.filter((e) => {
     if (e.sport === "football") {
       return (
-        (state.selectedClubs.has(`${e.homeTeamId}:${e.gender}`) ||
-          state.selectedClubs.has(`${e.awayTeamId}:${e.gender}`))
+        state.selectedClubs.has(`${e.homeTeamId}:${e.gender}`) ||
+        state.selectedClubs.has(`${e.awayTeamId}:${e.gender}`) ||
+        clubMatchesAnySelectedLeagueGroup(e.homeTeamId, e.gender) ||
+        clubMatchesAnySelectedLeagueGroup(e.awayTeamId, e.gender)
       );
     }
     if (e.sport === "cycling") {
@@ -752,17 +806,25 @@ function renderFootballCombo() {
   body.innerHTML = "";
 
   for (const league of state.leagues) {
-    const clubs = state.clubs
+    // Unfiltered league roster -- the group-token semantics ("whole league,
+    // whoever's in it") always apply to *every* club in the league, never
+    // just whatever a search happens to currently show. `clubs` (search-
+    // filtered) is only used for which rows to render and, while a search is
+    // active, for the pre-existing "select the filtered subset" fallback.
+    const leagueClubs = state.clubs
       .filter((c) => c.teams[league.gender] && c.teams[league.gender].league === league.competition)
-      .filter(clubMatchesSearch)
       .sort((a, b) => a.name.localeCompare(b.name, "de"));
+    const clubs = leagueClubs.filter(clubMatchesSearch);
     if (clubs.length === 0) continue;
 
+    const key = leagueGroupKey(league);
+    const groupSelected = state.selectedLeagueGroups.has(key);
     const color = LEAGUE_COLORS[league.id] || "#141414";
+    const fullTokens = leagueClubs.map((c) => `${c.id}:${league.gender}`);
     const tokens = clubs.map((c) => `${c.id}:${league.gender}`);
-    const selectedCount = tokens.filter((t) => state.selectedClubs.has(t)).length;
-    const allSelected = selectedCount === tokens.length;
-    const someSelected = selectedCount > 0 && !allSelected;
+    const selectedCount = fullTokens.filter((t) => state.selectedClubs.has(t)).length;
+    const allSelected = groupSelected || selectedCount === fullTokens.length;
+    const someSelected = !allSelected && selectedCount > 0;
 
     const head = document.createElement("div");
     head.className = "league-group-head sticky-group-header";
@@ -774,8 +836,23 @@ function renderFootballCombo() {
     allCheckbox.indeterminate = someSelected;
     allCheckbox.style.accentColor = color;
     allCheckbox.addEventListener("change", () => {
-      if (allSelected) tokens.forEach((t) => state.selectedClubs.delete(t));
-      else tokens.forEach((t) => state.selectedClubs.add(t));
+      if (allSelected) {
+        // Full deselect (whether it was a group token or a fully-itemized
+        // league) -- no group token, no individual tokens left for this league.
+        state.selectedLeagueGroups.delete(key);
+        fullTokens.forEach((t) => state.selectedClubs.delete(t));
+      } else if (!state.search.trim()) {
+        // Consolidate into a single group token ("whoever's in the league",
+        // not today's roster) -- drop any partial individual tokens so the
+        // selection has exactly one representation, never both at once.
+        state.selectedLeagueGroups.add(key);
+        fullTokens.forEach((t) => state.selectedClubs.delete(t));
+      } else {
+        // Search is narrowing the visible rows -- "select all" here can only
+        // reasonably mean the filtered subset, not the whole league, so this
+        // stays individual-token selection (pre-existing behavior).
+        tokens.forEach((t) => state.selectedClubs.add(t));
+      }
       refreshSelectionUI();
     });
     const swatch = document.createElement("span");
@@ -797,10 +874,26 @@ function renderFootballCombo() {
       row.className = "club-row";
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
-      checkbox.checked = state.selectedClubs.has(token);
+      checkbox.checked = state.selectedClubs.has(token) || groupSelected;
       checkbox.addEventListener("change", () => {
-        if (state.selectedClubs.has(token)) state.selectedClubs.delete(token);
-        else state.selectedClubs.add(token);
+        if (state.selectedLeagueGroups.has(key)) {
+          // This club's checked state currently comes from the league's
+          // group token, not an individual token -- unchecking it means
+          // "everyone in the league except this one", so explode the group
+          // token into individual tokens for every other member
+          // (gender-specific, full roster regardless of search) and drop
+          // the group token itself. Checking-while-group-selected can't
+          // happen -- it's already checked, a click can only uncheck it.
+          state.selectedLeagueGroups.delete(key);
+          for (const c of leagueClubs) {
+            if (c.id === club.id) continue;
+            state.selectedClubs.add(`${c.id}:${league.gender}`);
+          }
+        } else if (state.selectedClubs.has(token)) {
+          state.selectedClubs.delete(token);
+        } else {
+          state.selectedClubs.add(token);
+        }
         refreshSelectionUI();
       });
       const dot = document.createElement("span");
@@ -817,6 +910,28 @@ function renderFootballCombo() {
 function renderFootballChips() {
   const container = document.getElementById("football-chips");
   container.innerHTML = "";
+
+  for (const key of state.selectedLeagueGroups) {
+    const league = state.leagues.find((l) => leagueGroupKey(l) === key);
+    if (!league) continue;
+    const color = LEAGUE_COLORS[league.id] || "#141414";
+    const chip = document.createElement("div");
+    chip.className = "chip";
+    chip.style.background = color;
+    chip.style.color = contrastText(color);
+    const name = document.createElement("span");
+    name.textContent = leagueGroupLabel(league);
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "✕";
+    remove.addEventListener("click", () => {
+      state.selectedLeagueGroups.delete(key);
+      refreshSelectionUI();
+    });
+    chip.append(name, remove);
+    container.appendChild(chip);
+  }
+
   for (const token of state.selectedClubs) {
     const [clubId] = token.split(":");
     const club = state.clubsById.get(clubId);
@@ -837,7 +952,7 @@ function renderFootballChips() {
     chip.append(name, remove);
     container.appendChild(chip);
   }
-  document.getElementById("football-empty-hint").hidden = state.selectedClubs.size > 0;
+  document.getElementById("football-empty-hint").hidden = state.selectedClubs.size > 0 || state.selectedLeagueGroups.size > 0;
 }
 
 // --- selection UI: cycling combobox -------------------------------------
@@ -925,8 +1040,9 @@ function renderCyclingChips() {
 
 function buildSelectionToken() {
   const clubTokens = [...state.selectedClubs];
+  const leagueGroupTokens = [...state.selectedLeagueGroups].map((key) => `league:${key}`);
   const raceGroupTokens = [...state.selectedRaceGroups].map((key) => `raceGroup:${key}`);
-  return [...clubTokens, ...raceGroupTokens].join(",");
+  return [...clubTokens, ...leagueGroupTokens, ...raceGroupTokens].join(",");
 }
 
 function selectionSummaryText() {
@@ -934,11 +1050,15 @@ function selectionSummaryText() {
     .map((t) => state.clubsById.get(t.split(":")[0]))
     .filter(Boolean)
     .map((c) => c.name);
+  const leagueGroupNames = [...state.selectedLeagueGroups]
+    .map((key) => state.leagues.find((l) => leagueGroupKey(l) === key))
+    .filter(Boolean)
+    .map(leagueGroupLabel);
   const raceGroupNames = [...state.selectedRaceGroups]
     .map((key) => state.raceGroups.find((g) => raceGroupKey(g) === key))
     .filter(Boolean)
     .map((g) => g.label);
-  return [...clubNames, ...raceGroupNames].join(", ");
+  return [...clubNames, ...leagueGroupNames, ...raceGroupNames].join(", ");
 }
 
 // --- subscribe app tabs (Apple/Outlook/Google/Andere) --------------------
@@ -1195,7 +1315,11 @@ function saveSelectionToStorage() {
   try {
     localStorage.setItem(
       SELECTION_STORAGE_KEY,
-      JSON.stringify({ clubs: [...state.selectedClubs], raceGroups: [...state.selectedRaceGroups] })
+      JSON.stringify({
+        clubs: [...state.selectedClubs],
+        raceGroups: [...state.selectedRaceGroups],
+        leagueGroups: [...state.selectedLeagueGroups],
+      })
     );
   } catch (err) {
     // Private browsing / quota exceeded -- selection just won't survive a
@@ -1213,6 +1337,7 @@ function loadSelectionFromStorage() {
     // per-race ids wouldn't be valid group keys anyway, so this just starts
     // cycling selection empty for anyone with that stale entry.
     state.selectedRaceGroups = new Set(parsed.raceGroups || []);
+    state.selectedLeagueGroups = new Set(parsed.leagueGroups || []);
   } catch (err) {
     // Malformed/stale entry -- ignore it and start with an empty selection.
   }
@@ -1265,9 +1390,16 @@ function setupCombobox({ triggerId, panelId, doneId, labelId, isOpenKey, emptyLa
 
 function updateComboTriggerLabels() {
   const footballLabel = document.getElementById("football-combo-trigger-label");
-  footballLabel.textContent = state.selectedClubs.size > 0
-    ? `${state.selectedClubs.size} Verein${state.selectedClubs.size === 1 ? "" : "e"} ausgewählt`
-    : "Vereine suchen und auswählen…";
+  const leagueCount = state.selectedLeagueGroups.size;
+  const clubCount = state.selectedClubs.size;
+  if (leagueCount === 0 && clubCount === 0) {
+    footballLabel.textContent = "Vereine suchen und auswählen…";
+  } else {
+    const parts = [];
+    if (leagueCount > 0) parts.push(`${leagueCount} Liga${leagueCount === 1 ? "" : "en"}`);
+    if (clubCount > 0) parts.push(`${clubCount} Verein${clubCount === 1 ? "" : "e"}`);
+    footballLabel.textContent = `${parts.join(" + ")} ausgewählt`;
+  }
 
   const cyclingLabel = document.getElementById("cycling-combo-trigger-label");
   cyclingLabel.textContent = state.selectedRaceGroups.size > 0
@@ -1370,6 +1502,8 @@ async function main() {
     // nothing, silently showing an empty calendar.
     const validGroupKeys = new Set(state.raceGroups.map(raceGroupKey));
     state.selectedRaceGroups = new Set([...state.selectedRaceGroups].filter((key) => validGroupKeys.has(key)));
+    const validLeagueGroupKeys = new Set(state.leagues.map(leagueGroupKey));
+    state.selectedLeagueGroups = new Set([...state.selectedLeagueGroups].filter((key) => validLeagueGroupKeys.has(key)));
     setupSelectorUI();
     renderCompetitionFilters();
     setupViewToggle();
