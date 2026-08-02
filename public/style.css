@@ -1094,3 +1094,33 @@ main#app {
   font-size: 14px;
   font-weight: 700;
 }
+
+/* Every major section shares a 40px horizontal gutter, sized for desktop --
+   on a ~390px phone that's ~80px (20% of the width) lost to padding alone,
+   visibly cramping the tabs/list in the mobile card layout the 900px
+   breakpoint elsewhere already switches to. Collected here as one shared
+   override (rather than rewriting each selector's own shorthand above) so
+   the gutter stays a single consistent value across the whole page. Must
+   stay the last rule in the file: same specificity as the base selectors
+   above, so a later position is what makes it win at this width. */
+@media (max-width: 600px) {
+  .site-header,
+  .hero,
+  .selector-row,
+  .view-tabs,
+  .competition-filters,
+  main#app,
+  .sticky-subscribe-bar,
+  .footer-attribution,
+  .last-updated,
+  .footer-legal,
+  .legal-page {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .subscribe-section {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}
