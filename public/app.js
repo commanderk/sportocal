@@ -409,6 +409,22 @@ function renderByDate(events, app) {
   app.appendChild(section);
 }
 
+// A filter pill's value is either a plain league name (football, matches
+// event.competition directly) or "raceGroup:<key>" (cycling, one pill covers
+// every race in that tier×gender group -- see getFilterItemsInOrder()). A
+// single competitionName here is always one race/league, never a group, so
+// resolving a raceGroup: filter back to "does this race belong to it" goes
+// through state.races the same way visibleEvents() already does.
+function competitionMatchesFilter(competitionName, filter) {
+  if (filter === FILTER_ALL) return true;
+  if (filter.startsWith("raceGroup:")) {
+    const key = filter.slice("raceGroup:".length);
+    const race = state.races.find((r) => r.name === competitionName);
+    return Boolean(race && race.groupKey === key);
+  }
+  return competitionName === filter;
+}
+
 function renderByCompetition(events, app, competitionFilter) {
   const bySport = groupBy(events, (e) => e.sport);
   const sportKeys = [...bySport.keys()].sort(
@@ -435,9 +451,10 @@ function renderByCompetition(events, app, competitionFilter) {
       return aTier !== bTier ? aTier - bTier : aValue - bValue;
     });
 
-    const visibleNames = competitionFilter === FILTER_ALL
-      ? competitionNames
-      : competitionNames.filter((name) => name === competitionFilter);
+    // A selected cycling filter pill covers a whole tier×gender group, so
+    // every race belonging to it still gets its own renderCompetitionSection()
+    // below -- only the filter *pills* are grouped, not the results list.
+    const visibleNames = competitionNames.filter((name) => competitionMatchesFilter(name, competitionFilter));
     if (visibleNames.length === 0) continue;
 
     const sportSection = document.createElement("section");
@@ -455,24 +472,67 @@ function renderByCompetition(events, app, competitionFilter) {
 
 const FILTER_ALL = "Alle";
 
-function getCompetitionNamesInOrder(events) {
-  const bySport = groupBy(events, (e) => e.sport);
-  const sportKeys = [...bySport.keys()].sort((a, b) => SPORT_ORDER.indexOf(a) - SPORT_ORDER.indexOf(b));
-  return sportKeys.flatMap((sport) => [...groupBy(bySport.get(sport), (e) => e.competition).keys()].sort());
+// Filter pills mirror the two multiselects' *selection state*, not the
+// events currently on screen -- so this depends on state.selectedClubs /
+// state.selectedRaceGroups, never on `events`. With nothing selected it's
+// the same "preview everything" idea as visibleEvents(): every league, every
+// cycling group. With a selection, only the leagues/groups actually touched
+// by it get a pill, e.g. picking one Frauen-Bundesliga club plus one race
+// group yields exactly two pills, no more. Football and cycling pills use
+// the exact same grouping as their comboboxes (state.leagues /
+// state.raceGroups) so the pill bar never invents its own structure.
+function getFilterItemsInOrder() {
+  const items = [];
+
+  if (!hasSelection()) {
+    for (const league of state.leagues) {
+      items.push({ value: league.competition, label: league.competition });
+    }
+    for (const group of state.raceGroups) {
+      items.push({ value: `raceGroup:${raceGroupKey(group)}`, label: group.label });
+    }
+    return items;
+  }
+
+  // club.teams[gender].league (see clubs.json) is the same league name used
+  // as event.competition for that club's matches -- collecting distinct
+  // values here, then walking state.leagues to pick the pill order, keeps
+  // pills in league order without re-sorting alphabetically.
+  const selectedLeagueNames = new Set();
+  for (const token of state.selectedClubs) {
+    const [clubId, gender] = token.split(":");
+    const club = state.clubsById.get(clubId);
+    const teamInfo = club && club.teams[gender];
+    if (teamInfo) selectedLeagueNames.add(teamInfo.league);
+  }
+  for (const league of state.leagues) {
+    if (selectedLeagueNames.has(league.competition)) {
+      items.push({ value: league.competition, label: league.competition });
+    }
+  }
+
+  for (const group of state.raceGroups) {
+    const key = raceGroupKey(group);
+    if (state.selectedRaceGroups.has(key)) {
+      items.push({ value: `raceGroup:${key}`, label: group.label });
+    }
+  }
+
+  return items;
 }
 
 function renderCompetitionFilters() {
   const container = document.getElementById("competition-filters");
   container.innerHTML = "";
-  const names = [FILTER_ALL, ...getCompetitionNamesInOrder(visibleEvents())];
-  if (!names.includes(state.competitionFilter)) state.competitionFilter = FILTER_ALL;
-  for (const name of names) {
+  const items = [{ value: FILTER_ALL, label: FILTER_ALL }, ...getFilterItemsInOrder()];
+  if (!items.some((item) => item.value === state.competitionFilter)) state.competitionFilter = FILTER_ALL;
+  for (const item of items) {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "filter-pill" + (state.competitionFilter === name ? " is-active" : "");
-    btn.textContent = name;
+    btn.className = "filter-pill" + (state.competitionFilter === item.value ? " is-active" : "");
+    btn.textContent = item.label;
     btn.addEventListener("click", () => {
-      state.competitionFilter = name;
+      state.competitionFilter = item.value;
       renderCompetitionFilters();
       render();
     });
