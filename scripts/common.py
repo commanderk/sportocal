@@ -319,7 +319,6 @@ def build_vevent(event: dict, clubs_by_id: dict, perspective_club_ids: set[str] 
             description_parts.append(f"Etappe: {STAGE_TYPE_DISPLAY_DE[stage_type]}")
     if not time_confirmed:
         description_parts.append("Hinweis: Uhrzeit noch nicht final")
-    description_parts.append(f"— via {SPORTOCAL_DOMAIN}")
 
     lines = ["BEGIN:VEVENT", f"UID:{event['id']}@sportocal"]
 
