@@ -4,6 +4,7 @@
       "id": "cycling-ronde-van-vlaanderen-2026",
       "sport": "cycling",
       "competition": "Ronde van Vlaanderen",
+      "gender": "men",
       "round": null,
       "start": "2026-04-05",
       "timeConfirmed": false,
@@ -12,9 +13,8 @@
         "start": "Antwerpen",
         "finish": "Oudenaarde",
         "type": "Hilly"
-      },
-      "gender": "men"
+      }
     }
   ],
-  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+  "lastChecked": "2026-08-02T17:40:04.052622+00:00"
 }

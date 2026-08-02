@@ -4,6 +4,7 @@
       "id": "cycling-fleche-wallonne-femmes-2026",
       "sport": "cycling",
       "competition": "La Flèche Wallonne Femmes",
+      "gender": "women",
       "round": null,
       "start": "2026-04-22",
       "timeConfirmed": false,
@@ -12,9 +13,8 @@
         "start": "Huy",
         "finish": "Huy",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     }
   ],
-  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+  "lastChecked": "2026-08-02T17:40:04.052622+00:00"
 }

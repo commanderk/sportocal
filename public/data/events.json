@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T13:28:05.791480+00:00",
+  "generatedAt": "2026-08-02T17:41:13.652067+00:00",
   "events": [
     {
       "id": "football-ffb2-78894",
@@ -2565,6 +2565,7 @@
       "id": "cycling-omloop-het-nieuwsblad-women-2026",
       "sport": "cycling",
       "competition": "Omloop Het Nieuwsblad Women",
+      "gender": "women",
       "round": null,
       "start": "2026-02-28",
       "timeConfirmed": false,
@@ -2574,13 +2575,13 @@
         "finish": "Ninove",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-omloop-het-nieuwsblad-2026",
       "sport": "cycling",
       "competition": "Omloop Het Nieuwsblad",
+      "gender": "men",
       "round": null,
       "start": "2026-02-28",
       "timeConfirmed": false,
@@ -2590,13 +2591,13 @@
         "finish": "Ninove",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-strade-bianche-donne-2026",
       "sport": "cycling",
       "competition": "Strade Bianche Donne",
+      "gender": "women",
       "round": null,
       "start": "2026-03-07",
       "timeConfirmed": false,
@@ -2606,13 +2607,13 @@
         "finish": "Siena",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-strade-bianche-2026",
       "sport": "cycling",
       "competition": "Strade Bianche",
+      "gender": "men",
       "round": null,
       "start": "2026-03-07",
       "timeConfirmed": false,
@@ -2622,8 +2623,7 @@
         "finish": "Siena",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-ffb2-79011",
@@ -2709,6 +2709,7 @@
       "id": "cycling-trofeo-alfredo-binda-2026",
       "sport": "cycling",
       "competition": "Trofeo Alfredo Binda",
+      "gender": "women",
       "round": null,
       "start": "2026-03-15",
       "timeConfirmed": false,
@@ -2718,8 +2719,7 @@
         "finish": "Cittiglio",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "football-ffb2-79036",
@@ -2917,6 +2917,7 @@
       "id": "cycling-milano-sanremo-women-2026",
       "sport": "cycling",
       "competition": "Milano–Sanremo Women",
+      "gender": "women",
       "round": null,
       "start": "2026-03-21",
       "timeConfirmed": false,
@@ -2926,13 +2927,13 @@
         "finish": "Sanremo",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-milano-sanremo-2026",
       "sport": "cycling",
       "competition": "Milano-Sanremo",
+      "gender": "men",
       "round": null,
       "start": "2026-03-21",
       "timeConfirmed": false,
@@ -2942,8 +2943,7 @@
         "finish": "Sanremo",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-ffb2-79047",
@@ -3061,6 +3061,7 @@
       "id": "cycling-ronde-van-brugge-2026",
       "sport": "cycling",
       "competition": "Ronde Van Brugge",
+      "gender": "men",
       "round": null,
       "start": "2026-03-25",
       "timeConfirmed": false,
@@ -3070,13 +3071,13 @@
         "finish": "De Panne",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-ronde-van-brugge-women-2026",
       "sport": "cycling",
       "competition": "Ronde Van Brugge",
+      "gender": "women",
       "round": null,
       "start": "2026-03-26",
       "timeConfirmed": false,
@@ -3086,13 +3087,13 @@
         "finish": "De Panne",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-e3-saxo-classic-2026",
       "sport": "cycling",
       "competition": "E3 Saxo Classic",
+      "gender": "men",
       "round": null,
       "start": "2026-03-27",
       "timeConfirmed": false,
@@ -3102,13 +3103,13 @@
         "finish": "Harelbeke",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-in-flanders-fields-women-2026",
       "sport": "cycling",
       "competition": "In Flanders Fields",
+      "gender": "women",
       "round": null,
       "start": "2026-03-29",
       "timeConfirmed": false,
@@ -3118,13 +3119,13 @@
         "finish": "",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-in-flanders-fields-2026",
       "sport": "cycling",
       "competition": "In Flanders Fields",
+      "gender": "men",
       "round": null,
       "start": "2026-03-29",
       "timeConfirmed": false,
@@ -3134,8 +3135,7 @@
         "finish": "Wevelgem",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-ffb2-79048",
@@ -3253,6 +3253,7 @@
       "id": "cycling-dwars-door-vlaanderen-women-2026",
       "sport": "cycling",
       "competition": "Dwars door Vlaanderen",
+      "gender": "women",
       "round": null,
       "start": "2026-04-01",
       "timeConfirmed": false,
@@ -3262,13 +3263,13 @@
         "finish": "Waregem",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-dwars-door-vlaanderen-2026",
       "sport": "cycling",
       "competition": "Dwars door Vlaanderen",
+      "gender": "men",
       "round": null,
       "start": "2026-04-01",
       "timeConfirmed": false,
@@ -3278,8 +3279,7 @@
         "finish": "Waregem",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-ffb2-79057",
@@ -3317,6 +3317,7 @@
       "id": "cycling-ronde-van-vlaanderen-women-2026",
       "sport": "cycling",
       "competition": "Ronde van Vlaanderen",
+      "gender": "women",
       "round": null,
       "start": "2026-04-05",
       "timeConfirmed": false,
@@ -3326,13 +3327,13 @@
         "finish": "Oudenaarde",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-ronde-van-vlaanderen-2026",
       "sport": "cycling",
       "competition": "Ronde van Vlaanderen",
+      "gender": "men",
       "round": null,
       "start": "2026-04-05",
       "timeConfirmed": false,
@@ -3342,8 +3343,7 @@
         "finish": "Oudenaarde",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-ffb2-79055",
@@ -3445,6 +3445,7 @@
       "id": "cycling-paris-roubaix-femmes-2026",
       "sport": "cycling",
       "competition": "Paris-Roubaix Femmes",
+      "gender": "women",
       "round": null,
       "start": "2026-04-12",
       "timeConfirmed": false,
@@ -3454,13 +3455,13 @@
         "finish": "Roubaix",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-paris-roubaix-2026",
       "sport": "cycling",
       "competition": "Paris-Roubaix",
+      "gender": "men",
       "round": null,
       "start": "2026-04-12",
       "timeConfirmed": false,
@@ -3470,8 +3471,7 @@
         "finish": "Roubaix",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-ucl-81330",
@@ -3493,6 +3493,7 @@
       "id": "cycling-amstel-gold-race-ladies-2026",
       "sport": "cycling",
       "competition": "Amstel Gold Race Ladies Edition",
+      "gender": "women",
       "round": null,
       "start": "2026-04-19",
       "timeConfirmed": false,
@@ -3502,13 +3503,13 @@
         "finish": "Berg en Terblijt",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-amstel-gold-race-2026",
       "sport": "cycling",
       "competition": "Amstel Gold Race",
+      "gender": "men",
       "round": null,
       "start": "2026-04-19",
       "timeConfirmed": false,
@@ -3518,13 +3519,13 @@
         "finish": "Berg en Terblijt",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-fleche-wallonne-femmes-2026",
       "sport": "cycling",
       "competition": "La Flèche Wallonne Femmes",
+      "gender": "women",
       "round": null,
       "start": "2026-04-22",
       "timeConfirmed": false,
@@ -3534,13 +3535,13 @@
         "finish": "Huy",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-fleche-wallonne-2026",
       "sport": "cycling",
       "competition": "La Flèche Wallonne",
+      "gender": "men",
       "round": null,
       "start": "2026-04-22",
       "timeConfirmed": false,
@@ -3550,13 +3551,13 @@
         "finish": "Huy",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-liege-bastogne-liege-femmes-2026",
       "sport": "cycling",
       "competition": "Liège–Bastogne–Liège Femmes",
+      "gender": "women",
       "round": null,
       "start": "2026-04-26",
       "timeConfirmed": false,
@@ -3566,13 +3567,13 @@
         "finish": "Liège",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-liege-bastogne-liege-2026",
       "sport": "cycling",
       "competition": "Liège–Bastogne–Liège",
+      "gender": "men",
       "round": null,
       "start": "2026-04-26",
       "timeConfirmed": false,
@@ -3582,8 +3583,7 @@
         "finish": "Liège",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-ffb2-79064",
@@ -3717,6 +3717,7 @@
       "id": "cycling-eschborn-frankfurt-2026",
       "sport": "cycling",
       "competition": "Eschborn-Frankfurt",
+      "gender": "men",
       "round": null,
       "start": "2026-05-01",
       "timeConfirmed": false,
@@ -3726,13 +3727,13 @@
         "finish": "Frankfurt",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe1",
       "sport": "cycling",
       "competition": "Vuelta España Femenina",
+      "gender": "women",
       "round": "Etappe 1",
       "start": "2026-05-03",
       "timeConfirmed": false,
@@ -3742,8 +3743,7 @@
         "finish": "Salvaterra de Miño",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "football-ffb2-79072",
@@ -3861,6 +3861,7 @@
       "id": "cycling-vuelta-espana-femenina-2026-etappe2",
       "sport": "cycling",
       "competition": "Vuelta España Femenina",
+      "gender": "women",
       "round": "Etappe 2",
       "start": "2026-05-04",
       "timeConfirmed": false,
@@ -3870,13 +3871,13 @@
         "finish": "San Vibrao das Viñas",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe3",
       "sport": "cycling",
       "competition": "Vuelta España Femenina",
+      "gender": "women",
       "round": "Etappe 3",
       "start": "2026-05-05",
       "timeConfirmed": false,
@@ -3886,13 +3887,13 @@
         "finish": "A Coruña",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe4",
       "sport": "cycling",
       "competition": "Vuelta España Femenina",
+      "gender": "women",
       "round": "Etappe 4",
       "start": "2026-05-06",
       "timeConfirmed": false,
@@ -3902,8 +3903,7 @@
         "finish": "Antas de Ulla",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "football-ucl-81435",
@@ -3925,6 +3925,7 @@
       "id": "cycling-vuelta-espana-femenina-2026-etappe5",
       "sport": "cycling",
       "competition": "Vuelta España Femenina",
+      "gender": "women",
       "round": "Etappe 5",
       "start": "2026-05-07",
       "timeConfirmed": false,
@@ -3934,13 +3935,13 @@
         "finish": "Astorga",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe6",
       "sport": "cycling",
       "competition": "Vuelta España Femenina",
+      "gender": "women",
       "round": "Etappe 6",
       "start": "2026-05-08",
       "timeConfirmed": false,
@@ -3950,13 +3951,13 @@
         "finish": "Les Praeres, Nava",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-vuelta-espana-femenina-2026-etappe7",
       "sport": "cycling",
       "competition": "Vuelta España Femenina",
+      "gender": "women",
       "round": "Etappe 7",
       "start": "2026-05-09",
       "timeConfirmed": false,
@@ -3966,8 +3967,7 @@
         "finish": "L'Angliru",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "football-ffb2-79082",
@@ -4085,6 +4085,7 @@
       "id": "cycling-itzulia-women-2026-etappe1",
       "sport": "cycling",
       "competition": "Itzulia Women",
+      "gender": "women",
       "round": "Etappe 1",
       "start": "2026-05-16",
       "timeConfirmed": false,
@@ -4094,13 +4095,13 @@
         "finish": "Zarautz",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-itzulia-women-2026-etappe2",
       "sport": "cycling",
       "competition": "Itzulia Women",
+      "gender": "women",
       "round": "Etappe 2",
       "start": "2026-05-17",
       "timeConfirmed": false,
@@ -4110,8 +4111,7 @@
         "finish": "Amorebieta-Etxano",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "football-ffb2-79083",
@@ -4229,6 +4229,7 @@
       "id": "cycling-itzulia-women-2026-etappe3",
       "sport": "cycling",
       "competition": "Itzulia Women",
+      "gender": "women",
       "round": "Etappe 3",
       "start": "2026-05-18",
       "timeConfirmed": false,
@@ -4238,8 +4239,7 @@
         "finish": "Donostia-San Sebastián",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "football-uel-81606",
@@ -4261,6 +4261,7 @@
       "id": "cycling-giro-d-italia-women-2026-etappe1",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 1",
       "start": "2026-05-30",
       "timeConfirmed": false,
@@ -4270,13 +4271,13 @@
         "finish": "Ravenna",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe2",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 2",
       "start": "2026-05-31",
       "timeConfirmed": false,
@@ -4286,13 +4287,13 @@
         "finish": "Caorle",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe3",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 3",
       "start": "2026-06-01",
       "timeConfirmed": false,
@@ -4302,13 +4303,13 @@
         "finish": "Buja",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe4",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 4",
       "start": "2026-06-02",
       "timeConfirmed": false,
@@ -4318,13 +4319,13 @@
         "finish": "Nevegal",
         "type": "Individual time trial",
         "typeDisplay": "Einzelzeitfahren"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe5",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 5",
       "start": "2026-06-03",
       "timeConfirmed": false,
@@ -4334,13 +4335,13 @@
         "finish": "Santo Stefano di Cadore",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe6",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 6",
       "start": "2026-06-04",
       "timeConfirmed": false,
@@ -4350,13 +4351,13 @@
         "finish": "Brescello",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe7",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 7",
       "start": "2026-06-05",
       "timeConfirmed": false,
@@ -4366,13 +4367,13 @@
         "finish": "Salice Terme",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe8",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 8",
       "start": "2026-06-06",
       "timeConfirmed": false,
@@ -4382,13 +4383,13 @@
         "finish": "Sestriere",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe9",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 9",
       "start": "2026-06-07",
       "timeConfirmed": false,
@@ -4398,13 +4399,13 @@
         "finish": "Saluzzo",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-copenhagen-sprint-women-2026",
       "sport": "cycling",
       "competition": "Copenhagen Sprint",
+      "gender": "women",
       "round": null,
       "start": "2026-06-13",
       "timeConfirmed": false,
@@ -4414,13 +4415,13 @@
         "finish": "Copenhagen",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-copenhagen-sprint-2026",
       "sport": "cycling",
       "competition": "Copenhagen Sprint",
+      "gender": "men",
       "round": null,
       "start": "2026-06-14",
       "timeConfirmed": false,
@@ -4430,13 +4431,13 @@
         "finish": "Copenhagen",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe1",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 1",
       "start": "2026-06-17",
       "timeConfirmed": false,
@@ -4446,13 +4447,13 @@
         "finish": "Sondrio",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe2",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 2",
       "start": "2026-06-18",
       "timeConfirmed": false,
@@ -4462,13 +4463,13 @@
         "finish": "Lorcano",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe3",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 3",
       "start": "2026-06-19",
       "timeConfirmed": false,
@@ -4478,13 +4479,13 @@
         "finish": "Bad Ragaz",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe4",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 4",
       "start": "2026-06-20",
       "timeConfirmed": false,
@@ -4494,13 +4495,13 @@
         "finish": "Aarburg",
         "type": "Individual time trial",
         "typeDisplay": "Einzelzeitfahren"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-suisse-women-2026-etappe5",
       "sport": "cycling",
       "competition": "Tour de Suisse Women",
+      "gender": "women",
       "round": "Etappe 5",
       "start": "2026-06-21",
       "timeConfirmed": false,
@@ -4510,8 +4511,7 @@
         "finish": "Villars-sur-Ollon",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-2026-etappe1",
@@ -4853,6 +4853,7 @@
       "id": "cycling-tour-de-neuss-2026",
       "sport": "cycling",
       "competition": "Tour de Neuss",
+      "gender": "men",
       "round": null,
       "start": "2026-07-29",
       "timeConfirmed": false,
@@ -4862,13 +4863,13 @@
         "finish": "Neuss",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-schmitter-nacht-von-huerth-2026",
       "sport": "cycling",
       "competition": "Schmitter-Nacht von Hürth",
+      "gender": "men",
       "round": null,
       "start": "2026-07-31",
       "timeConfirmed": false,
@@ -4878,13 +4879,13 @@
         "finish": "Hürth",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-dssk-2026",
       "sport": "cycling",
       "competition": "DSSK",
+      "gender": "men",
       "round": null,
       "start": "2026-08-01",
       "timeConfirmed": false,
@@ -4894,136 +4895,199 @@
         "finish": "San Sebastián",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe1",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 1",
-      "start": "2026-08-01",
-      "timeConfirmed": false,
+      "start": "2026-08-01T12:40:00Z",
+      "timeConfirmed": true,
       "location": "Lausanne → Lausanne",
       "route": {
         "start": "Lausanne",
         "finish": "Lausanne",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe2",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 2",
-      "start": "2026-08-02",
-      "timeConfirmed": false,
+      "start": "2026-08-02T12:30:00Z",
+      "timeConfirmed": true,
       "location": "Aigle → Genf",
       "route": {
         "start": "Aigle",
         "finish": "Genf",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+      }
+    },
+    {
+      "id": "cycling-tour-de-pologne-2026-etappe1",
+      "sport": "cycling",
+      "competition": "Tour de Pologne",
+      "gender": "men",
+      "round": "Etappe 1",
+      "start": "2026-08-03T10:05:00Z",
+      "timeConfirmed": true,
+      "location": "Gdynia → Koszalin",
+      "route": {
+        "start": "Gdynia",
+        "finish": "Koszalin",
+        "type": "Hilly",
+        "typeDisplay": "Hügelige Etappe"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe3",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 3",
-      "start": "2026-08-03",
-      "timeConfirmed": false,
+      "start": "2026-08-03T11:45:00Z",
+      "timeConfirmed": true,
       "location": "Genf → Poligny",
       "route": {
         "start": "Genf",
         "finish": "Poligny",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
+    },
+    {
+      "id": "cycling-tour-de-pologne-2026-etappe2",
+      "sport": "cycling",
+      "competition": "Tour de Pologne",
+      "gender": "men",
+      "round": "Etappe 2",
+      "start": "2026-08-04T11:00:00Z",
+      "timeConfirmed": true,
+      "location": "Międzyzdroje → Szczecin",
+      "route": {
+        "start": "Międzyzdroje",
+        "finish": "Szczecin",
+        "type": "Flat",
+        "typeDisplay": "Flachetappe"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe4",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 4",
-      "start": "2026-08-04",
-      "timeConfirmed": false,
+      "start": "2026-08-04T12:35:00Z",
+      "timeConfirmed": true,
       "location": "Gevrey-Chambertin → Dijon",
       "route": {
         "start": "Gevrey-Chambertin",
         "finish": "Dijon",
         "type": "Individual time trial",
         "typeDisplay": "Einzelzeitfahren"
-      },
-      "gender": "women"
+      }
     },
     {
-      "id": "cycling-tour-de-pologne-2026-etappe2",
+      "id": "cycling-tour-de-pologne-2026-etappe3",
       "sport": "cycling",
       "competition": "Tour de Pologne",
-      "round": "Etappe 2",
-      "start": "2026-08-04",
-      "timeConfirmed": false,
-      "location": "Międzyzdroje → Szczecin",
+      "gender": "men",
+      "round": "Etappe 3",
+      "start": "2026-08-05T10:25:00Z",
+      "timeConfirmed": true,
+      "location": "Gorzów Wielkopolski → Zielona Góra",
       "route": {
-        "start": "Międzyzdroje",
-        "finish": "Szczecin",
-        "type": "Individual time trial",
-        "typeDisplay": "Einzelzeitfahren"
-      },
-      "gender": "men"
+        "start": "Gorzów Wielkopolski",
+        "finish": "Zielona Góra",
+        "type": "Hilly",
+        "typeDisplay": "Hügelige Etappe"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe5",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 5",
-      "start": "2026-08-05",
-      "timeConfirmed": false,
+      "start": "2026-08-05T12:00:00Z",
+      "timeConfirmed": true,
       "location": "Mâcon → Belleville-en-Beaujolais",
       "route": {
         "start": "Mâcon",
         "finish": "Belleville-en-Beaujolais",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
+    },
+    {
+      "id": "cycling-tour-de-pologne-2026-etappe4",
+      "sport": "cycling",
+      "competition": "Tour de Pologne",
+      "gender": "men",
+      "round": "Etappe 4",
+      "start": "2026-08-06T10:00:00Z",
+      "timeConfirmed": true,
+      "location": "Żagań → Karpacz",
+      "route": {
+        "start": "Żagań",
+        "finish": "Karpacz",
+        "type": "Mountain",
+        "typeDisplay": "Bergetappe"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe6",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 6",
-      "start": "2026-08-06",
-      "timeConfirmed": false,
+      "start": "2026-08-06T11:45:00Z",
+      "timeConfirmed": true,
       "location": "Montbrison → Tournon-sur-Rhône",
       "route": {
         "start": "Montbrison",
         "finish": "Tournon-sur-Rhône",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
+    },
+    {
+      "id": "cycling-tour-de-pologne-2026-etappe5",
+      "sport": "cycling",
+      "competition": "Tour de Pologne",
+      "gender": "men",
+      "round": "Etappe 5",
+      "start": "2026-08-07T09:45:00Z",
+      "timeConfirmed": true,
+      "location": "Opole → Kocierz Resort",
+      "route": {
+        "start": "Opole",
+        "finish": "Kocierz Resort",
+        "type": "Mountain",
+        "typeDisplay": "Bergetappe"
+      }
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe7",
       "sport": "cycling",
       "competition": "Tour de France Femmes",
+      "gender": "women",
       "round": "Etappe 7",
-      "start": "2026-08-07",
-      "timeConfirmed": false,
+      "start": "2026-08-07T11:15:00Z",
+      "timeConfirmed": true,
       "location": "La Voulte-sur-Rhône → Mont Ventoux",
       "route": {
         "start": "La Voulte-sur-Rhône",
         "finish": "Mont Ventoux",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "football-bl3-84745",
@@ -5074,20 +5138,20 @@
       "awayTeamLogo": "https://i.imgur.com/apFwbYZ.png"
     },
     {
-      "id": "cycling-tour-de-france-femmes-2026-etappe8",
+      "id": "cycling-tour-de-pologne-2026-etappe6",
       "sport": "cycling",
-      "competition": "Tour de France Femmes",
-      "round": "Etappe 8",
-      "start": "2026-08-08",
-      "timeConfirmed": false,
-      "location": "Sisteron → Nizza",
+      "competition": "Tour de Pologne",
+      "gender": "men",
+      "round": "Etappe 6",
+      "start": "2026-08-08T10:55:00Z",
+      "timeConfirmed": true,
+      "location": "Bukovina Resort → Bukowina Tatrzańska",
       "route": {
-        "start": "Sisteron",
-        "finish": "Nizza",
-        "type": "Flat",
-        "typeDisplay": "Flachetappe"
-      },
-      "gender": "women"
+        "start": "Bukovina Resort",
+        "finish": "Bukowina Tatrzańska",
+        "type": "Mountain",
+        "typeDisplay": "Bergetappe"
+      }
     },
     {
       "id": "football-bl2-83513",
@@ -5152,6 +5216,22 @@
       "awayTeamId": "eintracht-braunschweig",
       "awayTeamName": "Eintracht Braunschweig",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/4/45/Logo_Eintracht_Braunschweig.svg"
+    },
+    {
+      "id": "cycling-tour-de-france-femmes-2026-etappe8",
+      "sport": "cycling",
+      "competition": "Tour de France Femmes",
+      "gender": "women",
+      "round": "Etappe 8",
+      "start": "2026-08-08T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Sisteron → Nizza",
+      "route": {
+        "start": "Sisteron",
+        "finish": "Nizza",
+        "type": "Flat",
+        "typeDisplay": "Flachetappe"
+      }
     },
     {
       "id": "football-bl3-84746",
@@ -5266,20 +5346,20 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Logo_1_FC_Kaiserslautern.svg"
     },
     {
-      "id": "cycling-tour-de-france-femmes-2026-etappe9",
+      "id": "cycling-tour-de-pologne-2026-etappe7",
       "sport": "cycling",
-      "competition": "Tour de France Femmes",
-      "round": "Etappe 9",
-      "start": "2026-08-09",
-      "timeConfirmed": false,
-      "location": "Nizza → Nizza",
+      "competition": "Tour de Pologne",
+      "gender": "men",
+      "round": "Etappe 7",
+      "start": "2026-08-09T11:30:00Z",
+      "timeConfirmed": true,
+      "location": "Kopalnia Soli „Wieliczka” → Kopalnia Soli „Wieliczka”",
       "route": {
-        "start": "Nizza",
-        "finish": "Nizza",
-        "type": "Mountain",
-        "typeDisplay": "Bergetappe"
-      },
-      "gender": "women"
+        "start": "Kopalnia Soli „Wieliczka”",
+        "finish": "Kopalnia Soli „Wieliczka”",
+        "type": "Individual time trial",
+        "typeDisplay": "Einzelzeitfahren"
+      }
     },
     {
       "id": "football-bl2-83511",
@@ -5344,6 +5424,22 @@
       "awayTeamId": "hansa-rostock",
       "awayTeamName": "Hansa Rostock",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/F.C._Hansa_Rostock_Logo.svg/960px-F.C._Hansa_Rostock_Logo.svg.png?utm_source=de.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+    },
+    {
+      "id": "cycling-tour-de-france-femmes-2026-etappe9",
+      "sport": "cycling",
+      "competition": "Tour de France Femmes",
+      "gender": "women",
+      "round": "Etappe 9",
+      "start": "2026-08-09T14:10:00Z",
+      "timeConfirmed": true,
+      "location": "Nizza → Nizza",
+      "route": {
+        "start": "Nizza",
+        "finish": "Nizza",
+        "type": "Mountain",
+        "typeDisplay": "Bergetappe"
+      }
     },
     {
       "id": "football-bl3-84750",
@@ -5605,6 +5701,7 @@
       "id": "cycling-cyclassics-hamburg-2026",
       "sport": "cycling",
       "competition": "Cyclassics Hamburg",
+      "gender": "men",
       "round": null,
       "start": "2026-08-16",
       "timeConfirmed": false,
@@ -5614,8 +5711,7 @@
         "finish": "Hamburg",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-bl2-83526",
@@ -5717,6 +5813,7 @@
       "id": "cycling-deutschland-tour-2026-prolog",
       "sport": "cycling",
       "competition": "Deutschland Tour",
+      "gender": "men",
       "round": "Prolog",
       "start": "2026-08-19",
       "timeConfirmed": false,
@@ -5726,13 +5823,13 @@
         "finish": "Bad Orb",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-deutschland-tour-2026-etappe1",
       "sport": "cycling",
       "competition": "Deutschland Tour",
+      "gender": "men",
       "round": "Etappe 1",
       "start": "2026-08-20",
       "timeConfirmed": false,
@@ -5742,13 +5839,13 @@
         "finish": "Schwäbisch Hall",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-deutschland-tour-2026-etappe2",
       "sport": "cycling",
       "competition": "Deutschland Tour",
+      "gender": "men",
       "round": "Etappe 2",
       "start": "2026-08-21",
       "timeConfirmed": false,
@@ -5758,8 +5855,7 @@
         "finish": "Offenbach an der Queich",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-dfb-pokal-men-81832",
@@ -5845,6 +5941,7 @@
       "id": "cycling-deutschland-tour-2026-etappe3",
       "sport": "cycling",
       "competition": "Deutschland Tour",
+      "gender": "men",
       "round": "Etappe 3",
       "start": "2026-08-22",
       "timeConfirmed": false,
@@ -5854,13 +5951,13 @@
         "finish": "Bad Dürkheim",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe1",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 1",
       "start": "2026-08-22",
       "timeConfirmed": false,
@@ -5870,8 +5967,7 @@
         "finish": "Monaco",
         "type": "Individual time trial",
         "typeDisplay": "Einzelzeitfahren"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-dfb-pokal-men-81842",
@@ -6069,6 +6165,7 @@
       "id": "cycling-deutschland-tour-2026-etappe4",
       "sport": "cycling",
       "competition": "Deutschland Tour",
+      "gender": "men",
       "round": "Etappe 4",
       "start": "2026-08-23",
       "timeConfirmed": false,
@@ -6078,13 +6175,13 @@
         "finish": "Heilbronn",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe2",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 2",
       "start": "2026-08-23",
       "timeConfirmed": false,
@@ -6092,10 +6189,9 @@
       "route": {
         "start": "Monaco",
         "finish": "Manosque (France)",
-        "type": "Hilly stage",
+        "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-dfb-pokal-men-81841",
@@ -6373,6 +6469,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe3",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 3",
       "start": "2026-08-24",
       "timeConfirmed": false,
@@ -6380,10 +6477,9 @@
       "route": {
         "start": "Gruissan (France)",
         "finish": "Font Romeu (France)",
-        "type": "Medium-mountain stage",
+        "type": "Medium-mountain",
         "typeDisplay": "Mittelgebirgsetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-dfb-pokal-men-81854",
@@ -6453,6 +6549,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe4",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 4",
       "start": "2026-08-25",
       "timeConfirmed": false,
@@ -6460,15 +6557,15 @@
       "route": {
         "start": "Andorra La Vella (Andorra)",
         "finish": "Andorra La Vella (Andorra)",
-        "type": "Mountain stage",
+        "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe5",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 5",
       "start": "2026-08-26",
       "timeConfirmed": false,
@@ -6476,15 +6573,15 @@
       "route": {
         "start": "Falset",
         "finish": "Roquetes",
-        "type": "Hilly stage",
+        "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe6",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 6",
       "start": "2026-08-27",
       "timeConfirmed": false,
@@ -6492,15 +6589,15 @@
       "route": {
         "start": "Alcossebre",
         "finish": "Castellón",
-        "type": "Medium-mountain stage",
+        "type": "Medium-mountain",
         "typeDisplay": "Mittelgebirgsetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe7",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 7",
       "start": "2026-08-28",
       "timeConfirmed": false,
@@ -6508,10 +6605,9 @@
       "route": {
         "start": "Vall d'Alba",
         "finish": "Aramón Valdelinares",
-        "type": "Mountain stage",
+        "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-bl2-83543",
@@ -6581,6 +6677,7 @@
       "id": "cycling-classic-lorient-2026",
       "sport": "cycling",
       "competition": "Classic Lorient Agglomération",
+      "gender": "women",
       "round": null,
       "start": "2026-08-29",
       "timeConfirmed": false,
@@ -6590,13 +6687,13 @@
         "finish": "Plouay",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe8",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 8",
       "start": "2026-08-29",
       "timeConfirmed": false,
@@ -6604,10 +6701,9 @@
       "route": {
         "start": "Puçol",
         "finish": "Xeraco",
-        "type": "Flat stage",
+        "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-rlsw-kickers-2026-08-29-fc08homburg",
@@ -6885,6 +6981,7 @@
       "id": "cycling-bretagne-classic-2026",
       "sport": "cycling",
       "competition": "Bretagne Classic",
+      "gender": "men",
       "round": null,
       "start": "2026-08-30",
       "timeConfirmed": false,
@@ -6894,13 +6991,13 @@
         "finish": "Plouay",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe9",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 9",
       "start": "2026-08-30",
       "timeConfirmed": false,
@@ -6908,10 +7005,9 @@
       "route": {
         "start": "Villajoyosa",
         "finish": "Alto de Aitana",
-        "type": "Mountain stage",
+        "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-bl2-83539",
@@ -7157,6 +7253,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe10",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 10",
       "start": "2026-09-01",
       "timeConfirmed": false,
@@ -7164,10 +7261,9 @@
       "route": {
         "start": "Alcaraz",
         "finish": "Elche de la Sierra",
-        "type": "Hilly stage",
+        "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-dfb-pokal-men-81836",
@@ -7189,6 +7285,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe11",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 11",
       "start": "2026-09-02",
       "timeConfirmed": false,
@@ -7196,10 +7293,9 @@
       "route": {
         "start": "Cartagena",
         "finish": "Lorca",
-        "type": "Flat stage",
+        "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-dfb-pokal-men-81852",
@@ -7221,6 +7317,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe12",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 12",
       "start": "2026-09-03",
       "timeConfirmed": false,
@@ -7228,15 +7325,15 @@
       "route": {
         "start": "Vera",
         "finish": "Calar Alto",
-        "type": "Mountain stage",
+        "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe13",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 13",
       "start": "2026-09-04",
       "timeConfirmed": false,
@@ -7244,10 +7341,9 @@
       "route": {
         "start": "Almuñécar",
         "finish": "Loja",
-        "type": "Medium-mountain stage",
+        "type": "Medium-mountain",
         "typeDisplay": "Mittelgebirgsetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-bl2-83550",
@@ -7317,6 +7413,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe14",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 14",
       "start": "2026-09-05",
       "timeConfirmed": false,
@@ -7324,10 +7421,9 @@
       "route": {
         "start": "Jaén",
         "finish": "Sierra de la Pandera",
-        "type": "Mountain stage",
+        "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-rlsw-kickers-2026-09-05-1fsvmainz05ii",
@@ -7605,6 +7701,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe15",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 15",
       "start": "2026-09-06",
       "timeConfirmed": false,
@@ -7612,10 +7709,9 @@
       "route": {
         "start": "Palma del Río",
         "finish": "Córdoba",
-        "type": "Medium-mountain stage",
+        "type": "Medium-mountain",
         "typeDisplay": "Mittelgebirgsetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-bl2-83556",
@@ -7861,6 +7957,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe16",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 16",
       "start": "2026-09-08",
       "timeConfirmed": false,
@@ -7868,15 +7965,15 @@
       "route": {
         "start": "Cortegana",
         "finish": "Palos de la Frontera",
-        "type": "Flat stage",
+        "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe17",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 17",
       "start": "2026-09-09",
       "timeConfirmed": false,
@@ -7884,10 +7981,9 @@
       "route": {
         "start": "Dos Hermanas",
         "finish": "Seville",
-        "type": "Flat stage",
+        "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-rlsw-kickers-2026-09-09-fcastoriawalldorf",
@@ -7909,6 +8005,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe18",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 18",
       "start": "2026-09-10",
       "timeConfirmed": false,
@@ -7918,13 +8015,13 @@
         "finish": "Jerez de la Frontera",
         "type": "Individual time trial",
         "typeDisplay": "Einzelzeitfahren"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe19",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 19",
       "start": "2026-09-11",
       "timeConfirmed": false,
@@ -7932,10 +8029,9 @@
       "route": {
         "start": "Vélez-Málaga",
         "finish": "Peñas Blancas",
-        "type": "Hilly stage",
+        "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-bl2-83569",
@@ -8005,6 +8101,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe20",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 20",
       "start": "2026-09-12",
       "timeConfirmed": false,
@@ -8012,10 +8109,9 @@
       "route": {
         "start": "La Calahorra",
         "finish": "Collado del Alguacil",
-        "type": "Mountain stage",
+        "type": "Mountain",
         "typeDisplay": "Bergetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-rlsw-kickers-2026-09-12-sgbarockstadtfuldalehnerz",
@@ -8293,6 +8389,7 @@
       "id": "cycling-vuelta-a-espana-2026-etappe21",
       "sport": "cycling",
       "competition": "Vuelta a España",
+      "gender": "men",
       "round": "Etappe 21",
       "start": "2026-09-13",
       "timeConfirmed": false,
@@ -8300,10 +8397,9 @@
       "route": {
         "start": "Granada",
         "finish": "Granada",
-        "type": "Flat stage",
+        "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-bl2-83567",
@@ -9077,6 +9173,7 @@
       "id": "cycling-muensterland-giro-2026",
       "sport": "cycling",
       "competition": "Sparkassen Münsterland Giro",
+      "gender": "men",
       "round": null,
       "start": "2026-10-03",
       "timeConfirmed": false,
@@ -9086,8 +9183,7 @@
         "finish": "Münster",
         "type": "Flat",
         "typeDisplay": "Flachetappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-rlsw-kickers-2026-10-03-kickersoffenbach",
@@ -9109,6 +9205,7 @@
       "id": "cycling-il-lombardia-2026",
       "sport": "cycling",
       "competition": "Il Lombardia",
+      "gender": "men",
       "round": null,
       "start": "2026-10-10",
       "timeConfirmed": false,
@@ -9118,8 +9215,7 @@
         "finish": "Bergamo",
         "type": "Hilly",
         "typeDisplay": "Hügelige Etappe"
-      },
-      "gender": "men"
+      }
     },
     {
       "id": "football-rlsw-kickers-2026-10-10-vfrmannheim",

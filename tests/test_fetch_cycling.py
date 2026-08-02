@@ -89,6 +89,51 @@ def test_stage_types_includes_prologue_for_deutschland_tour():
     assert "Prologue" in common.STAGE_TYPES
 
 
+# --- build_stage_events(): optional per-stage start time -----------------
+
+TEST_RACE = {"id": "test-race", "name": "Test Race", "gender": "men"}
+
+
+def _stage(**overrides):
+    stage = {"label": "Etappe 1", "date": date(2026, 8, 3), "start_loc": "A", "finish_loc": "B", "type": "Flat"}
+    stage.update(overrides)
+    return stage
+
+
+def test_build_stage_events_without_start_time_stays_all_day_unconfirmed():
+    """Wikipedia's stage tables never publish start times, so a scraped
+    stage's dict has no "start_time" key at all -- must behave exactly like
+    before this feature existed."""
+    events = fetch_cycling.build_stage_events(TEST_RACE, 2026, [_stage()])
+    assert events[0]["start"] == "2026-08-03"
+    assert events[0]["timeConfirmed"] is False
+
+
+def test_build_stage_events_with_empty_start_time_string_stays_unconfirmed():
+    """The manual CSV's start_time column exists on every row once any stage
+    in the sheet uses it (see build_manual_cycling.py), but is blank for
+    stages whose time isn't published yet -- must behave identically to the
+    key being absent entirely."""
+    events = fetch_cycling.build_stage_events(TEST_RACE, 2026, [_stage(start_time="")])
+    assert events[0]["start"] == "2026-08-03"
+    assert events[0]["timeConfirmed"] is False
+
+
+def test_build_stage_events_with_start_time_produces_confirmed_utc_datetime():
+    """14:35 Europe/Berlin on a summer (CEST, UTC+2) date -> 12:35 UTC."""
+    events = fetch_cycling.build_stage_events(TEST_RACE, 2026, [_stage(date=date(2026, 8, 4), start_time="14:35")])
+    assert events[0]["start"] == "2026-08-04T12:35:00Z"
+    assert events[0]["timeConfirmed"] is True
+
+
+def test_build_stage_events_with_start_time_is_dst_aware_not_a_fixed_offset():
+    """A winter (CET, UTC+1) date must convert with a different offset than
+    the summer case above -- same DST-aware Europe/Berlin conversion
+    convention as common.reminder_trigger_utc(), not a hardcoded +2h."""
+    events = fetch_cycling.build_stage_events(TEST_RACE, 2026, [_stage(date=date(2026, 1, 10), start_time="14:00")])
+    assert events[0]["start"] == "2026-01-10T13:00:00Z"
+
+
 # --- revisions-API response parsing (mocked, no network) ----------------
 
 REVISIONS_OK = {

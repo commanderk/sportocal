@@ -4,6 +4,7 @@
       "id": "cycling-giro-d-italia-women-2026-etappe1",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 1",
       "start": "2026-05-30",
       "timeConfirmed": false,
@@ -12,13 +13,13 @@
         "start": "Cesenatico",
         "finish": "Ravenna",
         "type": "Flat"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe2",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 2",
       "start": "2026-05-31",
       "timeConfirmed": false,
@@ -27,13 +28,13 @@
         "start": "Roncade",
         "finish": "Caorle",
         "type": "Flat"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe3",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 3",
       "start": "2026-06-01",
       "timeConfirmed": false,
@@ -42,13 +43,13 @@
         "start": "Bibione",
         "finish": "Buja",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe4",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 4",
       "start": "2026-06-02",
       "timeConfirmed": false,
@@ -57,13 +58,13 @@
         "start": "Belluno",
         "finish": "Nevegal",
         "type": "Individual time trial"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe5",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 5",
       "start": "2026-06-03",
       "timeConfirmed": false,
@@ -72,13 +73,13 @@
         "start": "Longarone",
         "finish": "Santo Stefano di Cadore",
         "type": "Mountain"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe6",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 6",
       "start": "2026-06-04",
       "timeConfirmed": false,
@@ -87,13 +88,13 @@
         "start": "Ala",
         "finish": "Brescello",
         "type": "Flat"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe7",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 7",
       "start": "2026-06-05",
       "timeConfirmed": false,
@@ -102,13 +103,13 @@
         "start": "Sorbolo Mezzani",
         "finish": "Salice Terme",
         "type": "Hilly"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe8",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 8",
       "start": "2026-06-06",
       "timeConfirmed": false,
@@ -117,13 +118,13 @@
         "start": "Rivoli",
         "finish": "Sestriere",
         "type": "Mountain"
-      },
-      "gender": "women"
+      }
     },
     {
       "id": "cycling-giro-d-italia-women-2026-etappe9",
       "sport": "cycling",
       "competition": "Giro d'Italia Women",
+      "gender": "women",
       "round": "Etappe 9",
       "start": "2026-06-07",
       "timeConfirmed": false,
@@ -132,9 +133,8 @@
         "start": "Saluzzo",
         "finish": "Saluzzo",
         "type": "Mountain"
-      },
-      "gender": "women"
+      }
     }
   ],
-  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+  "lastChecked": "2026-08-02T17:40:04.052622+00:00"
 }

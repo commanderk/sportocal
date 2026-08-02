@@ -16,10 +16,11 @@ which we parse directly from the wikitext via the MediaWiki API.
 from __future__ import annotations
 
 import re
-from datetime import date, datetime, timezone
+from datetime import date, datetime, time, timezone
 from urllib.parse import urlencode
 
 from common import (
+    BERLIN,
     clean_wikitext,
     diff_and_log,
     load_config,
@@ -241,6 +242,21 @@ def parse_stage_table(wikitext: str, year: int) -> list[dict]:
 def build_stage_events(race: dict, year: int, stages: list[dict]) -> list[dict]:
     events = []
     for stage in stages:
+        # Optional per-stage start time (currently only ever populated by
+        # build_manual_cycling.py's CSV -- Wikipedia's stage tables don't
+        # publish start times, so scraped stages never have this key and
+        # fall through to the existing date-only/unconfirmed behavior
+        # unchanged). Interpreted as Europe/Berlin local time (the sources
+        # this is transcribed from report CET/CEST) and converted to UTC to
+        # match every other event's `start` convention.
+        start_time = stage.get("start_time")
+        if start_time:
+            local_start = datetime.combine(stage["date"], time.fromisoformat(start_time), tzinfo=BERLIN)
+            start = local_start.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            time_confirmed = True
+        else:
+            start = stage["date"].isoformat()
+            time_confirmed = False
         events.append(
             {
                 "id": f"cycling-{race['id']}-{year}-{stage['label'].lower().replace(' ', '')}",
@@ -248,8 +264,8 @@ def build_stage_events(race: dict, year: int, stages: list[dict]) -> list[dict]:
                 "competition": race["name"],
                 "gender": race["gender"],
                 "round": stage["label"],
-                "start": stage["date"].isoformat(),
-                "timeConfirmed": False,
+                "start": start,
+                "timeConfirmed": time_confirmed,
                 "location": f"{stage['start_loc']} → {stage['finish_loc']}",
                 "route": {"start": stage["start_loc"], "finish": stage["finish_loc"], "type": stage["type"]},
             }

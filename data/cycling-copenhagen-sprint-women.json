@@ -4,6 +4,7 @@
       "id": "cycling-copenhagen-sprint-women-2026",
       "sport": "cycling",
       "competition": "Copenhagen Sprint",
+      "gender": "women",
       "round": null,
       "start": "2026-06-13",
       "timeConfirmed": false,
@@ -12,9 +13,8 @@
         "start": "Copenhagen",
         "finish": "Copenhagen",
         "type": "Flat"
-      },
-      "gender": "women"
+      }
     }
   ],
-  "lastChecked": "2026-07-28T11:19:06.956961+00:00"
+  "lastChecked": "2026-08-02T17:40:04.052622+00:00"
 }

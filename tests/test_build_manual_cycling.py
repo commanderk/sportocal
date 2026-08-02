@@ -81,6 +81,34 @@ def test_group_rows_keeps_valid_rows_alongside_invalid_ones():
     assert stages[0]["label"] == "Etappe 1"
 
 
+def test_group_rows_passes_through_start_time_when_present():
+    csv_text = (
+        "race_id,year,stage_label,date,start,finish,type,start_time\n"
+        "paris-nice,2026,Etappe 1,2026-03-08,Paris,Nemours,Flat,14:35\n"
+        "paris-nice,2026,Etappe 2,2026-03-09,Nemours,Ligny-en-Barrois,Hilly,\n"
+    )
+
+    groups = build_manual_cycling.group_rows(rows_from_csv(csv_text))
+
+    stages = groups[("paris-nice", 2026)]
+    assert stages[0]["start_time"] == "14:35"
+    assert stages[1]["start_time"] == ""
+
+
+def test_group_rows_defaults_start_time_to_empty_when_column_absent():
+    """Rows/sheets that predate the start_time column don't need it at all --
+    csv.DictReader reports it as None there, which must normalize to "" the
+    same way an explicitly-blank cell does."""
+    csv_text = (
+        "race_id,year,stage_label,date,start,finish,type\n"
+        "paris-nice,2026,Etappe 1,2026-03-08,Paris,Nemours,Flat\n"
+    )
+
+    groups = build_manual_cycling.group_rows(rows_from_csv(csv_text))
+
+    assert groups[("paris-nice", 2026)][0]["start_time"] == ""
+
+
 def test_main_writes_merged_snapshot(monkeypatch, tmp_path):
     monkeypatch.setattr(build_manual_cycling, "CSV_PATH", tmp_path / "stage-race.csv")
     (tmp_path / "stage-race.csv").write_text(
