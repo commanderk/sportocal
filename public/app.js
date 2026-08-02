@@ -108,12 +108,28 @@ function leagueGroupKey(league) {
 
 const GENDER_LABELS = { men: "Männer", women: "Frauen" };
 
-// Chip/summary label for a full league-group selection, e.g.
-// "Alle Vereine Bundesliga Männer" -- unlike an individual club row/chip,
-// this one spells out the gender since the league name alone doesn't always
-// make it obvious (a men's league name usually has no gender marker at all).
+// league.competition names don't share one consistent shape: the women's
+// leagues carry an explicit "Frauen-" marker ("Frauen-Bundesliga",
+// "2. Frauen-Bundesliga") while the men's counterpart of the top flight has
+// no "1. " prefix at all ("Bundesliga", not "1. Bundesliga") -- unlike every
+// other tier, which is already numbered. Stripping "Frauen-" and then
+// backfilling "1. " only for the bare "Bundesliga" case turns both of those
+// into the same canonical "<n>. Bundesliga" shape as 2./3. Liga already
+// have, so leagueGroupLabel() below can append gender uniformly instead of
+// hand-listing all six league×gender combinations.
+function canonicalLeagueName(competition) {
+  const name = competition.replace(/Frauen-/, "");
+  return name === "Bundesliga" ? `1. ${name}` : name;
+}
+
+// Base label for a full league-group selection, e.g. "1. Bundesliga
+// Männer" -- gender is spelled out explicitly since canonicalLeagueName()
+// alone doesn't always make it obvious (the men's leagues carry no gender
+// marker). No "(Alle Vereine)" suffix here so this stays reusable wherever
+// that phrasing wouldn't fit -- callers that mean the full-league selection
+// append it themselves (see renderFootballCombo(), renderFootballChips()).
 function leagueGroupLabel(league) {
-  return `Alle Vereine ${league.competition} ${GENDER_LABELS[league.gender] || league.gender}`;
+  return `${canonicalLeagueName(league.competition)} ${GENDER_LABELS[league.gender] || league.gender}`;
 }
 
 const dateFormatter = new Intl.DateTimeFormat("de-DE", {
@@ -861,7 +877,7 @@ function renderFootballCombo() {
     swatch.style.background = color;
     const name = document.createElement("span");
     name.className = "league-group-name";
-    name.textContent = `Alle Vereine der ${league.competition} auswählen`;
+    name.textContent = `${leagueGroupLabel(league)} (Alle Vereine)`;
     const count = document.createElement("span");
     count.className = "league-group-count";
     count.textContent = `(${tokens.length})`;
@@ -921,7 +937,7 @@ function renderFootballChips() {
     chip.style.background = color;
     chip.style.color = contrastText(color);
     const name = document.createElement("span");
-    name.textContent = leagueGroupLabel(league);
+    name.textContent = `${leagueGroupLabel(league)} (Alle Vereine)`;
     const remove = document.createElement("button");
     remove.type = "button";
     remove.textContent = "✕";
@@ -1054,7 +1070,7 @@ function selectionSummaryText() {
   const leagueGroupNames = [...state.selectedLeagueGroups]
     .map((key) => state.leagues.find((l) => leagueGroupKey(l) === key))
     .filter(Boolean)
-    .map(leagueGroupLabel);
+    .map((l) => `${leagueGroupLabel(l)} (Alle Vereine)`);
   const raceGroupNames = [...state.selectedRaceGroups]
     .map((key) => state.raceGroups.find((g) => raceGroupKey(g) === key))
     .filter(Boolean)
