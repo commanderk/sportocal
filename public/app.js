@@ -338,6 +338,7 @@ function renderEventRow(event) {
   const startDate = parseStart(event.start);
   const row = document.createElement("div");
   row.className = "event-row" +
+    (event.sport === "cycling" ? " event-row--cycling" : "") +
     (isPastEvent(event) ? " is-past" : "") +
     (isToday(event) ? " is-today" : "");
 

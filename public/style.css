@@ -812,6 +812,17 @@ main#app {
   border-left: 4px solid transparent;
 }
 
+/* Cycling rows need a wider right-hand column than football: a club-name
+   chip fits comfortably in football's 240px, but a start→finish route
+   ("El Puerto de Santa María → Jerez de la Frontera") plus the stage-type
+   label stacked under it (see .row-venue-type) routinely don't -- both were
+   wrapping to multiple lines each, ballooning row height. The title column
+   (1fr) rarely needs much room for cycling (race name + "Etappe N"), so it
+   absorbs the difference automatically. */
+.event-row--cycling {
+  grid-template-columns: 64px 96px 76px 1fr 340px;
+}
+
 .event-row.is-past {
   opacity: 0.45;
 }
@@ -947,7 +958,15 @@ main#app {
     color: var(--text-dim);
   }
   .row-mobile-team {
-    flex: 1 1 0;
+    /* Not flex-grow: with two of these in the same flex row (home + away),
+       "1 1 0" made each stretch to fill half the leftover space regardless
+       of how short its actual name was -- text stays left-aligned inside
+       that now-oversized box, so a big empty gap opened up between a short
+       home name and the "–" separator. Content-sized (like desktop's
+       .row-title-text) lets badge/name/sep/badge/name flow together as one
+       block; only shrinks (with ellipsis) if the combined content doesn't
+       fit at all. */
+    flex: 0 1 auto;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
