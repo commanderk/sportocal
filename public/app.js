@@ -1429,7 +1429,7 @@ function updateComboTriggerLabels() {
     footballLabel.textContent = "Vereine suchen und auswählen…";
   } else {
     const parts = [];
-    if (leagueCount > 0) parts.push(`${leagueCount} Liga${leagueCount === 1 ? "" : "en"}`);
+    if (leagueCount > 0) parts.push(`${leagueCount} ${leagueCount === 1 ? "Liga" : "Ligen"}`);
     if (clubCount > 0) parts.push(`${clubCount} Verein${clubCount === 1 ? "" : "e"}`);
     footballLabel.textContent = `${parts.join(" + ")} ausgewählt`;
   }
