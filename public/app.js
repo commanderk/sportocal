@@ -472,49 +472,62 @@ function renderByCompetition(events, app, competitionFilter) {
 
 const FILTER_ALL = "Alle";
 
-// Filter pills mirror the two multiselects' *selection state*, not the
-// events currently on screen -- so this depends on state.selectedClubs /
-// state.selectedRaceGroups, never on `events`. With nothing selected it's
-// the same "preview everything" idea as visibleEvents(): every league, every
-// cycling group. With a selection, only the leagues/groups actually touched
-// by it get a pill, e.g. picking one Frauen-Bundesliga club plus one race
-// group yields exactly two pills, no more. Football and cycling pills use
-// the exact same grouping as their comboboxes (state.leagues /
-// state.raceGroups) so the pill bar never invents its own structure.
+// Filter pills mostly mirror the two multiselects' *selection state* --
+// league pills come from state.leagues (a club statically belongs to its
+// league regardless of whether it currently has a fixture in view) and
+// cycling group pills from state.raceGroups, same grouping their comboboxes
+// already use. Cup/UEFA competitions (DFB-Pokal, Champions League, Europa
+// League, ...) have no such static per-club membership -- a club doesn't
+// "belong" to a cup the way it belongs to a league, it just happens to have
+// a fixture there this season -- so those pills instead mirror the actual
+// competition names present in visibleEvents(), same as the old pre-grouping
+// behavior, just restricted to whichever football competitions aren't
+// already covered by a league pill.
 function getFilterItemsInOrder() {
   const items = [];
+  const leagueNames = new Set(state.leagues.map((l) => l.competition));
+  const footballEvents = visibleEvents().filter((e) => e.sport === "football");
 
   if (!hasSelection()) {
     for (const league of state.leagues) {
       items.push({ value: league.competition, label: league.competition });
     }
+  } else {
+    // club.teams[gender].league (see clubs.json) is the same league name used
+    // as event.competition for that club's matches -- collecting distinct
+    // values here, then walking state.leagues to pick the pill order, keeps
+    // pills in league order without re-sorting alphabetically.
+    const selectedLeagueNames = new Set();
+    for (const token of state.selectedClubs) {
+      const [clubId, gender] = token.split(":");
+      const club = state.clubsById.get(clubId);
+      const teamInfo = club && club.teams[gender];
+      if (teamInfo) selectedLeagueNames.add(teamInfo.league);
+    }
+    for (const league of state.leagues) {
+      if (selectedLeagueNames.has(league.competition)) {
+        items.push({ value: league.competition, label: league.competition });
+      }
+    }
+  }
+
+  const extraCompetitionNames = [...new Set(footballEvents.map((e) => e.competition))]
+    .filter((name) => !leagueNames.has(name))
+    .sort((a, b) => a.localeCompare(b, "de"));
+  for (const name of extraCompetitionNames) {
+    items.push({ value: name, label: name });
+  }
+
+  if (!hasSelection()) {
     for (const group of state.raceGroups) {
       items.push({ value: `raceGroup:${raceGroupKey(group)}`, label: group.label });
     }
-    return items;
-  }
-
-  // club.teams[gender].league (see clubs.json) is the same league name used
-  // as event.competition for that club's matches -- collecting distinct
-  // values here, then walking state.leagues to pick the pill order, keeps
-  // pills in league order without re-sorting alphabetically.
-  const selectedLeagueNames = new Set();
-  for (const token of state.selectedClubs) {
-    const [clubId, gender] = token.split(":");
-    const club = state.clubsById.get(clubId);
-    const teamInfo = club && club.teams[gender];
-    if (teamInfo) selectedLeagueNames.add(teamInfo.league);
-  }
-  for (const league of state.leagues) {
-    if (selectedLeagueNames.has(league.competition)) {
-      items.push({ value: league.competition, label: league.competition });
-    }
-  }
-
-  for (const group of state.raceGroups) {
-    const key = raceGroupKey(group);
-    if (state.selectedRaceGroups.has(key)) {
-      items.push({ value: `raceGroup:${key}`, label: group.label });
+  } else {
+    for (const group of state.raceGroups) {
+      const key = raceGroupKey(group);
+      if (state.selectedRaceGroups.has(key)) {
+        items.push({ value: `raceGroup:${key}`, label: group.label });
+      }
     }
   }
 
