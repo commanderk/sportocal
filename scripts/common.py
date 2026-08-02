@@ -43,6 +43,38 @@ STAGE_TYPES = {
     "Prologue",
 }
 
+# German display text for STAGE_TYPES -- the single source both the ICS
+# DESCRIPTION line (build_vevent() below) and the website (route.typeDisplay,
+# see build_site_data.py/app.js) translate through, so the wording only ever
+# needs to change in one place.
+STAGE_TYPE_DISPLAY_DE = {
+    "Flat": "Flachetappe",
+    "Hilly": "Hügelige Etappe",
+    "Medium-mountain": "Mittelgebirgsetappe",
+    "Mountain": "Bergetappe",
+    "Individual time trial": "Einzelzeitfahren",
+    "Team time trial": "Mannschaftszeitfahren",
+    "Prologue": "Prolog",
+}
+
+
+def normalize_stage_type(raw_type: str | None) -> str | None:
+    """Short-form stage type ("Mountain") from whatever `route.type` actually
+    contains -- despite fetch_cycling.py's own strip_stage_type_suffix()
+    normalizing at scrape time, some stored snapshots still carry the raw
+    Wikipedia wording with a trailing " stage" ("Mountain stage"). Handling
+    both shapes here means a STAGE_TYPE_DISPLAY_DE lookup works regardless of
+    which form is actually on disk. Returns None for anything that doesn't
+    land on a known STAGE_TYPES value (missing, empty, unrecognized) -- same
+    "show nothing over guessing" rule app.js's normalizeStageType() already
+    applies client-side (kept in sync manually, see comment there)."""
+    import re
+
+    if not raw_type:
+        return None
+    stripped = re.sub(r"\s+stage$", "", raw_type, flags=re.IGNORECASE)
+    return stripped if stripped in STAGE_TYPES else None
+
 
 def load_config() -> dict:
     with CONFIG_PATH.open(encoding="utf-8") as f:
@@ -57,6 +89,30 @@ def race_group_key(tier: str, gender: str) -> str:
     api/calendar_ics.py). No new config.json field: tier/gender already
     exist per race, this just names their combination."""
     return f"{tier}-{gender}"
+
+
+def parse_race_group_key(key: str) -> tuple[str, str] | None:
+    """Reverses race_group_key() -- can't just str.split("-") since tier ids
+    themselves contain hyphens (e.g. "uci-worldtour"), so this strips a
+    known "-men"/"-women" suffix instead. Returns None for anything that
+    doesn't end in a recognized gender suffix."""
+    for gender in ("men", "women"):
+        suffix = f"-{gender}"
+        if key.endswith(suffix):
+            return key[: -len(suffix)], gender
+    return None
+
+
+# Cycling tier id -> German display name, used for both the website picker
+# group label (build_site_data.py's build_race_groups_payload()) and the
+# personalized ICS calendar name (api/calendar_ics.py) -- one shared table
+# so a tier's display wording only ever needs to change here.
+TIER_LABELS = {
+    "grand-tour": "Grand Tours",
+    "uci-worldtour": "UCI WorldTour",
+    "uci-proseries": "UCI ProSeries",
+    "regional": "Regional",
+}
 
 
 def load_clubs() -> list[dict]:
@@ -170,6 +226,25 @@ def format_event_title(
 # on-demand personalized feed (api/calendar_ics.py), so the two never drift
 # apart on VEVENT structure or line folding.
 
+SPORTOCAL_DOMAIN = "sportocal.de"
+SPORTOCAL_URL = f"https://{SPORTOCAL_DOMAIN}"
+
+
+def event_location(event: dict) -> str | None:
+    """LOCATION text for a VEVENT, sport-specific: football already has a
+    ready-to-use "<Stadion>, <Ort>" string in event["location"] (built at
+    fetch time from OpenLigaDB's own venue data, see fetch_football.py --
+    there's no separate stadiums.json lookup involved). Cycling's own
+    event["location"] is instead "<start> → <finish>" (both cities, for
+    display in the web view's venue column), which is too much for a
+    calendar LOCATION field -- only the finish/target city belongs there,
+    from route.finish. Returns None (LOCATION omitted entirely, never a
+    placeholder) whenever the relevant field isn't available -- a manually
+    entered one-day race can have route.finish blank pending confirmation."""
+    if event["sport"] == "cycling":
+        return (event.get("route") or {}).get("finish") or None
+    return event.get("location") or None
+
 
 def fold_line(line: str) -> str:
     """RFC 5545 line folding at 75 octets, continuation lines start with a space."""
@@ -192,23 +267,65 @@ def escape_text(value: str) -> str:
     return value.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
 
 
+def event_local_day(start_raw: str):
+    """The calendar date `start_raw` falls on in Europe/Berlin -- a bare
+    10-char date ("2026-07-04") already *is* that date, nothing to convert;
+    a full timestamp is converted via its Berlin-local wall-clock date (a UTC
+    evening kickoff can already be past midnight the next Berlin day, or vice
+    versa). Shared by build_vevent()'s all-day DTSTART branch and
+    reminder_trigger_utc() below, so both agree on "which day this event is"
+    even for a timed event whose kickoff time isn't confirmed yet."""
+    if len(start_raw) == 10:
+        return datetime.fromisoformat(start_raw).date()
+    return datetime.fromisoformat(start_raw.replace("Z", "+00:00")).astimezone(BERLIN).date()
+
+
+def reminder_trigger_utc(event: dict) -> datetime:
+    """Absolute VALARM trigger: 08:00 Europe/Berlin on the event's own day,
+    converted to UTC via zoneinfo -- DST-aware (CET/UTC+1 outside DST vs.
+    CEST/UTC+2 during), not a fixed offset, so the reminder fires at the same
+    *local* time year-round. Absolute rather than a relative "-P1D"-style
+    trigger so it's a fixed, predictable time regardless of what time the
+    event itself starts, or whether that start time is even confirmed yet --
+    a relative offset would instead anchor to whatever DTSTART ended up being
+    (midnight for an unconfirmed all-day placeholder), not a sensible fixed
+    reminder time."""
+    day = event_local_day(event["start"])
+    local_reminder = datetime(day.year, day.month, day.day, 8, 0, tzinfo=BERLIN)
+    return local_reminder.astimezone(timezone.utc)
+
+
+def build_valarm(event: dict, title: str) -> list[str]:
+    trigger = reminder_trigger_utc(event)
+    return [
+        "BEGIN:VALARM",
+        "ACTION:DISPLAY",
+        f"DESCRIPTION:{escape_text(title)}",
+        f"TRIGGER;VALUE=DATE-TIME:{trigger.strftime('%Y%m%dT%H%M%SZ')}",
+        "END:VALARM",
+    ]
+
+
 def build_vevent(event: dict, clubs_by_id: dict, perspective_club_ids: set[str] | None = None) -> list[str]:
     start_raw = event["start"]
     time_confirmed = event.get("timeConfirmed", True)
+    title = format_event_title(event, clubs_by_id, perspective_club_ids)
     description_parts = [f"Wettbewerb: {event['competition']}"]
     if event.get("round"):
         description_parts.append(f"Runde: {event['round']}")
+    if event["sport"] == "cycling":
+        stage_type = normalize_stage_type((event.get("route") or {}).get("type"))
+        if stage_type:
+            description_parts.append(f"Etappe: {STAGE_TYPE_DISPLAY_DE[stage_type]}")
     if not time_confirmed:
         description_parts.append("Hinweis: Uhrzeit noch nicht final")
+    description_parts.append(f"— via {SPORTOCAL_DOMAIN}")
 
     lines = ["BEGIN:VEVENT", f"UID:{event['id']}@sportocal"]
 
     if len(start_raw) == 10 or not time_confirmed:
         # all-day event
-        if len(start_raw) == 10:
-            day = datetime.fromisoformat(start_raw).date()
-        else:
-            day = datetime.fromisoformat(start_raw.replace("Z", "+00:00")).astimezone(BERLIN).date()
+        day = event_local_day(start_raw)
         lines.append(f"DTSTART;VALUE=DATE:{day.strftime('%Y%m%d')}")
         lines.append(f"DTEND;VALUE=DATE:{(day + timedelta(days=1)).strftime('%Y%m%d')}")
     else:
@@ -216,11 +333,14 @@ def build_vevent(event: dict, clubs_by_id: dict, perspective_club_ids: set[str] 
         lines.append(f"DTSTART:{dt.strftime('%Y%m%dT%H%M%SZ')}")
         lines.append(f"DTEND:{(dt + timedelta(hours=2)).strftime('%Y%m%dT%H%M%SZ')}")
 
-    lines.append(f"SUMMARY:{escape_text(format_event_title(event, clubs_by_id, perspective_club_ids))}")
+    lines.append(f"SUMMARY:{escape_text(title)}")
     lines.append(f"DESCRIPTION:{escape_text(chr(10).join(description_parts))}")
-    if event.get("location"):
-        lines.append(f"LOCATION:{escape_text(event['location'])}")
+    location = event_location(event)
+    if location:
+        lines.append(f"LOCATION:{escape_text(location)}")
     lines.append(f"CATEGORIES:{event['sport'].upper()}")
+    lines.append(f"URL:{SPORTOCAL_URL}")
+    lines.extend(build_valarm(event, title))
     lines.append("END:VEVENT")
     return lines
 
@@ -228,7 +348,7 @@ def build_vevent(event: dict, clubs_by_id: dict, perspective_club_ids: set[str] 
 def build_calendar_text(
     events: list[dict],
     clubs_by_id: dict,
-    calendar_name: str = "sportocal",
+    calendar_name: str = "Sportocal",
     perspective_club_ids: set[str] | None = None,
 ) -> str:
     """Renders a full VCALENDAR document (CRLF line endings, folded) from a

@@ -105,3 +105,34 @@ def test_short_name_passed_through_to_race_entry():
     groups = build_site_data.build_race_groups_payload(config)
 
     assert groups[0]["races"][0]["shortName"] == "TDF"
+
+
+def test_with_stage_type_display_adds_german_translation_for_cycling_event():
+    event = {
+        "sport": "cycling",
+        "competition": "Vuelta a España",
+        "route": {"start": "A", "finish": "B", "type": "Mountain stage"},
+    }
+
+    enriched = build_site_data.with_stage_type_display(event)
+
+    assert enriched["route"]["typeDisplay"] == "Bergetappe"
+    assert enriched["route"]["type"] == "Mountain stage"  # raw value stays untouched
+
+
+def test_with_stage_type_display_leaves_football_events_unchanged():
+    event = {"sport": "football", "competition": "Bundesliga"}
+
+    assert build_site_data.with_stage_type_display(event) == event
+
+
+def test_with_stage_type_display_leaves_one_day_races_without_route_type_unchanged():
+    event = {
+        "sport": "cycling",
+        "competition": "Strade Bianche",
+        "route": {"start": "Siena", "finish": "Siena"},
+    }
+
+    enriched = build_site_data.with_stage_type_display(event)
+
+    assert "typeDisplay" not in enriched["route"]

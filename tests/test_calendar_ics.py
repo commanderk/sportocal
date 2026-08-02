@@ -140,3 +140,77 @@ def test_build_response_body_league_only_club_gets_no_perspective_emoji(monkeypa
     assert "FCB" in body
     assert "SV Werder Bremen" in body  # Werder covered only via the league group -> plain name
     assert "🟩" not in body  # Werder's own square emoji must not appear
+
+
+def test_race_group_display_name_uses_speaking_group_name():
+    assert calendar_ics.race_group_display_name("uci-worldtour-men") == "UCI WorldTour (Herren)"
+    assert calendar_ics.race_group_display_name("grand-tour-women") == "Grand Tours (Damen)"
+
+
+def test_race_group_display_name_unknown_tier_or_key_returns_none():
+    assert calendar_ics.race_group_display_name("unknown-tier-men") is None
+    assert calendar_ics.race_group_display_name("no-gender-suffix") is None
+
+
+def _club(cid, short_name):
+    return {"id": cid, "shortName": short_name}
+
+
+def _clubs_by_id(*clubs):
+    return {c["id"]: c for c in clubs}
+
+
+def test_build_calendar_name_no_items_falls_back_to_default():
+    name = calendar_ics.build_calendar_name(set(), set(), set(), {}, [])
+    assert name == calendar_ics.DEFAULT_CALENDAR_NAME
+
+
+def test_build_calendar_name_single_club_uses_short_name():
+    clubs_by_id = _clubs_by_id(_club("fc-bayern-muenchen", "FCB"))
+    name = calendar_ics.build_calendar_name({("fc-bayern-muenchen", "men")}, set(), set(), clubs_by_id, [])
+    assert name == "Sportocal – FCB"
+
+
+def test_build_calendar_name_two_and_three_items_spelled_out_fully():
+    clubs_by_id = _clubs_by_id(_club("a", "AAA"), _club("b", "BBB"), _club("c", "CCC"))
+    two = calendar_ics.build_calendar_name({("a", "men"), ("b", "men")}, set(), set(), clubs_by_id, [])
+    three = calendar_ics.build_calendar_name({("a", "men"), ("b", "men"), ("c", "men")}, set(), set(), clubs_by_id, [])
+    assert two == "Sportocal – AAA, BBB"
+    assert three == "Sportocal – AAA, BBB, CCC"
+    assert "u.a." not in three
+
+
+def test_build_calendar_name_four_to_six_items_truncated_with_uebrigens():
+    clubs_by_id = _clubs_by_id(*[_club(str(i), f"C{i}") for i in range(4)])
+    name = calendar_ics.build_calendar_name({(str(i), "men") for i in range(4)}, set(), set(), clubs_by_id, [])
+    assert name == "Sportocal – C0, C1, C2, u.a."
+
+
+def test_build_calendar_name_more_than_six_items_falls_back_to_default():
+    clubs_by_id = _clubs_by_id(*[_club(str(i), f"C{i}") for i in range(7)])
+    name = calendar_ics.build_calendar_name({(str(i), "men") for i in range(7)}, set(), set(), clubs_by_id, [])
+    assert name == calendar_ics.DEFAULT_CALENDAR_NAME
+
+
+def test_build_calendar_name_race_group_never_lists_individual_races():
+    """A whole tier×gender subscription must collapse to one speaking group
+    name, never expand to its (potentially dozens of) current member races."""
+    name = calendar_ics.build_calendar_name(set(), set(), {"uci-worldtour-men"}, {}, [])
+    assert name == "Sportocal – UCI WorldTour (Herren)"
+
+
+def test_build_calendar_name_mixed_clubs_league_and_race_group_share_one_list_and_rule():
+    clubs_by_id = _clubs_by_id(_club("fc-bayern-muenchen", "FCB"))
+    leagues = [{"id": "bl1", "competition": "Bundesliga", "gender": "men"}]
+    name = calendar_ics.build_calendar_name(
+        {("fc-bayern-muenchen", "men")}, {"bl1:men"}, {"grand-tour-men"}, clubs_by_id, leagues
+    )
+    assert name == "Sportocal – Alle Vereine Bundesliga Männer, FCB, Grand Tours (Herren)"
+
+
+def test_build_calendar_name_unresolvable_keys_are_ignored_not_counted():
+    clubs_by_id = _clubs_by_id(_club("fc-bayern-muenchen", "FCB"))
+    name = calendar_ics.build_calendar_name(
+        {("fc-bayern-muenchen", "men")}, {"unknown-league-key"}, {"unknown-tier-men"}, clubs_by_id, []
+    )
+    assert name == "Sportocal – FCB"

@@ -284,31 +284,16 @@ function eventDisplayTitle(event) {
   return event.competition;
 }
 
-// Same set as scripts/common.py's STAGE_TYPES -- kept in sync manually since
-// it's a fixed, rarely-changing vocabulary, not worth a shared-data-file
-// round trip for six-ish string constants.
-const STAGE_TYPES = new Set([
-  "Flat",
-  "Hilly",
-  "Medium-mountain",
-  "Mountain",
-  "Individual time trial",
-  "Team time trial",
-  "Prologue",
-]);
-
-// event.route.type arrives inconsistently depending on data source: scraped
-// Tour de France stages carry a " stage" suffix ("Mountain stage"), manually
-// maintained races (Tour de France Femmes, Giro Women, ...) don't ("Mountain")
-// -- even within the same scraped competition (see Tour de France Etappe 1
-// "Team time trial" vs. Etappe 2 "Hilly stage"). Normalizing here means the
-// web view always shows the short form regardless of source. Anything that
-// doesn't land on a known STAGE_TYPES value after stripping (missing, empty,
-// unrecognized) returns null -- better to show nothing than raw/uncertain text.
-function normalizeStageType(rawType) {
-  if (!rawType) return null;
-  const stripped = rawType.replace(/\s+stage$/i, "").trim();
-  return STAGE_TYPES.has(stripped) ? stripped : null;
+// route.typeDisplay is the German translation build_site_data.py already
+// computes server-side (see STAGE_TYPE_DISPLAY_DE / normalize_stage_type()
+// in scripts/common.py) -- the client no longer needs its own copy of that
+// translation table or the "Mountain stage" vs. "Mountain" suffix-stripping
+// normalization, both now live in exactly one place. Falls back to the raw
+// route.type (untranslated, possibly still suffixed) only for an
+// events.json snapshot generated before typeDisplay existed.
+function stageTypeLabel(route) {
+  if (!route) return null;
+  return route.typeDisplay || route.type || null;
 }
 
 function parseStart(start) {
@@ -371,7 +356,7 @@ function renderEventRow(event) {
   const venueText = event.route && event.route.start && event.route.finish
     ? `${event.route.start} → ${event.route.finish}`
     : event.location || "";
-  const stageType = normalizeStageType(event.route && event.route.type);
+  const stageType = stageTypeLabel(event.route);
 
   const desktop = document.createElement("div");
   desktop.className = "row-desktop";
