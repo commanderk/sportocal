@@ -94,7 +94,7 @@ def main() -> None:
 
     config = load_config()
     leagues = [
-        {"id": league["id"], "competition": league["competition"], "gender": league["gender"]}
+        {"id": league["id"], "competition": league["competition"], "gender": league["gender"], "scope": league["scope"]}
         for league in config["football"]["leagues"]
         if league["scope"] != "cup"
     ]

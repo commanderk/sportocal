@@ -69,6 +69,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from typing import Iterable
 from urllib.parse import parse_qs
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
@@ -122,6 +123,17 @@ def resolve_race_ids(race_group_keys: set[str], races: list[dict]) -> set[str]:
     return {race["id"] for race in races if race_group_key(race["tier"], race["gender"]) in race_group_keys}
 
 
+def clubs_in_league(league: dict, clubs: Iterable[dict]) -> list[dict]:
+    """Every club presently in `league`, resolved fresh against
+    config/clubs.json (see module docstring) -- so promotion/relegation to a
+    new season is reflected automatically. Shared by
+    resolve_league_club_tokens() (event filtering) and build_calendar_name()
+    (which needs the same membership when a league's `scope` isn't "full",
+    see league_group_label())."""
+    gender = league["gender"]
+    return [c for c in clubs if (c.get("teams", {}).get(gender) or {}).get("league") == league["competition"]]
+
+
 def resolve_league_club_tokens(
     league_group_keys: set[str], leagues: list[dict], clubs: list[dict]
 ) -> set[tuple[str, str]]:
@@ -135,10 +147,8 @@ def resolve_league_club_tokens(
     tokens: set[tuple[str, str]] = set()
     for league in matched_leagues:
         gender = league["gender"]
-        for club in clubs:
-            team = club.get("teams", {}).get(gender)
-            if team and team.get("league") == league["competition"]:
-                tokens.add((club["id"], gender))
+        for club in clubs_in_league(league, clubs):
+            tokens.add((club["id"], gender))
     return tokens
 
 
@@ -149,7 +159,13 @@ def league_group_label(league: dict) -> str:
     since several competitions (e.g. "DFB-Pokal") share the same name across
     both genders and would otherwise be indistinguishable in the calendar
     name. Deliberately not app.js's leagueGroupLabel(), which always spells
-    out the gender for the picker UI regardless of the name."""
+    out the gender for the picker UI regardless of the name.
+
+    Only meaningful for a `scope: "full"` league -- callers must not use
+    this for a `scope: "club-filter"` league (e.g. Regionalliga Südwest,
+    where clubs.json only tracks one of ~18 real clubs, see README), since
+    "<Liga> (<Geschlecht>)" implies a completeness that doesn't exist there.
+    See build_calendar_name(), which branches on `scope` before calling this."""
     competition = league["competition"]
     if "Frauen" in competition:
         return competition
@@ -198,8 +214,21 @@ def build_calendar_name(
     leagues_by_key = {f"{league['id']}:{league['gender']}": league for league in leagues}
     for key in league_group_keys:
         league = leagues_by_key.get(key)
-        if league:
+        if not league:
+            continue
+        if league.get("scope", "full") == "full":
             items.append(league_group_label(league))
+        else:
+            # scope != "full": a league:<id>:<gender> token can only reach
+            # here via a hand-crafted or pre-existing URL -- the frontend
+            # itself never produces one for these leagues anymore (see
+            # consolidateFullyCoveredLeagueGroups() in app.js). Expand to
+            # the actually-tracked member club(s) by name instead of
+            # league_group_label(), which would misleadingly claim the
+            # whole league was selected.
+            for club in clubs_in_league(league, clubs_by_id.values()):
+                if club.get("shortName"):
+                    items.append(club["shortName"])
 
     for key in race_group_keys:
         name = race_group_display_name(key)

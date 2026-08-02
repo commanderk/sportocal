@@ -2,31 +2,37 @@
   {
     "id": "bl1",
     "competition": "Bundesliga",
-    "gender": "men"
+    "gender": "men",
+    "scope": "full"
   },
   {
     "id": "bl2",
     "competition": "2. Bundesliga",
-    "gender": "men"
+    "gender": "men",
+    "scope": "full"
   },
   {
     "id": "bl3",
     "competition": "3. Liga",
-    "gender": "men"
+    "gender": "men",
+    "scope": "full"
   },
   {
     "id": "ffb1",
     "competition": "Frauen-Bundesliga",
-    "gender": "women"
+    "gender": "women",
+    "scope": "full"
   },
   {
     "id": "ffb2",
     "competition": "2. Frauen-Bundesliga",
-    "gender": "women"
+    "gender": "women",
+    "scope": "full"
   },
   {
     "id": "rlsw-kickers",
     "competition": "Regionalliga Südwest",
-    "gender": "men"
+    "gender": "men",
+    "scope": "club-filter"
   }
 ]

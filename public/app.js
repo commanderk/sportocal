@@ -830,6 +830,15 @@ function renderFootballCombo() {
     const key = leagueGroupKey(league);
     const groupSelected = state.selectedLeagueGroups.has(key);
     const color = LEAGUE_COLORS[league.id] || "#141414";
+    // scope !== "full" means clubs.json only tracks a subset of this
+    // league's real clubs (e.g. Regionalliga Südwest -- only Stuttgarter
+    // Kickers, see README) -- there's no meaningful "whole league" to offer
+    // as a single "(Alle Vereine)" master option, so it's left out entirely
+    // and only the individually tracked club(s) below are selectable. See
+    // also consolidateFullyCoveredLeagueGroups(), which mirrors this check
+    // so a selection can't collapse into that misleading label some other
+    // way (e.g. a URL param) either.
+    const fullyTracked = league.scope === "full";
     const fullTokens = leagueClubs.map((c) => `${c.id}:${league.gender}`);
     const tokens = clubs.map((c) => `${c.id}:${league.gender}`);
     const selectedCount = fullTokens.filter((t) => state.selectedClubs.has(t)).length;
@@ -840,41 +849,46 @@ function renderFootballCombo() {
     head.className = "league-group-head sticky-group-header";
     const label = document.createElement("label");
     label.className = "league-group-label";
-    const allCheckbox = document.createElement("input");
-    allCheckbox.type = "checkbox";
-    allCheckbox.checked = allSelected;
-    allCheckbox.indeterminate = someSelected;
-    allCheckbox.style.accentColor = color;
-    allCheckbox.addEventListener("change", () => {
-      if (allSelected) {
-        // Full deselect (whether it was a group token or a fully-itemized
-        // league) -- no group token, no individual tokens left for this league.
-        state.selectedLeagueGroups.delete(key);
-        fullTokens.forEach((t) => state.selectedClubs.delete(t));
-      } else if (!state.search.trim()) {
-        // Consolidate into a single group token ("whoever's in the league",
-        // not today's roster) -- drop any partial individual tokens so the
-        // selection has exactly one representation, never both at once.
-        state.selectedLeagueGroups.add(key);
-        fullTokens.forEach((t) => state.selectedClubs.delete(t));
-      } else {
-        // Search is narrowing the visible rows -- "select all" here can only
-        // reasonably mean the filtered subset, not the whole league, so this
-        // stays individual-token selection (pre-existing behavior).
-        tokens.forEach((t) => state.selectedClubs.add(t));
-      }
-      refreshSelectionUI();
-    });
     const swatch = document.createElement("span");
     swatch.className = "league-swatch";
     swatch.style.background = color;
     const name = document.createElement("span");
     name.className = "league-group-name";
-    name.textContent = `${leagueGroupLabel(league)} (Alle Vereine)`;
-    const count = document.createElement("span");
-    count.className = "league-group-count";
-    count.textContent = `(${tokens.length})`;
-    label.append(allCheckbox, swatch, name, count);
+    if (fullyTracked) {
+      const allCheckbox = document.createElement("input");
+      allCheckbox.type = "checkbox";
+      allCheckbox.checked = allSelected;
+      allCheckbox.indeterminate = someSelected;
+      allCheckbox.style.accentColor = color;
+      allCheckbox.addEventListener("change", () => {
+        if (allSelected) {
+          // Full deselect (whether it was a group token or a fully-itemized
+          // league) -- no group token, no individual tokens left for this league.
+          state.selectedLeagueGroups.delete(key);
+          fullTokens.forEach((t) => state.selectedClubs.delete(t));
+        } else if (!state.search.trim()) {
+          // Consolidate into a single group token ("whoever's in the league",
+          // not today's roster) -- drop any partial individual tokens so the
+          // selection has exactly one representation, never both at once.
+          state.selectedLeagueGroups.add(key);
+          fullTokens.forEach((t) => state.selectedClubs.delete(t));
+        } else {
+          // Search is narrowing the visible rows -- "select all" here can only
+          // reasonably mean the filtered subset, not the whole league, so this
+          // stays individual-token selection (pre-existing behavior).
+          tokens.forEach((t) => state.selectedClubs.add(t));
+        }
+        refreshSelectionUI();
+      });
+      name.textContent = `${leagueGroupLabel(league)} (Alle Vereine)`;
+      const count = document.createElement("span");
+      count.className = "league-group-count";
+      count.textContent = `(${tokens.length})`;
+      label.append(allCheckbox, swatch, name, count);
+    } else {
+      name.textContent = leagueGroupLabel(league);
+      label.append(swatch, name);
+    }
     head.appendChild(label);
     body.appendChild(head);
 
@@ -1365,6 +1379,13 @@ function loadSelectionFromStorage() {
 // back to the group chip, not just a fresh individual chip alongside it.
 function consolidateFullyCoveredLeagueGroups() {
   for (const league of state.leagues) {
+    // scope !== "full" means clubs.json only tracks a subset of this
+    // league's real clubs (e.g. Regionalliga Südwest -- only Stuttgarter
+    // Kickers, see README) -- collapsing that subset to "(Alle Vereine)"
+    // would misleadingly claim completeness that doesn't exist. Never
+    // collapse these, regardless of how many of the tracked clubs are
+    // selected.
+    if (league.scope !== "full") continue;
     const key = leagueGroupKey(league);
     if (state.selectedLeagueGroups.has(key)) continue;
     const fullTokens = clubsInLeague(league).map((c) => `${c.id}:${league.gender}`);
