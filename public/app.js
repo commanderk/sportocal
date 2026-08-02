@@ -129,6 +129,49 @@ function contrastText(hex) {
   return luminance > 0.6 ? "#141414" : "#f6f5f2";
 }
 
+// A "-ii" club (e.g. vfb-stuttgart-ii) is the same club's second team, same
+// crest/colors as the main entry -- clubs.json currently gives it its own
+// shortName ("VfB II") for list/filter labels, but the row badge should read
+// identically to the first team's badge (color + Kürzel), with the II vs.
+// non-II distinction carried by the full team name text next to it instead.
+// Deriving the base id here (rather than editing clubs.json) keeps this
+// generic for any future "-ii" entry without per-club special-casing.
+function resolveBadgeClub(teamId) {
+  if (!teamId) return null;
+  const club = state.clubsById.get(teamId);
+  if (!club) return null;
+  if (teamId.endsWith("-ii")) {
+    const baseClub = state.clubsById.get(teamId.slice(0, -3));
+    if (baseClub) return baseClub;
+  }
+  return club;
+}
+
+// Circular color+Kürzel badge replacing the old hotlinked crest <img> (the
+// homeTeamLogo/awayTeamLogo fields still exist in events.json but are no
+// longer rendered) -- avoids dead links and crest copyright/trademark issues
+// from hotlinking third-party logo URLs.
+// shortName is used as-is (already unambiguous per club, unlike car-plate-style
+// city codes: VfB Stuttgart vs. Stuttgarter Kickers, or the three Köln clubs,
+// would collide under a city-code scheme). Teams with no clubs.json match
+// (homeTeamId/awayTeamId null, or an opponent without its own entry, e.g. a
+// lower-league cup opponent) fall back to a neutral gray badge with the first
+// two letters of the raw team name.
+function createClubBadge(teamId, teamName) {
+  const badge = document.createElement("span");
+  badge.className = "club-badge";
+  const club = resolveBadgeClub(teamId);
+  if (club) {
+    badge.style.background = club.colorHex;
+    badge.style.color = contrastText(club.colorHex);
+    badge.textContent = club.shortName;
+  } else {
+    badge.classList.add("club-badge-fallback");
+    badge.textContent = (teamName || "").trim().slice(0, 2).toUpperCase() || "?";
+  }
+  return badge;
+}
+
 // The row-index number is the event's actual Spieltag (matchday) or Etappe
 // (stage) number, taken from `round` (e.g. "Spieltag 27", "Etappe 18",
 // "1. Runde") -- not a sequential per-section counter -- so it always means
@@ -262,19 +305,29 @@ function renderEventRow(event) {
   timeCol.textContent = timeText;
   desktop.appendChild(timeCol);
 
-  const logos = document.createElement("div");
-  logos.className = "row-logos";
-  if (event.homeTeamLogo) {
-    logos.appendChild(Object.assign(document.createElement("img"), { src: event.homeTeamLogo, alt: "", loading: "lazy" }));
-  }
-  if (event.awayTeamLogo) {
-    logos.appendChild(Object.assign(document.createElement("img"), { src: event.awayTeamLogo, alt: "", loading: "lazy" }));
-  }
-  desktop.appendChild(logos);
-
   const title = document.createElement("div");
   title.className = "row-title";
-  title.textContent = titleText;
+  if (event.sport === "football") {
+    title.appendChild(createClubBadge(event.homeTeamId, event.homeTeamName));
+    const homeName = document.createElement("span");
+    homeName.className = "row-title-text";
+    homeName.textContent = event.homeTeamName || "";
+    title.appendChild(homeName);
+    const sep = document.createElement("span");
+    sep.className = "row-title-sep";
+    sep.textContent = "–";
+    title.appendChild(sep);
+    title.appendChild(createClubBadge(event.awayTeamId, event.awayTeamName));
+    const awayName = document.createElement("span");
+    awayName.className = "row-title-text";
+    awayName.textContent = event.awayTeamName || "";
+    title.appendChild(awayName);
+  } else {
+    const text = document.createElement("span");
+    text.className = "row-title-text";
+    text.textContent = titleText;
+    title.appendChild(text);
+  }
   desktop.appendChild(title);
 
   const venue = document.createElement("div");
@@ -299,20 +352,16 @@ function renderEventRow(event) {
   mobileMain.appendChild(mobileIdx);
 
   if (event.sport === "football") {
+    mobileMain.appendChild(createClubBadge(event.homeTeamId, event.homeTeamName));
     const home = document.createElement("span");
     home.className = "row-mobile-team";
     home.textContent = event.homeTeamName || "";
     mobileMain.appendChild(home);
-    if (event.homeTeamLogo) {
-      mobileMain.appendChild(Object.assign(document.createElement("img"), { src: event.homeTeamLogo, alt: "", loading: "lazy", className: "row-mobile-logo" }));
-    }
     const sep = document.createElement("span");
     sep.className = "row-mobile-sep";
     sep.textContent = "–";
     mobileMain.appendChild(sep);
-    if (event.awayTeamLogo) {
-      mobileMain.appendChild(Object.assign(document.createElement("img"), { src: event.awayTeamLogo, alt: "", loading: "lazy", className: "row-mobile-logo" }));
-    }
+    mobileMain.appendChild(createClubBadge(event.awayTeamId, event.awayTeamName));
     const away = document.createElement("span");
     away.className = "row-mobile-team";
     away.textContent = event.awayTeamName || "";
