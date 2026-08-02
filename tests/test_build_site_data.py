@@ -1,8 +1,15 @@
 import build_site_data
 
 
-def race(id_, name, gender, tier, country=None):
-    entry = {"id": id_, "name": name, "type": "stage-race", "gender": gender, "tier": tier}
+def race(id_, name, gender, tier, country=None, short=None):
+    entry = {
+        "id": id_,
+        "name": name,
+        "shortName": short or id_[:3].upper(),
+        "type": "stage-race",
+        "gender": gender,
+        "tier": tier,
+    }
     if country:
         entry["country"] = country
     return entry
@@ -86,3 +93,15 @@ def test_empty_tier_produces_no_group():
     groups = build_site_data.build_race_groups_payload(config)
 
     assert all(g["tier"] != "regional" for g in groups)
+
+
+def test_short_name_passed_through_to_race_entry():
+    config = {
+        "cycling": {
+            "races": [race("tour-de-france", "Tour de France", "men", "grand-tour", short="TDF")]
+        }
+    }
+
+    groups = build_site_data.build_race_groups_payload(config)
+
+    assert groups[0]["races"][0]["shortName"] == "TDF"

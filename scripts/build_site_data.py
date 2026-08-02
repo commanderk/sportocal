@@ -100,7 +100,7 @@ def build_race_groups_payload(config: dict) -> list[dict]:
     for race in races:
         tier, gender = race["tier"], race["gender"]
         genders_by_tier.setdefault(tier, set()).add(gender)
-        entry = {"id": race["id"], "name": race["name"]}
+        entry = {"id": race["id"], "name": race["name"], "shortName": race["shortName"]}
         if race.get("country"):
             entry["country"] = race["country"]
         races_by_tier_gender.setdefault((tier, gender), []).append(entry)

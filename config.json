@@ -165,6 +165,7 @@
       {
         "id": "tour-de-france",
         "name": "Tour de France",
+        "shortName": "TDF",
         "type": "stage-race",
         "gender": "men",
         "tier": "grand-tour",
@@ -173,6 +174,7 @@
       {
         "id": "giro-d-italia",
         "name": "Giro d'Italia",
+        "shortName": "GIR",
         "type": "stage-race",
         "gender": "men",
         "tier": "grand-tour",
@@ -181,6 +183,7 @@
       {
         "id": "vuelta-a-espana",
         "name": "Vuelta a España",
+        "shortName": "VUE",
         "type": "stage-race",
         "gender": "men",
         "tier": "grand-tour",
@@ -189,6 +192,7 @@
       {
         "id": "cyclassics-hamburg",
         "name": "Cyclassics Hamburg",
+        "shortName": "CYH",
         "type": "one-day",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -198,6 +202,7 @@
       {
         "id": "muensterland-giro",
         "name": "Sparkassen Münsterland Giro",
+        "shortName": "MSG",
         "type": "one-day",
         "gender": "men",
         "tier": "uci-proseries",
@@ -207,6 +212,7 @@
       {
         "id": "deutschland-tour",
         "name": "Deutschland Tour",
+        "shortName": "DTR",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-proseries",
@@ -216,6 +222,7 @@
       {
         "id": "paris-nice",
         "name": "Paris-Nice",
+        "shortName": "PNI",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -224,6 +231,7 @@
       {
         "id": "tirreno-adriatico",
         "name": "Tirreno-Adriatico",
+        "shortName": "TIR",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -232,6 +240,7 @@
       {
         "id": "volta-ciclista-a-catalunya",
         "name": "Volta Ciclista a Catalunya",
+        "shortName": "VCA",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -240,6 +249,7 @@
       {
         "id": "itzulia-basque-country",
         "name": "Itzulia Basque Country",
+        "shortName": "ITZ",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -248,6 +258,7 @@
       {
         "id": "tour-de-romandie",
         "name": "Tour de Romandie",
+        "shortName": "TDR",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -256,6 +267,7 @@
       {
         "id": "tour-auvergne-rhone-alpes",
         "name": "Tour Auvergne-Rhône-Alpes",
+        "shortName": "TAR",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -264,6 +276,7 @@
       {
         "id": "tour-de-suisse",
         "name": "Tour de Suisse",
+        "shortName": "TDS",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -272,6 +285,7 @@
       {
         "id": "tour-de-pologne",
         "name": "Tour de Pologne",
+        "shortName": "TDP",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -280,6 +294,7 @@
       {
         "id": "renewi-tour",
         "name": "Renewi Tour",
+        "shortName": "REN",
         "type": "stage-race",
         "gender": "men",
         "tier": "uci-worldtour",
@@ -288,6 +303,7 @@
       {
         "id": "tour-de-france-femmes",
         "name": "Tour de France Femmes",
+        "shortName": "TDF",
         "type": "stage-race",
         "gender": "women",
         "tier": "grand-tour",
@@ -296,6 +312,7 @@
       {
         "id": "giro-d-italia-women",
         "name": "Giro d'Italia Women",
+        "shortName": "GIR",
         "type": "stage-race",
         "gender": "women",
         "tier": "grand-tour",
@@ -304,6 +321,7 @@
       {
         "id": "vuelta-espana-femenina",
         "name": "Vuelta España Femenina",
+        "shortName": "VUE",
         "type": "stage-race",
         "gender": "women",
         "tier": "grand-tour",
@@ -312,6 +330,7 @@
       {
         "id": "itzulia-women",
         "name": "Itzulia Women",
+        "shortName": "ITZ",
         "type": "stage-race",
         "gender": "women",
         "tier": "uci-worldtour",
@@ -320,6 +339,7 @@
       {
         "id": "vuelta-a-burgos-feminas",
         "name": "Vuelta a Burgos Feminas",
+        "shortName": "VAB",
         "type": "stage-race",
         "gender": "women",
         "tier": "uci-worldtour",
@@ -328,6 +348,7 @@
       {
         "id": "tour-de-suisse-women",
         "name": "Tour de Suisse Women",
+        "shortName": "TDS",
         "type": "stage-race",
         "gender": "women",
         "tier": "uci-worldtour",
@@ -336,6 +357,7 @@
       {
         "id": "tour-of-britain-women",
         "name": "Tour of Britain Women",
+        "shortName": "TOB",
         "type": "stage-race",
         "gender": "women",
         "tier": "uci-worldtour",
@@ -344,44 +366,45 @@
       {
         "id": "tour-de-romandie-feminin",
         "name": "Tour de Romandie Féminin",
+        "shortName": "TDR",
         "type": "stage-race",
         "gender": "women",
         "tier": "uci-worldtour",
         "source": "manual"
       },
-      { "id": "omloop-het-nieuwsblad-women", "name": "Omloop Het Nieuwsblad Women", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "strade-bianche-donne", "name": "Strade Bianche Donne", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "trofeo-alfredo-binda", "name": "Trofeo Alfredo Binda", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "milano-sanremo-women", "name": "Milano–Sanremo Women", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "ronde-van-brugge-women", "name": "Ronde Van Brugge", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "in-flanders-fields-women", "name": "In Flanders Fields", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "dwars-door-vlaanderen-women", "name": "Dwars door Vlaanderen", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "ronde-van-vlaanderen-women", "name": "Ronde van Vlaanderen", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "paris-roubaix-femmes", "name": "Paris-Roubaix Femmes", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "amstel-gold-race-ladies", "name": "Amstel Gold Race Ladies Edition", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "fleche-wallonne-femmes", "name": "La Flèche Wallonne Femmes", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "liege-bastogne-liege-femmes", "name": "Liège–Bastogne–Liège Femmes", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "copenhagen-sprint-women", "name": "Copenhagen Sprint", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "classic-lorient", "name": "Classic Lorient Agglomération", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "omloop-het-nieuwsblad", "name": "Omloop Het Nieuwsblad", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "strade-bianche", "name": "Strade Bianche", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "milano-sanremo", "name": "Milano-Sanremo", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "ronde-van-brugge", "name": "Ronde Van Brugge", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "e3-saxo-classic", "name": "E3 Saxo Classic", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "in-flanders-fields", "name": "In Flanders Fields", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "dwars-door-vlaanderen", "name": "Dwars door Vlaanderen", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "ronde-van-vlaanderen", "name": "Ronde van Vlaanderen", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "paris-roubaix", "name": "Paris-Roubaix", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "amstel-gold-race", "name": "Amstel Gold Race", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "fleche-wallonne", "name": "La Flèche Wallonne", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "liege-bastogne-liege", "name": "Liège–Bastogne–Liège", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "eschborn-frankfurt", "name": "Eschborn-Frankfurt", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "copenhagen-sprint", "name": "Copenhagen Sprint", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "dssk", "name": "DSSK", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "bretagne-classic", "name": "Bretagne Classic", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "il-lombardia", "name": "Il Lombardia", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
-      { "id": "tour-de-neuss", "name": "Tour de Neuss", "type": "one-day", "gender": "men", "tier": "regional", "country": "DE", "source": "manual" },
-      { "id": "schmitter-nacht-von-huerth", "name": "Schmitter-Nacht von Hürth", "type": "one-day", "gender": "men", "tier": "regional", "country": "DE", "source": "manual" }
+      { "id": "omloop-het-nieuwsblad-women", "name": "Omloop Het Nieuwsblad Women", "shortName": "OHN", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "strade-bianche-donne", "name": "Strade Bianche Donne", "shortName": "SBD", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "trofeo-alfredo-binda", "name": "Trofeo Alfredo Binda", "shortName": "TAB", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "milano-sanremo-women", "name": "Milano–Sanremo Women", "shortName": "MSR", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "ronde-van-brugge-women", "name": "Ronde Van Brugge", "shortName": "RVB", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "in-flanders-fields-women", "name": "In Flanders Fields", "shortName": "IFF", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "dwars-door-vlaanderen-women", "name": "Dwars door Vlaanderen", "shortName": "DDV", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "ronde-van-vlaanderen-women", "name": "Ronde van Vlaanderen", "shortName": "RVV", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "paris-roubaix-femmes", "name": "Paris-Roubaix Femmes", "shortName": "PRF", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "amstel-gold-race-ladies", "name": "Amstel Gold Race Ladies Edition", "shortName": "AGR", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "fleche-wallonne-femmes", "name": "La Flèche Wallonne Femmes", "shortName": "FWF", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "liege-bastogne-liege-femmes", "name": "Liège–Bastogne–Liège Femmes", "shortName": "LBL", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "copenhagen-sprint-women", "name": "Copenhagen Sprint", "shortName": "CPH", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "classic-lorient", "name": "Classic Lorient Agglomération", "shortName": "CLA", "type": "one-day", "gender": "women", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "omloop-het-nieuwsblad", "name": "Omloop Het Nieuwsblad", "shortName": "OHN", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "strade-bianche", "name": "Strade Bianche", "shortName": "SBI", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "milano-sanremo", "name": "Milano-Sanremo", "shortName": "MSR", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "ronde-van-brugge", "name": "Ronde Van Brugge", "shortName": "RVB", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "e3-saxo-classic", "name": "E3 Saxo Classic", "shortName": "E3S", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "in-flanders-fields", "name": "In Flanders Fields", "shortName": "IFF", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "dwars-door-vlaanderen", "name": "Dwars door Vlaanderen", "shortName": "DDV", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "ronde-van-vlaanderen", "name": "Ronde van Vlaanderen", "shortName": "RVV", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "paris-roubaix", "name": "Paris-Roubaix", "shortName": "PRX", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "amstel-gold-race", "name": "Amstel Gold Race", "shortName": "AGR", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "fleche-wallonne", "name": "La Flèche Wallonne", "shortName": "FLW", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "liege-bastogne-liege", "name": "Liège–Bastogne–Liège", "shortName": "LBL", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "eschborn-frankfurt", "name": "Eschborn-Frankfurt", "shortName": "ESF", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "copenhagen-sprint", "name": "Copenhagen Sprint", "shortName": "CPH", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "dssk", "name": "DSSK", "shortName": "DSK", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "bretagne-classic", "name": "Bretagne Classic", "shortName": "BRC", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "il-lombardia", "name": "Il Lombardia", "shortName": "ILL", "type": "one-day", "gender": "men", "tier": "uci-worldtour", "source": "manual" },
+      { "id": "tour-de-neuss", "name": "Tour de Neuss", "shortName": "TDN", "type": "one-day", "gender": "men", "tier": "regional", "country": "DE", "source": "manual" },
+      { "id": "schmitter-nacht-von-huerth", "name": "Schmitter-Nacht von Hürth", "shortName": "SNH", "type": "one-day", "gender": "men", "tier": "regional", "country": "DE", "source": "manual" }
     ]
   }
 }

@@ -6,15 +6,18 @@
     "races": [
       {
         "id": "tour-de-france",
-        "name": "Tour de France"
+        "name": "Tour de France",
+        "shortName": "TDF"
       },
       {
         "id": "giro-d-italia",
-        "name": "Giro d'Italia"
+        "name": "Giro d'Italia",
+        "shortName": "GIR"
       },
       {
         "id": "vuelta-a-espana",
-        "name": "Vuelta a España"
+        "name": "Vuelta a España",
+        "shortName": "VUE"
       }
     ]
   },
@@ -25,15 +28,18 @@
     "races": [
       {
         "id": "tour-de-france-femmes",
-        "name": "Tour de France Femmes"
+        "name": "Tour de France Femmes",
+        "shortName": "TDF"
       },
       {
         "id": "giro-d-italia-women",
-        "name": "Giro d'Italia Women"
+        "name": "Giro d'Italia Women",
+        "shortName": "GIR"
       },
       {
         "id": "vuelta-espana-femenina",
-        "name": "Vuelta España Femenina"
+        "name": "Vuelta España Femenina",
+        "shortName": "VUE"
       }
     ]
   },
@@ -45,111 +51,138 @@
       {
         "id": "cyclassics-hamburg",
         "name": "Cyclassics Hamburg",
+        "shortName": "CYH",
         "country": "DE"
       },
       {
         "id": "paris-nice",
-        "name": "Paris-Nice"
+        "name": "Paris-Nice",
+        "shortName": "PNI"
       },
       {
         "id": "tirreno-adriatico",
-        "name": "Tirreno-Adriatico"
+        "name": "Tirreno-Adriatico",
+        "shortName": "TIR"
       },
       {
         "id": "volta-ciclista-a-catalunya",
-        "name": "Volta Ciclista a Catalunya"
+        "name": "Volta Ciclista a Catalunya",
+        "shortName": "VCA"
       },
       {
         "id": "itzulia-basque-country",
-        "name": "Itzulia Basque Country"
+        "name": "Itzulia Basque Country",
+        "shortName": "ITZ"
       },
       {
         "id": "tour-de-romandie",
-        "name": "Tour de Romandie"
+        "name": "Tour de Romandie",
+        "shortName": "TDR"
       },
       {
         "id": "tour-auvergne-rhone-alpes",
-        "name": "Tour Auvergne-Rhône-Alpes"
+        "name": "Tour Auvergne-Rhône-Alpes",
+        "shortName": "TAR"
       },
       {
         "id": "tour-de-suisse",
-        "name": "Tour de Suisse"
+        "name": "Tour de Suisse",
+        "shortName": "TDS"
       },
       {
         "id": "tour-de-pologne",
-        "name": "Tour de Pologne"
+        "name": "Tour de Pologne",
+        "shortName": "TDP"
       },
       {
         "id": "renewi-tour",
-        "name": "Renewi Tour"
+        "name": "Renewi Tour",
+        "shortName": "REN"
       },
       {
         "id": "omloop-het-nieuwsblad",
-        "name": "Omloop Het Nieuwsblad"
+        "name": "Omloop Het Nieuwsblad",
+        "shortName": "OHN"
       },
       {
         "id": "strade-bianche",
-        "name": "Strade Bianche"
+        "name": "Strade Bianche",
+        "shortName": "SBI"
       },
       {
         "id": "milano-sanremo",
-        "name": "Milano-Sanremo"
+        "name": "Milano-Sanremo",
+        "shortName": "MSR"
       },
       {
         "id": "ronde-van-brugge",
-        "name": "Ronde Van Brugge"
+        "name": "Ronde Van Brugge",
+        "shortName": "RVB"
       },
       {
         "id": "e3-saxo-classic",
-        "name": "E3 Saxo Classic"
+        "name": "E3 Saxo Classic",
+        "shortName": "E3S"
       },
       {
         "id": "in-flanders-fields",
-        "name": "In Flanders Fields"
+        "name": "In Flanders Fields",
+        "shortName": "IFF"
       },
       {
         "id": "dwars-door-vlaanderen",
-        "name": "Dwars door Vlaanderen"
+        "name": "Dwars door Vlaanderen",
+        "shortName": "DDV"
       },
       {
         "id": "ronde-van-vlaanderen",
-        "name": "Ronde van Vlaanderen"
+        "name": "Ronde van Vlaanderen",
+        "shortName": "RVV"
       },
       {
         "id": "paris-roubaix",
-        "name": "Paris-Roubaix"
+        "name": "Paris-Roubaix",
+        "shortName": "PRX"
       },
       {
         "id": "amstel-gold-race",
-        "name": "Amstel Gold Race"
+        "name": "Amstel Gold Race",
+        "shortName": "AGR"
       },
       {
         "id": "fleche-wallonne",
-        "name": "La Flèche Wallonne"
+        "name": "La Flèche Wallonne",
+        "shortName": "FLW"
       },
       {
         "id": "liege-bastogne-liege",
-        "name": "Liège–Bastogne–Liège"
+        "name": "Liège–Bastogne–Liège",
+        "shortName": "LBL"
       },
       {
         "id": "eschborn-frankfurt",
-        "name": "Eschborn-Frankfurt"
+        "name": "Eschborn-Frankfurt",
+        "shortName": "ESF"
       },
       {
         "id": "copenhagen-sprint",
-        "name": "Copenhagen Sprint"
+        "name": "Copenhagen Sprint",
+        "shortName": "CPH"
       },
       {
         "id": "dssk",
-        "name": "DSSK"
+        "name": "DSSK",
+        "shortName": "DSK"
       },
       {
         "id": "bretagne-classic",
-        "name": "Bretagne Classic"
+        "name": "Bretagne Classic",
+        "shortName": "BRC"
       },
       {
         "id": "il-lombardia",
-        "name": "Il Lombardia"
+        "name": "Il Lombardia",
+        "shortName": "ILL"
       }
     ]
   },
@@ -160,79 +193,98 @@
     "races": [
       {
         "id": "itzulia-women",
-        "name": "Itzulia Women"
+        "name": "Itzulia Women",
+        "shortName": "ITZ"
       },
       {
         "id": "vuelta-a-burgos-feminas",
-        "name": "Vuelta a Burgos Feminas"
+        "name": "Vuelta a Burgos Feminas",
+        "shortName": "VAB"
       },
       {
         "id": "tour-de-suisse-women",
-        "name": "Tour de Suisse Women"
+        "name": "Tour de Suisse Women",
+        "shortName": "TDS"
       },
       {
         "id": "tour-of-britain-women",
-        "name": "Tour of Britain Women"
+        "name": "Tour of Britain Women",
+        "shortName": "TOB"
       },
       {
         "id": "tour-de-romandie-feminin",
-        "name": "Tour de Romandie Féminin"
+        "name": "Tour de Romandie Féminin",
+        "shortName": "TDR"
       },
       {
         "id": "omloop-het-nieuwsblad-women",
-        "name": "Omloop Het Nieuwsblad Women"
+        "name": "Omloop Het Nieuwsblad Women",
+        "shortName": "OHN"
       },
       {
         "id": "strade-bianche-donne",
-        "name": "Strade Bianche Donne"
+        "name": "Strade Bianche Donne",
+        "shortName": "SBD"
       },
       {
         "id": "trofeo-alfredo-binda",
-        "name": "Trofeo Alfredo Binda"
+        "name": "Trofeo Alfredo Binda",
+        "shortName": "TAB"
       },
       {
         "id": "milano-sanremo-women",
-        "name": "Milano–Sanremo Women"
+        "name": "Milano–Sanremo Women",
+        "shortName": "MSR"
       },
       {
         "id": "ronde-van-brugge-women",
-        "name": "Ronde Van Brugge"
+        "name": "Ronde Van Brugge",
+        "shortName": "RVB"
       },
       {
         "id": "in-flanders-fields-women",
-        "name": "In Flanders Fields"
+        "name": "In Flanders Fields",
+        "shortName": "IFF"
       },
       {
         "id": "dwars-door-vlaanderen-women",
-        "name": "Dwars door Vlaanderen"
+        "name": "Dwars door Vlaanderen",
+        "shortName": "DDV"
       },
       {
         "id": "ronde-van-vlaanderen-women",
-        "name": "Ronde van Vlaanderen"
+        "name": "Ronde van Vlaanderen",
+        "shortName": "RVV"
       },
       {
         "id": "paris-roubaix-femmes",
-        "name": "Paris-Roubaix Femmes"
+        "name": "Paris-Roubaix Femmes",
+        "shortName": "PRF"
       },
       {
         "id": "amstel-gold-race-ladies",
-        "name": "Amstel Gold Race Ladies Edition"
+        "name": "Amstel Gold Race Ladies Edition",
+        "shortName": "AGR"
       },
       {
         "id": "fleche-wallonne-femmes",
-        "name": "La Flèche Wallonne Femmes"
+        "name": "La Flèche Wallonne Femmes",
+        "shortName": "FWF"
       },
       {
         "id": "liege-bastogne-liege-femmes",
-        "name": "Liège–Bastogne–Liège Femmes"
+        "name": "Liège–Bastogne–Liège Femmes",
+        "shortName": "LBL"
       },
       {
         "id": "copenhagen-sprint-women",
-        "name": "Copenhagen Sprint"
+        "name": "Copenhagen Sprint",
+        "shortName": "CPH"
       },
       {
         "id": "classic-lorient",
-        "name": "Classic Lorient Agglomération"
+        "name": "Classic Lorient Agglomération",
+        "shortName": "CLA"
       }
     ]
   },
@@ -244,11 +296,13 @@
       {
         "id": "muensterland-giro",
         "name": "Sparkassen Münsterland Giro",
+        "shortName": "MSG",
         "country": "DE"
       },
       {
         "id": "deutschland-tour",
         "name": "Deutschland Tour",
+        "shortName": "DTR",
         "country": "DE"
       }
     ]
@@ -261,11 +315,13 @@
       {
         "id": "tour-de-neuss",
         "name": "Tour de Neuss",
+        "shortName": "TDN",
         "country": "DE"
       },
       {
         "id": "schmitter-nacht-von-huerth",
         "name": "Schmitter-Nacht von Hürth",
+        "shortName": "SNH",
         "country": "DE"
       }
     ]

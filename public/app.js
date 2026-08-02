@@ -4,16 +4,6 @@ const SPORT_LABELS = {
 };
 const SPORT_ORDER = ["football", "cycling"];
 
-// Per-row gender cue for cycling (see eventDisplayTitle()) -- several
-// men's/women's one-day classics share the exact same competition name
-// (e.g. "Ronde Van Brugge"), so without this the row title alone can't
-// tell them apart. Same mapping as scripts/common.py's CYCLING_GENDER_EMOJI,
-// used there for the ICS calendar title. Falls back to the plain bicycle
-// for any event missing gender (shouldn't happen for current data, but see
-// that Python-side fallback for why: older snapshots from before this
-// field existed).
-const CYCLING_GENDER_EMOJI = { men: "🚴‍♂️", women: "🚴‍♀️" };
-
 // Visual grouping color per selectable football league (used for the
 // checkbox accent / swatch in the combobox) -- distinct from a club's own
 // colorHex, which is used for that club's dot/chip so it stays recognizable
@@ -27,11 +17,15 @@ const LEAGUE_COLORS = {
   "rlsw-kickers": "#e8720c",
 };
 
-// Currently unreferenced: the cycling picker moved to group-level selection
-// (see renderCyclingCombo()), so there are no more per-race rows/chips to
-// color. Kept rather than deleted -- these are real logo-derived hex values,
-// not estimates, and a future per-race UI (e.g. a color accent on individual
-// event rows) would otherwise have to re-source them from scratch.
+// Per-race color accent for cycling event rows (see createRaceBadge()) --
+// the picker itself moved to group-level selection (see renderCyclingCombo()),
+// so this is no longer used there, but individual event rows still need a
+// per-race color the way football rows use a club's colorHex. These are real
+// logo-derived hex values. Any race id without an entry here falls back to
+// #141414 in createRaceBadge(), same convention RACE_GROUP_COLORS uses --
+// several men's one-day classics have no entry at all (only their women's
+// counterpart does), so they'll share that fallback color rather than each
+// getting a distinct one.
 const RACE_COLORS = {
   "tour-de-france": "#e8b400",
   "giro-d-italia": "#d81b8f",
@@ -172,6 +166,34 @@ function createClubBadge(teamId, teamName) {
   return badge;
 }
 
+// Cycling counterpart to createClubBadge() -- same visual system, same
+// .club-badge CSS class (no second badge system), just a different color/
+// text source: RACE_COLORS (see comment there) keyed by race id, and
+// race.shortName (config.json -> races.json, see build_site_data.py).
+// Matching on name alone is ambiguous: several men's/women's pairs share
+// the exact same race name (e.g. "Ronde Van Brugge", see
+// computeDuplicateOneDayCompetitions()), so name+gender together is the
+// actual unique key here. NOTE: visibleEvents()'s race lookup (for group
+// filtering) still matches on name only and inherits the same ambiguity --
+// since men's groups sort before women's (GENDER_ORDER in
+// build_site_data.py), a name-colliding women's event there silently
+// resolves to the men's race's groupKey, so it can show up under the wrong
+// tier×gender filter. Pre-existing, not introduced here; left as-is since
+// fixing it is a filtering-behavior change outside this task's scope.
+// Unlike club badges there's no per-race fallback color needed -- RACE_COLORS
+// itself already falls back to #141414 for any race without its own entry,
+// so every race gets a real color, just not always a distinct one.
+function createRaceBadge(event) {
+  const race = state.races.find((r) => r.name === event.competition && r.gender === event.gender);
+  const color = (race && RACE_COLORS[race.id]) || "#141414";
+  const badge = document.createElement("span");
+  badge.className = "club-badge";
+  badge.style.background = color;
+  badge.style.color = contrastText(color);
+  badge.textContent = (race && race.shortName) || "?";
+  return badge;
+}
+
 // The row-index number is the event's actual Spieltag (matchday) or Etappe
 // (stage) number, taken from `round` (e.g. "Spieltag 27", "Etappe 18",
 // "1. Runde") -- not a sequential per-section counter -- so it always means
@@ -216,14 +238,13 @@ function eventDisplayTitle(event) {
   if (event.sport === "football") {
     return [event.homeTeamName, event.awayTeamName].filter(Boolean).join(" – ");
   }
-  const emoji = CYCLING_GENDER_EMOJI[event.gender] || "🚴";
   if (event.round) {
-    return `${emoji} ${event.competition}, ${event.round}`;
+    return `${event.competition}, ${event.round}`;
   }
   if (duplicateOneDayCompetitions.has(event.competition)) {
-    return `${emoji} ${event.competition} ${event.start.slice(0, 4)}`;
+    return `${event.competition} ${event.start.slice(0, 4)}`;
   }
-  return `${emoji} ${event.competition}`;
+  return event.competition;
 }
 
 // Same set as scripts/common.py's STAGE_TYPES -- kept in sync manually since
@@ -351,6 +372,7 @@ function renderEventRow(event) {
     awayName.textContent = event.awayTeamName || "";
     title.appendChild(awayName);
   } else {
+    title.appendChild(createRaceBadge(event));
     const text = document.createElement("span");
     text.className = "row-title-text";
     text.textContent = titleText;
@@ -404,6 +426,7 @@ function renderEventRow(event) {
     away.textContent = event.awayTeamName || "";
     mobileMain.appendChild(away);
   } else {
+    mobileMain.appendChild(createRaceBadge(event));
     const mobileTitle = document.createElement("span");
     mobileTitle.className = "row-mobile-title";
     mobileTitle.textContent = titleText;
