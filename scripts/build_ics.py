@@ -19,7 +19,7 @@ def main() -> None:
     clubs_by_id = {club["id"]: club for club in load_clubs()}
     events = sorted(load_all_events(), key=lambda e: e["start"])
 
-    calendar_text = build_calendar_text(events, clubs_by_id, calendar_name="sportocal")
+    calendar_text = build_calendar_text(events, clubs_by_id, calendar_name="Sportocal – Alle Termine")
 
     PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
     with ICS_PATH.open("w", encoding="utf-8", newline="") as f:

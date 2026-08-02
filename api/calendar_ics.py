@@ -47,7 +47,15 @@ The whole season (past and future matches) is included; the only cut is the
 implicit one from fetch_football.py always snapshotting the newest available
 season, so an old season's fixtures simply aren't present anymore once a new
 one starts. See scripts/common.py for the shared VEVENT/title-rendering logic
-also used by the interim combined feed (scripts/build_ics.py).
+also used by the interim combined feed (scripts/build_ics.py) -- reminder
+timing (absolute, DST-aware), LOCATION, and the "— via sportocal.de"
+description footer all come from there and need no per-feed handling here.
+
+X-WR-CALNAME is built fresh per selection by build_calendar_name() below --
+"Sportocal – {items}", each item as short as possible (a club's shortName, a
+whole race/league group collapsed to one speaking name never its current
+members) and capped so the name never turns into an unwieldy or stale-looking
+member list; see that function's docstring for the exact truncation rule.
 """
 from __future__ import annotations
 
@@ -58,10 +66,12 @@ from urllib.parse import parse_qs
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
 from common import (  # noqa: E402
+    TIER_LABELS,
     build_calendar_text,
     load_all_events,
     load_clubs,
     load_config,
+    parse_race_group_key,
     race_group_key,
 )
 
@@ -69,6 +79,15 @@ GENDER_SUFFIXES = (":men", ":women")
 RACE_GROUP_PREFIX = "raceGroup:"
 LEAGUE_GROUP_PREFIX = "league:"
 GENDER_LABELS = {"men": "Männer", "women": "Frauen"}
+
+# Calendar-name-specific gender wording ("UCI WorldTour (Herren)") --
+# deliberately distinct from GENDER_LABELS above (used for league-group
+# names, "Alle Vereine Bundesliga Männer") and from the website's own
+# "Männer"/"Frauen" convention. See build_calendar_name().
+CALNAME_GENDER_LABELS = {"men": "Herren", "women": "Damen"}
+MAX_CALNAME_ITEMS = 3
+MAX_CALNAME_TOTAL_ITEMS = 6
+DEFAULT_CALENDAR_NAME = "Sportocal – Mein Kalender"
 
 
 def parse_selection(raw: str) -> tuple[set[tuple[str, str]], set[str], set[str]]:
@@ -125,19 +144,62 @@ def league_group_label(league: dict) -> str:
     return f"Alle Vereine {league['competition']} {GENDER_LABELS.get(league['gender'], league['gender'])}"
 
 
-def selection_summary(
+def race_group_display_name(key: str) -> str | None:
+    """"<tier>-<gender>" race-group key -> a short, speaking group name for
+    the calendar name, e.g. "UCI WorldTour (Herren)" -- never a listing of
+    the group's current individual races. A group is always resolved fresh
+    against config.json (see module docstring), so naming it after whichever
+    races happen to be in it right now would make the calendar's own name
+    go stale the moment membership changes; the group name itself doesn't."""
+    parsed = parse_race_group_key(key)
+    if not parsed:
+        return None
+    tier, gender = parsed
+    tier_label = TIER_LABELS.get(tier)
+    if not tier_label:
+        return None
+    return f"{tier_label} ({CALNAME_GENDER_LABELS.get(gender, gender)})"
+
+
+def build_calendar_name(
     club_tokens: set[tuple[str, str]],
-    race_ids: set[str],
     league_group_keys: set[str],
+    race_group_keys: set[str],
     clubs_by_id: dict,
-    race_names: dict,
     leagues: list[dict],
 ) -> str:
-    names = [clubs_by_id[cid]["name"] for cid, _ in club_tokens if cid in clubs_by_id]
-    names += [race_names[rid] for rid in race_ids if rid in race_names]
+    """X-WR-CALNAME for a personalized feed: "Sportocal – {items}", each item
+    as short as it reasonably can be -- a club's shortName (not its full
+    name), a whole race/league group collapsed to one speaking group name
+    (never a listing of its current members, see race_group_display_name()/
+    league_group_label()). A single shared item list and truncation rule
+    covers every combination (clubs only, groups only, or mixed): more than
+    MAX_CALNAME_ITEMS items truncates to the first few + ", u.a."; more than
+    MAX_CALNAME_TOTAL_ITEMS, or nothing resolvable at all, falls back to a
+    generic name rather than an unwieldy or empty one."""
+    items = []
+    for cid, _ in club_tokens:
+        club = clubs_by_id.get(cid)
+        if club and club.get("shortName"):
+            items.append(club["shortName"])
+
     leagues_by_key = {f"{league['id']}:{league['gender']}": league for league in leagues}
-    names += [league_group_label(leagues_by_key[key]) for key in league_group_keys if key in leagues_by_key]
-    return ", ".join(sorted(names)) or "(keine bekannten Vereine/Rennen in der Auswahl)"
+    for key in league_group_keys:
+        league = leagues_by_key.get(key)
+        if league:
+            items.append(league_group_label(league))
+
+    for key in race_group_keys:
+        name = race_group_display_name(key)
+        if name:
+            items.append(name)
+
+    items = sorted(set(items))
+    if not items or len(items) > MAX_CALNAME_TOTAL_ITEMS:
+        return DEFAULT_CALENDAR_NAME
+    if len(items) > MAX_CALNAME_ITEMS:
+        return f"Sportocal – {', '.join(items[:MAX_CALNAME_ITEMS])}, u.a."
+    return f"Sportocal – {', '.join(items)}"
 
 
 def filter_events(events: list[dict], club_tokens: set[tuple[str, str]], race_ids: set[str], race_names: dict) -> list[dict]:
@@ -173,9 +235,7 @@ def build_response_body(raw_selection: str) -> bytes:
     # see module docstring and format_football_title() in scripts/common.py.
     events = filter_events(load_all_events(), club_tokens | league_club_tokens, race_ids, race_names)
     selected_club_ids = {cid for cid, _ in club_tokens}
-    calendar_name = (
-        f"sportocal – {selection_summary(club_tokens, race_ids, league_group_keys, clubs_by_id, race_names, leagues)}"
-    )
+    calendar_name = build_calendar_name(club_tokens, league_group_keys, race_group_keys, clubs_by_id, leagues)
     calendar_text = build_calendar_text(
         events, clubs_by_id, calendar_name=calendar_name, perspective_club_ids=selected_club_ids
     )

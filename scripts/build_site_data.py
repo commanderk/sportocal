@@ -23,6 +23,7 @@ from datetime import datetime, timezone
 from common import (
     PUBLIC_DIR,
     STAGE_TYPE_DISPLAY_DE,
+    TIER_LABELS,
     load_all_events,
     load_clubs,
     load_config,
@@ -35,14 +36,9 @@ SITE_DATA_DIR = PUBLIC_DIR / "data"
 # Grouping lives here (not in the frontend) so the picker's tier order/labels
 # are computed once, server-side -- public/app.js just renders whatever
 # groups races.json hands it, the same way it already treats football's
-# leagues.json entries as ready-made groups.
+# leagues.json entries as ready-made groups. TIER_LABELS itself now lives in
+# common.py, shared with api/calendar_ics.py's calendar-name building.
 TIER_ORDER = ["grand-tour", "uci-worldtour", "uci-proseries", "regional"]
-TIER_LABELS = {
-    "grand-tour": "Grand Tours",
-    "uci-worldtour": "UCI WorldTour",
-    "uci-proseries": "UCI ProSeries",
-    "regional": "Regional",
-}
 GENDER_ORDER = ["men", "women"]
 GENDER_SUFFIXES = {"men": "Männer", "women": "Frauen"}
 

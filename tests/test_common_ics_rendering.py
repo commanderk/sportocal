@@ -97,3 +97,61 @@ def test_build_vevent_description_omits_stage_type_line_when_route_type_missing(
     lines = common.build_vevent(event, {})
     description_line = next(line for line in lines if line.startswith("DESCRIPTION:"))
     assert "Etappe:" not in description_line
+
+
+def _football_event(**overrides):
+    event = {
+        "id": "football-test-1",
+        "sport": "football",
+        "competition": "Bundesliga",
+        "round": "Spieltag 1",
+        "gender": "men",
+        "start": "2026-08-01T18:30:00Z",
+        "timeConfirmed": True,
+        "homeTeamName": "FC Bayern München",
+        "awayTeamName": "SV Werder Bremen",
+        "location": "Allianz Arena, München",
+    }
+    event.update(overrides)
+    return event
+
+
+def test_event_location_football_uses_location_field_directly():
+    assert common.event_location(_football_event()) == "Allianz Arena, München"
+
+
+def test_event_location_football_missing_returns_none():
+    assert common.event_location(_football_event(location=None)) is None
+
+
+def test_event_location_cycling_uses_route_finish_not_the_arrow_string():
+    event = _cycling_event(location="El Puerto de Santa María → Jerez de la Frontera")
+    assert common.event_location(event) == "B"  # route.finish from _cycling_event()'s default route
+
+
+def test_event_location_cycling_missing_route_finish_returns_none():
+    """A manually entered one-day race can have route.finish blank pending
+    confirmation -- LOCATION must be omitted, not fall back to the raw
+    "start → finish" location string."""
+    event = _cycling_event(route={"start": "A", "finish": "", "type": "Individual time trial"})
+    assert common.event_location(event) is None
+
+
+def test_build_vevent_location_line_uses_event_location_helper():
+    lines = common.build_vevent(_football_event(), {})
+    # escape_text() escapes the comma per RFC 5545.
+    assert "LOCATION:Allianz Arena\\, München" in lines
+
+    lines = common.build_vevent(_football_event(location=None), {})
+    assert not any(line.startswith("LOCATION:") for line in lines)
+
+
+def test_build_vevent_includes_url_property():
+    lines = common.build_vevent(_football_event(), {})
+    assert "URL:https://sportocal.de" in lines
+
+
+def test_build_vevent_description_ends_with_sportocal_footer():
+    lines = common.build_vevent(_cycling_event(), {})
+    description_line = next(line for line in lines if line.startswith("DESCRIPTION:"))
+    assert description_line.endswith("— via sportocal.de")

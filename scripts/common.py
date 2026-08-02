@@ -91,6 +91,30 @@ def race_group_key(tier: str, gender: str) -> str:
     return f"{tier}-{gender}"
 
 
+def parse_race_group_key(key: str) -> tuple[str, str] | None:
+    """Reverses race_group_key() -- can't just str.split("-") since tier ids
+    themselves contain hyphens (e.g. "uci-worldtour"), so this strips a
+    known "-men"/"-women" suffix instead. Returns None for anything that
+    doesn't end in a recognized gender suffix."""
+    for gender in ("men", "women"):
+        suffix = f"-{gender}"
+        if key.endswith(suffix):
+            return key[: -len(suffix)], gender
+    return None
+
+
+# Cycling tier id -> German display name, used for both the website picker
+# group label (build_site_data.py's build_race_groups_payload()) and the
+# personalized ICS calendar name (api/calendar_ics.py) -- one shared table
+# so a tier's display wording only ever needs to change here.
+TIER_LABELS = {
+    "grand-tour": "Grand Tours",
+    "uci-worldtour": "UCI WorldTour",
+    "uci-proseries": "UCI ProSeries",
+    "regional": "Regional",
+}
+
+
 def load_clubs() -> list[dict]:
     with CLUBS_PATH.open(encoding="utf-8") as f:
         return json.load(f)
@@ -202,6 +226,25 @@ def format_event_title(
 # on-demand personalized feed (api/calendar_ics.py), so the two never drift
 # apart on VEVENT structure or line folding.
 
+SPORTOCAL_DOMAIN = "sportocal.de"
+SPORTOCAL_URL = f"https://{SPORTOCAL_DOMAIN}"
+
+
+def event_location(event: dict) -> str | None:
+    """LOCATION text for a VEVENT, sport-specific: football already has a
+    ready-to-use "<Stadion>, <Ort>" string in event["location"] (built at
+    fetch time from OpenLigaDB's own venue data, see fetch_football.py --
+    there's no separate stadiums.json lookup involved). Cycling's own
+    event["location"] is instead "<start> → <finish>" (both cities, for
+    display in the web view's venue column), which is too much for a
+    calendar LOCATION field -- only the finish/target city belongs there,
+    from route.finish. Returns None (LOCATION omitted entirely, never a
+    placeholder) whenever the relevant field isn't available -- a manually
+    entered one-day race can have route.finish blank pending confirmation."""
+    if event["sport"] == "cycling":
+        return (event.get("route") or {}).get("finish") or None
+    return event.get("location") or None
+
 
 def fold_line(line: str) -> str:
     """RFC 5545 line folding at 75 octets, continuation lines start with a space."""
@@ -276,6 +319,7 @@ def build_vevent(event: dict, clubs_by_id: dict, perspective_club_ids: set[str] 
             description_parts.append(f"Etappe: {STAGE_TYPE_DISPLAY_DE[stage_type]}")
     if not time_confirmed:
         description_parts.append("Hinweis: Uhrzeit noch nicht final")
+    description_parts.append(f"— via {SPORTOCAL_DOMAIN}")
 
     lines = ["BEGIN:VEVENT", f"UID:{event['id']}@sportocal"]
 
@@ -291,9 +335,11 @@ def build_vevent(event: dict, clubs_by_id: dict, perspective_club_ids: set[str] 
 
     lines.append(f"SUMMARY:{escape_text(title)}")
     lines.append(f"DESCRIPTION:{escape_text(chr(10).join(description_parts))}")
-    if event.get("location"):
-        lines.append(f"LOCATION:{escape_text(event['location'])}")
+    location = event_location(event)
+    if location:
+        lines.append(f"LOCATION:{escape_text(location)}")
     lines.append(f"CATEGORIES:{event['sport'].upper()}")
+    lines.append(f"URL:{SPORTOCAL_URL}")
     lines.extend(build_valarm(event, title))
     lines.append("END:VEVENT")
     return lines
@@ -302,7 +348,7 @@ def build_vevent(event: dict, clubs_by_id: dict, perspective_club_ids: set[str] 
 def build_calendar_text(
     events: list[dict],
     clubs_by_id: dict,
-    calendar_name: str = "sportocal",
+    calendar_name: str = "Sportocal",
     perspective_club_ids: set[str] | None = None,
 ) -> str:
     """Renders a full VCALENDAR document (CRLF line endings, folded) from a
