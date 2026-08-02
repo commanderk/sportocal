@@ -166,8 +166,11 @@ def test_race_group_display_name_unknown_tier_or_key_returns_none():
     assert calendar_ics.race_group_display_name("no-gender-suffix") is None
 
 
-def _club(cid, short_name):
-    return {"id": cid, "shortName": short_name}
+def _club(cid, short_name, teams=None):
+    club = {"id": cid, "shortName": short_name}
+    if teams is not None:
+        club["teams"] = teams
+    return club
 
 
 def _clubs_by_id(*clubs):
@@ -226,6 +229,43 @@ def test_build_calendar_name_mixed_clubs_league_and_race_group_share_one_list_an
         {("fc-bayern-muenchen", "men")}, {"bl1:men"}, {"grand-tour-men"}, clubs_by_id, leagues
     )
     assert name == "Sportocal – Bundesliga (Männer), FCB, u.a."
+
+
+def test_build_calendar_name_full_scope_league_still_collapses_to_group_label():
+    clubs_by_id = _clubs_by_id(_club("fc-bayern-muenchen", "FCB"))
+    leagues = [{"id": "bl1", "competition": "Bundesliga", "gender": "men", "scope": "full"}]
+    name = calendar_ics.build_calendar_name(
+        {("fc-bayern-muenchen", "men")}, {"bl1:men"}, set(), clubs_by_id, leagues
+    )
+    assert name == "Sportocal – Bundesliga (Männer), FCB"
+
+
+def test_build_calendar_name_club_filter_league_expands_to_member_clubs_not_group_label():
+    """Regionalliga Südwest only has Stuttgarter Kickers tracked in
+    clubs.json (~18 real clubs exist) -- a league:rlsw-kickers:men token
+    (which the frontend no longer produces for this league, but could still
+    arrive via an old/hand-crafted URL, see league_group_label()'s
+    docstring) must never render as "Regionalliga Südwest (Männer)", which
+    would falsely claim the whole league was selected. It should list the
+    actually-tracked member club(s) by name instead, same as if they'd been
+    selected individually."""
+    league = {"id": "rlsw-kickers", "competition": "Regionalliga Südwest", "gender": "men", "scope": "club-filter"}
+    kickers = _club("stuttgarter-kickers", "Kickers", teams={"men": {"league": "Regionalliga Südwest"}})
+    clubs_by_id = _clubs_by_id(kickers)
+    name = calendar_ics.build_calendar_name(set(), {"rlsw-kickers:men"}, set(), clubs_by_id, [league])
+    assert name == "Sportocal – Kickers"
+    assert "Alle Vereine" not in name
+    assert "Regionalliga" not in name
+
+
+def test_build_calendar_name_club_filter_league_defaults_scope_to_full_when_absent():
+    """Backward compatibility: a league dict without a `scope` key at all
+    (e.g. an older config.json entry, or a test fixture predating this
+    field) must behave like scope: "full", not silently expand/break."""
+    clubs_by_id = _clubs_by_id(_club("fc-bayern-muenchen", "FCB"))
+    leagues = [{"id": "bl1", "competition": "Bundesliga", "gender": "men"}]
+    name = calendar_ics.build_calendar_name(set(), {"bl1:men"}, set(), clubs_by_id, leagues)
+    assert name == "Sportocal – Bundesliga (Männer)"
 
 
 def test_build_calendar_name_unresolvable_keys_are_ignored_not_counted():
