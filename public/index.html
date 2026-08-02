@@ -23,16 +23,18 @@
     <div class="selector-group" id="football-selector">
       <div class="selector-label">Fußball</div>
       <div class="selector-sublabel" id="football-sublabel"></div>
-      <div class="combo-trigger" id="football-combo-trigger" role="button" tabindex="0">
-        <span id="football-combo-trigger-label">Vereine suchen und auswählen…</span>
-        <span class="combo-caret">▾</span>
-      </div>
-      <div class="combo-panel" id="football-combo-panel" hidden>
-        <div class="combo-panel-head">
-          <input type="text" class="combo-search" id="football-search" placeholder="Verein suchen…" autocomplete="off" />
-          <button type="button" class="btn-outline" id="football-combo-done">Fertig</button>
+      <div class="combo-anchor">
+        <div class="combo-trigger" id="football-combo-trigger" role="button" tabindex="0">
+          <span id="football-combo-trigger-label">Vereine suchen und auswählen…</span>
+          <span class="combo-caret">▾</span>
         </div>
-        <div class="combo-panel-body" id="football-combo-body"></div>
+        <div class="combo-panel" id="football-combo-panel" hidden>
+          <div class="combo-panel-head">
+            <input type="text" class="combo-search" id="football-search" placeholder="Verein suchen…" autocomplete="off" />
+            <button type="button" class="btn-outline" id="football-combo-done">Fertig</button>
+          </div>
+          <div class="combo-panel-body" id="football-combo-body"></div>
+        </div>
       </div>
       <div class="chip-row" id="football-chips"></div>
       <p class="empty-hint" id="football-empty-hint">Noch nichts ausgewählt, stöbere durch die Ligen oder tippe einen Vereinsnamen.</p>
@@ -41,16 +43,18 @@
     <div class="selector-group" id="cycling-selector">
       <div class="selector-label">Radsport</div>
       <div class="selector-sublabel" id="cycling-sublabel"></div>
-      <div class="combo-trigger" id="cycling-combo-trigger" role="button" tabindex="0">
-        <span id="cycling-combo-trigger-label">Rennserien auswählen…</span>
-        <span class="combo-caret">▾</span>
-      </div>
-      <div class="combo-panel combo-panel-narrow" id="cycling-combo-panel" hidden>
-        <div class="combo-panel-head">
-          <input type="text" class="combo-search" id="cycling-search" placeholder="Serie suchen…" autocomplete="off" />
-          <button type="button" class="btn-outline" id="cycling-combo-done">Fertig</button>
+      <div class="combo-anchor">
+        <div class="combo-trigger" id="cycling-combo-trigger" role="button" tabindex="0">
+          <span id="cycling-combo-trigger-label">Rennserien auswählen…</span>
+          <span class="combo-caret">▾</span>
         </div>
-        <div class="combo-panel-body" id="cycling-combo-body"></div>
+        <div class="combo-panel combo-panel-narrow" id="cycling-combo-panel" hidden>
+          <div class="combo-panel-head">
+            <input type="text" class="combo-search" id="cycling-search" placeholder="Serie suchen…" autocomplete="off" />
+            <button type="button" class="btn-outline" id="cycling-combo-done">Fertig</button>
+          </div>
+          <div class="combo-panel-body" id="cycling-combo-body"></div>
+        </div>
       </div>
       <div class="chip-row" id="cycling-chips"></div>
       <p class="empty-hint" id="cycling-empty-hint">Noch keine Serie ausgewählt.</p>

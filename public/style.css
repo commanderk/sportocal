@@ -124,6 +124,10 @@ body {
   margin-bottom: 12px;
 }
 
+.combo-anchor {
+  position: relative;
+}
+
 .combo-trigger {
   border: 2px solid var(--text);
   padding: 14px 16px;
