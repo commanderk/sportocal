@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T19:43:51.560158+00:00",
+  "generatedAt": "2026-08-03T09:42:56.606245+00:00",
   "events": [
     {
       "id": "football-ffb2-78894",
@@ -6850,22 +6850,6 @@
       }
     },
     {
-      "id": "football-rlsw-kickers-2026-08-29-fc08homburg",
-      "sport": "football",
-      "competition": "Regionalliga Südwest",
-      "gender": "men",
-      "round": "Spieltag 4",
-      "start": "2026-08-29",
-      "timeConfirmed": false,
-      "location": "Waldstadion in Homburg",
-      "homeTeamId": null,
-      "homeTeamName": "FC 08 Homburg",
-      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/e4361ad2-7348-44fc-bdad-ad962fd119b0_fc-homburg.png",
-      "awayTeamId": "stuttgarter-kickers",
-      "awayTeamName": "Stuttgarter Kickers",
-      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png"
-    },
-    {
       "id": "football-bl2-83540",
       "sport": "football",
       "competition": "2. Bundesliga",
@@ -6992,6 +6976,22 @@
       "awayTeamId": "fc-ingolstadt-04",
       "awayTeamName": "FC Ingolstadt 04",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/thumb/5/55/FC-Ingolstadt_logo.svg/960px-FC-Ingolstadt_logo.svg.png"
+    },
+    {
+      "id": "football-rlsw-kickers-2026-08-29-fc08homburg",
+      "sport": "football",
+      "competition": "Regionalliga Südwest",
+      "gender": "men",
+      "round": "Spieltag 4",
+      "start": "2026-08-29T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "Waldstadion in Homburg",
+      "homeTeamId": null,
+      "homeTeamName": "FC 08 Homburg",
+      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/e4361ad2-7348-44fc-bdad-ad962fd119b0_fc-homburg.png",
+      "awayTeamId": "stuttgarter-kickers",
+      "awayTeamName": "Stuttgarter Kickers",
+      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png"
     },
     {
       "id": "football-bl1-83158",
@@ -7570,22 +7570,6 @@
       }
     },
     {
-      "id": "football-rlsw-kickers-2026-09-05-1fsvmainz05ii",
-      "sport": "football",
-      "competition": "Regionalliga Südwest",
-      "gender": "men",
-      "round": "Spieltag 5",
-      "start": "2026-09-05",
-      "timeConfirmed": false,
-      "location": "GAZi-Stadion auf der Waldau",
-      "homeTeamId": "stuttgarter-kickers",
-      "homeTeamName": "Stuttgarter Kickers",
-      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png",
-      "awayTeamId": null,
-      "awayTeamName": "1. FSV Mainz 05 II",
-      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/8c5fff74-28a1-4af4-a48c-7c11e1379065_mainz.png"
-    },
-    {
       "id": "football-bl2-83548",
       "sport": "football",
       "competition": "2. Bundesliga",
@@ -7712,6 +7696,22 @@
       "awayTeamId": "1-fc-saarbruecken",
       "awayTeamName": "1. FC Saarbrücken",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/thumb/f/ff/1._FC_Saarbr%C3%BCcken.svg/960px-1._FC_Saarbr%C3%BCcken.svg.png"
+    },
+    {
+      "id": "football-rlsw-kickers-2026-09-05-1fsvmainz05ii",
+      "sport": "football",
+      "competition": "Regionalliga Südwest",
+      "gender": "men",
+      "round": "Spieltag 5",
+      "start": "2026-09-05T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "GAZi-Stadion auf der Waldau",
+      "homeTeamId": "stuttgarter-kickers",
+      "homeTeamName": "Stuttgarter Kickers",
+      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png",
+      "awayTeamId": null,
+      "awayTeamName": "1. FSV Mainz 05 II",
+      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/8c5fff74-28a1-4af4-a48c-7c11e1379065_mainz.png"
     },
     {
       "id": "football-bl1-83166",
@@ -8114,6 +8114,22 @@
       }
     },
     {
+      "id": "football-rlsw-kickers-2026-09-08-fcastoriawalldorf",
+      "sport": "football",
+      "competition": "Regionalliga Südwest",
+      "gender": "men",
+      "round": "Spieltag 6",
+      "start": "2026-09-08T17:00:00Z",
+      "timeConfirmed": true,
+      "location": "Dietmar-Hopp-Sportpark in Walldorf",
+      "homeTeamId": null,
+      "homeTeamName": "FC-Astoria Walldorf",
+      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/04f78546-7844-44d1-a9cd-b401e4e4351b_FC_Astoria_Walldorf.png",
+      "awayTeamId": "stuttgarter-kickers",
+      "awayTeamName": "Stuttgarter Kickers",
+      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png"
+    },
+    {
       "id": "cycling-vuelta-a-espana-2026-etappe17",
       "sport": "cycling",
       "competition": "Vuelta a España",
@@ -8128,22 +8144,6 @@
         "type": "Flat",
         "typeDisplay": "Flachetappe"
       }
-    },
-    {
-      "id": "football-rlsw-kickers-2026-09-09-fcastoriawalldorf",
-      "sport": "football",
-      "competition": "Regionalliga Südwest",
-      "gender": "men",
-      "round": "Spieltag 6",
-      "start": "2026-09-09",
-      "timeConfirmed": false,
-      "location": "Dietmar-Hopp-Sportpark in Walldorf",
-      "homeTeamId": null,
-      "homeTeamName": "FC-Astoria Walldorf",
-      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/04f78546-7844-44d1-a9cd-b401e4e4351b_FC_Astoria_Walldorf.png",
-      "awayTeamId": "stuttgarter-kickers",
-      "awayTeamName": "Stuttgarter Kickers",
-      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png"
     },
     {
       "id": "cycling-vuelta-a-espana-2026-etappe18",
@@ -8256,22 +8256,6 @@
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
       }
-    },
-    {
-      "id": "football-rlsw-kickers-2026-09-12-sgbarockstadtfuldalehnerz",
-      "sport": "football",
-      "competition": "Regionalliga Südwest",
-      "gender": "men",
-      "round": "Spieltag 7",
-      "start": "2026-09-12",
-      "timeConfirmed": false,
-      "location": "GAZi-Stadion auf der Waldau",
-      "homeTeamId": "stuttgarter-kickers",
-      "homeTeamName": "Stuttgarter Kickers",
-      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png",
-      "awayTeamId": null,
-      "awayTeamName": "SG Barockstadt Fulda-Lehnerz",
-      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/5c12e5cb-f9d0-4e01-a44d-a2393aa22f60_sg-barockstadt.png"
     },
     {
       "id": "football-bl2-83573",
@@ -8400,6 +8384,22 @@
       "awayTeamId": "sg-sonnenhof-grossaspach",
       "awayTeamName": "SG Sonnenhof Großaspach",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/8/86/SG_Sonnenhof_Gro%C3%9Faspach_logo.png"
+    },
+    {
+      "id": "football-rlsw-kickers-2026-09-12-sgbarockstadtfuldalehnerz",
+      "sport": "football",
+      "competition": "Regionalliga Südwest",
+      "gender": "men",
+      "round": "Spieltag 7",
+      "start": "2026-09-12T12:00:00Z",
+      "timeConfirmed": true,
+      "location": "GAZi-Stadion auf der Waldau",
+      "homeTeamId": "stuttgarter-kickers",
+      "homeTeamName": "Stuttgarter Kickers",
+      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png",
+      "awayTeamId": null,
+      "awayTeamName": "SG Barockstadt Fulda-Lehnerz",
+      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/5c12e5cb-f9d0-4e01-a44d-a2393aa22f60_sg-barockstadt.png"
     },
     {
       "id": "football-bl1-83174",
@@ -8882,6 +8882,22 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Würzburger_Kickers_Logo.svg/250px-Würzburger_Kickers_Logo.svg.png"
     },
     {
+      "id": "football-rlsw-kickers-2026-09-18-fsvfrankfurt",
+      "sport": "football",
+      "competition": "Regionalliga Südwest",
+      "gender": "men",
+      "round": "Spieltag 8",
+      "start": "2026-09-18T17:00:00Z",
+      "timeConfirmed": true,
+      "location": "PSD Bank Arena Frankfurt",
+      "homeTeamId": null,
+      "homeTeamName": "FSV Frankfurt",
+      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/ad59da82-4a2d-49db-935a-259de948c1ad_fsv-frankfurt.png",
+      "awayTeamId": "stuttgarter-kickers",
+      "awayTeamName": "Stuttgarter Kickers",
+      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png"
+    },
+    {
       "id": "football-bl1-83183",
       "sport": "football",
       "competition": "Bundesliga",
@@ -8896,22 +8912,6 @@
       "awayTeamId": "1-fc-union-berlin",
       "awayTeamName": "1. FC Union Berlin",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg"
-    },
-    {
-      "id": "football-rlsw-kickers-2026-09-19-fsvfrankfurt",
-      "sport": "football",
-      "competition": "Regionalliga Südwest",
-      "gender": "men",
-      "round": "Spieltag 8",
-      "start": "2026-09-19",
-      "timeConfirmed": false,
-      "location": "PSD Bank Arena Frankfurt",
-      "homeTeamId": null,
-      "homeTeamName": "FSV Frankfurt",
-      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/ad59da82-4a2d-49db-935a-259de948c1ad_fsv-frankfurt.png",
-      "awayTeamId": "stuttgarter-kickers",
-      "awayTeamName": "Stuttgarter Kickers",
-      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png"
     },
     {
       "id": "football-bl2-83595",
@@ -9303,8 +9303,8 @@
       "competition": "Regionalliga Südwest",
       "gender": "men",
       "round": "Spieltag 9",
-      "start": "2026-09-26",
-      "timeConfirmed": false,
+      "start": "2026-09-26T12:00:00Z",
+      "timeConfirmed": true,
       "location": "Frankenstadion in Heilbronn",
       "homeTeamId": null,
       "homeTeamName": "SGV Heilbronn-Freiberg",
@@ -9312,6 +9312,22 @@
       "awayTeamId": "stuttgarter-kickers",
       "awayTeamName": "Stuttgarter Kickers",
       "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png"
+    },
+    {
+      "id": "football-rlsw-kickers-2026-10-02-kickersoffenbach",
+      "sport": "football",
+      "competition": "Regionalliga Südwest",
+      "gender": "men",
+      "round": "Spieltag 10",
+      "start": "2026-10-02T17:00:00Z",
+      "timeConfirmed": true,
+      "location": "GAZi-Stadion auf der Waldau",
+      "homeTeamId": "stuttgarter-kickers",
+      "homeTeamName": "Stuttgarter Kickers",
+      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png",
+      "awayTeamId": null,
+      "awayTeamName": "Kickers Offenbach",
+      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/dc426aee-1c00-45b9-97e0-13001b6e9d6b_offenbach.png"
     },
     {
       "id": "cycling-muensterland-giro-2026",
@@ -9328,22 +9344,6 @@
         "type": "Flat",
         "typeDisplay": "Flachetappe"
       }
-    },
-    {
-      "id": "football-rlsw-kickers-2026-10-03-kickersoffenbach",
-      "sport": "football",
-      "competition": "Regionalliga Südwest",
-      "gender": "men",
-      "round": "Spieltag 10",
-      "start": "2026-10-03",
-      "timeConfirmed": false,
-      "location": "GAZi-Stadion auf der Waldau",
-      "homeTeamId": "stuttgarter-kickers",
-      "homeTeamName": "Stuttgarter Kickers",
-      "homeTeamLogo": "https://images.prismic.io/stuttgarter-kickers/b1cafa87-6f08-4e0e-b265-389e7f2477c5_kickers.png",
-      "awayTeamId": null,
-      "awayTeamName": "Kickers Offenbach",
-      "awayTeamLogo": "https://images.prismic.io/stuttgarter-kickers/dc426aee-1c00-45b9-97e0-13001b6e9d6b_offenbach.png"
     },
     {
       "id": "cycling-il-lombardia-2026",
