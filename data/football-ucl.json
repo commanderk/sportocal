@@ -62,7 +62,7 @@
       "homeTeamLogo": "https://i.imgur.com/X8NFkOb.png",
       "awayTeamId": null,
       "awayTeamName": "Galatasaray Istanbul",
-      "awayTeamLogo": "http://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Galatasaray_SK.svg/150px-Galatasaray_SK.svg.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/07/Galatasaray_S.K._Logo_2026_5-stars.svg?utm_source=de.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
     },
     {
       "id": "football-ucl-79411",
@@ -347,7 +347,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "FC Barcelona",
-      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/thumb/a/aa/Fc_barcelona.svg/1200px-Fc_barcelona.svg.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/960px-FC_Barcelona_%28crest%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "awayTeamId": "eintracht-frankfurt",
       "awayTeamName": "Eintracht Frankfurt",
       "awayTeamLogo": "https://i.imgur.com/X8NFkOb.png"
@@ -651,7 +651,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "Real Madrid",
-      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/thumb/3/3f/Real_Madrid_Logo.svg/800px-Real_Madrid_Logo.svg.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/960px-Real_Madrid_CF.svg.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "awayTeamId": "fc-bayern-muenchen",
       "awayTeamName": "FC Bayern München",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg"
@@ -670,7 +670,7 @@
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg",
       "awayTeamId": null,
       "awayTeamName": "Real Madrid",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/thumb/3/3f/Real_Madrid_Logo.svg/800px-Real_Madrid_Logo.svg.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/960px-Real_Madrid_CF.svg.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
     },
     {
       "id": "football-ucl-81431",
@@ -705,5 +705,5 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Paris_Saint-Germain_F.C..svg/240px-Paris_Saint-Germain_F.C..svg.png"
     }
   ],
-  "lastChecked": "2026-08-03T09:42:39.086853+00:00"
+  "lastChecked": "2026-08-10T07:39:23.927437+00:00"
 }
