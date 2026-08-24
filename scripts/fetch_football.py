@@ -199,36 +199,50 @@ def parse_dfb_datencenter_date(date_text: str) -> tuple[str, bool]:
 
 def dfb_datencenter_name_overrides(clubs: list[dict]) -> dict[str, str]:
     """Supplemental team-name -> club-id entries for DFB Datencenter's own
-    spelling of ffb2 club names, which for several clubs diverges from both
+    spelling of a club's name, which for several clubs diverges from both
     the OpenLigaDB name and the club's plain display name (dropped founding
     year/number, no "Frauen" suffix, shortened prefixes -- e.g. "Turbine
-    Potsdam" vs. "1. FFC Turbine Potsdam"). See config/clubs.json's
-    teams.women.dfbDatencenterTeamName. Kept local to this module instead of
-    folded into common.py's generic build_club_indexes(), since the quirk is
-    specific to this one source for one league."""
+    Potsdam" vs. "1. FFC Turbine Potsdam" for ffb2, or "Hessen Kassel" vs.
+    "KSV Hessen Kassel" for Regionalliga Suedwest). Checks every gender's
+    team entry, not just one -- a club can have this override on
+    teams.women (ffb2), teams.men (Regionalliga Suedwest), or in principle
+    both. See config/clubs.json's teams.<gender>.dfbDatencenterTeamName.
+    Kept local to this module instead of folded into common.py's generic
+    build_club_indexes(), since the quirk is specific to this one source."""
     overrides = {}
     for club in clubs:
-        women_team = club.get("teams", {}).get("women")
-        alt_name = women_team.get("dfbDatencenterTeamName") if women_team else None
-        if alt_name:
-            overrides[alt_name] = club["id"]
+        for team in club.get("teams", {}).values():
+            alt_name = team.get("dfbDatencenterTeamName") if team else None
+            if alt_name:
+                overrides[alt_name] = club["id"]
     return overrides
 
 
-def gender_scoped_stadiums(stadiums: dict[str, str], clubs: list[dict], gender: str) -> dict[str, str]:
-    """config/stadiums.json is a flat club-id -> venue map with no gender
-    dimension, but a club id can carry both a men's and a women's team with
-    genuinely different home grounds -- e.g. "eintracht-frankfurt-ii" is only
-    tracked here for its ffb2 *women's* side, but resolve_club_id() is
-    name-only and gender-blind, so that same id would also (mis)match an
-    unrelated men's "Eintracht Frankfurt II" reserve side that happens to
-    show up as an opponent in Regionalliga Suedwest. Filtering the lookup
-    down to clubs that actually have a `gender` team entry in config/
-    clubs.json keeps a venue researched for one gender from leaking into a
-    fixture for the other -- better to fall back to no location (None) than
-    a confidently wrong one."""
+def gender_scoped_stadiums(
+    stadiums: dict[str, str | dict[str, str]], clubs: list[dict], gender: str
+) -> dict[str, str]:
+    """resolve_club_id() is name-only and gender-blind, so a club id can end
+    up matching two genuinely different teams -- e.g. "eintracht-frankfurt-ii"
+    fields both an ffb2 *women's* side and, since the Regionalliga Suedwest
+    full-league expansion, an unrelated *men's* reserve side, with different
+    home grounds. Most config/stadiums.json entries are a plain "<Stadion>,
+    <Stadt>" string (fine for a club tracked under one gender only); a club
+    tracked under both with different venues instead uses a small
+    {"men": "...", "women": "..."} dict there, resolved to this specific
+    `gender` here. Also drops any club that doesn't even have a `gender`
+    team in config/clubs.json in the first place -- a venue researched for
+    one gender must never leak into a fixture for the other, and it's
+    better to fall back to no location (None) than a confidently wrong one.
+    """
     club_ids_with_gender = {club["id"] for club in clubs if gender in club.get("teams", {})}
-    return {club_id: location for club_id, location in stadiums.items() if club_id in club_ids_with_gender}
+    resolved = {}
+    for club_id, value in stadiums.items():
+        if club_id not in club_ids_with_gender:
+            continue
+        venue = value.get(gender) if isinstance(value, dict) else value
+        if venue:
+            resolved[club_id] = venue
+    return resolved
 
 
 def parse_dfb_datencenter_page(
