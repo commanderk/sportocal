@@ -411,7 +411,8 @@ def test_fetch_dfb_datencenter_entry_returns_none_when_page_has_no_matches(monke
 
 def test_fetch_entry_dfb_datencenter_source_never_touches_openligadb(monkeypatch):
     """A primarySource league is a full replacement, not a fallback-on-miss
-    -- OpenLigaDB must never even be queried."""
+    -- OpenLigaDB must never even be queried, and get_leagues() (the lazy
+    /getavailableleagues gate) must never even be called."""
 
     def boom(*args, **kwargs):
         raise AssertionError("OpenLigaDB must not be queried for a primarySource league")
@@ -429,7 +430,7 @@ def test_fetch_entry_dfb_datencenter_source_never_touches_openligadb(monkeypatch
     }
     now = datetime(2026, 8, 24, tzinfo=timezone.utc)
 
-    events = fetch_football.fetch_entry({}, [], league_cfg, now, CLUBS, build_name_to_id(), STADIUMS)
+    events = fetch_football.fetch_entry({}, boom, league_cfg, now, CLUBS, build_name_to_id(), STADIUMS)
 
     assert len(events) == 3
 
@@ -442,6 +443,110 @@ def test_fetch_entry_without_primary_source_still_uses_openligadb_path(monkeypat
     league_cfg = {**LEAGUE_CFG, "id": "bl1", "leagueNameKeywords": [], "knownGap": None}
     now = datetime(2026, 8, 24, tzinfo=timezone.utc)
 
-    events = fetch_football.fetch_entry({}, [], league_cfg, now, CLUBS, build_name_to_id(), STADIUMS)
+    events = fetch_football.fetch_entry({}, lambda: [], league_cfg, now, CLUBS, build_name_to_id(), STADIUMS)
 
     assert events is None  # no candidates, no fallback configured -> None, not a crash
+
+
+def test_fetch_entry_without_primary_source_propagates_get_leagues_failure(monkeypatch):
+    """When get_leagues() fails (OpenLigaDB down), a non-primarySource
+    league's fetch_entry() must let that exception surface -- main() is what
+    turns it into a per-league warn()+skip, not fetch_entry() itself."""
+
+    def failing_get_leagues():
+        raise RuntimeError("getavailableleagues nicht erreichbar")
+
+    league_cfg = {**LEAGUE_CFG, "id": "bl1", "leagueNameKeywords": [], "knownGap": None}
+    now = datetime(2026, 8, 24, tzinfo=timezone.utc)
+
+    import pytest
+
+    with pytest.raises(RuntimeError, match="getavailableleagues nicht erreichbar"):
+        fetch_football.fetch_entry({}, failing_get_leagues, league_cfg, now, CLUBS, build_name_to_id(), STADIUMS)
+
+
+# --- make_leagues_getter(): lazy + memoized /getavailableleagues ---------
+
+
+def _raise_getavailableleagues_down(url):
+    raise RuntimeError("getavailableleagues down")
+
+
+def test_make_leagues_getter_does_not_hit_the_network_until_called(monkeypatch):
+    monkeypatch.setattr(fetch_football, "http_get_json", _raise_getavailableleagues_down)
+    # Building the getter alone must not raise -- only calling it does.
+    fetch_football.make_leagues_getter({"football": {"apiBase": "https://api.example.invalid"}})
+
+
+def test_make_leagues_getter_memoizes_a_successful_result(monkeypatch):
+    calls = []
+
+    def fake_http_get_json(url):
+        calls.append(url)
+        return [{"leagueName": "x"}]
+
+    monkeypatch.setattr(fetch_football, "http_get_json", fake_http_get_json)
+    get_leagues = fetch_football.make_leagues_getter({"football": {"apiBase": "https://api.example.invalid"}})
+
+    assert get_leagues() == [{"leagueName": "x"}]
+    assert get_leagues() == [{"leagueName": "x"}]
+    assert len(calls) == 1  # one network call, reused across every subsequent get_leagues() call
+
+
+def test_make_leagues_getter_memoizes_a_failure_without_retrying(monkeypatch):
+    import pytest
+
+    calls = []
+
+    def fake_http_get_json(url):
+        calls.append(url)
+        raise RuntimeError("down")
+
+    monkeypatch.setattr(fetch_football, "http_get_json", fake_http_get_json)
+    get_leagues = fetch_football.make_leagues_getter({"football": {"apiBase": "https://api.example.invalid"}})
+
+    with pytest.raises(RuntimeError):
+        get_leagues()
+    with pytest.raises(RuntimeError):
+        get_leagues()
+
+    assert len(calls) == 1  # the failure itself is cached, not just the success case
+
+
+# --- main(): primarySource leagues survive a dead getavailableleagues ----
+
+
+def test_main_lets_primary_source_leagues_run_when_getavailableleagues_is_down(monkeypatch, tmp_path):
+    """The scenario this whole change exists for: OpenLigaDB's
+    /getavailableleagues is down, but ffb2 (primarySource) never needed it
+    in the first place and must still get its snapshot written; a
+    non-primarySource league (bl1) must be skipped with a warning instead of
+    aborting the whole run."""
+    monkeypatch.setattr(common, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(fetch_football, "http_get_json", _raise_getavailableleagues_down)
+    monkeypatch.setattr(fetch_football, "http_get_text", lambda url: load_fixture("dfb_datencenter_ffb2_fragment.html"))
+
+    test_config = {
+        "football": {
+            "apiBase": "https://api.openligadb.de",
+            "leagues": [
+                {
+                    **LEAGUE_CFG,
+                    "primarySource": {
+                        "source": "dfb-datencenter",
+                        "url": "https://datencenter.dfb.de/competitions/2-frauen-bundesliga/seasons/{season}-{seasonEnd}",
+                    },
+                },
+                {**LEAGUE_CFG, "id": "bl1", "leagueNameKeywords": [], "knownGap": None},
+            ],
+        }
+    }
+    monkeypatch.setattr(fetch_football, "load_config", lambda: test_config)
+
+    fetch_football.main()
+
+    ffb2_snapshot = common.load_snapshot("football-ffb2")
+    assert len(ffb2_snapshot["events"]) == 3  # primarySource league unaffected by the dead endpoint
+
+    bl1_snapshot = common.load_snapshot("football-bl1")
+    assert bl1_snapshot == {"events": [], "lastChecked": None}  # never written -- skipped, not crashed
