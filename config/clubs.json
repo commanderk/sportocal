@@ -1073,8 +1073,7 @@
     "teams": {
       "men": {
         "league": "Regionalliga Südwest",
-        "openligadbShortcut": null,
-        "fallbackSource": "kickers-site"
+        "openligadbShortcut": null
       }
     }
   }

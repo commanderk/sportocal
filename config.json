@@ -88,11 +88,10 @@
         "sportNameExcludeKeywords": ["frauenfussball"],
         "shortcutHint": null,
         "shortcutStable": false,
-        "fallback": {
-          "source": "kickers-site",
-          "note": "OpenLigaDB pflegt Regionalliga Suedwest aktuell nicht (letzter Datensatz: 2016/17). Fallback: die offizielle Spielplan-Seite des Vereins selbst (server-rendertes HTML, robots.txt erlaubt Crawling). Bewusst getrennt vom generischen OpenLigaDB-Pfad, damit spaetere Anpassungen nicht versehentlich wieder auf einen OpenLigaDB-Abruf fuer diese Liga zurueckfallen.",
-          "url": "https://www.stuttgarter-kickers.de/team/spielplan",
-          "onlyCompetition": "Regionalliga Südwest"
+        "primarySource": {
+          "source": "dfb-datencenter",
+          "url": "https://datencenter.dfb.de/competitions/regionalliga-suedwest/seasons/{season}-{seasonEnd}/teams/stuttgarter-kickers",
+          "note": "OpenLigaDB pflegt Regionalliga Suedwest nicht (letzter Datensatz: 2016/17). Ersetzt den bisherigen Kickers-Website-Scraper (Fallback) komplett, siehe Konversation vom 2026-08-24. Team-Slug 'stuttgarter-kickers' live gegen die Seite geprueft, keine numerische ID noetig (anders als bei manchen ffb2-Vereinen)."
         }
       },
       {
