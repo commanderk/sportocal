@@ -145,7 +145,8 @@
       "women": {
         "league": "2. Frauen-Bundesliga",
         "openligadbShortcut": "ffb2",
-        "openligadbTeamName": "1. FFC Turbine Potsdam"
+        "openligadbTeamName": "1. FFC Turbine Potsdam",
+        "dfbDatencenterTeamName": "Turbine Potsdam"
       }
     }
   },
@@ -400,7 +401,8 @@
       "women": {
         "league": "2. Frauen-Bundesliga",
         "openligadbShortcut": "ffb2",
-        "openligadbTeamName": "FC Ingolstadt 04 Frauen"
+        "openligadbTeamName": "FC Ingolstadt 04 Frauen",
+        "dfbDatencenterTeamName": "FC Ingolstadt"
       }
     }
   },
@@ -445,7 +447,8 @@
       "women": {
         "league": "2. Frauen-Bundesliga",
         "openligadbShortcut": "ffb2",
-        "openligadbTeamName": "FC Viktoria 1889 Berlin"
+        "openligadbTeamName": "FC Viktoria 1889 Berlin",
+        "dfbDatencenterTeamName": "FC Viktoria Berlin"
       }
     }
   },
@@ -920,7 +923,8 @@
       "women": {
         "league": "2. Frauen-Bundesliga",
         "openligadbShortcut": "ffb2",
-        "openligadbTeamName": "TSG 1899 Hoffenheim Frauen II"
+        "openligadbTeamName": "TSG 1899 Hoffenheim Frauen II",
+        "dfbDatencenterTeamName": "TSG Hoffenheim II"
       }
     }
   },
@@ -1069,8 +1073,7 @@
     "teams": {
       "men": {
         "league": "Regionalliga Südwest",
-        "openligadbShortcut": null,
-        "fallbackSource": "kickers-site"
+        "openligadbShortcut": null
       }
     }
   }
