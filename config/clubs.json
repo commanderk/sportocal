@@ -313,6 +313,9 @@
     "colorPalette": "red",
     "logo": null,
     "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      },
       "women": {
         "league": "2. Frauen-Bundesliga",
         "openligadbShortcut": "ffb2",
@@ -1074,6 +1077,217 @@
       "men": {
         "league": "Regionalliga Südwest",
         "openligadbShortcut": null
+      }
+    }
+  },
+  {
+    "id": "1-fc-kaiserslautern-ii",
+    "name": "1. FC Kaiserslautern II",
+    "shortName": "FCK II",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "1-fsv-mainz-05-ii",
+    "name": "1. FSV Mainz 05 II",
+    "shortName": "M05 II",
+    "colorHex": "#C8102E",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "sc-freiburg-ii",
+    "name": "SC Freiburg II",
+    "shortName": "SCF II",
+    "colorHex": "#E2001A",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "sv-eintracht-trier-05",
+    "name": "SV Eintracht Trier 05",
+    "shortName": "TRI",
+    "colorHex": "#10336B",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest",
+        "dfbDatencenterTeamName": "Eintracht Trier"
+      }
+    }
+  },
+  {
+    "id": "fc-08-homburg",
+    "name": "FC 08 Homburg",
+    "shortName": "HOM",
+    "colorHex": "#0E7C3F",
+    "colorPalette": "green",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "fc-astoria-walldorf",
+    "name": "FC-Astoria Walldorf",
+    "shortName": "AST",
+    "colorHex": "#1D5C9E",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "fsv-frankfurt",
+    "name": "FSV Frankfurt",
+    "shortName": "FSV",
+    "colorHex": "#14274E",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "ksv-hessen-kassel",
+    "name": "KSV Hessen Kassel",
+    "shortName": "KAS",
+    "colorHex": "#CC092F",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest",
+        "dfbDatencenterTeamName": "Hessen Kassel"
+      }
+    }
+  },
+  {
+    "id": "kickers-offenbach",
+    "name": "Kickers Offenbach",
+    "shortName": "OFC",
+    "colorHex": "#B71234",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "sg-barockstadt-fulda-lehnerz",
+    "name": "SG Barockstadt Fulda-Lehnerz",
+    "shortName": "SGB",
+    "colorHex": "#A61C2E",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "sgv-heilbronn-freiberg",
+    "name": "SGV Heilbronn-Freiberg",
+    "shortName": "SGV",
+    "colorHex": "#2C5F9E",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "ssv-ulm-1846-fussball",
+    "name": "SSV Ulm 1846 Fußball",
+    "shortName": "ULM",
+    "colorHex": "#101010",
+    "colorPalette": "black",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest",
+        "dfbDatencenterTeamName": "SSV Ulm 1846 Fussball"
+      }
+    }
+  },
+  {
+    "id": "sv-sandhausen",
+    "name": "SV Sandhausen",
+    "shortName": "SVS",
+    "colorHex": "#232323",
+    "colorPalette": "black",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "tsv-steinbach-haiger",
+    "name": "TSV Steinbach Haiger",
+    "shortName": "TSH",
+    "colorHex": "#D0112C",
+    "colorPalette": "red",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "vfr-aalen",
+    "name": "VfR Aalen",
+    "shortName": "AAL",
+    "colorHex": "#151515",
+    "colorPalette": "black",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
+      }
+    }
+  },
+  {
+    "id": "vfr-mannheim",
+    "name": "VfR Mannheim",
+    "shortName": "VFR",
+    "colorHex": "#1C3F73",
+    "colorPalette": "blue",
+    "logo": null,
+    "teams": {
+      "men": {
+        "league": "Regionalliga Südwest"
       }
     }
   }

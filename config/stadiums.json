@@ -1,15 +1,33 @@
 {
+  "1-fc-kaiserslautern-ii": "Fritz-Walter-Stadion, Kaiserslautern",
+  "1-fsv-mainz-05-ii": "Stadion am Bruchweg, Mainz",
   "1-ffc-turbine-potsdam": "Karl-Liebknecht-Stadion, Potsdam",
   "borussia-moenchengladbach": "Grenzlandstadion, Mönchengladbach",
-  "eintracht-frankfurt-ii": "Sportanlage Riederwald, Frankfurt am Main",
+  "eintracht-frankfurt-ii": {
+    "men": "maxworx Sportpark, Dreieich",
+    "women": "Sportanlage Riederwald, Frankfurt am Main"
+  },
+  "fc-08-homburg": "Waldstadion, Homburg",
+  "fc-astoria-walldorf": "Dietmar-Hopp-Sportpark, Walldorf",
   "fc-carl-zeiss-jena": "Ernst-Abbe-Sportfeld, Jena",
   "fc-viktoria-1889-berlin": "Stadion Lichterfelde, Berlin",
+  "fsv-frankfurt": "Stadion am Bornheimer Hang, Frankfurt am Main",
   "hertha-bsc": "Stadion auf dem Wurfplatz, Berlin",
+  "kickers-offenbach": "Stadion am Bieberer Berg, Offenbach am Main",
+  "ksv-hessen-kassel": "Auestadion, Kassel",
+  "sc-freiburg-ii": "Dreisamstadion, Freiburg im Breisgau",
   "sc-sand": "Adams-Arena, Willstätt",
   "sg-99-andernach": "Stadion am Bassenheimer Weg, Andernach",
+  "sg-barockstadt-fulda-lehnerz": "Stadion der Stadt Fulda (Sportpark Johannisau), Fulda",
   "sgs-essen": "Stadion Essen-West, Essen",
+  "sgv-heilbronn-freiberg": "Frankenstadion, Heilbronn",
+  "ssv-ulm-1846-fussball": "Donaustadion, Ulm",
   "stuttgarter-kickers": "GAZi-Stadion auf der Waldau, Stuttgart",
+  "sv-eintracht-trier-05": "Moselstadion, Trier",
   "sv-meppen": "Hänsch-Arena, Meppen",
+  "sv-sandhausen": "Hardtwaldstadion, Sandhausen",
   "tsg-1899-hoffenheim-ii": "Sportplatz VfB St. Leon, St. Leon-Rot",
-  "vfl-bochum": "Lohrheidestadion, Bochum"
+  "tsv-steinbach-haiger": "SIBRE-Sportzentrum Haarwasen, Haiger",
+  "vfl-bochum": "Lohrheidestadion, Bochum",
+  "vfr-mannheim": "Rhein-Neckar-Stadion, Mannheim"
 }

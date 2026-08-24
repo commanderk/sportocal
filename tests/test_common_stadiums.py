@@ -21,10 +21,18 @@ def test_load_stadiums_reads_club_id_to_location_mapping(monkeypatch, tmp_path):
     assert stadiums == {"sgs-essen": "Stadion Essen-West, Essen", "vfl-bochum": "Lohrheidestadion, Bochum"}
 
 
-def test_real_stadiums_json_loads_and_only_has_string_values():
+def test_real_stadiums_json_loads_and_has_string_or_per_gender_dict_values():
     """Sanity check against the actual config/stadiums.json shipped in the
     repo -- catches an accidental typo (wrong type, trailing comma, ...)
-    without pinning its exact contents, so entries can be added freely."""
+    without pinning its exact contents, so entries can be added freely. A
+    value is either a plain venue string, or a {"men": "...", "women": "..."}
+    dict for a club tracked under both genders with different grounds (see
+    fetch_football.gender_scoped_stadiums())."""
     stadiums = common.load_stadiums()
     assert isinstance(stadiums, dict)
-    assert all(isinstance(k, str) and isinstance(v, str) for k, v in stadiums.items())
+    for key, value in stadiums.items():
+        assert isinstance(key, str)
+        if isinstance(value, dict):
+            assert all(isinstance(k, str) and isinstance(v, str) for k, v in value.items())
+        else:
+            assert isinstance(value, str)
