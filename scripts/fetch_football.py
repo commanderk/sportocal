@@ -100,17 +100,49 @@ def round_label_from_group(group_name: str, round_format: str) -> str | None:
     return f"Spieltag {match.group()}" if match else (group_name or None)
 
 
-def build_event(league_cfg: dict, match: dict, name_to_id: dict) -> dict:
+def match_has_a_real_date(match_date_time_utc: str | None) -> bool:
+    """OpenLigaDB's placeholder for "no date known at all yet" is the Unix
+    epoch ("1970-01-01T00:00:00") rather than an absent/null field -- seen
+    live on an ffb1 match still missing both team's schedule. A plain
+    None-check on matchDateTimeUTC alone would let that sentinel through as
+    a real (garbage) calendar date, so this parses it and rejects anything
+    at or before the epoch. Also rejects an unparseable value defensively,
+    same "treat as missing" outcome rather than raising."""
+    if not match_date_time_utc:
+        return False
+    try:
+        parsed = datetime.fromisoformat(match_date_time_utc.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    return parsed.year > 1970
+
+
+def build_event(league_cfg: dict, match: dict, name_to_id: dict) -> dict | None:
     home, away = match["team1"], match["team2"]  # team1/team2 are always actual home/away
     home_name = home["teamName"].strip()
     away_name = away["teamName"].strip()
 
+    match_datetime_utc = match.get("matchDateTimeUTC")
+    if not match_has_a_real_date(match_datetime_utc):
+        warn(
+            f"[{league_cfg['id']}] Kein gueltiges Datum fuer '{home_name} - {away_name}' "
+            f"(matchID {match.get('matchID')}) -- Spiel wird uebersprungen."
+        )
+        return None
+
     group_name = match.get("group", {}).get("groupName") or ""
     round_label = round_label_from_group(group_name, league_cfg.get("roundFormat", "spieltag"))
 
-    dt_local = datetime.fromisoformat(match["matchDateTime"])
-    # OpenLigaDB uses 00:00 as a placeholder when kickoff time isn't confirmed yet.
-    time_confirmed = not (dt_local.hour == 0 and dt_local.minute == 0)
+    match_datetime_local = match.get("matchDateTime")
+    if match_datetime_local:
+        dt_local = datetime.fromisoformat(match_datetime_local)
+        # OpenLigaDB uses 00:00 as a placeholder when kickoff time isn't confirmed yet.
+        time_confirmed = not (dt_local.hour == 0 and dt_local.minute == 0)
+    else:
+        # matchDateTime itself missing (matchDateTimeUTC is real, see above)
+        # -- no local kickoff time to check, so treat it the same as an
+        # unconfirmed placeholder rather than assuming it's confirmed.
+        time_confirmed = False
 
     location = None
     loc = match.get("location")
@@ -124,7 +156,7 @@ def build_event(league_cfg: dict, match: dict, name_to_id: dict) -> dict:
         "competition": league_cfg["competition"],
         "gender": league_cfg["gender"],
         "round": round_label,
-        "start": match["matchDateTimeUTC"],
+        "start": match_datetime_utc,
         "timeConfirmed": time_confirmed,
         "location": location,
         "homeTeamId": resolve_club_id(name_to_id, home_name),
@@ -400,8 +432,11 @@ def fetch_entry(
                 f"[{league_cfg['id']}] Liga '{league['leagueName']}' (Shortcut {shortcut}, "
                 f"Saison {season}) verwendet, {len(relevant)} Spiele gefunden."
             )
-            events = [build_event(league_cfg, m, name_to_id) for m in relevant]
-            if max(e["start"] for e in events) < datetime.now(timezone.utc).isoformat():
+            # build_event() returns None for a match with no usable date
+            # (logged there) rather than raising -- one bad match must not
+            # take the rest of the league down with it.
+            events = [e for e in (build_event(league_cfg, m, name_to_id) for m in relevant) if e is not None]
+            if events and max(e["start"] for e in events) < datetime.now(timezone.utc).isoformat():
                 warn(
                     f"[{league_cfg['id']}] Alle Spiele dieser Saison liegen bereits in der Vergangenheit "
                     f"-- naechste Saison ist bei OpenLigaDB fuer diese Liga offenbar noch nicht befuellt."
