@@ -33,6 +33,6 @@
     "id": "rlsw-kickers",
     "competition": "Regionalliga Südwest",
     "gender": "men",
-    "scope": "club-filter"
+    "scope": "full"
   }
 ]
