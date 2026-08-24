@@ -18,6 +18,10 @@ calendar:
   - "cup":          all matches are fetched, but only kept if at least one
                     side is a club we track (DFB-Pokal draws in amateur clubs
                     from outside our league scope in early rounds).
+
+A league can also declare a `primarySource` in config.json (currently just
+ffb2) that skips OpenLigaDB entirely instead of only falling back to a
+secondary source on a miss -- see fetch_dfb_datencenter_entry() below.
 """
 from __future__ import annotations
 
@@ -46,6 +50,8 @@ from common import (
 BERLIN = ZoneInfo("Europe/Berlin")
 
 MIN_RELEVANT_SEASON_AGE_YEARS = 1  # a league whose newest season is older than this is treated as "not maintained"
+
+DFB_DATENCENTER_WEEKDAYS = "Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag"
 
 
 def find_league_candidates(leagues: list[dict], league_cfg: dict, current_year: int) -> list[dict]:
@@ -206,6 +212,166 @@ def parse_kickers_fixture_page(html_text: str, league_cfg: dict, name_to_id: dic
     return events
 
 
+def parse_dfb_datencenter_date(date_text: str) -> tuple[str, bool]:
+    """DFB Datencenter shows a fixture's date either fully scheduled
+    ("Sonntag, 02.08.2026 14:00 Uhr") or, before kickoff is set, only a
+    provisional date window ("02.10. ~ 04.10.2026", no weekday/time) --
+    analogous to OpenLigaDB's 00:00-placeholder handling in build_event(),
+    just signalled by a distinct textual format here instead of a placeholder
+    time. Only the window's start date is used, per the same "don't guess a
+    precise time we don't have" rule. Raises ValueError if neither format
+    matches, so the caller can skip just that one match instead of guessing.
+    """
+    text = html.unescape(date_text).strip()
+
+    timed_match = re.search(
+        rf"(?:{DFB_DATENCENTER_WEEKDAYS}),\s*(\d{{2}})\.(\d{{2}})\.(\d{{4}})\s+(\d{{2}})[.:](\d{{2}})\s*Uhr", text
+    )
+    if timed_match:
+        day, month, year, hour, minute = (int(x) for x in timed_match.groups())
+        local_dt = datetime(year, month, day, hour, minute, tzinfo=BERLIN)
+        return local_dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), True
+
+    window_match = re.search(r"(\d{2})\.(\d{2})\.(?:(\d{4}))?\s*~\s*(\d{2})\.(\d{2})\.(\d{4})", text)
+    if window_match:
+        start_day, start_month, start_year, _end_day, _end_month, end_year = window_match.groups()
+        year = int(start_year) if start_year else int(end_year)
+        return f"{year:04d}-{int(start_month):02d}-{int(start_day):02d}", False
+
+    raise ValueError(f"unbekanntes Datumsformat {text!r}")
+
+
+def dfb_datencenter_name_overrides(clubs: list[dict]) -> dict[str, str]:
+    """Supplemental team-name -> club-id entries for DFB Datencenter's own
+    spelling of ffb2 club names, which for several clubs diverges from both
+    the OpenLigaDB name and the club's plain display name (dropped founding
+    year/number, no "Frauen" suffix, shortened prefixes -- e.g. "Turbine
+    Potsdam" vs. "1. FFC Turbine Potsdam"). See config/clubs.json's
+    teams.women.dfbDatencenterTeamName. Kept local to this module instead of
+    folded into common.py's generic build_club_indexes(), since the quirk is
+    specific to this one source for one league."""
+    overrides = {}
+    for club in clubs:
+        women_team = club.get("teams", {}).get("women")
+        alt_name = women_team.get("dfbDatencenterTeamName") if women_team else None
+        if alt_name:
+            overrides[alt_name] = club["id"]
+    return overrides
+
+
+def parse_dfb_datencenter_page(html_text: str, league_cfg: dict, name_to_id: dict) -> list[dict]:
+    """Parse a DFB Datencenter season-overview page (e.g.
+    datencenter.dfb.de/competitions/<league-slug>/seasons/<season>), analogous
+    to parse_kickers_fixture_page() above but for a source that already
+    assigns each match a stable numeric id and matchday number (both embedded
+    in the per-match result-page URL) -- unlike the Kickers fallback, no
+    chronological-order workaround is needed here.
+
+    Server-rendered HTML: one <div class="c-MatchTable-row"> per match, whose
+    home-side column carries `id="match_<id>"` plus a date/time paragraph,
+    followed by the home team's link+logo, a result link whose URL path
+    already contains "<round>-spieltag/...-<id>", then the away team's
+    link+logo. Match rows are located by that id anchor rather than balancing
+    <div> tags (the surrounding markup nests further <div>s a regex can't
+    safely bracket), slicing from each anchor to the next one (or to the end
+    of the document for the last match) -- the competition/team-comparison
+    links repeated further down each row don't confuse this, since we always
+    take the *first* occurrence of each field within a slice, which belongs
+    to that row's own match. A single malformed row is skipped with a
+    warning rather than aborting the whole page, matching how a single bad
+    source must never break the rest of the run (see main()).
+
+    Written generically -- the league/competition slug lives in config.json's
+    primarySource.url, not hardcoded here, and nothing below assumes a
+    specific team count or gender -- so a second league on the same site
+    structure (Regionalliga Suedwest's planned move to its own Datencenter
+    team page, see README) can reuse this function unchanged.
+    """
+    events = []
+    match_anchors = list(re.finditer(r'id="match_\d+"', html_text))
+
+    for i, anchor in enumerate(match_anchors):
+        start_pos = anchor.start()
+        end_pos = match_anchors[i + 1].start() if i + 1 < len(match_anchors) else len(html_text)
+        block = html_text[start_pos:end_pos]
+
+        try:
+            date_match = re.search(r'dfb-Paragraph--small">\s*(.*?)\s*</p>', block, re.DOTALL)
+            round_id_match = re.search(r"/(\d+)-spieltag/[a-z0-9-]+-(\d+)\"", block)
+            home_div = re.search(r'team--home"[^>]*>(.*?)</div>', block, re.DOTALL)
+            away_div = re.search(r'team--away"[^>]*>(.*?)</div>', block, re.DOTALL)
+            if not (date_match and round_id_match and home_div and away_div):
+                raise ValueError("erwartete Felder nicht gefunden (Markup geaendert?)")
+
+            home_name_match = re.search(r"<a[^>]*>([^<]*)</a>", home_div.group(1))
+            away_name_match = re.search(r"<a[^>]*>([^<]*)</a>", away_div.group(1))
+            if not (home_name_match and away_name_match):
+                raise ValueError("Team-Namen nicht gefunden")
+
+            home_name = html.unescape(home_name_match.group(1)).strip()
+            away_name = html.unescape(away_name_match.group(1)).strip()
+            home_logo_match = re.search(r'src="([^"]+)"', home_div.group(1))
+            away_logo_match = re.search(r'src="([^"]+)"', away_div.group(1))
+
+            start, time_confirmed = parse_dfb_datencenter_date(date_match.group(1))
+            round_num, match_id = round_id_match.groups()
+
+            events.append(
+                {
+                    "id": f"football-{league_cfg['id']}-{match_id}",
+                    "sport": "football",
+                    "competition": league_cfg["competition"],
+                    "gender": league_cfg["gender"],
+                    "round": f"Spieltag {round_num}",
+                    "start": start,
+                    "timeConfirmed": time_confirmed,
+                    "location": None,  # not published on this overview page
+                    "homeTeamId": resolve_club_id(name_to_id, home_name),
+                    "homeTeamName": home_name,
+                    "homeTeamLogo": home_logo_match.group(1) if home_logo_match else None,
+                    "awayTeamId": resolve_club_id(name_to_id, away_name),
+                    "awayTeamName": away_name,
+                    "awayTeamLogo": away_logo_match.group(1) if away_logo_match else None,
+                }
+            )
+        except Exception as exc:
+            warn(f"[{league_cfg['id']}] DFB-Datencenter: Spiel bei Zeichen {start_pos} uebersprungen ({exc}).")
+            continue
+
+    return events
+
+
+def dfb_season_start_year(now: datetime) -> int:
+    """DFB league seasons run roughly August-May and are labelled by their
+    start year (e.g. "2026-2027"); before the close season truly ends we're
+    still inside the previous season's slug, hence the July cutoff (a bit
+    ahead of the actual August kickoff, so this flips well before the new
+    season's fixtures actually appear on the site)."""
+    return now.year if now.month >= 7 else now.year - 1
+
+
+def fetch_dfb_datencenter_entry(
+    league_cfg: dict, primary_source: dict, now: datetime, clubs: list[dict], name_to_id: dict
+) -> list[dict] | None:
+    season_start = dfb_season_start_year(now)
+    url = primary_source["url"].format(season=season_start, seasonEnd=season_start + 1)
+    merged_name_to_id = {**name_to_id, **dfb_datencenter_name_overrides(clubs)}
+
+    try:
+        page = http_get_text(url)
+        events = parse_dfb_datencenter_page(page, league_cfg, merged_name_to_id)
+    except Exception as exc:
+        warn(f"[{league_cfg['id']}] DFB-Datencenter-Quelle ({url}) fehlgeschlagen: {exc}")
+        return None
+
+    if not events:
+        warn(f"[{league_cfg['id']}] DFB-Datencenter-Quelle ({url}) lieferte keine Spiele.")
+        return None
+
+    log(f"[{league_cfg['id']}] DFB-Datencenter-Quelle verwendet ({url}), {len(events)} Spiele gefunden.")
+    return events
+
+
 def fetch_league_matches(config: dict, shortcut: str, season: str) -> list[dict]:
     api_base = config["football"]["apiBase"]
     return http_get_json(f"{api_base}/getmatchdata/{shortcut}/{season}")
@@ -220,7 +386,17 @@ def matches_for_club(matches: list[dict], club_name_match: str) -> list[dict]:
     return [m for m in matches if is_club(m["team1"]["teamName"]) or is_club(m["team2"]["teamName"])]
 
 
-def fetch_entry(config: dict, leagues: list[dict], league_cfg: dict, current_year: int, name_to_id: dict) -> list[dict] | None:
+def fetch_entry(
+    config: dict, leagues: list[dict], league_cfg: dict, now: datetime, clubs: list[dict], name_to_id: dict
+) -> list[dict] | None:
+    primary_source = league_cfg.get("primarySource")
+    if primary_source and primary_source.get("source") == "dfb-datencenter":
+        # Full replacement, not a fallback-on-miss: OpenLigaDB is never even
+        # queried for this league, unlike the Kickers fallback below which
+        # only kicks in once find_league_candidates() comes up empty.
+        return fetch_dfb_datencenter_entry(league_cfg, primary_source, now, clubs, name_to_id)
+
+    current_year = now.year
     candidates = find_league_candidates(leagues, league_cfg, current_year)
     if not candidates:
         fallback = league_cfg.get("fallback")
@@ -307,7 +483,7 @@ def main() -> None:
     for league_cfg in config["football"]["leagues"]:
         source_id = f"football-{league_cfg['id']}"
         try:
-            events = fetch_entry(config, leagues, league_cfg, now.year, name_to_id)
+            events = fetch_entry(config, leagues, league_cfg, now, clubs, name_to_id)
         except Exception as exc:  # a single bad source must not break the others
             warn(f"[{league_cfg['id']}] Unerwarteter Fehler: {exc}")
             continue
