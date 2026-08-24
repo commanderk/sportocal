@@ -12,23 +12,25 @@ Three fetch scopes, matched to how each league is used in the personal
 calendar:
   - "full":        every club in the league is in scope (bl1/bl2/bl3/ffb1/ffb2).
   - "club-filter":  only one specific club's matches are kept (Regionalliga
-                    Suedwest -> Stuttgarter Kickers only), with a dedicated
-                    non-OpenLigaDB fallback scraper since this league isn't
-                    OpenLigaDB-maintained at all right now.
+                    Suedwest -> Stuttgarter Kickers only).
   - "cup":          all matches are fetched, but only kept if at least one
                     side is a club we track (DFB-Pokal draws in amateur clubs
                     from outside our league scope in early rounds).
 
-A league can also declare a `primarySource` in config.json (currently just
-ffb2) that skips OpenLigaDB entirely instead of only falling back to a
-secondary source on a miss -- see fetch_dfb_datencenter_entry() below.
+A league can also declare a `primarySource` in config.json (currently ffb2
+and Regionalliga Suedwest, both DFB Datencenter -- neither is maintained by
+OpenLigaDB right now) that skips OpenLigaDB entirely instead of only falling
+back to a secondary source on a miss -- see fetch_dfb_datencenter_entry()
+below. DFB Datencenter has no per-match venue on the pages we scrape, so a
+best-effort location comes from the static config/stadiums.json lookup
+instead (see common.load_stadiums()) -- deliberately not a fallback inside
+the generic OpenLigaDB build_event() path, just for events from this source.
 """
 from __future__ import annotations
 
 import html
 import re
 from datetime import datetime, timezone
-from urllib.parse import unquote
 from zoneinfo import ZoneInfo
 
 from common import (
@@ -38,6 +40,7 @@ from common import (
     load_clubs,
     load_config,
     load_snapshot,
+    load_stadiums,
     log,
     normalize_text,
     http_get_json,
@@ -126,92 +129,6 @@ def build_event(league_cfg: dict, match: dict, name_to_id: dict) -> dict:
     }
 
 
-def parse_kickers_fixture_page(html_text: str, league_cfg: dict, name_to_id: dict) -> list[dict]:
-    """Parse the official club fixtures page (stuttgarter-kickers.de/team/spielplan).
-
-    Server-rendered HTML (no JS execution needed): every match is one
-    <article> block containing a competition label, a date/time string, a
-    venue, and the two team names in home-then-away order (verified against
-    known home games at the club's own stadium). There's no OpenLigaDB-style
-    league API for Regionalliga Suedwest right now, so this is a best-effort
-    fallback tied to this one page's current markup -- if the club relaunches
-    their site this will need re-checking, hence the narrow try/except in the
-    caller rather than letting a markup change break the whole run.
-    """
-    only_competition = league_cfg["fallback"]["onlyCompetition"]
-    club_name_match = league_cfg["clubNameMatch"]
-    events = []
-    for block in re.findall(r"<article.*?</article>", html_text, re.DOTALL):
-        comp_match = re.search(
-            r'<span class="pb-1 text-base font-bold text-blueLight-500[^"]*">([^<]*)</span>', block
-        )
-        if not comp_match or html.unescape(comp_match.group(1)).strip() != only_competition:
-            continue
-
-        teams = re.findall(r'<span class="text-h[^"]*">([^<]*)</span>', block)
-        if len(teams) != 2:
-            continue
-        home_name, away_name = (html.unescape(t).strip() for t in teams)
-
-        date_match = re.search(r'640:text-base 640:font-bold">(.*?)</span>', block, re.DOTALL)
-        location_match = re.search(r'<span class="w-8/12[^"]*">([^<]*)</span>', block)
-        location = html.unescape(location_match.group(1)).strip() if location_match else None
-
-        if not date_match:
-            continue
-        date_text = html.unescape(re.sub(r"<!--.*?-->", "", date_match.group(1)))
-        day_match = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", date_text)
-        if not day_match:
-            continue
-        day, month, year = (int(x) for x in day_match.groups())
-
-        time_match = re.search(r"Anstoß um (\d{2})[.:](\d{2}) Uhr", date_text)
-        if time_match:
-            hour, minute = (int(x) for x in time_match.groups())
-            local_dt = datetime(year, month, day, hour, minute, tzinfo=BERLIN)
-            start = local_dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-            time_confirmed = True
-        else:
-            start = f"{year:04d}-{month:02d}-{day:02d}"
-            time_confirmed = False
-
-        opponent_name = away_name if home_name.lower().startswith(club_name_match.lower()) else home_name
-
-        # Each logo appears many times (once per responsive srcSet width), so
-        # dedupe by file identity before picking "first team, second team".
-        raw_logo_refs = re.findall(r"images\.prismic\.io%2F[^&\"]*?\.(?:png|jpg|jpeg|svg)", block)
-        logo_urls = list(dict.fromkeys(unquote(u) for u in raw_logo_refs))
-        home_logo = f"https://{logo_urls[0]}" if len(logo_urls) > 0 else None
-        away_logo = f"https://{logo_urls[1]}" if len(logo_urls) > 1 else None
-
-        events.append(
-            {
-                "id": f"football-{league_cfg['id']}-{start[:10]}-{re.sub(r'[^a-z0-9]+', '', opponent_name.lower())}",
-                "sport": "football",
-                "competition": league_cfg["competition"],
-                "gender": league_cfg["gender"],
-                "round": None,  # this source doesn't expose a matchday number; filled in below
-                "start": start,
-                "timeConfirmed": time_confirmed,
-                "location": location,
-                "homeTeamId": resolve_club_id(name_to_id, home_name),
-                "homeTeamName": home_name,
-                "homeTeamLogo": home_logo,
-                "awayTeamId": resolve_club_id(name_to_id, away_name),
-                "awayTeamName": away_name,
-                "awayTeamLogo": away_logo,
-            }
-        )
-
-    # No matchday number is published on this page, so we approximate one by
-    # chronological order -- clearly a best-effort label, not an official one.
-    events.sort(key=lambda e: e["start"])
-    for i, event in enumerate(events, start=1):
-        event["round"] = f"Spieltag {i}"
-
-    return events
-
-
 def parse_dfb_datencenter_date(date_text: str) -> tuple[str, bool]:
     """DFB Datencenter shows a fixture's date either fully scheduled
     ("Sonntag, 02.08.2026 14:00 Uhr") or, before kickoff is set, only a
@@ -259,13 +176,33 @@ def dfb_datencenter_name_overrides(clubs: list[dict]) -> dict[str, str]:
     return overrides
 
 
-def parse_dfb_datencenter_page(html_text: str, league_cfg: dict, name_to_id: dict) -> list[dict]:
-    """Parse a DFB Datencenter season-overview page (e.g.
-    datencenter.dfb.de/competitions/<league-slug>/seasons/<season>), analogous
-    to parse_kickers_fixture_page() above but for a source that already
-    assigns each match a stable numeric id and matchday number (both embedded
-    in the per-match result-page URL) -- unlike the Kickers fallback, no
-    chronological-order workaround is needed here.
+def gender_scoped_stadiums(stadiums: dict[str, str], clubs: list[dict], gender: str) -> dict[str, str]:
+    """config/stadiums.json is a flat club-id -> venue map with no gender
+    dimension, but a club id can carry both a men's and a women's team with
+    genuinely different home grounds -- e.g. "eintracht-frankfurt-ii" is only
+    tracked here for its ffb2 *women's* side, but resolve_club_id() is
+    name-only and gender-blind, so that same id would also (mis)match an
+    unrelated men's "Eintracht Frankfurt II" reserve side that happens to
+    show up as an opponent in Regionalliga Suedwest. Filtering the lookup
+    down to clubs that actually have a `gender` team entry in config/
+    clubs.json keeps a venue researched for one gender from leaking into a
+    fixture for the other -- better to fall back to no location (None) than
+    a confidently wrong one."""
+    club_ids_with_gender = {club["id"] for club in clubs if gender in club.get("teams", {})}
+    return {club_id: location for club_id, location in stadiums.items() if club_id in club_ids_with_gender}
+
+
+def parse_dfb_datencenter_page(
+    html_text: str, league_cfg: dict, name_to_id: dict, stadiums: dict[str, str]
+) -> list[dict]:
+    """Parse a DFB Datencenter page listing matches (either a league's full
+    season-overview page, e.g. ffb2's ".../competitions/2-frauen-bundesliga/
+    seasons/<season>", or a single team's page within a season, e.g.
+    Regionalliga Suedwest's ".../teams/stuttgarter-kickers" -- both share the
+    exact same match-row markup, and the team page already returns only that
+    team's matches, so no extra club-filter step is needed for the
+    "club-filter" scope). Every match gets a stable numeric id and matchday
+    number, both embedded in the per-match result-page URL.
 
     Server-rendered HTML: one <div class="c-MatchTable-row"> per match, whose
     home-side column carries `id="match_<id>"` plus a date/time paragraph,
@@ -281,11 +218,18 @@ def parse_dfb_datencenter_page(html_text: str, league_cfg: dict, name_to_id: dic
     warning rather than aborting the whole page, matching how a single bad
     source must never break the rest of the run (see main()).
 
+    No per-match venue is published on either page shape, so `location` comes
+    from the static `stadiums` lookup (config/stadiums.json via
+    common.load_stadiums()) keyed by the *home* team's club id -- None if
+    that club has no confirmed entry there, same as before this source
+    existed. Not a generic assumption for every source: OpenLigaDB's own
+    build_event() path (which already gets a real per-match venue from the
+    API) is untouched.
+
     Written generically -- the league/competition slug lives in config.json's
     primarySource.url, not hardcoded here, and nothing below assumes a
-    specific team count or gender -- so a second league on the same site
-    structure (Regionalliga Suedwest's planned move to its own Datencenter
-    team page, see README) can reuse this function unchanged.
+    specific team count or gender -- so both ffb2 and Regionalliga Suedwest
+    share this one function.
     """
     events = []
     match_anchors = list(re.finditer(r'id="match_\d+"', html_text))
@@ -315,6 +259,7 @@ def parse_dfb_datencenter_page(html_text: str, league_cfg: dict, name_to_id: dic
 
             start, time_confirmed = parse_dfb_datencenter_date(date_match.group(1))
             round_num, match_id = round_id_match.groups()
+            home_team_id = resolve_club_id(name_to_id, home_name)
 
             events.append(
                 {
@@ -325,8 +270,11 @@ def parse_dfb_datencenter_page(html_text: str, league_cfg: dict, name_to_id: dic
                     "round": f"Spieltag {round_num}",
                     "start": start,
                     "timeConfirmed": time_confirmed,
-                    "location": None,  # not published on this overview page
-                    "homeTeamId": resolve_club_id(name_to_id, home_name),
+                    # Home team's own ground -- not published per match on
+                    # this page, so this is a static best-effort lookup, None
+                    # if the home club has no confirmed stadiums.json entry.
+                    "location": stadiums.get(home_team_id) if home_team_id else None,
+                    "homeTeamId": home_team_id,
                     "homeTeamName": home_name,
                     "homeTeamLogo": home_logo_match.group(1) if home_logo_match else None,
                     "awayTeamId": resolve_club_id(name_to_id, away_name),
@@ -351,15 +299,21 @@ def dfb_season_start_year(now: datetime) -> int:
 
 
 def fetch_dfb_datencenter_entry(
-    league_cfg: dict, primary_source: dict, now: datetime, clubs: list[dict], name_to_id: dict
+    league_cfg: dict,
+    primary_source: dict,
+    now: datetime,
+    clubs: list[dict],
+    name_to_id: dict,
+    stadiums: dict[str, str],
 ) -> list[dict] | None:
     season_start = dfb_season_start_year(now)
     url = primary_source["url"].format(season=season_start, seasonEnd=season_start + 1)
     merged_name_to_id = {**name_to_id, **dfb_datencenter_name_overrides(clubs)}
+    scoped_stadiums = gender_scoped_stadiums(stadiums, clubs, league_cfg["gender"])
 
     try:
         page = http_get_text(url)
-        events = parse_dfb_datencenter_page(page, league_cfg, merged_name_to_id)
+        events = parse_dfb_datencenter_page(page, league_cfg, merged_name_to_id, scoped_stadiums)
     except Exception as exc:
         warn(f"[{league_cfg['id']}] DFB-Datencenter-Quelle ({url}) fehlgeschlagen: {exc}")
         return None
@@ -387,36 +341,23 @@ def matches_for_club(matches: list[dict], club_name_match: str) -> list[dict]:
 
 
 def fetch_entry(
-    config: dict, leagues: list[dict], league_cfg: dict, now: datetime, clubs: list[dict], name_to_id: dict
+    config: dict,
+    leagues: list[dict],
+    league_cfg: dict,
+    now: datetime,
+    clubs: list[dict],
+    name_to_id: dict,
+    stadiums: dict[str, str],
 ) -> list[dict] | None:
     primary_source = league_cfg.get("primarySource")
     if primary_source and primary_source.get("source") == "dfb-datencenter":
         # Full replacement, not a fallback-on-miss: OpenLigaDB is never even
-        # queried for this league, unlike the Kickers fallback below which
-        # only kicks in once find_league_candidates() comes up empty.
-        return fetch_dfb_datencenter_entry(league_cfg, primary_source, now, clubs, name_to_id)
+        # queried for this league.
+        return fetch_dfb_datencenter_entry(league_cfg, primary_source, now, clubs, name_to_id, stadiums)
 
     current_year = now.year
     candidates = find_league_candidates(leagues, league_cfg, current_year)
     if not candidates:
-        fallback = league_cfg.get("fallback")
-        if fallback and fallback["source"] == "kickers-site":
-            warn(
-                f"Keine aktuelle Liga bei OpenLigaDB gefunden, die zu '{league_cfg['competition']}' passt. "
-                f"Nutze Fallback-Quelle fuer {league_cfg['id']}: {fallback['url']}"
-            )
-            try:
-                page = http_get_text(fallback["url"])
-                events = parse_kickers_fixture_page(page, league_cfg, name_to_id)
-            except Exception as exc:
-                warn(f"[{league_cfg['id']}] Fallback-Quelle fehlgeschlagen: {exc}")
-                return None
-            if not events:
-                warn(f"[{league_cfg['id']}] Fallback-Quelle lieferte keine '{fallback['onlyCompetition']}'-Spiele.")
-                return None
-            log(f"[{league_cfg['id']}] Fallback-Quelle verwendet, {len(events)} Spiele gefunden.")
-            return events
-
         gap_note = f" ({league_cfg['knownGap']})" if league_cfg.get("knownGap") else ""
         warn(
             f"Keine aktuelle Liga gefunden, die zu '{league_cfg['competition']}' "
@@ -471,6 +412,7 @@ def main() -> None:
     config = load_config()
     clubs = load_clubs()
     _, name_to_id = build_club_indexes(clubs)
+    stadiums = load_stadiums()
     now = datetime.now(timezone.utc)
     now_iso = now.isoformat()
 
@@ -483,7 +425,7 @@ def main() -> None:
     for league_cfg in config["football"]["leagues"]:
         source_id = f"football-{league_cfg['id']}"
         try:
-            events = fetch_entry(config, leagues, league_cfg, now, clubs, name_to_id)
+            events = fetch_entry(config, leagues, league_cfg, now, clubs, name_to_id, stadiums)
         except Exception as exc:  # a single bad source must not break the others
             warn(f"[{league_cfg['id']}] Unerwarteter Fehler: {exc}")
             continue
