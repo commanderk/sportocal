@@ -67,7 +67,12 @@
         "sportNameKeywords": [],
         "sportNameExcludeKeywords": [],
         "shortcutHint": "ffb2",
-        "shortcutStable": false
+        "shortcutStable": false,
+        "primarySource": {
+          "source": "dfb-datencenter",
+          "url": "https://datencenter.dfb.de/competitions/2-frauen-bundesliga/seasons/{season}-{seasonEnd}",
+          "note": "OpenLigaDB liefert fuer diese Liga keine verlaesslichen aktuellen Daten mehr (leer/veraltet). Komplett ersetzt statt Fallback -- anders als bei Regionalliga Suedwest wird OpenLigaDB fuer diese Liga gar nicht mehr versucht, siehe Konversation vom 2026-08-24. datencenter.dfb.de/robots.txt existiert nicht (HTTP 404), kein Crawling-Verbot."
+        }
       },
       {
         "id": "rlsw-kickers",
