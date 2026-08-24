@@ -78,9 +78,7 @@
         "id": "rlsw-kickers",
         "competition": "Regionalliga Südwest",
         "gender": "men",
-        "scope": "club-filter",
-        "clubId": "stuttgarter-kickers",
-        "clubNameMatch": "Stuttgarter Kickers",
+        "scope": "full",
         "roundFormat": "spieltag",
         "leagueNameKeywords": ["regionalliga", "sudwest"],
         "leagueNameExcludeKeywords": [],
@@ -90,8 +88,8 @@
         "shortcutStable": false,
         "primarySource": {
           "source": "dfb-datencenter",
-          "url": "https://datencenter.dfb.de/competitions/regionalliga-suedwest/seasons/{season}-{seasonEnd}/teams/stuttgarter-kickers",
-          "note": "OpenLigaDB pflegt Regionalliga Suedwest nicht (letzter Datensatz: 2016/17). Ersetzt den bisherigen Kickers-Website-Scraper (Fallback) komplett, siehe Konversation vom 2026-08-24. Team-Slug 'stuttgarter-kickers' live gegen die Seite geprueft, keine numerische ID noetig (anders als bei manchen ffb2-Vereinen)."
+          "url": "https://datencenter.dfb.de/competitions/regionalliga-suedwest/seasons/{season}-{seasonEnd}",
+          "note": "OpenLigaDB pflegt Regionalliga Suedwest nicht (letzter Datensatz: 2016/17). Urspruenglich nur Stuttgarter Kickers (club-filter, Team-Seite auf DFB Datencenter, siehe Konversation vom 2026-08-24) -- auf volle Liga (18 Vereine, scope 'full') ausgebaut, da dieselbe Saison-Uebersichtsseite ohnehin schon fuer den Kickers-Umstieg abgerufen wurde und parse_dfb_datencenter_page() dafuer unveraendert wiederverwendbar ist, siehe Konversation vom 2026-08-24 (Folgeauftrag)."
         }
       },
       {
