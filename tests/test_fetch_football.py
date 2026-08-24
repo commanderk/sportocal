@@ -228,6 +228,17 @@ def test_dfb_datencenter_name_overrides_only_includes_clubs_with_the_field():
     assert overrides == {"FC Ingolstadt": "fc-ingolstadt-04", "Turbine Potsdam": "1-ffc-turbine-potsdam"}
 
 
+def test_dfb_datencenter_name_overrides_checks_the_mens_team_too():
+    """Regression test: the override lookup used to only check teams.women
+    (an ffb2 leftover), which silently dropped Regionalliga Suedwest's own
+    overrides on teams.men (e.g. "Hessen Kassel" for "ksv-hessen-kassel") --
+    caught by resolving all 18 Regionalliga Suedwest club names end to end
+    before writing config/clubs.json."""
+    clubs = [{"id": "ksv-hessen-kassel", "name": "KSV Hessen Kassel", "teams": {"men": {"dfbDatencenterTeamName": "Hessen Kassel"}}}]
+    overrides = fetch_football.dfb_datencenter_name_overrides(clubs)
+    assert overrides == {"Hessen Kassel": "ksv-hessen-kassel"}
+
+
 # --- gender_scoped_stadiums(): a club id can mean two different genders' --
 
 
@@ -238,14 +249,40 @@ def test_gender_scoped_stadiums_keeps_a_club_with_a_matching_gender_team():
 
 
 def test_gender_scoped_stadiums_drops_a_club_without_a_matching_gender_team():
-    """The exact bug this guards against: "eintracht-frankfurt-ii" is
-    tracked here only for its ffb2 *women's* side, but resolve_club_id() is
-    name-only and gender-blind, so the same id would also (mis)match an
-    unrelated men's "Eintracht Frankfurt II" reserve side that shows up as
-    an opponent in Regionalliga Suedwest -- the venue must not leak there."""
+    """A club with only a women's team and no men's team at all -- venue
+    must not leak into a men's-league query."""
     stadiums = {"eintracht-frankfurt-ii": "Sportanlage Riederwald, Frankfurt am Main"}
     clubs = [{"id": "eintracht-frankfurt-ii", "teams": {"women": {}}}]  # no "men" team
     assert fetch_football.gender_scoped_stadiums(stadiums, clubs, "men") == {}
+
+
+def test_gender_scoped_stadiums_resolves_a_per_gender_dict_entry():
+    """The real, current "eintracht-frankfurt-ii" case since the
+    Regionalliga Suedwest full-league expansion: the club now genuinely
+    fields *both* a men's and a women's team, with different home grounds
+    -- stadiums.json stores that as a {"men": ..., "women": ...} dict
+    instead of a single string, resolved here to just the queried gender."""
+    stadiums = {"eintracht-frankfurt-ii": {"men": "maxworx Sportpark, Dreieich", "women": "Sportanlage Riederwald, Frankfurt am Main"}}
+    clubs = [{"id": "eintracht-frankfurt-ii", "teams": {"men": {}, "women": {}}}]
+
+    assert fetch_football.gender_scoped_stadiums(stadiums, clubs, "men") == {
+        "eintracht-frankfurt-ii": "maxworx Sportpark, Dreieich"
+    }
+    assert fetch_football.gender_scoped_stadiums(stadiums, clubs, "women") == {
+        "eintracht-frankfurt-ii": "Sportanlage Riederwald, Frankfurt am Main"
+    }
+
+
+def test_gender_scoped_stadiums_plain_string_entry_still_works_for_a_dual_gender_club():
+    """A club tracked under both genders but with only a plain string entry
+    (same venue for both, or only one gender's venue known) must still
+    resolve for either gender query -- the dict shape is opt-in, not
+    required just because a club has multiple teams."""
+    stadiums = {"vfl-bochum": "Lohrheidestadion, Bochum"}
+    clubs = [{"id": "vfl-bochum", "teams": {"men": {}, "women": {}}}]
+
+    assert fetch_football.gender_scoped_stadiums(stadiums, clubs, "men") == stadiums
+    assert fetch_football.gender_scoped_stadiums(stadiums, clubs, "women") == stadiums
 
 
 # --- parse_dfb_datencenter_page(): full-page parsing -----------------------
