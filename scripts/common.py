@@ -25,6 +25,7 @@ DATA_DIR = ROOT_DIR / "data"
 PUBLIC_DIR = ROOT_DIR / "public"
 CONFIG_PATH = ROOT_DIR / "config.json"
 CLUBS_PATH = ROOT_DIR / "config" / "clubs.json"
+STADIUMS_PATH = ROOT_DIR / "config" / "stadiums.json"
 
 # Short form (no "stage" suffix) shared by both scraped and manually-entered
 # `route.type` values, so Grand Tours and the CSV-sourced races use the same
@@ -117,6 +118,20 @@ TIER_LABELS = {
 
 def load_clubs() -> list[dict]:
     with CLUBS_PATH.open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_stadiums() -> dict[str, str]:
+    """Club id -> "<Stadion>, <Stadt>" lookup for sources that don't publish
+    a venue per match (currently DFB Datencenter, see fetch_football.py).
+    Deliberately not comprehensive: only populated where the official venue
+    is confirmed, not guessed -- a missing entry just means the caller's
+    `location` field stays None, same as before this file existed. Missing
+    file returns {} rather than raising, so a still-empty or not-yet-created
+    stadiums.json never breaks a fetch run."""
+    if not STADIUMS_PATH.exists():
+        return {}
+    with STADIUMS_PATH.open(encoding="utf-8") as f:
         return json.load(f)
 
 
