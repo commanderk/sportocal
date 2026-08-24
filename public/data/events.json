@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T06:53:12.865190+00:00",
+  "generatedAt": "2026-08-24T06:56:19.624550+00:00",
   "events": [
     {
       "id": "football-ffb2-78894",
@@ -6331,7 +6331,7 @@
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": "1-fc-saarbruecken",
-      "homeTeamName": "1.FC Saarbrücken",
+      "homeTeamName": "1. FC Saarbrücken",
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/ff/1._FC_Saarbr%C3%BCcken.svg",
       "awayTeamId": "hertha-bsc",
       "awayTeamName": "Hertha BSC",
@@ -6809,10 +6809,10 @@
       "round": "Etappe 4",
       "start": "2026-08-25",
       "timeConfirmed": false,
-      "location": "Andorra La Vella (Andorra) → Andorra La Vella (Andorra)",
+      "location": "Andorra la Vella (Andorra) → Andorra la Vella (Andorra)",
       "route": {
-        "start": "Andorra La Vella (Andorra)",
-        "finish": "Andorra La Vella (Andorra)",
+        "start": "Andorra la Vella (Andorra)",
+        "finish": "Andorra la Vella (Andorra)",
         "type": "Mountain",
         "typeDisplay": "Bergetappe"
       }

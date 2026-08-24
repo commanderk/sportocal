@@ -138,7 +138,7 @@
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": "1-fc-saarbruecken",
-      "homeTeamName": "1.FC Saarbrücken",
+      "homeTeamName": "1. FC Saarbrücken",
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/ff/1._FC_Saarbr%C3%BCcken.svg",
       "awayTeamId": "hertha-bsc",
       "awayTeamName": "Hertha BSC",
@@ -513,5 +513,5 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg"
     }
   ],
-  "lastChecked": "2026-08-17T06:53:02.541287+00:00"
+  "lastChecked": "2026-08-24T06:56:06.427894+00:00"
 }

@@ -53,10 +53,10 @@
       "round": "Etappe 4",
       "start": "2026-08-25",
       "timeConfirmed": false,
-      "location": "Andorra La Vella (Andorra) → Andorra La Vella (Andorra)",
+      "location": "Andorra la Vella (Andorra) → Andorra la Vella (Andorra)",
       "route": {
-        "start": "Andorra La Vella (Andorra)",
-        "finish": "Andorra La Vella (Andorra)",
+        "start": "Andorra la Vella (Andorra)",
+        "finish": "Andorra la Vella (Andorra)",
         "type": "Mountain"
       }
     },
@@ -316,5 +316,5 @@
       }
     }
   ],
-  "lastChecked": "2026-08-17T06:53:11.413837+00:00"
+  "lastChecked": "2026-08-24T06:56:15.013208+00:00"
 }
