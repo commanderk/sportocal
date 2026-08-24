@@ -53,6 +53,125 @@ def build_name_to_id() -> dict[str, str]:
     return {**name_to_id, **fetch_football.dfb_datencenter_name_overrides(CLUBS)}
 
 
+def make_match(**overrides) -> dict:
+    """Minimal OpenLigaDB match dict, shaped like the real API response."""
+    match = {
+        "matchID": 12345,
+        "matchDateTime": "2026-08-30T15:30:00",
+        "matchDateTimeUTC": "2026-08-30T13:30:00Z",
+        "team1": {"teamName": "SGS Essen", "teamIconUrl": "https://example.invalid/home.png"},
+        "team2": {"teamName": "Turbine Potsdam", "teamIconUrl": "https://example.invalid/away.png"},
+        "group": {"groupName": "5. Spieltag"},
+    }
+    match.update(overrides)
+    return match
+
+
+# --- match_has_a_real_date() / build_event(): OpenLigaDB's missing- or ----
+# --- epoch-placeholder matchDateTime must not crash or fake a 1970 event -
+
+
+def test_match_has_a_real_date_true_for_a_normal_future_date():
+    assert fetch_football.match_has_a_real_date("2026-08-30T13:30:00Z") is True
+
+
+def test_match_has_a_real_date_false_for_none():
+    assert fetch_football.match_has_a_real_date(None) is False
+
+
+def test_match_has_a_real_date_false_for_empty_string():
+    assert fetch_football.match_has_a_real_date("") is False
+
+
+def test_match_has_a_real_date_false_for_unix_epoch_placeholder():
+    """The real ffb1 case that used to crash build_event(): matchDateTime is
+    None *and* matchDateTimeUTC is OpenLigaDB's "1970-01-01T00:00:00" epoch
+    sentinel for "no date at all yet" -- not itself absent, so a plain
+    None-check wouldn't have caught it."""
+    assert fetch_football.match_has_a_real_date("1970-01-01T00:00:00") is False
+
+
+def test_match_has_a_real_date_false_for_unparseable_value():
+    assert fetch_football.match_has_a_real_date("not-a-date") is False
+
+
+def test_build_event_confirmed_time_when_matchdatetime_is_not_midnight():
+    event = fetch_football.build_event(LEAGUE_CFG, make_match(), {})
+    assert event is not None
+    assert event["timeConfirmed"] is True
+    assert event["start"] == "2026-08-30T13:30:00Z"
+
+
+def test_build_event_unconfirmed_when_matchdatetime_is_midnight_placeholder():
+    """Pre-existing OpenLigaDB convention, unchanged by this fix."""
+    match = make_match(matchDateTime="2026-08-30T00:00:00")
+    event = fetch_football.build_event(LEAGUE_CFG, match, {})
+    assert event is not None
+    assert event["timeConfirmed"] is False
+
+
+def test_build_event_unconfirmed_when_matchdatetime_missing_but_utc_present():
+    match = make_match(matchDateTime=None)
+    event = fetch_football.build_event(LEAGUE_CFG, match, {})
+    assert event is not None
+    assert event["timeConfirmed"] is False
+    assert event["start"] == "2026-08-30T13:30:00Z"
+
+
+def test_build_event_returns_none_and_warns_when_no_real_date_at_all(monkeypatch):
+    """The exact live ffb1 case: matchDateTime None, matchDateTimeUTC the
+    epoch placeholder -- must be skipped, not crash, not produce a 1970
+    calendar entry."""
+    warnings = []
+    monkeypatch.setattr(fetch_football, "warn", warnings.append)
+
+    match = make_match(matchDateTime=None, matchDateTimeUTC="1970-01-01T00:00:00", matchID=85874)
+    event = fetch_football.build_event(LEAGUE_CFG, match, {})
+
+    assert event is None
+    assert len(warnings) == 1
+    assert "SGS Essen" in warnings[0]
+    assert "Turbine Potsdam" in warnings[0]
+    assert "85874" in warnings[0]
+
+
+def test_build_event_returns_none_when_matchdatetimeutc_missing_entirely(monkeypatch):
+    warnings = []
+    monkeypatch.setattr(fetch_football, "warn", warnings.append)
+
+    match = make_match(matchDateTime=None, matchDateTimeUTC=None)
+    event = fetch_football.build_event(LEAGUE_CFG, match, {})
+
+    assert event is None
+    assert len(warnings) == 1
+
+
+def test_fetch_entry_skips_one_dateless_match_but_keeps_the_rest(monkeypatch):
+    """End-to-end: a league with one dateless match among several good ones
+    must still return the good ones -- one bad OpenLigaDB row must not take
+    the rest of the league down (mirrors the DFB Datencenter parser's own
+    single-bad-row resilience)."""
+    good_match_1 = make_match(matchID=1)
+    bad_match = make_match(matchID=2, matchDateTime=None, matchDateTimeUTC="1970-01-01T00:00:00")
+    good_match_2 = make_match(matchID=3, matchDateTime="2026-09-06T15:30:00", matchDateTimeUTC="2026-09-06T13:30:00Z")
+
+    monkeypatch.setattr(
+        fetch_football,
+        "find_league_candidates",
+        lambda leagues, league_cfg, current_year: [{"leagueShortcut": "ffb1", "leagueSeason": "2026", "leagueName": "Test League"}],
+    )
+    monkeypatch.setattr(
+        fetch_football, "fetch_league_matches", lambda config, shortcut, season: [good_match_1, bad_match, good_match_2]
+    )
+
+    league_cfg = {**LEAGUE_CFG, "id": "ffb1"}
+    now = datetime(2026, 8, 24, tzinfo=timezone.utc)
+
+    events = fetch_football.fetch_entry({}, lambda: [], league_cfg, now, [], {}, {})
+
+    assert [e["id"] for e in events] == ["football-ffb1-1", "football-ffb1-3"]
+
+
 # --- parse_dfb_datencenter_date(): the two date formats the site uses ----
 
 
