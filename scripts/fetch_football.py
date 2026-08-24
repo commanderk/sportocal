@@ -25,11 +25,18 @@ below. DFB Datencenter has no per-match venue on the pages we scrape, so a
 best-effort location comes from the static config/stadiums.json lookup
 instead (see common.load_stadiums()) -- deliberately not a fallback inside
 the generic OpenLigaDB build_event() path, just for events from this source.
+
+Since a primarySource league never touches OpenLigaDB at all, /getavailable-
+leagues itself is fetched lazily (see get_leagues() in main()) -- only the
+first non-primarySource league in the loop actually triggers it, and if it
+fails, only *those* leagues are skipped; ffb2/Regionalliga Suedwest keep
+working even when OpenLigaDB is down entirely.
 """
 from __future__ import annotations
 
 import html
 import re
+from collections.abc import Callable
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 
@@ -342,7 +349,7 @@ def matches_for_club(matches: list[dict], club_name_match: str) -> list[dict]:
 
 def fetch_entry(
     config: dict,
-    leagues: list[dict],
+    get_leagues: Callable[[], list[dict]],
     league_cfg: dict,
     now: datetime,
     clubs: list[dict],
@@ -352,10 +359,12 @@ def fetch_entry(
     primary_source = league_cfg.get("primarySource")
     if primary_source and primary_source.get("source") == "dfb-datencenter":
         # Full replacement, not a fallback-on-miss: OpenLigaDB is never even
-        # queried for this league.
+        # queried for this league -- get_leagues() (and the network request
+        # it may trigger) is never even called.
         return fetch_dfb_datencenter_entry(league_cfg, primary_source, now, clubs, name_to_id, stadiums)
 
     current_year = now.year
+    leagues = get_leagues()  # lazy: only hits OpenLigaDB once a non-primarySource league needs it
     candidates = find_league_candidates(leagues, league_cfg, current_year)
     if not candidates:
         gap_note = f" ({league_cfg['knownGap']})" if league_cfg.get("knownGap") else ""
@@ -408,6 +417,29 @@ def fetch_entry(
     return None
 
 
+def make_leagues_getter(config: dict) -> Callable[[], list[dict]]:
+    """Zero-arg callable that fetches OpenLigaDB's /getavailableleagues on
+    first use and memoizes the result -- success or failure -- for the rest
+    of the run. Lazy, since a primarySource league's fetch_dfb_datencenter_entry()
+    never calls it at all; memoized so a down endpoint is hit (with its own
+    internal retries) at most once per run, not once per non-primarySource
+    league that needs it."""
+    cache: dict[str, list[dict] | Exception] = {}
+
+    def get_leagues() -> list[dict]:
+        if "result" not in cache:
+            try:
+                cache["result"] = http_get_json(f"{config['football']['apiBase']}/getavailableleagues")
+            except RuntimeError as exc:
+                cache["result"] = exc
+        result = cache["result"]
+        if isinstance(result, Exception):
+            raise result
+        return result
+
+    return get_leagues
+
+
 def main() -> None:
     config = load_config()
     clubs = load_clubs()
@@ -415,17 +447,18 @@ def main() -> None:
     stadiums = load_stadiums()
     now = datetime.now(timezone.utc)
     now_iso = now.isoformat()
-
-    try:
-        leagues = http_get_json(f"{config['football']['apiBase']}/getavailableleagues")
-    except RuntimeError as exc:
-        warn(f"getavailableleagues nicht erreichbar, ueberspringe Fussball komplett: {exc}")
-        return
+    get_leagues = make_leagues_getter(config)
 
     for league_cfg in config["football"]["leagues"]:
         source_id = f"football-{league_cfg['id']}"
         try:
-            events = fetch_entry(config, leagues, league_cfg, now, clubs, name_to_id, stadiums)
+            events = fetch_entry(config, get_leagues, league_cfg, now, clubs, name_to_id, stadiums)
+        except RuntimeError as exc:
+            # get_leagues() failed -- only reachable for a non-primarySource
+            # league (see fetch_entry()), so this never affects ffb2 /
+            # Regionalliga Suedwest.
+            warn(f"[{league_cfg['id']}] getavailableleagues nicht erreichbar, ueberspringe: {exc}")
+            continue
         except Exception as exc:  # a single bad source must not break the others
             warn(f"[{league_cfg['id']}] Unerwarteter Fehler: {exc}")
             continue
