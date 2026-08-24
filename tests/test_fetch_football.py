@@ -41,6 +41,12 @@ CLUBS = [
     {"id": "hertha-bsc", "name": "Hertha BSC", "teams": {"women": {}}},
 ]
 
+# Only VfL Bochum has a confirmed venue in this test double -- matches
+# config/stadiums.json's real "vfl-bochum" entry, deliberately left out of
+# the others so tests can distinguish "resolved club with a stadium" from
+# "resolved club without one" from "unresolved club".
+STADIUMS = {"vfl-bochum": "Lohrheidestadion, Bochum"}
+
 
 def build_name_to_id() -> dict[str, str]:
     _, name_to_id = common.build_club_indexes(CLUBS)
@@ -103,12 +109,32 @@ def test_dfb_datencenter_name_overrides_only_includes_clubs_with_the_field():
     assert overrides == {"FC Ingolstadt": "fc-ingolstadt-04", "Turbine Potsdam": "1-ffc-turbine-potsdam"}
 
 
+# --- gender_scoped_stadiums(): a club id can mean two different genders' --
+
+
+def test_gender_scoped_stadiums_keeps_a_club_with_a_matching_gender_team():
+    stadiums = {"vfl-bochum": "Lohrheidestadion, Bochum"}
+    clubs = [{"id": "vfl-bochum", "teams": {"women": {}}}]
+    assert fetch_football.gender_scoped_stadiums(stadiums, clubs, "women") == stadiums
+
+
+def test_gender_scoped_stadiums_drops_a_club_without_a_matching_gender_team():
+    """The exact bug this guards against: "eintracht-frankfurt-ii" is
+    tracked here only for its ffb2 *women's* side, but resolve_club_id() is
+    name-only and gender-blind, so the same id would also (mis)match an
+    unrelated men's "Eintracht Frankfurt II" reserve side that shows up as
+    an opponent in Regionalliga Suedwest -- the venue must not leak there."""
+    stadiums = {"eintracht-frankfurt-ii": "Sportanlage Riederwald, Frankfurt am Main"}
+    clubs = [{"id": "eintracht-frankfurt-ii", "teams": {"women": {}}}]  # no "men" team
+    assert fetch_football.gender_scoped_stadiums(stadiums, clubs, "men") == {}
+
+
 # --- parse_dfb_datencenter_page(): full-page parsing -----------------------
 
 
 def test_parse_dfb_datencenter_page_parses_every_match_in_the_fixture():
     html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
-    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id())
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id(), STADIUMS)
 
     assert [e["id"] for e in events] == [
         "football-ffb2-2424700",
@@ -123,14 +149,14 @@ def test_parse_dfb_datencenter_page_round_comes_from_result_url_not_header():
     out right because it's read from the result-link URL, not a section
     heading."""
     html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
-    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id())
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id(), STADIUMS)
 
     assert [e["round"] for e in events] == ["Spieltag 1", "Spieltag 1", "Spieltag 9"]
 
 
 def test_parse_dfb_datencenter_page_confirmed_and_window_dates_both_present():
     html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
-    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id())
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id(), STADIUMS)
 
     assert events[0]["start"] == "2026-08-02T12:00:00Z"
     assert events[0]["timeConfirmed"] is True
@@ -142,7 +168,7 @@ def test_parse_dfb_datencenter_page_resolves_club_ids_via_name_override():
     """FC Ingolstadt / Turbine Potsdam only resolve through the
     dfbDatencenterTeamName override -- see config/clubs.json."""
     html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
-    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id())
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id(), STADIUMS)
 
     assert events[0]["homeTeamId"] == "fc-ingolstadt-04"
     assert events[0]["awayTeamId"] == "1-ffc-turbine-potsdam"
@@ -150,7 +176,7 @@ def test_parse_dfb_datencenter_page_resolves_club_ids_via_name_override():
 
 def test_parse_dfb_datencenter_page_resolves_club_ids_via_plain_name_match():
     html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
-    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id())
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id(), STADIUMS)
 
     assert events[1]["homeTeamId"] == "sgs-essen"
     assert events[1]["awayTeamId"] == "eintracht-frankfurt-ii"
@@ -160,7 +186,7 @@ def test_parse_dfb_datencenter_page_resolves_club_ids_via_plain_name_match():
 
 def test_parse_dfb_datencenter_page_captures_team_logos():
     html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
-    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id())
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id(), STADIUMS)
 
     assert events[0]["homeTeamLogo"].endswith("original_FC_Ingolstadt_Logo.jpg")
     assert events[0]["awayTeamLogo"].endswith("original_Turbine_Potsdam_Logo.jpg")
@@ -169,7 +195,7 @@ def test_parse_dfb_datencenter_page_captures_team_logos():
 def test_parse_dfb_datencenter_page_unresolved_club_name_gives_null_id_not_crash():
     html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
     # Empty name_to_id -- nothing resolves, but parsing must still succeed.
-    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, {})
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, {}, STADIUMS)
 
     assert len(events) == 3
     assert all(e["homeTeamId"] is None and e["awayTeamId"] is None for e in events)
@@ -211,10 +237,111 @@ def test_parse_dfb_datencenter_page_skips_one_malformed_match_without_dropping_t
         </div>
       </div>
     """
-    events = fetch_football.parse_dfb_datencenter_page(good_match + broken_match, LEAGUE_CFG, build_name_to_id())
+    events = fetch_football.parse_dfb_datencenter_page(
+        good_match + broken_match, LEAGUE_CFG, build_name_to_id(), STADIUMS
+    )
 
     assert len(events) == 1
     assert events[0]["id"] == "football-ffb2-1"
+
+
+# --- parse_dfb_datencenter_page(): location fallback via stadiums.json ---
+
+
+def test_parse_dfb_datencenter_page_location_from_home_team_stadium():
+    """3rd fixture match: home=VfL Bochum, which has a STADIUMS entry."""
+    html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id(), STADIUMS)
+
+    assert events[2]["homeTeamName"] == "VfL Bochum"
+    assert events[2]["location"] == "Lohrheidestadion, Bochum"
+
+
+def test_parse_dfb_datencenter_page_location_none_when_home_club_has_no_stadium_entry():
+    """1st fixture match: home=FC Ingolstadt, resolved to a club id but that
+    id has no entry in STADIUMS -- location stays None, not a KeyError."""
+    html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id(), STADIUMS)
+
+    assert events[0]["homeTeamName"] == "FC Ingolstadt"
+    assert events[0]["location"] is None
+
+
+def test_parse_dfb_datencenter_page_location_ignores_away_teams_stadium():
+    """A stadium entry for the *away* side must never leak into location --
+    only the home team hosts. Swap the roles: give Hertha (away in match 3)
+    a stadium entry the away side must not pick up."""
+    html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
+    stadiums = {"hertha-bsc": "Stadion auf dem Wurfplatz, Berlin"}
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, build_name_to_id(), stadiums)
+
+    assert events[2]["awayTeamName"] == "Hertha BSC"
+    assert events[2]["location"] is None
+
+
+def test_parse_dfb_datencenter_page_location_none_when_home_team_unresolved():
+    html_text = load_fixture("dfb_datencenter_ffb2_fragment.html")
+    events = fetch_football.parse_dfb_datencenter_page(html_text, LEAGUE_CFG, {}, STADIUMS)
+
+    assert all(e["location"] is None for e in events)
+
+
+# --- parse_dfb_datencenter_page() reused for a team-page shape (Regionalliga
+# Suedwest / Stuttgarter Kickers), not just a full-season overview page ----
+
+
+def test_parse_dfb_datencenter_page_works_for_a_single_team_page_too():
+    """Same function, different DFB Datencenter page shape: a team's own
+    page (".../teams/stuttgarter-kickers") instead of a full-season
+    overview -- verifies the function is genuinely reusable across both
+    ffb2 (full league) and Regionalliga Suedwest (single club) as intended,
+    not accidentally season-page-specific."""
+    html_text = load_fixture("dfb_datencenter_kickers_fragment.html")
+    league_cfg = {"id": "rlsw-kickers", "competition": "Regionalliga Südwest", "gender": "men"}
+    kickers_clubs = [{"id": "stuttgarter-kickers", "name": "Stuttgarter Kickers", "teams": {"men": {}}}]
+    _, name_to_id = common.build_club_indexes(kickers_clubs)
+    stadiums = {"stuttgarter-kickers": "GAZi-Stadion auf der Waldau, Stuttgart"}
+
+    events = fetch_football.parse_dfb_datencenter_page(html_text, league_cfg, name_to_id, stadiums)
+
+    assert [e["id"] for e in events] == ["football-rlsw-kickers-2426295", "football-rlsw-kickers-2426306"]
+    assert [e["round"] for e in events] == ["Spieltag 1", "Spieltag 2"]
+    # Match 1: Kickers at home -> their own stadium. Match 2: Kickers away
+    # (Eintracht Frankfurt II host) -> no stadium entry for the opponent,
+    # location stays None rather than guessing.
+    assert events[0]["location"] == "GAZi-Stadion auf der Waldau, Stuttgart"
+    assert events[1]["location"] is None
+    assert events[0]["homeTeamId"] == "stuttgarter-kickers"
+    assert events[1]["awayTeamId"] == "stuttgarter-kickers"
+
+
+def test_fetch_dfb_datencenter_entry_gender_scopes_stadiums_before_parsing(monkeypatch):
+    """End-to-end regression test for the venue leak found via the manual
+    stichprobe (Spieltag 2, Eintracht Frankfurt II - Stuttgarter Kickers):
+    a stadiums.json entry researched for ffb2's *women's* Eintracht Frankfurt
+    II must not surface in this *men's* Regionalliga Suedwest fixture just
+    because both happen to resolve to the same club id by name."""
+    monkeypatch.setattr(
+        fetch_football, "http_get_text", lambda url: load_fixture("dfb_datencenter_kickers_fragment.html")
+    )
+    league_cfg = {"id": "rlsw-kickers", "competition": "Regionalliga Südwest", "gender": "men"}
+    clubs = [
+        {"id": "stuttgarter-kickers", "name": "Stuttgarter Kickers", "teams": {"men": {}}},
+        {"id": "eintracht-frankfurt-ii", "name": "Eintracht Frankfurt II", "teams": {"women": {}}},
+    ]
+    _, name_to_id = common.build_club_indexes(clubs)
+    stadiums = {
+        "stuttgarter-kickers": "GAZi-Stadion auf der Waldau, Stuttgart",
+        "eintracht-frankfurt-ii": "Sportanlage Riederwald, Frankfurt am Main",  # the women's venue
+    }
+    primary_source = {"source": "dfb-datencenter", "url": "https://example.invalid/{season}-{seasonEnd}"}
+    now = datetime(2026, 8, 24, tzinfo=timezone.utc)
+
+    events = fetch_football.fetch_dfb_datencenter_entry(league_cfg, primary_source, now, clubs, name_to_id, stadiums)
+
+    assert events[1]["homeTeamName"] == "Eintracht Frankfurt II"
+    assert events[1]["location"] is None  # not the leaked women's-team venue
+    assert events[0]["location"] == "GAZi-Stadion auf der Waldau, Stuttgart"  # Kickers unaffected, has a men's team
 
 
 # --- fetch_dfb_datencenter_entry() / fetch_entry() dispatch ---------------
@@ -235,10 +362,24 @@ def test_fetch_dfb_datencenter_entry_builds_url_from_now_and_returns_events(monk
     }
     now = datetime(2026, 8, 24, tzinfo=timezone.utc)
 
-    events = fetch_football.fetch_dfb_datencenter_entry(LEAGUE_CFG, primary_source, now, CLUBS, build_name_to_id())
+    events = fetch_football.fetch_dfb_datencenter_entry(
+        LEAGUE_CFG, primary_source, now, CLUBS, build_name_to_id(), STADIUMS
+    )
 
     assert captured_urls == ["https://datencenter.dfb.de/competitions/2-frauen-bundesliga/seasons/2026-2027"]
     assert len(events) == 3
+
+
+def test_fetch_dfb_datencenter_entry_threads_stadiums_through_to_the_parser(monkeypatch):
+    monkeypatch.setattr(fetch_football, "http_get_text", lambda url: load_fixture("dfb_datencenter_ffb2_fragment.html"))
+    primary_source = {"source": "dfb-datencenter", "url": "https://example.invalid/{season}-{seasonEnd}"}
+    now = datetime(2026, 8, 24, tzinfo=timezone.utc)
+
+    events = fetch_football.fetch_dfb_datencenter_entry(
+        LEAGUE_CFG, primary_source, now, CLUBS, build_name_to_id(), STADIUMS
+    )
+
+    assert events[2]["location"] == "Lohrheidestadion, Bochum"
 
 
 def test_fetch_dfb_datencenter_entry_returns_none_on_http_error(monkeypatch):
@@ -249,7 +390,9 @@ def test_fetch_dfb_datencenter_entry_returns_none_on_http_error(monkeypatch):
     primary_source = {"source": "dfb-datencenter", "url": "https://example.invalid/{season}-{seasonEnd}"}
     now = datetime(2026, 8, 24, tzinfo=timezone.utc)
 
-    events = fetch_football.fetch_dfb_datencenter_entry(LEAGUE_CFG, primary_source, now, CLUBS, build_name_to_id())
+    events = fetch_football.fetch_dfb_datencenter_entry(
+        LEAGUE_CFG, primary_source, now, CLUBS, build_name_to_id(), STADIUMS
+    )
 
     assert events is None
 
@@ -259,14 +402,16 @@ def test_fetch_dfb_datencenter_entry_returns_none_when_page_has_no_matches(monke
     primary_source = {"source": "dfb-datencenter", "url": "https://example.invalid/{season}-{seasonEnd}"}
     now = datetime(2026, 8, 24, tzinfo=timezone.utc)
 
-    events = fetch_football.fetch_dfb_datencenter_entry(LEAGUE_CFG, primary_source, now, CLUBS, build_name_to_id())
+    events = fetch_football.fetch_dfb_datencenter_entry(
+        LEAGUE_CFG, primary_source, now, CLUBS, build_name_to_id(), STADIUMS
+    )
 
     assert events is None
 
 
 def test_fetch_entry_dfb_datencenter_source_never_touches_openligadb(monkeypatch):
-    """ffb2's primarySource is a full replacement, not a fallback-on-miss
-    like the Kickers path -- OpenLigaDB must never even be queried."""
+    """A primarySource league is a full replacement, not a fallback-on-miss
+    -- OpenLigaDB must never even be queried."""
 
     def boom(*args, **kwargs):
         raise AssertionError("OpenLigaDB must not be queried for a primarySource league")
@@ -284,7 +429,7 @@ def test_fetch_entry_dfb_datencenter_source_never_touches_openligadb(monkeypatch
     }
     now = datetime(2026, 8, 24, tzinfo=timezone.utc)
 
-    events = fetch_football.fetch_entry({}, [], league_cfg, now, CLUBS, build_name_to_id())
+    events = fetch_football.fetch_entry({}, [], league_cfg, now, CLUBS, build_name_to_id(), STADIUMS)
 
     assert len(events) == 3
 
@@ -297,6 +442,6 @@ def test_fetch_entry_without_primary_source_still_uses_openligadb_path(monkeypat
     league_cfg = {**LEAGUE_CFG, "id": "bl1", "leagueNameKeywords": [], "knownGap": None}
     now = datetime(2026, 8, 24, tzinfo=timezone.utc)
 
-    events = fetch_football.fetch_entry({}, [], league_cfg, now, CLUBS, build_name_to_id())
+    events = fetch_football.fetch_entry({}, [], league_cfg, now, CLUBS, build_name_to_id(), STADIUMS)
 
     assert events is None  # no candidates, no fallback configured -> None, not a crash
