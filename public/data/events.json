@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T12:48:51.891915+00:00",
+  "generatedAt": "2026-09-07T11:41:10.915611+00:00",
   "events": [
     {
       "id": "cycling-omloop-het-nieuwsblad-women-2026",
@@ -2143,7 +2143,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/155/original_VfR_Aalen.jpg?1493059515",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "cycling-tour-de-france-femmes-2026-etappe9",
@@ -2588,7 +2588,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "ksv-hessen-kassel",
       "awayTeamName": "Hessen Kassel",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/206/original_KSV_Hessen_Kassel.jpg?1493059533"
@@ -3039,7 +3039,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/169/original_Stuttgarter_Kickers.jpg?1493059520",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426320",
@@ -3275,7 +3275,7 @@
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": null,
-      "homeTeamName": "SSV Jeddeloh II",
+      "homeTeamName": "SSV Jeddeloh",
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Logo_SSV_Jeddeloh.svg",
       "awayTeamId": "1-fc-heidenheim-1846",
       "awayTeamName": "1. FC Heidenheim 1846",
@@ -4508,7 +4508,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "vfr-mannheim",
       "awayTeamName": "VfR Mannheim",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/021/902/original_500px-VfR_Mannheim.jpg?1493063780"
@@ -5084,7 +5084,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "tsv-steinbach-haiger",
       "awayTeamName": "TSV Steinbach Haiger",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/067/325/original_TSV_Steinbach.jpg?1493097180"
@@ -5679,7 +5679,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/198/original_Eintracht_Trier.jpg?1493059530",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426345",
@@ -5948,7 +5948,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "sv-sandhausen",
       "awayTeamName": "SV Sandhausen",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/152/original_SV_Sandhausen.jpg?1493059515"
@@ -7471,7 +7471,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/263/745/original_SG_Barockstadt_Fulda-Lehnerz.jpg?1656428341",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426363",
@@ -8076,7 +8076,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "eintracht-frankfurt-ii",
       "awayTeamName": "Eintracht Frankfurt II",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/117/original_Eintracht_Frankfurt.jpg?1493059503"
@@ -8159,7 +8159,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/200/976/original_FSV_Mainz_05_500x500.jpg?1560342690",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426378",
@@ -8732,7 +8732,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "sgv-heilbronn-freiberg",
       "awayTeamName": "SGV Heilbronn-Freiberg",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/335/757/original_sgv_heilbronn-freiberg.jpg?1783241135"
@@ -9487,7 +9487,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/200/original_FC_Homburg.jpg?1493059532",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426396",
@@ -10415,7 +10415,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/144/original_FC_Kaiserslautern.jpg?1493059510",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426407",
@@ -11010,6 +11010,262 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg"
     },
     {
+      "id": "football-dfb-pokal-men-87618",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "sg-sonnenhof-grossaspach",
+      "homeTeamName": "SG Sonnenhof Großaspach",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/8/86/SG_Sonnenhof_Gro%C3%9Faspach_logo.png",
+      "awayTeamId": "fc-augsburg",
+      "awayTeamName": "FC Augsburg",
+      "awayTeamLogo": "https://i.imgur.com/sdE62e2.png"
+    },
+    {
+      "id": "football-dfb-pokal-men-87619",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": null,
+      "homeTeamName": "SSV Jeddeloh",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Logo_SSV_Jeddeloh.svg",
+      "awayTeamId": "hertha-bsc",
+      "awayTeamName": "Hertha BSC",
+      "awayTeamLogo": "https://i.imgur.com/apFwbYZ.png"
+    },
+    {
+      "id": "football-dfb-pokal-men-87620",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "rot-weiss-essen",
+      "homeTeamName": "Rot-Weiss Essen",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Rot-Weiss_Essen.png",
+      "awayTeamId": "rb-leipzig",
+      "awayTeamName": "RB Leipzig",
+      "awayTeamLogo": "https://i.imgur.com/Rpwsjz1.png"
+    },
+    {
+      "id": "football-dfb-pokal-men-87621",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "1-fc-koeln",
+      "homeTeamName": "1. FC Köln",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg",
+      "awayTeamId": "1-fc-union-berlin",
+      "awayTeamName": "1. FC Union Berlin",
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg"
+    },
+    {
+      "id": "football-dfb-pokal-men-87622",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "dynamo-dresden",
+      "homeTeamName": "Dynamo Dresden",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_SG_Dynamo_Dresden_neu.svg/960px-Logo_SG_Dynamo_Dresden_neu.svg.png",
+      "awayTeamId": "fc-schalke-04",
+      "awayTeamName": "FC Schalke 04",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/9/97/FC_Schalke_04_Logo.png"
+    },
+    {
+      "id": "football-dfb-pokal-men-87623",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "borussia-dortmund",
+      "homeTeamName": "Borussia Dortmund",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/960px-Borussia_Dortmund_logo.svg.png",
+      "awayTeamId": "sv-werder-bremen",
+      "awayTeamName": "SV Werder Bremen",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg"
+    },
+    {
+      "id": "football-dfb-pokal-men-87624",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "vfl-bochum",
+      "homeTeamName": "VfL Bochum",
+      "homeTeamLogo": "https://i.imgur.com/5jy3Gfr.png",
+      "awayTeamId": "1-fsv-mainz-05",
+      "awayTeamName": "1. FSV Mainz 05",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+    },
+    {
+      "id": "football-dfb-pokal-men-87625",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "hamburger-sv",
+      "homeTeamName": "Hamburger SV",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg",
+      "awayTeamId": "eintracht-frankfurt",
+      "awayTeamName": "Eintracht Frankfurt",
+      "awayTeamLogo": "https://i.imgur.com/X8NFkOb.png"
+    },
+    {
+      "id": "football-dfb-pokal-men-87626",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "borussia-moenchengladbach",
+      "homeTeamName": "Borussia Mönchengladbach",
+      "homeTeamLogo": "https://i.imgur.com/KSIk0Eu.png",
+      "awayTeamId": "karlsruher-sc",
+      "awayTeamName": "Karlsruher SC",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Karlsruher_SC_Logo_2.svg"
+    },
+    {
+      "id": "football-dfb-pokal-men-87627",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "holstein-kiel",
+      "homeTeamName": "Holstein Kiel",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Holstein_Kiel_Logo.svg/330px-Holstein_Kiel_Logo.svg.png",
+      "awayTeamId": "tsg-1899-hoffenheim",
+      "awayTeamName": "TSG Hoffenheim",
+      "awayTeamLogo": "https://i.imgur.com/gF0PfEl.png"
+    },
+    {
+      "id": "football-dfb-pokal-men-87628",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "bayer-04-leverkusen",
+      "homeTeamName": "Bayer 04 Leverkusen",
+      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "awayTeamId": "1-fc-nuernberg",
+      "awayTeamName": "1. FC Nürnberg",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/fa/1._FC_Nürnberg_logo.svg"
+    },
+    {
+      "id": "football-dfb-pokal-men-87629",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "hannover-96",
+      "homeTeamName": "Hannover 96",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Hannover_96_Logo.svg",
+      "awayTeamId": "1-fc-kaiserslautern",
+      "awayTeamName": "1. FC Kaiserslautern",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Logo_1_FC_Kaiserslautern.svg"
+    },
+    {
+      "id": "football-dfb-pokal-men-87630",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "sc-paderborn-07",
+      "homeTeamName": "SC Paderborn 07",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/SC_Paderborn_07_Logo.svg",
+      "awayTeamId": "vfb-stuttgart",
+      "awayTeamName": "VfB Stuttgart",
+      "awayTeamLogo": "https://i.imgur.com/v0tkpNx.png"
+    },
+    {
+      "id": "football-dfb-pokal-men-87631",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "sc-freiburg",
+      "homeTeamName": "SC Freiburg",
+      "homeTeamLogo": "https://i.imgur.com/r3mvi0h.png",
+      "awayTeamId": "vfl-wolfsburg",
+      "awayTeamName": "VfL Wolfsburg",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/VfL_Wolfsburg_logo_2026.svg/960px-VfL_Wolfsburg_logo_2026.svg.png"
+    },
+    {
+      "id": "football-dfb-pokal-men-87632",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "sv-07-elversberg",
+      "homeTeamName": "SV 07 Elversberg",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/SV_Elversberg_Logo.svg/500px-SV_Elversberg_Logo.svg.png",
+      "awayTeamId": "sv-darmstadt-98",
+      "awayTeamName": "SV Darmstadt 98",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/e/e5/SV_Darmstadt_98_Logo.svg"
+    },
+    {
+      "id": "football-dfb-pokal-men-87633",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "2. Runde",
+      "start": "2026-10-27T14:30:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "fc-bayern-muenchen",
+      "homeTeamName": "FC Bayern München",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg",
+      "awayTeamId": "1-fc-magdeburg",
+      "awayTeamName": "1. FC Magdeburg",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/8/84/1._FC_Magdeburg.svg"
+    },
+    {
       "id": "football-bl3-84855",
       "sport": "football",
       "competition": "3. Liga",
@@ -11228,7 +11484,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "ssv-ulm-1846-fussball",
       "awayTeamName": "SSV Ulm 1846 Fussball",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/333/450/original_SSV_Ulm_Logo.jpg?1779887233"
@@ -11871,7 +12127,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/202/original_Kickers_Offenbach.jpg?1493059533",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426425",
@@ -12700,7 +12956,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "fc-astoria-walldorf",
       "awayTeamName": "FC-Astoria Walldorf",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/293/original_Astoria-Walldorf.jpg?1493060338"
@@ -13295,7 +13551,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/148/original_FSV_Frankfurt.jpg?1493059512",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426448",
@@ -13900,7 +14156,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "vfr-aalen",
       "awayTeamName": "VfR Aalen",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/155/original_VfR_Aalen.jpg?1493059515"
@@ -14591,7 +14847,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/206/original_KSV_Hessen_Kassel.jpg?1493059533",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426465",
@@ -20044,7 +20300,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "stuttgarter-kickers",
       "awayTeamName": "Stuttgarter Kickers",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/169/original_Stuttgarter_Kickers.jpg?1493059520"
@@ -20991,7 +21247,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/021/902/original_500px-VfR_Mannheim.jpg?1493063780",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-bl1-83354",
@@ -21999,7 +22255,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/067/325/original_TSV_Steinbach.jpg?1493097180",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426492",
@@ -22572,7 +22828,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "sv-eintracht-trier-05",
       "awayTeamName": "Eintracht Trier",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/198/original_Eintracht_Trier.jpg?1493059530"
@@ -23535,7 +23791,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/152/original_SV_Sandhausen.jpg?1493059515",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426508",
@@ -24236,7 +24492,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "sg-barockstadt-fulda-lehnerz",
       "awayTeamName": "SG Barockstadt Fulda-Lehnerz",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/263/745/original_SG_Barockstadt_Fulda-Lehnerz.jpg?1656428341"
@@ -24703,7 +24959,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/117/original_Eintracht_Frankfurt.jpg?1493059503",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426525",
@@ -25420,7 +25676,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "1-fsv-mainz-05-ii",
       "awayTeamName": "1. FSV Mainz 05 II",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/200/976/original_FSV_Mainz_05_500x500.jpg?1560342690"
@@ -26239,7 +26495,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/335/757/original_sgv_heilbronn-freiberg.jpg?1783241135",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426547",
@@ -26796,7 +27052,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "fc-08-homburg",
       "awayTeamName": "FC 08 Homburg",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/200/original_FC_Homburg.jpg?1493059532"
@@ -27468,7 +27724,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "1-fc-kaiserslautern-ii",
       "awayTeamName": "1. FC Kaiserslautern II",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/144/original_FC_Kaiserslautern.jpg?1493059510"
@@ -27711,7 +27967,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/333/450/original_SSV_Ulm_Logo.jpg?1779887233",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426569",
@@ -28060,7 +28316,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "kickers-offenbach",
       "awayTeamName": "Kickers Offenbach",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/202/original_Kickers_Offenbach.jpg?1493059533"
@@ -28831,7 +29087,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/293/original_Astoria-Walldorf.jpg?1493060338",
       "awayTeamId": "sc-freiburg-ii",
       "awayTeamName": "SC Freiburg II",
-      "awayTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg"
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539"
     },
     {
       "id": "football-rlsw-kickers-2426587",
@@ -29500,7 +29756,7 @@
       "location": "Dreisamstadion, Freiburg im Breisgau",
       "homeTeamId": "sc-freiburg-ii",
       "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://datencenter.dfb.de/toolbox/team_logo_80x80.jpg",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
       "awayTeamId": "fsv-frankfurt",
       "awayTeamName": "FSV Frankfurt",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/148/original_FSV_Frankfurt.jpg?1493059512"
