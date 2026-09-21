@@ -94,7 +94,7 @@
       "homeTeamLogo": "https://i.imgur.com/gF0PfEl.png",
       "awayTeamId": null,
       "awayTeamName": "Olympique Lyon",
-      "awayTeamLogo": "http://img.uefa.com/imgml/TP/teams/logos/32x32/5312.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f1/Olympique_Lyon.svg"
     },
     {
       "id": "football-uel-87753",
@@ -251,11 +251,11 @@
       "location": "Groupama Stadium, Lyon",
       "homeTeamId": null,
       "homeTeamName": "Olympique Lyon",
-      "homeTeamLogo": "http://img.uefa.com/imgml/TP/teams/logos/32x32/5312.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f1/Olympique_Lyon.svg",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen",
       "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
     }
   ],
-  "lastChecked": "2026-09-14T11:55:16.363078+00:00"
+  "lastChecked": "2026-09-21T12:05:55.537769+00:00"
 }

@@ -1041,22 +1041,6 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/SV_Meppen_Logo_2022.svg/250px-SV_Meppen_Logo_2022.svg.png"
     },
     {
-      "id": "football-bl3-84813",
-      "sport": "football",
-      "competition": "3. Liga",
-      "gender": "men",
-      "round": "Spieltag 7",
-      "start": "2026-09-19T12:00:00Z",
-      "timeConfirmed": true,
-      "location": null,
-      "homeTeamId": "tsv-havelse",
-      "homeTeamName": "TSV Havelse",
-      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/TSV_Havelse_logo.svg/120px-TSV_Havelse_logo.svg.png",
-      "awayTeamId": "fortuna-koeln",
-      "awayTeamName": "Fortuna Köln",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/SC_Fortuna_Koeln_Logo_2013–2019%2C_2026–.svg/250px-SC_Fortuna_Koeln_Logo_2013–2019%2C_2026–.svg.png"
-    },
-    {
       "id": "football-bl3-84814",
       "sport": "football",
       "competition": "3. Liga",
@@ -1119,6 +1103,22 @@
       "awayTeamId": "msv-duisburg",
       "awayTeamName": "MSV Duisburg",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/en/c/c8/Msv_duisburg%28new%29.svg"
+    },
+    {
+      "id": "football-bl3-84813",
+      "sport": "football",
+      "competition": "3. Liga",
+      "gender": "men",
+      "round": "Spieltag 7",
+      "start": "2026-09-25T17:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "tsv-havelse",
+      "homeTeamName": "TSV Havelse",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/TSV_Havelse_logo.svg/120px-TSV_Havelse_logo.svg.png",
+      "awayTeamId": "fortuna-koeln",
+      "awayTeamName": "Fortuna Köln",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/SC_Fortuna_Koeln_Logo_2013–2019%2C_2026–.svg/250px-SC_Fortuna_Koeln_Logo_2013–2019%2C_2026–.svg.png"
     },
     {
       "id": "football-bl3-84815",
@@ -6081,5 +6081,5 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/7/7e/SC_Preussen_Muenster_Logo_2018.svg"
     }
   ],
-  "lastChecked": "2026-09-14T11:55:16.363078+00:00"
+  "lastChecked": "2026-09-21T12:05:55.537769+00:00"
 }

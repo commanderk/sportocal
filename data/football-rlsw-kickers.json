@@ -1281,38 +1281,6 @@
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/200/976/original_FSV_Mainz_05_500x500.jpg?1560342690"
     },
     {
-      "id": "football-rlsw-kickers-2426371",
-      "sport": "football",
-      "competition": "Regionalliga Südwest",
-      "gender": "men",
-      "round": "Spieltag 9",
-      "start": "2026-09-27T12:00:00Z",
-      "timeConfirmed": true,
-      "location": "Dreisamstadion, Freiburg im Breisgau",
-      "homeTeamId": "sc-freiburg-ii",
-      "homeTeamName": "SC Freiburg II",
-      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/224/original_sc-freiburg.jpg?1493059539",
-      "awayTeamId": "eintracht-frankfurt-ii",
-      "awayTeamName": "Eintracht Frankfurt II",
-      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/117/original_Eintracht_Frankfurt.jpg?1493059503"
-    },
-    {
-      "id": "football-rlsw-kickers-2426377",
-      "sport": "football",
-      "competition": "Regionalliga Südwest",
-      "gender": "men",
-      "round": "Spieltag 10",
-      "start": "2026-10-02T17:00:00Z",
-      "timeConfirmed": true,
-      "location": "maxworx Sportpark, Dreieich",
-      "homeTeamId": "eintracht-frankfurt-ii",
-      "homeTeamName": "Eintracht Frankfurt II",
-      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/117/original_Eintracht_Frankfurt.jpg?1493059503",
-      "awayTeamId": "vfr-mannheim",
-      "awayTeamName": "VfR Mannheim",
-      "awayTeamLogo": "https://assets.dfb.de/uploads/000/021/902/original_500px-VfR_Mannheim.jpg?1493063780"
-    },
-    {
       "id": "football-rlsw-kickers-2426380",
       "sport": "football",
       "competition": "Regionalliga Südwest",
@@ -4897,5 +4865,5 @@
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/202/original_Kickers_Offenbach.jpg?1493059533"
     }
   ],
-  "lastChecked": "2026-09-14T11:55:16.363078+00:00"
+  "lastChecked": "2026-09-21T12:05:55.537769+00:00"
 }
