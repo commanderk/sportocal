@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T13:43:24.707376+00:00",
+  "generatedAt": "2026-10-12T14:32:11.603043+00:00",
   "events": [
     {
       "id": "cycling-omloop-het-nieuwsblad-women-2026",
@@ -12018,6 +12018,22 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Fortuna_D%C3%BCsseldorf.svg/960px-Fortuna_D%C3%BCsseldorf.svg.png"
     },
     {
+      "id": "football-ffb2-2424635",
+      "sport": "football",
+      "competition": "2. Frauen-Bundesliga",
+      "gender": "women",
+      "round": "Spieltag 11",
+      "start": "2026-11-07T13:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "1-fc-koeln-ii",
+      "homeTeamName": "1. FC Köln II",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/194/original_fc-koeln.jpg?1493059529",
+      "awayTeamId": "borussia-moenchengladbach",
+      "awayTeamName": "Borussia Mönchengladbach",
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/191/original_borussia-moenchengladbach.jpg?1493059528"
+    },
+    {
       "id": "football-rlsw-kickers-2426422",
       "sport": "football",
       "competition": "Regionalliga Südwest",
@@ -12416,22 +12432,6 @@
       "awayTeamId": "eintracht-frankfurt-ii",
       "awayTeamName": "Eintracht Frankfurt II",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/117/original_Eintracht_Frankfurt.jpg?1493059503"
-    },
-    {
-      "id": "football-ffb2-2424635",
-      "sport": "football",
-      "competition": "2. Frauen-Bundesliga",
-      "gender": "women",
-      "round": "Spieltag 11",
-      "start": "2026-11-08T13:00:00Z",
-      "timeConfirmed": true,
-      "location": null,
-      "homeTeamId": "1-fc-koeln-ii",
-      "homeTeamName": "1. FC Köln II",
-      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/194/original_fc-koeln.jpg?1493059529",
-      "awayTeamId": "borussia-moenchengladbach",
-      "awayTeamName": "Borussia Mönchengladbach",
-      "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/191/original_borussia-moenchengladbach.jpg?1493059528"
     },
     {
       "id": "football-bl1-83235",
@@ -13586,22 +13586,6 @@
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/112/073/original_carl-zeiss-jena.jpg?1493131045"
     },
     {
-      "id": "football-ffb2-2424620",
-      "sport": "football",
-      "competition": "2. Frauen-Bundesliga",
-      "gender": "women",
-      "round": "Spieltag 13",
-      "start": "2026-11-22T13:00:00Z",
-      "timeConfirmed": true,
-      "location": null,
-      "homeTeamId": "1-fc-koeln-ii",
-      "homeTeamName": "1. FC Köln II",
-      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/194/original_fc-koeln.jpg?1493059529",
-      "awayTeamId": "sgs-essen",
-      "awayTeamName": "SGS Essen",
-      "awayTeamLogo": "https://assets.dfb.de/uploads/000/300/939/original_SGS_Essen_500x500_2024.jpg?1712667234"
-    },
-    {
       "id": "football-ffb2-2424621",
       "sport": "football",
       "competition": "2. Frauen-Bundesliga",
@@ -13776,6 +13760,22 @@
       "awayTeamId": "hamburger-sv",
       "awayTeamName": "Hamburger SV",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg"
+    },
+    {
+      "id": "football-ffb2-2424620",
+      "sport": "football",
+      "competition": "2. Frauen-Bundesliga",
+      "gender": "women",
+      "round": "Spieltag 13",
+      "start": "2026-11-22T18:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "1-fc-koeln-ii",
+      "homeTeamName": "1. FC Köln II",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/194/original_fc-koeln.jpg?1493059529",
+      "awayTeamId": "sgs-essen",
+      "awayTeamName": "SGS Essen",
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/300/939/original_SGS_Essen_500x500_2024.jpg?1712667234"
     },
     {
       "id": "football-bl3-84877",
