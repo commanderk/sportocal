@@ -78,7 +78,7 @@
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/thumb/3/3d/Logo_SV_Wehen_Wiesbaden.svg/250px-Logo_SV_Wehen_Wiesbaden.svg.png",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-dfb-pokal-men-81844",
@@ -731,7 +731,7 @@
       "location": null,
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "1-fc-nuernberg",
       "awayTeamName": "1. FC Nürnberg",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/fa/1._FC_Nürnberg_logo.svg"
@@ -769,5 +769,5 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/8/84/1._FC_Magdeburg.svg"
     }
   ],
-  "lastChecked": "2026-10-12T14:31:42.043380+00:00"
+  "lastChecked": "2026-10-19T12:14:45.679629+00:00"
 }
