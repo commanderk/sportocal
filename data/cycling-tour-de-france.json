@@ -314,7 +314,322 @@
         "type": "Flat stage"
       },
       "gender": "men"
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe1",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 1",
+      "start": "2027-07-02",
+      "timeConfirmed": false,
+      "location": "Edinburgh (Scotland,UK) → Carlisle (England,UK)",
+      "route": {
+        "start": "Edinburgh (Scotland,UK)",
+        "finish": "Carlisle (England,UK)",
+        "type": "Flat"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe2",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 2",
+      "start": "2027-07-03",
+      "timeConfirmed": false,
+      "location": "Keswick (England,UK) → Liverpool (England,UK)",
+      "route": {
+        "start": "Keswick (England,UK)",
+        "finish": "Liverpool (England,UK)",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe3",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 3",
+      "start": "2027-07-04",
+      "timeConfirmed": false,
+      "location": "Welshpool (Wales,UK) → Cardiff (Wales,UK)",
+      "route": {
+        "start": "Welshpool (Wales,UK)",
+        "finish": "Cardiff (Wales,UK)",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe4",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 4",
+      "start": "2027-07-06",
+      "timeConfirmed": false,
+      "location": "Cherbourg-en-Cotentin → Cherbourg-en-Cotentin",
+      "route": {
+        "start": "Cherbourg-en-Cotentin",
+        "finish": "Cherbourg-en-Cotentin",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe5",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 5",
+      "start": "2027-07-07",
+      "timeConfirmed": false,
+      "location": "Pontorson → Plumelec",
+      "route": {
+        "start": "Pontorson",
+        "finish": "Plumelec",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe6",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 6",
+      "start": "2027-07-08",
+      "timeConfirmed": false,
+      "location": "Vannes → Angers",
+      "route": {
+        "start": "Vannes",
+        "finish": "Angers",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe7",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 7",
+      "start": "2027-07-09",
+      "timeConfirmed": false,
+      "location": "Blois → Chambord",
+      "route": {
+        "start": "Blois",
+        "finish": "Chambord",
+        "type": "Individual time trial"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe8",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 8",
+      "start": "2027-07-10",
+      "timeConfirmed": false,
+      "location": "Bourges → Le Creusot",
+      "route": {
+        "start": "Bourges",
+        "finish": "Le Creusot",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe9",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 9",
+      "start": "2027-07-11",
+      "timeConfirmed": false,
+      "location": "Villars-les-Dombes Parc des Oiseaux → Grand Colombier",
+      "route": {
+        "start": "Villars-les-Dombes Parc des Oiseaux",
+        "finish": "Grand Colombier",
+        "type": "Mountain"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe10",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 10",
+      "start": "2027-07-13",
+      "timeConfirmed": false,
+      "location": "Annecy → Sallanches",
+      "route": {
+        "start": "Annecy",
+        "finish": "Sallanches",
+        "type": "Mountain"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe11",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 11",
+      "start": "2027-07-14",
+      "timeConfirmed": false,
+      "location": "Cluses → Les Saisies",
+      "route": {
+        "start": "Cluses",
+        "finish": "Les Saisies",
+        "type": "Mountain"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe12",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 12",
+      "start": "2027-07-15",
+      "timeConfirmed": false,
+      "location": "Chambéry → Valence",
+      "route": {
+        "start": "Chambéry",
+        "finish": "Valence",
+        "type": "Flat"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe13",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 13",
+      "start": "2027-07-16",
+      "timeConfirmed": false,
+      "location": "Aubenas → Montpellier",
+      "route": {
+        "start": "Aubenas",
+        "finish": "Montpellier",
+        "type": "Flat"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe14",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 14",
+      "start": "2027-07-17",
+      "timeConfirmed": false,
+      "location": "Montpellier → Mende",
+      "route": {
+        "start": "Montpellier",
+        "finish": "Mende",
+        "type": "Mountain"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe15",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 15",
+      "start": "2027-07-18",
+      "timeConfirmed": false,
+      "location": "Rodez → Albi",
+      "route": {
+        "start": "Rodez",
+        "finish": "Albi",
+        "type": "Hilly"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe16",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 16",
+      "start": "2027-07-20",
+      "timeConfirmed": false,
+      "location": "Toulouse → Toulouse",
+      "route": {
+        "start": "Toulouse",
+        "finish": "Toulouse",
+        "type": "Individual time trial"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe17",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 17",
+      "start": "2027-07-21",
+      "timeConfirmed": false,
+      "location": "Muret → Pau",
+      "route": {
+        "start": "Muret",
+        "finish": "Pau",
+        "type": "Flat"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe18",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 18",
+      "start": "2027-07-22",
+      "timeConfirmed": false,
+      "location": "Pau → Saint-Lary-Soulan Col du Portet",
+      "route": {
+        "start": "Pau",
+        "finish": "Saint-Lary-Soulan Col du Portet",
+        "type": "Mountain"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe19",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 19",
+      "start": "2027-07-23",
+      "timeConfirmed": false,
+      "location": "Hasparren → Laruns",
+      "route": {
+        "start": "Hasparren",
+        "finish": "Laruns",
+        "type": "Mountain"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe20",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 20",
+      "start": "2027-07-24",
+      "timeConfirmed": false,
+      "location": "Maubourguet → Libourne",
+      "route": {
+        "start": "Maubourguet",
+        "finish": "Libourne",
+        "type": "Flat"
+      }
+    },
+    {
+      "id": "cycling-tour-de-france-2027-etappe21",
+      "sport": "cycling",
+      "competition": "Tour de France",
+      "gender": "men",
+      "round": "Etappe 21",
+      "start": "2027-07-25",
+      "timeConfirmed": false,
+      "location": "Saint-Quentin-en-Yvelines → Paris (Champs-Élysées)",
+      "route": {
+        "start": "Saint-Quentin-en-Yvelines",
+        "finish": "Paris (Champs-Élysées)",
+        "type": "Flat"
+      }
     }
   ],
-  "lastChecked": "2026-07-25T09:51:16.763566+00:00"
+  "lastChecked": "2026-10-26T12:19:52.426323+00:00"
 }
