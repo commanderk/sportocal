@@ -39,6 +39,12 @@ body {
   margin: 0;
 }
 
+/* Wordmark as a back-link on the legal pages -- looks like the plain h1. */
+a.wordmark {
+  text-decoration: none;
+  color: inherit;
+}
+
 .badge {
   font-weight: 700;
   font-size: 11px;
@@ -590,6 +596,18 @@ body {
   width: 3px;
   height: 20px;
   flex: none;
+}
+
+.preview-event-bar--red {
+  background: #d92b1c;
+}
+
+.preview-event-bar--yellow {
+  background: #e8b400;
+}
+
+.preview-event-bar--blue {
+  background: #0f5fd9;
 }
 
 .preview-event-time {
