@@ -240,22 +240,25 @@ def test_build_calendar_name_full_scope_league_still_collapses_to_group_label():
     assert name == "Sportocal – Bundesliga (Männer), FCB"
 
 
-def test_build_calendar_name_club_filter_league_expands_to_member_clubs_not_group_label():
-    """Regionalliga Südwest only has Stuttgarter Kickers tracked in
-    clubs.json (~18 real clubs exist) -- a league:rlsw-kickers:men token
-    (which the frontend no longer produces for this league, but could still
-    arrive via an old/hand-crafted URL, see league_group_label()'s
-    docstring) must never render as "Regionalliga Südwest (Männer)", which
-    would falsely claim the whole league was selected. It should list the
-    actually-tracked member club(s) by name instead, same as if they'd been
-    selected individually."""
-    league = {"id": "rlsw-kickers", "competition": "Regionalliga Südwest", "gender": "men", "scope": "club-filter"}
-    kickers = _club("stuttgarter-kickers", "Kickers", teams={"men": {"league": "Regionalliga Südwest"}})
-    clubs_by_id = _clubs_by_id(kickers)
-    name = calendar_ics.build_calendar_name(set(), {"rlsw-kickers:men"}, set(), clubs_by_id, [league])
-    assert name == "Sportocal – Kickers"
+def test_build_calendar_name_club_filter_league_expands_to_member_clubs_not_group_label(
+    club_filter_league, club_filter_club
+):
+    """A scope != "full" league (clubs.json only tracks part of its real
+    roster -- historically Regionalliga Südwest with only Stuttgarter
+    Kickers, fully covered since #12, hence the synthetic fixture league
+    from conftest.py) must never render as "<Liga> (Männer)" for a
+    league:<id>:<gender> token (which the frontend never produces for such a
+    league, but could still arrive via an old/hand-crafted URL, see
+    league_group_label()'s docstring) -- that would falsely claim the whole
+    league was selected. It should list the actually-tracked member club(s)
+    by name instead, same as if they'd been selected individually."""
+    clubs_by_id = _clubs_by_id(club_filter_club)
+    name = calendar_ics.build_calendar_name(
+        set(), {"test-teilabdeckung:men"}, set(), clubs_by_id, [club_filter_league]
+    )
+    assert name == "Sportocal – Test-Verein"
     assert "Alle Vereine" not in name
-    assert "Regionalliga" not in name
+    assert "Testliga" not in name
 
 
 def test_build_calendar_name_club_filter_league_defaults_scope_to_full_when_absent():
@@ -274,3 +277,48 @@ def test_build_calendar_name_unresolvable_keys_are_ignored_not_counted():
         {("fc-bayern-muenchen", "men")}, {"unknown-league-key"}, {"unknown-tier-men"}, clubs_by_id, []
     )
     assert name == "Sportocal – FCB"
+
+
+def test_build_response_body_club_filter_league_token_end_to_end(monkeypatch, club_filter_league, club_filter_club):
+    """Full request path for a league token of a scope != "full" league:
+    the tracked member club's fixtures (incl. against an untracked opponent
+    that only exists as a team name) are included, unrelated fixtures are
+    not, and the calendar name lists the club rather than the league."""
+    config = {"football": {"leagues": [club_filter_league]}, "cycling": {"races": []}}
+    events = [
+        {
+            "id": "t1",
+            "sport": "football",
+            "competition": "Testliga Teilabdeckung",
+            "gender": "men",
+            "homeTeamId": "test-verein",
+            "homeTeamName": "Test-Verein",
+            "awayTeamId": None,
+            "awayTeamName": "Untracked FC",
+            "start": "2026-08-01T13:00:00Z",
+            "timeConfirmed": True,
+        },
+        {
+            "id": "t2",
+            "sport": "football",
+            "competition": "Testliga Teilabdeckung",
+            "gender": "men",
+            "homeTeamId": None,
+            "homeTeamName": "Untracked FC",
+            "awayTeamId": None,
+            "awayTeamName": "Other Untracked",
+            "start": "2026-08-02T13:00:00Z",
+            "timeConfirmed": True,
+        },
+    ]
+
+    monkeypatch.setattr(calendar_ics, "load_clubs", lambda: [club_filter_club])
+    monkeypatch.setattr(calendar_ics, "load_config", lambda: config)
+    monkeypatch.setattr(calendar_ics, "load_all_events", lambda: events)
+
+    body = calendar_ics.build_response_body("league:test-teilabdeckung:men").decode("utf-8")
+
+    assert "UID:t1@sportocal" in body
+    assert "UID:t2@sportocal" not in body
+    assert "X-WR-CALNAME:Sportocal – Test-Verein\r\n" in body
+    assert "Testliga Teilabdeckung (Männer)" not in body

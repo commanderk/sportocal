@@ -1,19 +1,51 @@
 // Regression coverage for a bug where a league with only partial club
-// coverage in clubs.json (scope !== "full", e.g. Regionalliga Südwest --
-// only Stuttgarter Kickers of ~18 real clubs is tracked) could be
-// misrepresented as "(Alle Vereine)" selected: the collapse logic compared
-// the current selection against the *tracked* roster, not the league's real
-// size, so selecting the one available club looked identical to selecting
-// "the whole league". Fixed by having both the dropdown's master checkbox
+// coverage in clubs.json (scope !== "full") could be misrepresented as
+// "(Alle Vereine)" selected: the collapse logic compared the current
+// selection against the *tracked* roster, not the league's real size, so
+// selecting the one available club looked identical to selecting "the whole
+// league". Fixed by having both the dropdown's master checkbox
 // (renderFootballCombo()) and the auto-collapse logic
 // (consolidateFullyCoveredLeagueGroups()) in app.js skip any league whose
 // `scope` isn't "full".
+//
+// History: the bug surfaced with Regionalliga Südwest, where only Stuttgarter
+// Kickers was tracked. Since #12 that league is fully covered (all 18 clubs,
+// scope: "full"), and no real league is partial anymore -- so these tests
+// inject a synthetic partial league ("Testliga Teilabdeckung", one tracked
+// club "Test-Verein") into the real leagues.json/clubs.json responses via
+// page.route(), keeping the scope !== "full" code paths covered independent
+// of the live data. No fixture files are added under public/.
 import { test, expect } from "@playwright/test";
 
-const INCOMPLETE_LEAGUE_LABEL = "Regionalliga Südwest";
+const FIXTURE_LEAGUE = {
+  id: "test-teilabdeckung",
+  competition: "Testliga Teilabdeckung",
+  gender: "men",
+  scope: "club-filter",
+};
+const FIXTURE_CLUB = {
+  id: "test-verein",
+  name: "Test-Verein",
+  shortName: "Test-Verein",
+  colorHex: "#777777",
+  teams: { men: { league: FIXTURE_LEAGUE.competition } },
+};
+const INCOMPLETE_LEAGUE_LABEL = "Testliga Teilabdeckung Männer";
 const FULL_LEAGUE_LABEL = "1. Bundesliga Männer";
 
+// Serves the real file with `extra` appended -- app.js loads both via
+// fetch("data/<name>.json", { cache: "no-store" }).
+async function appendToJsonResponse(page, name, extra) {
+  await page.route(`**/data/${name}.json`, async (route) => {
+    const response = await route.fetch();
+    const json = await response.json();
+    await route.fulfill({ response, json: [...json, extra] });
+  });
+}
+
 test.beforeEach(async ({ page }) => {
+  await appendToJsonResponse(page, "leagues", FIXTURE_LEAGUE);
+  await appendToJsonResponse(page, "clubs", FIXTURE_CLUB);
   await page.goto("/index.html");
   await page.locator("#football-combo-trigger").click();
 });
@@ -41,14 +73,14 @@ test("a scope !== \"full\" league shows no \"Alle Vereine\" master checkbox, onl
     }
     return out;
   }, INCOMPLETE_LEAGUE_LABEL);
-  expect(rows).toEqual(["Stuttgarter Kickers"]);
+  expect(rows).toEqual([FIXTURE_CLUB.name]);
 });
 
 test("selecting the only tracked club of a scope !== \"full\" league stays an individual chip", async ({ page }) => {
-  const row = page.locator(".club-row", { hasText: "Stuttgarter Kickers" });
+  const row = page.locator(".club-row", { hasText: FIXTURE_CLUB.name });
   await row.locator('input[type="checkbox"]').check();
 
-  await expect(page.locator("#football-chips .chip", { hasText: "Stuttgarter Kickers" })).toBeVisible();
+  await expect(page.locator("#football-chips .chip", { hasText: FIXTURE_CLUB.name })).toBeVisible();
   await expect(page.locator("#football-chips .chip", { hasText: "Alle Vereine" })).toHaveCount(0);
   await expect(page.locator("#football-chips .chip", { hasText: INCOMPLETE_LEAGUE_LABEL })).toHaveCount(0);
 });
