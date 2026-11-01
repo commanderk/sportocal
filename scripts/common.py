@@ -284,6 +284,10 @@ def fold_line(line: str) -> str:
 
 
 def escape_text(value: str) -> str:
+    # Scraped text may carry CRLF/bare CR -- normalize to \n first so no raw
+    # CR survives into a content line (it would end the line early, letting
+    # the rest be read as an injected property).
+    value = value.replace("\r\n", "\n").replace("\r", "\n")
     return value.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
 
 
