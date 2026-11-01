@@ -103,3 +103,72 @@ Unverändert gegenüber `main` (verifiziert per `git diff`): `data/`, `public/da
 5. **Token-Limit in der API** (optional, s. Niedrig).
 6. **Dependabot** für `github-actions` (und ggf. `npm`/`uv`) aktivieren, damit SHA-Pins und Lockfiles nicht wieder wochenlang veralten.
 7. **E2E in CI?** Aktuell laufen die Playwright-Tests nur lokal. Ein CI-Job würde veraltete Tests wie in Punkt 1 früher sichtbar machen.
+
+## 5. Folgerunde
+
+Bezieht sich auf die Punkte aus Abschnitt 4. Ein Commit pro Punkt, Punkt 2 hat zwei Stufen und damit zwei Commits. Weiterhin nicht gepusht.
+
+| Punkt | umgesetzt | Commit |
+|---|---|---|
+| 1 – E2E-Test auf Fixture-Liga | ja | `caf1d49` |
+| 2a – Inline-Styles → `style.css` | ja | `cb54035` |
+| 2b – Security-Header / CSP Report-Only | ja | `d448726` |
+| 3 – `.gitignore` | ja | `46c5ff6` |
+| 4 – `.python-version` | ja | `569d6f2` |
+| 5 – Token-Limit | entfällt | – |
+| 6 – Dependabot | ja | `ccde7d4` |
+| 7 – E2E in CI | ja | `9f63d87` |
+
+### Punkt 1 – Fixture-Liga
+- **E2E:** `tests-e2e/incomplete-league.spec.js` fängt `**/data/leagues.json` und `**/data/clubs.json` per `page.route()` ab (Pfade verifiziert: `fetchJson("data/…json")` in `app.js`, `fetch(path, { cache: "no-store" })`). Die Spec lädt die echten Antworten und hängt die Liga „Testliga Teilabdeckung“ (`id: test-teilabdeckung`, `scope: "club-filter"`) mit genau einem Verein „Test-Verein“ an. Unter `public/` liegen keine Fixture-Dateien. Alle drei Testfälle sind erhalten, (c) prüft weiterhin die echte „1. Bundesliga Männer“. Der Header-Kommentar nennt Regionalliga Südwest als Historie.
+- **Backend:** `build_calendar_name()` war mit Inline-Daten getestet, aber unter der echten ID `rlsw-kickers`/„Regionalliga Südwest“. Für `filter_events()`/`build_response_body()` mit einer `club-filter`-Liga gab es keinen Test. Neu: Fixtures `club_filter_league`/`club_filter_club` in `tests/conftest.py`, der bestehende Test ist darauf umgestellt, dazu ein End-to-End-Test über `build_response_body()` (Spiel des getrackten Vereins gegen einen ungetrackten Gegner ist drin, fremde Spiele nicht; Kalendername „Sportocal – Test-Verein“ statt „Testliga Teilabdeckung (Männer)“).
+- **Gegenprobe (Mutation):** Mit deaktivierten `scope`-Prüfungen in `app.js` schlagen E2E (a) und (b) fehl. Ohne den `scope`-Zweig in `build_calendar_name()` schlagen beide Backend-Tests fehl. Die Tests decken die Pfade also tatsächlich ab.
+
+### Punkt 2 – Inline-Styles & Header
+- **Stufe 1:** `a.wordmark { text-decoration: none; color: inherit; }` sowie `.preview-event-bar--red/--yellow/--blue`. Full-Page-Screenshots von index/impressum/datenschutz sind vorher/nachher **byte-identisch**. Die Preview-Balken sind initial nicht sichtbar, deshalb habe ich zusätzlich die berechneten Farben geprüft (rgb(217,43,28) / (232,180,0) / (15,95,217) = Originalwerte). `grep`: kein `style=`, kein Inline-`<script>`, keine `on*=`-Handler in `public/*.html`.
+- **Stufe 2:** Header wie vorgegeben, `Permissions-Policy` ohne `interest-cohort`, CSP nur als **`Content-Security-Policy-Report-Only`**.
+- **Lokal simuliert, nicht mit `vercel dev`** (Vercel CLI nicht installiert): Ein Python-Server hat `public/` ausgeliefert, den `headers`-Block aus `vercel.json` angewendet und `/api/calendar.ics` an die echte WSGI-App geleitet.
+  - `/api/calendar.ics`: `Content-Type: text/calendar; charset=utf-8`, `Content-Disposition` und `Cache-Control` unverändert, die neuen Header kommen nur hinzu.
+  - Der `headers`-Block setzt selbst keinen `Content-Type`. Den Typ von `/kalender.ics` bestimmt weiterhin Vercels Static-Serving (lokal kam er nur vom Python-Mimetype, das ist **nicht** aussagekräftig für Vercel).
+  - CSP im Chromium: index (inkl. Combo öffnen, Club und Liga auswählen, alle Abo-App-Tabs durchklicken), impressum, datenschutz → **0 Verstöße** (Konsole + `securitypolicyviolation`-Events). Kontrollprobe: Ein injiziertes Inline-`style` und `<script>` wird gemeldet, der Mechanismus greift also. `element.style.*` aus `app.js` (CSSOM) fällt nicht unter `style-src`.
+
+### Punkt 3 – `.gitignore`
+Nur `.claude/settings.local.json`. Laut `git check-ignore` ist die Datei ignoriert, andere Pfade unter `.claude/` nicht.
+
+### Punkt 4 – `.python-version`
+Inhalt `3.12`. Es gibt keinen Widerspruch: `vercel.json` hat keine Runtime-Angabe, `pyproject.toml`/`uv.lock` behalten `requires-python = ">=3.12"`, `uv lock --check` ist OK.
+
+### Punkt 6 – Dependabot
+`github-actions` und `npm`, jeweils `/`, `monthly`, eine Gruppe (`patterns: ["*"]`) pro Ecosystem, Prefix `chore(deps)`, kein uv/pip. Schema-validiert (`check-jsonschema`, `vendor.dependabot`). Alle vier `uses:` haben das Format `<40-stellige SHA> # vX.Y.Z`, das Dependabot erkennt; es aktualisiert SHA und Kommentar gemeinsam.
+Hinweis: `groups` gilt nur für *Version*-Updates. Dependabot-*Security*-Updates (falls im Repo aktiviert) kommen weiterhin als einzelne PRs, außer man ergänzt `applies-to: security-updates`.
+
+### Punkt 7 – E2E in CI
+- Neuer Job `e2e` in `test.yml`: Checkout ohne Credentials, `actions/setup-node` **v7.1.0** (neu, Node 24), `npm ci`, `npx playwright install --with-deps chromium`, `npx playwright test`, bei Fehlschlag `actions/upload-artifact` **v7.0.2** mit `playwright-report/`, `retention-days: 7`. Alles ist SHA-gepinnt. `permissions: contents: read` steht auf Workflow-Ebene und gilt für beide Jobs.
+- Breaking Changes geprüft: setup-node v7 (ESM, geändertes `NODE_AUTH_TOKEN`-Verhalten, nicht genutzt), upload-artifact v7 (neuer optionaler `archive`-Input). Nichts davon betrifft uns.
+- `playwright.config.js`: `retries`/`workers` wie vorgegeben. **Zusätzlich** (über die Vorgabe hinaus, bitte prüfen):
+  - auf CI ein HTML-Reporter, weil der CI-Default-Reporter `dot` keinen `playwright-report/` schreibt und der Artifact-Upload sonst leer wäre;
+  - `trace: "on-first-retry"`, damit der Report beim Retry einen Trace enthält.
+  - Lokal ändert sich dadurch nichts (Reporter `list` wie bisher; Traces entstehen nur bei Retries, lokal ist `retries` 0).
+- Lokal mit `CI=1` ausprobiert: grün 5/5. Mit absichtlich gebrochenem Assert gibt es einen Retry, Trace und HTML-Report entstehen. Den Workflow selbst auf GitHub konnte ich nicht ausführen (nicht gepusht).
+- Kein Browser-/npm-Cache: `--with-deps` installiert die System-Pakete ohnehin bei jedem Lauf, und `npm ci` mit 4 Paketen ist schnell. Der Nutzen wäre gering, das Risiko veralteter Caches nicht.
+- actionlint 1.7.12 **inkl. shellcheck**: 0 Fehler. Im ersten Lauf war shellcheck lokal nicht vorhanden und deshalb deaktiviert.
+
+### Verifikation gesamt
+
+| | Ergebnis |
+|---|---|
+| `pytest` | **144 passed** (143 + 1 neuer End-to-End-Test; der `rlsw-kickers`-Test ist umgestellt, nicht neu) |
+| `npx playwright test --workers=1` | **5/5** |
+| `npx playwright test` (Default-Worker) | **5/5** |
+| `CI=1 npx playwright test` | **5/5** |
+| `actionlint` (+ shellcheck) | 0 Fehler |
+| `npm audit` | 0 vulnerabilities |
+| ICS-Byte-Vergleich | **identisch** zu `main` (separater `main`-Worktree, alle Ligen + Renngruppen, 1.820 Events, ohne `DTSTAMP`) |
+| `data/`, `public/data/`, `public/kalender.ics`, `robots.txt` | unverändert (`git diff main`) |
+
+### Manuell in der Vercel-Preview prüfen
+1. **Header:** `curl -sI https://<preview>/` sowie `/impressum.html`, `/api/calendar.ics?t=league:bl1:men` → alle fünf Header vorhanden, CSP nur als `…-Report-Only`.
+2. **CSP-Report-Only:** DevTools-Konsole auf index/impressum/datenschutz, dabei Auswahl treffen und Abo-Tabs durchklicken → keine `[Report Only] Refused …`-Meldungen. Darauf achten, ob Vercel selbst etwas injiziert (Preview-Toolbar/Feedback-Widget, Analytics). Das würde Verstöße melden, die lokal nicht auftreten, und gehört vor einem späteren Enforce in die CSP oder abgeschaltet.
+3. **ICS-Download:** `curl -sI …/api/calendar.ics?t=…` und `…/kalender.ics` → `Content-Type: text/calendar…` unverändert. Außerdem ein bestehendes Abo in einem Kalender-Client (Apple/Google) aktualisieren lassen: keine Duplikate, gleicher Kalendername.
+4. **Python-Version:** Im Build-Log der Function prüfen, dass Vercel 3.12 aus `.python-version` übernimmt. Falls Vercel 3.12 nicht (mehr) anbietet, bricht der Build bzw. es gibt eine Warnung. Dann `.python-version` anpassen und CI nachziehen.
+5. **Erster CI-Lauf** nach dem Push: Job `e2e` grün, Laufzeit plausibel (Browser-Installation dominiert).
