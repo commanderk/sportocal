@@ -159,3 +159,19 @@ def test_build_vevent_description_has_no_sportocal_footer_line():
     lines = common.build_vevent(_cycling_event(), {})
     description_line = next(line for line in lines if line.startswith("DESCRIPTION:"))
     assert "sportocal.de" not in description_line
+
+
+def test_escape_text_neutralizes_cr_and_crlf():
+    """A CR/CRLF in scraped text must never reach a content line raw --
+    it would end the line early and let the remainder be read as an
+    injected property (e.g. a second SUMMARY or a VALARM)."""
+    assert common.escape_text("a\r\nb") == "a\\nb"
+    assert common.escape_text("a\rSUMMARY:x") == "a\\nSUMMARY:x"
+    assert "\r" not in common.escape_text("x\r\r\ny")
+
+
+def test_build_vevent_location_with_crlf_stays_single_line():
+    lines = common.build_vevent(_football_event(location="Stadion\r\nSUMMARY:Fake"), {})
+    location_line = next(line for line in lines if line.startswith("LOCATION:"))
+    assert "\r" not in location_line and "\n" not in location_line
+    assert sum(line.startswith("SUMMARY:") for line in lines) == 1
