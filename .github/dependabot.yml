@@ -1,0 +1,25 @@
+# Monthly, one grouped PR per ecosystem. Python (uv/pip) is deliberately not
+# covered: the production scripts are stdlib-only and tzdata/pytest are
+# unpinned -- uv.lock is refreshed manually during maintenance instead.
+# Actions are SHA-pinned with a "# vX.Y.Z" comment; Dependabot bumps both.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      github-actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: "chore(deps)"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      npm:
+        patterns: ["*"]
+    commit-message:
+      prefix: "chore(deps)"
