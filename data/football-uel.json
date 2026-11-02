@@ -14,7 +14,7 @@
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": null,
       "awayTeamName": "NK Celje",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/en/f/fc/NK_Celje.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/en/7/75/NK_Celje_logo.svg"
     },
     {
       "id": "football-uel-87370",
@@ -257,5 +257,5 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     }
   ],
-  "lastChecked": "2026-10-26T12:19:16.404058+00:00"
+  "lastChecked": "2026-11-02T14:51:10.281606+00:00"
 }

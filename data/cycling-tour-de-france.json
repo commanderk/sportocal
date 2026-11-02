@@ -323,10 +323,10 @@
       "round": "Etappe 1",
       "start": "2027-07-02",
       "timeConfirmed": false,
-      "location": "Edinburgh (Scotland,UK) → Carlisle (England,UK)",
+      "location": "Edinburgh (Scotland) → Carlisle (England)",
       "route": {
-        "start": "Edinburgh (Scotland,UK)",
-        "finish": "Carlisle (England,UK)",
+        "start": "Edinburgh (Scotland)",
+        "finish": "Carlisle (England)",
         "type": "Flat"
       }
     },
@@ -338,10 +338,10 @@
       "round": "Etappe 2",
       "start": "2027-07-03",
       "timeConfirmed": false,
-      "location": "Keswick (England,UK) → Liverpool (England,UK)",
+      "location": "Keswick (England) → Liverpool (England)",
       "route": {
-        "start": "Keswick (England,UK)",
-        "finish": "Liverpool (England,UK)",
+        "start": "Keswick (England)",
+        "finish": "Liverpool (England)",
         "type": "Hilly"
       }
     },
@@ -353,10 +353,10 @@
       "round": "Etappe 3",
       "start": "2027-07-04",
       "timeConfirmed": false,
-      "location": "Welshpool (Wales,UK) → Cardiff (Wales,UK)",
+      "location": "Welshpool (Wales) → Cardiff (Wales)",
       "route": {
-        "start": "Welshpool (Wales,UK)",
-        "finish": "Cardiff (Wales,UK)",
+        "start": "Welshpool (Wales)",
+        "finish": "Cardiff (Wales)",
         "type": "Hilly"
       }
     },
@@ -443,9 +443,9 @@
       "round": "Etappe 9",
       "start": "2027-07-11",
       "timeConfirmed": false,
-      "location": "Villars-les-Dombes Parc des Oiseaux → Grand Colombier",
+      "location": "Villars-les-Dombes (Parc des Oiseaux) → Grand Colombier",
       "route": {
-        "start": "Villars-les-Dombes Parc des Oiseaux",
+        "start": "Villars-les-Dombes (Parc des Oiseaux)",
         "finish": "Grand Colombier",
         "type": "Mountain"
       }
@@ -578,10 +578,10 @@
       "round": "Etappe 18",
       "start": "2027-07-22",
       "timeConfirmed": false,
-      "location": "Pau → Saint-Lary-Soulan Col du Portet",
+      "location": "Pau → Saint-Lary-Soulan (Col de Portet)",
       "route": {
         "start": "Pau",
-        "finish": "Saint-Lary-Soulan Col du Portet",
+        "finish": "Saint-Lary-Soulan (Col de Portet)",
         "type": "Mountain"
       }
     },
@@ -631,5 +631,5 @@
       }
     }
   ],
-  "lastChecked": "2026-10-26T12:19:52.426323+00:00"
+  "lastChecked": "2026-11-02T14:51:36.340742+00:00"
 }

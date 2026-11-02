@@ -78,7 +78,7 @@
       "homeTeamLogo": "https://i.imgur.com/Rpwsjz1.png",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85271",
@@ -187,7 +187,7 @@
       "location": "Ulrich-Haberland-Stadion, Leverkusen",
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "vfl-wolfsburg",
       "awayTeamName": "VfL Wolfsburg Frauen",
       "awayTeamLogo": "https://i.imgur.com/ucqKV4B.png"
@@ -238,7 +238,7 @@
       "homeTeamLogo": "https://i.imgur.com/gF0PfEl.png",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85284",
@@ -443,7 +443,7 @@
       "location": "Ulrich-Haberland-Stadion, Leverkusen",
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "fc-bayern-muenchen",
       "awayTeamName": "FC Bayern München Frauen",
       "awayTeamLogo": "https://i.imgur.com/jJEsJrj.png"
@@ -526,7 +526,7 @@
       "homeTeamLogo": "https://i.imgur.com/r3mvi0h.png",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85748",
@@ -561,6 +561,54 @@
       "awayTeamLogo": "https://i.imgur.com/v0tkpNx.png"
     },
     {
+      "id": "football-ffb1-85753",
+      "sport": "football",
+      "competition": "Frauen-Bundesliga",
+      "gender": "women",
+      "round": "Spieltag 6",
+      "start": "2026-10-02T13:30:00Z",
+      "timeConfirmed": true,
+      "location": "Ulrich-Haberland-Stadion, Leverkusen",
+      "homeTeamId": "bayer-04-leverkusen",
+      "homeTeamName": "Bayer 04 Leverkusen Frauen",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
+      "awayTeamId": "sv-werder-bremen",
+      "awayTeamName": "SV Werder Bremen Frauen",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg"
+    },
+    {
+      "id": "football-ffb1-85751",
+      "sport": "football",
+      "competition": "Frauen-Bundesliga",
+      "gender": "women",
+      "round": "Spieltag 6",
+      "start": "2026-10-03T13:30:00Z",
+      "timeConfirmed": true,
+      "location": "Franz-Kremer-Stadion, Köln",
+      "homeTeamId": "1-fc-koeln",
+      "homeTeamName": "1. FC Köln Frauen",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg",
+      "awayTeamId": "sc-freiburg",
+      "awayTeamName": "SC Freiburg Frauen",
+      "awayTeamLogo": "https://i.imgur.com/r3mvi0h.png"
+    },
+    {
+      "id": "football-ffb1-85752",
+      "sport": "football",
+      "competition": "Frauen-Bundesliga",
+      "gender": "women",
+      "round": "Spieltag 6",
+      "start": "2026-10-03T13:30:00Z",
+      "timeConfirmed": true,
+      "location": "Trainingszentrum Cottaweg, Leipzig",
+      "homeTeamId": "rb-leipzig",
+      "homeTeamName": "RB Leipzig Frauen",
+      "homeTeamLogo": "https://i.imgur.com/Rpwsjz1.png",
+      "awayTeamId": "1-fsv-mainz-05",
+      "awayTeamName": "1. FSV Mainz 05 Frauen",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
+    },
+    {
       "id": "football-ffb1-85755",
       "sport": "football",
       "competition": "Frauen-Bundesliga",
@@ -591,54 +639,6 @@
       "awayTeamId": "1-fc-union-berlin",
       "awayTeamName": "1. FC Union Berlin Frauen",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg"
-    },
-    {
-      "id": "football-ffb1-85751",
-      "sport": "football",
-      "competition": "Frauen-Bundesliga",
-      "gender": "women",
-      "round": "Spieltag 6",
-      "start": "2026-10-04T13:30:00Z",
-      "timeConfirmed": true,
-      "location": "Franz-Kremer-Stadion, Köln",
-      "homeTeamId": "1-fc-koeln",
-      "homeTeamName": "1. FC Köln Frauen",
-      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg",
-      "awayTeamId": "sc-freiburg",
-      "awayTeamName": "SC Freiburg Frauen",
-      "awayTeamLogo": "https://i.imgur.com/r3mvi0h.png"
-    },
-    {
-      "id": "football-ffb1-85752",
-      "sport": "football",
-      "competition": "Frauen-Bundesliga",
-      "gender": "women",
-      "round": "Spieltag 6",
-      "start": "2026-10-04T13:30:00Z",
-      "timeConfirmed": true,
-      "location": "Trainingszentrum Cottaweg, Leipzig",
-      "homeTeamId": "rb-leipzig",
-      "homeTeamName": "RB Leipzig Frauen",
-      "homeTeamLogo": "https://i.imgur.com/Rpwsjz1.png",
-      "awayTeamId": "1-fsv-mainz-05",
-      "awayTeamName": "1. FSV Mainz 05 Frauen",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
-    },
-    {
-      "id": "football-ffb1-85753",
-      "sport": "football",
-      "competition": "Frauen-Bundesliga",
-      "gender": "women",
-      "round": "Spieltag 6",
-      "start": "2026-10-04T13:30:00Z",
-      "timeConfirmed": true,
-      "location": "Ulrich-Haberland-Stadion, Leverkusen",
-      "homeTeamId": "bayer-04-leverkusen",
-      "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
-      "awayTeamId": "sv-werder-bremen",
-      "awayTeamName": "SV Werder Bremen Frauen",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg"
     },
     {
       "id": "football-ffb1-85754",
@@ -678,7 +678,7 @@
       "competition": "Frauen-Bundesliga",
       "gender": "women",
       "round": "Spieltag 7",
-      "start": "2026-10-16T16:30:00Z",
+      "start": "2026-10-15T16:30:00Z",
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": "sc-freiburg",
@@ -696,7 +696,7 @@
       "round": "Spieltag 7",
       "start": "2026-10-17T10:00:00Z",
       "timeConfirmed": true,
-      "location": null,
+      "location": "Franz-Kremer-Stadion, Köln",
       "homeTeamId": "1-fc-koeln",
       "homeTeamName": "1. FC Köln Frauen",
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg",
@@ -715,7 +715,7 @@
       "location": "Ulrich-Haberland-Stadion, Leverkusen",
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "eintracht-frankfurt",
       "awayTeamName": "Eintracht Frankfurt Frauen",
       "awayTeamLogo": "https://i.imgur.com/X8NFkOb.png"
@@ -735,22 +735,6 @@
       "awayTeamId": "1-fc-nuernberg",
       "awayTeamName": "1. FC Nürnberg Frauen",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/fa/1._FC_Nürnberg_logo.svg"
-    },
-    {
-      "id": "football-ffb1-85758",
-      "sport": "football",
-      "competition": "Frauen-Bundesliga",
-      "gender": "women",
-      "round": "Spieltag 7",
-      "start": "2026-10-18T14:00:00Z",
-      "timeConfirmed": true,
-      "location": null,
-      "homeTeamId": "sv-werder-bremen",
-      "homeTeamName": "SV Werder Bremen Frauen",
-      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg",
-      "awayTeamId": "tsg-1899-hoffenheim",
-      "awayTeamName": "TSG 1899 Hoffenheim Frauen",
-      "awayTeamLogo": "https://i.imgur.com/gF0PfEl.png"
     },
     {
       "id": "football-ffb1-85759",
@@ -878,7 +862,7 @@
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/fa/1._FC_Nürnberg_logo.svg",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85765",
@@ -888,13 +872,29 @@
       "round": "Spieltag 8",
       "start": "2026-10-25T16:00:00Z",
       "timeConfirmed": true,
-      "location": null,
+      "location": "Volksparkstadion, Hamburg",
       "homeTeamId": "hamburger-sv",
       "homeTeamName": "Hamburger SV Frauen",
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg",
       "awayTeamId": "1-fc-union-berlin",
       "awayTeamName": "1. FC Union Berlin Frauen",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg"
+    },
+    {
+      "id": "football-ffb1-85758",
+      "sport": "football",
+      "competition": "Frauen-Bundesliga",
+      "gender": "women",
+      "round": "Spieltag 7",
+      "start": "2026-10-29T17:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "sv-werder-bremen",
+      "homeTeamName": "SV Werder Bremen Frauen",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg",
+      "awayTeamId": "tsg-1899-hoffenheim",
+      "awayTeamName": "TSG 1899 Hoffenheim Frauen",
+      "awayTeamLogo": "https://i.imgur.com/gF0PfEl.png"
     },
     {
       "id": "football-ffb1-85772",
@@ -952,10 +952,10 @@
       "round": "Spieltag 9",
       "start": "2026-11-07T13:00:00Z",
       "timeConfirmed": true,
-      "location": null,
+      "location": "Ulrich-Haberland-Stadion, Leverkusen",
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "hamburger-sv",
       "awayTeamName": "Hamburger SV Frauen",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg"
@@ -1016,7 +1016,7 @@
       "round": "Spieltag 10",
       "start": "2026-11-13T17:30:00Z",
       "timeConfirmed": true,
-      "location": null,
+      "location": "Volksparkstadion, Hamburg",
       "homeTeamId": "hamburger-sv",
       "homeTeamName": "Hamburger SV Frauen",
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg",
@@ -1118,7 +1118,7 @@
       "homeTeamLogo": "https://i.imgur.com/v0tkpNx.png",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85785",
@@ -1134,7 +1134,7 @@
       "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85789",
@@ -1288,7 +1288,7 @@
       "round": "Spieltag 12",
       "start": "2026-12-13T14:30:00Z",
       "timeConfirmed": true,
-      "location": null,
+      "location": "Dietmar-Hopp-Stadion, Hoffenheim",
       "homeTeamId": "tsg-1899-hoffenheim",
       "homeTeamName": "TSG 1899 Hoffenheim Frauen",
       "homeTeamLogo": "https://i.imgur.com/gF0PfEl.png",
@@ -1323,7 +1323,7 @@
       "location": null,
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "1-fc-koeln",
       "awayTeamName": "1. FC Köln Frauen",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg"
@@ -1358,7 +1358,7 @@
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85800",
@@ -1384,7 +1384,7 @@
       "round": "Spieltag 13",
       "start": "2026-12-20T14:30:00Z",
       "timeConfirmed": true,
-      "location": null,
+      "location": "Volksparkstadion, Hamburg",
       "homeTeamId": "hamburger-sv",
       "homeTeamName": "Hamburger SV Frauen",
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg",
@@ -1531,7 +1531,7 @@
       "location": null,
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "rb-leipzig",
       "awayTeamName": "RB Leipzig Frauen",
       "awayTeamLogo": "https://i.imgur.com/Rpwsjz1.png"
@@ -1678,7 +1678,7 @@
       "homeTeamLogo": "https://i.imgur.com/ucqKV4B.png",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85820",
@@ -1787,7 +1787,7 @@
       "location": null,
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "tsg-1899-hoffenheim",
       "awayTeamName": "TSG 1899 Hoffenheim Frauen",
       "awayTeamLogo": "https://i.imgur.com/gF0PfEl.png"
@@ -1886,7 +1886,7 @@
       "homeTeamLogo": "https://i.imgur.com/jJEsJrj.png",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85833",
@@ -1963,7 +1963,7 @@
       "location": null,
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "sc-freiburg",
       "awayTeamName": "SC Freiburg Frauen",
       "awayTeamLogo": "https://i.imgur.com/r3mvi0h.png"
@@ -2046,7 +2046,7 @@
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/b/be/SV-Werder-Bremen-Logo.svg",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85843",
@@ -2142,7 +2142,7 @@
       "homeTeamLogo": "https://i.imgur.com/X8NFkOb.png",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85849",
@@ -2331,7 +2331,7 @@
       "location": null,
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "1-fc-nuernberg",
       "awayTeamName": "1. FC Nürnberg Frauen",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/fa/1._FC_Nürnberg_logo.svg"
@@ -2382,7 +2382,7 @@
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85864",
@@ -2555,7 +2555,7 @@
       "location": null,
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "vfb-stuttgart",
       "awayTeamName": "VfB Stuttgart Frauen",
       "awayTeamLogo": "https://i.imgur.com/v0tkpNx.png"
@@ -2651,7 +2651,7 @@
       "location": null,
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "1-fc-union-berlin",
       "awayTeamName": "1. FC Union Berlin Frauen",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg"
@@ -2750,7 +2750,7 @@
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg",
       "awayTeamId": "bayer-04-leverkusen",
       "awayTeamName": "Bayer 04 Leverkusen Frauen",
-      "awayTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png"
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     },
     {
       "id": "football-ffb1-85887",
@@ -2891,7 +2891,7 @@
       "location": null,
       "homeTeamId": "bayer-04-leverkusen",
       "homeTeamName": "Bayer 04 Leverkusen Frauen",
-      "homeTeamLogo": "https://www.bundesliga-reisefuehrer.de/sites/default/files/B04_Standard_Logo_RGB.png",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": "1-fsv-mainz-05",
       "awayTeamName": "1. FSV Mainz 05 Frauen",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
@@ -2913,5 +2913,5 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg"
     }
   ],
-  "lastChecked": "2026-10-26T12:19:16.404058+00:00"
+  "lastChecked": "2026-11-02T14:51:10.281606+00:00"
 }
