@@ -2209,22 +2209,6 @@
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/155/original_VfR_Aalen.jpg?1493059515"
     },
     {
-      "id": "football-rlsw-kickers-2426433",
-      "sport": "football",
-      "competition": "Regionalliga Südwest",
-      "gender": "men",
-      "round": "Spieltag 16",
-      "start": "2026-11-14T13:00:00Z",
-      "timeConfirmed": true,
-      "location": "maxworx Sportpark, Dreieich",
-      "homeTeamId": "eintracht-frankfurt-ii",
-      "homeTeamName": "Eintracht Frankfurt II",
-      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/117/original_Eintracht_Frankfurt.jpg?1493059503",
-      "awayTeamId": "1-fsv-mainz-05-ii",
-      "awayTeamName": "1. FSV Mainz 05 II",
-      "awayTeamLogo": "https://assets.dfb.de/uploads/000/200/976/original_FSV_Mainz_05_500x500.jpg?1560342690"
-    },
-    {
       "id": "football-rlsw-kickers-2426434",
       "sport": "football",
       "competition": "Regionalliga Südwest",
@@ -2303,6 +2287,22 @@
       "awayTeamId": "sv-eintracht-trier-05",
       "awayTeamName": "Eintracht Trier",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/198/original_Eintracht_Trier.jpg?1493059530"
+    },
+    {
+      "id": "football-rlsw-kickers-2426433",
+      "sport": "football",
+      "competition": "Regionalliga Südwest",
+      "gender": "men",
+      "round": "Spieltag 16",
+      "start": "2026-11-25T18:00:00Z",
+      "timeConfirmed": true,
+      "location": "maxworx Sportpark, Dreieich",
+      "homeTeamId": "eintracht-frankfurt-ii",
+      "homeTeamName": "Eintracht Frankfurt II",
+      "homeTeamLogo": "https://assets.dfb.de/uploads/000/018/117/original_Eintracht_Frankfurt.jpg?1493059503",
+      "awayTeamId": "1-fsv-mainz-05-ii",
+      "awayTeamName": "1. FSV Mainz 05 II",
+      "awayTeamLogo": "https://assets.dfb.de/uploads/000/200/976/original_FSV_Mainz_05_500x500.jpg?1560342690"
     },
     {
       "id": "football-rlsw-kickers-2426441",
@@ -4897,5 +4897,5 @@
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/202/original_Kickers_Offenbach.jpg?1493059533"
     }
   ],
-  "lastChecked": "2026-11-02T14:51:10.281606+00:00"
+  "lastChecked": "2026-11-09T15:18:22.448282+00:00"
 }

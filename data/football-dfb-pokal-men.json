@@ -769,28 +769,12 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/8/84/1._FC_Magdeburg.svg"
     },
     {
-      "id": "football-dfb-pokal-men-88749",
-      "sport": "football",
-      "competition": "DFB-Pokal",
-      "gender": "men",
-      "round": "Achtelfinale",
-      "start": "2026-12-01T14:30:00Z",
-      "timeConfirmed": true,
-      "location": null,
-      "homeTeamId": "eintracht-frankfurt",
-      "homeTeamName": "Eintracht Frankfurt",
-      "homeTeamLogo": "https://i.imgur.com/X8NFkOb.png",
-      "awayTeamId": "borussia-dortmund",
-      "awayTeamName": "Borussia Dortmund",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/960px-Borussia_Dortmund_logo.svg.png"
-    },
-    {
       "id": "football-dfb-pokal-men-88750",
       "sport": "football",
       "competition": "DFB-Pokal",
       "gender": "men",
       "round": "Achtelfinale",
-      "start": "2026-12-01T14:30:00Z",
+      "start": "2026-12-01T17:00:00Z",
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": "vfb-stuttgart",
@@ -801,20 +785,20 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_SG_Dynamo_Dresden_neu.svg/960px-Logo_SG_Dynamo_Dresden_neu.svg.png"
     },
     {
-      "id": "football-dfb-pokal-men-88751",
+      "id": "football-dfb-pokal-men-88755",
       "sport": "football",
       "competition": "DFB-Pokal",
       "gender": "men",
       "round": "Achtelfinale",
-      "start": "2026-12-01T14:30:00Z",
+      "start": "2026-12-01T17:00:00Z",
       "timeConfirmed": true,
       "location": null,
-      "homeTeamId": "bayer-04-leverkusen",
-      "homeTeamName": "Bayer 04 Leverkusen",
-      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
-      "awayTeamId": "rb-leipzig",
-      "awayTeamName": "RB Leipzig",
-      "awayTeamLogo": "https://i.imgur.com/Rpwsjz1.png"
+      "homeTeamId": "holstein-kiel",
+      "homeTeamName": "Holstein Kiel",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Holstein_Kiel_Logo.svg/330px-Holstein_Kiel_Logo.svg.png",
+      "awayTeamId": "1-fc-koeln",
+      "awayTeamName": "1. FC Köln",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg"
     },
     {
       "id": "football-dfb-pokal-men-88752",
@@ -822,7 +806,7 @@
       "competition": "DFB-Pokal",
       "gender": "men",
       "round": "Achtelfinale",
-      "start": "2026-12-01T14:30:00Z",
+      "start": "2026-12-01T19:45:00Z",
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": "fc-bayern-muenchen",
@@ -838,7 +822,7 @@
       "competition": "DFB-Pokal",
       "gender": "men",
       "round": "Achtelfinale",
-      "start": "2026-12-01T14:30:00Z",
+      "start": "2026-12-01T19:45:00Z",
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": "borussia-moenchengladbach",
@@ -849,12 +833,28 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/e/e5/SV_Darmstadt_98_Logo.svg"
     },
     {
+      "id": "football-dfb-pokal-men-88751",
+      "sport": "football",
+      "competition": "DFB-Pokal",
+      "gender": "men",
+      "round": "Achtelfinale",
+      "start": "2026-12-02T17:00:00Z",
+      "timeConfirmed": true,
+      "location": null,
+      "homeTeamId": "bayer-04-leverkusen",
+      "homeTeamName": "Bayer 04 Leverkusen",
+      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
+      "awayTeamId": "rb-leipzig",
+      "awayTeamName": "RB Leipzig",
+      "awayTeamLogo": "https://i.imgur.com/Rpwsjz1.png"
+    },
+    {
       "id": "football-dfb-pokal-men-88754",
       "sport": "football",
       "competition": "DFB-Pokal",
       "gender": "men",
       "round": "Achtelfinale",
-      "start": "2026-12-01T14:30:00Z",
+      "start": "2026-12-02T17:00:00Z",
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": "1-fc-kaiserslautern",
@@ -865,20 +865,20 @@
       "awayTeamLogo": "https://i.imgur.com/r3mvi0h.png"
     },
     {
-      "id": "football-dfb-pokal-men-88755",
+      "id": "football-dfb-pokal-men-88749",
       "sport": "football",
       "competition": "DFB-Pokal",
       "gender": "men",
       "round": "Achtelfinale",
-      "start": "2026-12-01T14:30:00Z",
+      "start": "2026-12-02T19:45:00Z",
       "timeConfirmed": true,
       "location": null,
-      "homeTeamId": "holstein-kiel",
-      "homeTeamName": "Holstein Kiel",
-      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Holstein_Kiel_Logo.svg/330px-Holstein_Kiel_Logo.svg.png",
-      "awayTeamId": "1-fc-koeln",
-      "awayTeamName": "1. FC Köln",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg"
+      "homeTeamId": "eintracht-frankfurt",
+      "homeTeamName": "Eintracht Frankfurt",
+      "homeTeamLogo": "https://i.imgur.com/X8NFkOb.png",
+      "awayTeamId": "borussia-dortmund",
+      "awayTeamName": "Borussia Dortmund",
+      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/960px-Borussia_Dortmund_logo.svg.png"
     },
     {
       "id": "football-dfb-pokal-men-88756",
@@ -886,7 +886,7 @@
       "competition": "DFB-Pokal",
       "gender": "men",
       "round": "Achtelfinale",
-      "start": "2026-12-01T14:30:00Z",
+      "start": "2026-12-02T19:45:00Z",
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": "vfl-bochum",
@@ -897,5 +897,5 @@
       "awayTeamLogo": "https://i.imgur.com/sdE62e2.png"
     }
   ],
-  "lastChecked": "2026-11-02T14:51:10.281606+00:00"
+  "lastChecked": "2026-11-09T15:18:22.448282+00:00"
 }
