@@ -11,7 +11,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "Hansa Rostock Frauen",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://commons.wikimedia.org/wiki/File:F.C._Hansa_Rostock_Logo.svg#/media/Datei:F.C._Hansa_Rostock_Logo.svg",
       "awayTeamId": "vfl-bochum",
       "awayTeamName": "VfL Bochum Frauen",
       "awayTeamLogo": "https://i.imgur.com/5jy3Gfr.png"
@@ -43,10 +43,10 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "1. FFV Erfurt F",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://commons.wikimedia.org/wiki/File:Logo_1._FFV_Erfurt_ab_2017.png#/media/Datei:Logo_1._FFV_Erfurt_ab_2017.png",
       "awayTeamId": "fc-ingolstadt-04",
       "awayTeamName": "FC Ingolstadt 04 Frauen",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/thumb/5/55/FC-Ingolstadt_logo.svg/125px-FC-Ingolstadt_logo.svg.png"
+      "awayTeamLogo": "https://de.wikipedia.org/wiki/Datei:FC-Ingolstadt_logo.svg#/media/Datei:FC-Ingolstadt_logo.svg"
     },
     {
       "id": "football-dfb-pokal-women-88723",
@@ -59,7 +59,7 @@
       "location": null,
       "homeTeamId": "fc-ingolstadt-04",
       "homeTeamName": "FC Ingolstadt 04 Frauen",
-      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/thumb/5/55/FC-Ingolstadt_logo.svg/125px-FC-Ingolstadt_logo.svg.png",
+      "homeTeamLogo": "https://de.wikipedia.org/wiki/Datei:FC-Ingolstadt_logo.svg#/media/Datei:FC-Ingolstadt_logo.svg",
       "awayTeamId": "1-fsv-mainz-05",
       "awayTeamName": "1. FSV Mainz 05 Frauen",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg"
@@ -75,7 +75,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "SG Andernach F",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://de.wikipedia.org/wiki/Datei:Andernach_SG_99.gif#/media/Datei:Andernach_SG_99.gif",
       "awayTeamId": "sc-freiburg",
       "awayTeamName": "SC Freiburg Frauen",
       "awayTeamLogo": "https://i.imgur.com/r3mvi0h.png"
@@ -91,7 +91,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "Hertha BSC F",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://commons.wikimedia.org/wiki/File:Hertha_BSC_Logo_2012.svg#/media/Datei:Hertha_BSC_Logo_2012.svg",
       "awayTeamId": "1-fc-koeln",
       "awayTeamName": "1. FC Köln Frauen",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg"
@@ -123,7 +123,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "SV Meppen Frauen",
-      "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SV_Meppen_Logo.svg/150px-SV_Meppen_Logo.svg.png",
+      "homeTeamLogo": "https://commons.wikimedia.org/wiki/File:SV_Meppen_Logo_2022.svg#/media/Datei:SV_Meppen_Logo_2022.svg",
       "awayTeamId": "hamburger-sv",
       "awayTeamName": "Hamburger SV Frauen",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg"
@@ -139,7 +139,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "1. FFC Turbine Potsdam F",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://de.wikipedia.org/wiki/Datei:Logo_Turbine_Potsdam.svg#/media/Datei:Logo_Turbine_Potsdam.svg",
       "awayTeamId": "vfb-stuttgart",
       "awayTeamName": "VfB Stuttgart Frauen",
       "awayTeamLogo": "https://i.imgur.com/v0tkpNx.png"
@@ -171,10 +171,10 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "FC Schalke 04 F",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://commons.wikimedia.org/wiki/File:FC_Schalke_04_Logo.svg#/media/Datei:FC_Schalke_04_Logo.svg",
       "awayTeamId": "sgs-essen",
       "awayTeamName": "SGS Essen Frauen",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/SGS_Essen_Logo.svg/316px-SGS_Essen_Logo.svg.png"
+      "awayTeamLogo": "https://commons.wikimedia.org/wiki/File:SGS_Essen_Logo.svg#/media/Datei:SGS_Essen_Logo.svg"
     },
     {
       "id": "football-dfb-pokal-women-88733",
@@ -187,7 +187,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "ATS Buntentor F",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://commons.wikimedia.org/wiki/File:ATS_Buntentor.gif#/media/Datei:ATS_Buntentor.gif",
       "awayTeamId": "1-fc-nuernberg",
       "awayTeamName": "1. FC Nürnberg Frauen",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/f/fa/1._FC_Nürnberg_logo.svg"
@@ -219,7 +219,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "1. FC Magdeburg F",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://commons.wikimedia.org/wiki/File:1._FC_Magdeburg.svg#/media/Datei:1._FC_Magdeburg.svg",
       "awayTeamId": "1-fc-union-berlin",
       "awayTeamName": "1. FC Union Berlin Frauen",
       "awayTeamLogo": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg"
@@ -235,7 +235,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "SC Sand F",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://commons.wikimedia.org/wiki/File:Logo_SC_Sand.svg#/media/Datei:Logo_SC_Sand.svg",
       "awayTeamId": "vfl-wolfsburg",
       "awayTeamName": "VfL Wolfsburg Frauen",
       "awayTeamLogo": "https://i.imgur.com/ucqKV4B.png"
@@ -251,7 +251,7 @@
       "location": null,
       "homeTeamId": null,
       "homeTeamName": "Karlsruher SC F",
-      "homeTeamLogo": "",
+      "homeTeamLogo": "https://commons.wikimedia.org/wiki/File:Karlsruher_SC_Logo_2.svg#/media/Datei:Karlsruher_SC_Logo_2.svg",
       "awayTeamId": "eintracht-frankfurt",
       "awayTeamName": "Eintracht Frankfurt Frauen",
       "awayTeamLogo": "https://i.imgur.com/X8NFkOb.png"
@@ -302,7 +302,7 @@
       "homeTeamLogo": "https://i.imgur.com/v0tkpNx.png",
       "awayTeamId": "sgs-essen",
       "awayTeamName": "SGS Essen Frauen",
-      "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/SGS_Essen_Logo.svg/316px-SGS_Essen_Logo.svg.png"
+      "awayTeamLogo": "https://commons.wikimedia.org/wiki/File:SGS_Essen_Logo.svg#/media/Datei:SGS_Essen_Logo.svg"
     },
     {
       "id": "football-dfb-pokal-women-88741",
@@ -414,8 +414,8 @@
       "homeTeamLogo": "https://i.imgur.com/ucqKV4B.png",
       "awayTeamId": null,
       "awayTeamName": "TSG Hoffenheim F",
-      "awayTeamLogo": ""
+      "awayTeamLogo": "https://commons.wikimedia.org/wiki/File:Logo_TSG_Hoffenheim.svg#/media/Datei:Logo_TSG_Hoffenheim.svg"
     }
   ],
-  "lastChecked": "2026-11-09T15:18:22.448282+00:00"
+  "lastChecked": "2026-11-16T14:53:44.830899+00:00"
 }
