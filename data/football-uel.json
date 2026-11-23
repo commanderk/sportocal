@@ -157,7 +157,7 @@
       "homeTeamName": "TSG Hoffenheim",
       "homeTeamLogo": "https://i.imgur.com/gF0PfEl.png",
       "awayTeamId": null,
-      "awayTeamName": "Sturm Graz",
+      "awayTeamName": "SK Puntigamer Sturm Graz",
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/2/20/SK_Sturm_Graz_Logo.svg"
     },
     {
@@ -221,7 +221,7 @@
       "homeTeamName": "Bayer 04 Leverkusen",
       "homeTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg",
       "awayTeamId": null,
-      "awayTeamName": "RB Salzburg",
+      "awayTeamName": "FC Red Bull Salzburg",
       "awayTeamLogo": "https://s.hs-data.com/gfx/emblem/common/100x100/1536.png"
     },
     {
@@ -257,5 +257,5 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/de/f/f7/Bayer_Leverkusen_Logo.svg"
     }
   ],
-  "lastChecked": "2026-11-16T14:53:44.830899+00:00"
+  "lastChecked": "2026-11-23T17:28:30.740658+00:00"
 }

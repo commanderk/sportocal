@@ -2534,7 +2534,7 @@
       "competition": "2. Bundesliga",
       "gender": "men",
       "round": "Spieltag 18",
-      "start": "2027-01-24T12:30:00Z",
+      "start": "2027-01-23T19:30:00Z",
       "timeConfirmed": true,
       "location": null,
       "homeTeamId": "1-fc-kaiserslautern",
@@ -4897,5 +4897,5 @@
       "awayTeamLogo": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Logo_1_FC_Kaiserslautern.svg"
     }
   ],
-  "lastChecked": "2026-11-16T14:53:44.830899+00:00"
+  "lastChecked": "2026-11-23T17:28:30.740658+00:00"
 }
